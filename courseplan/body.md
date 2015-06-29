@@ -1,4 +1,4 @@
-| Attribut |     |
+| **EDA016**     |  D1, 7,5 högskolepoäng, Läsperiod 1 & 2 |
 |:-------------- |:----------- |
 |*Kursansvarig*  | Björn Regnell, rum E:2413, bjorn.regnell@cs.lth.se, 046–222 90 09|
 |*Expedition*    | Lena Ohlsson, rum E:2179, lena.ohlsson@cs.lth.se, 046–222 80 40  |
@@ -11,16 +11,16 @@
 
 ## Undervisning ##
 
-* *Föreläsningar*. Ger översikt och struktur.
+* *Föreläsningar*. Föreläsningarna ger en översikt av kursinnehållet och åskådliggör teorin med praktiska programmeringsexempel. Föreläsningarna ger även utrymme för diskussion och frågor.
 
 * *Resurstider*. I kursens schema finns särskilda s.k. resurstider där du kan du få hjälp med övningar, laborationer och inlämningsuppgifter. Utnyttja dessa tillfällen!
 
 * *Övningar*. I kursen ingår 11 övningar som du arbetar med självständigt. Du kan få hjälp
-med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig inför laborationerna och den skriftliga tentamen.
+med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig inför laborationerna och den skriftliga tentamen. Se anvisningar i kompendiet.
 
-* *Laborationer*. I Kursen ingår 11 laborationer, varav 9 görs individuellt och 2 görs i samarbetsgrupper (se nedan).
+* *Laborationer*. I Kursen ingår 11 obligatoriska laborationer, varav 9 görs individuellt och 2 görs i samarbetsgrupper (se nedan). Se anvisningar i kompendiet.
 
-* *Inlämningsuppgift*.  
+* *Inlämningsuppgift*. Du ska självständigt arbeta med ett större program och redovisa detta för en handledare. Se anvisningar i kompendiet.
 
 ## Samarbetsgrupper ##
 
