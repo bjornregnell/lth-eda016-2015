@@ -15,7 +15,7 @@ För tider och salar se schema i [TimeEdit].
 
 KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbetsbonus.
 
-## Läsperiod 2 ## 2/11-8/11             
+## Läsperiod 2 ##              
 
 | Vecka| Datum        | Föreläsning | Resurstid                    | Laboration             |Kontroll|
 |:-----|:-------------|:------------|:-----------                  |:---------------------  |:-------|
