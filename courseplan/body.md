@@ -1,4 +1,4 @@
-| Attribut | Värde   |
+| Attribut |     |
 |:-------------- |:----------- |
 |*Kursansvarig*  | Björn Regnell, rum E:2413, bjorn.regnell@cs.lth.se, 046–222 90 09|
 |*Expedition*    | Lena Ohlsson, rum E:2179, lena.ohlsson@cs.lth.se, 046–222 80 40  |
