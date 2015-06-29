@@ -1,6 +1,6 @@
-För tider och salar se schema i [TimeEdit].
+För tider, salar och grupper se schema i [TimeEdit].
 
-## Läsperiod 1 ##
+### Läsperiod 1 ###
 
 | Vecka| Datum        | Föreläsning | Resurstid                    | Laboration          |Kontroll|
 |:-----|:-------------|:------------|:-----------                  |:--------------------|:-------|
@@ -15,7 +15,7 @@ För tider och salar se schema i [TimeEdit].
 
 KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbetsbonus.
 
-## Läsperiod 2 ##              
+### Läsperiod 2 ###              
 
 | Vecka| Datum        | Föreläsning | Resurstid                    | Laboration             |Kontroll|
 |:-----|:-------------|:------------|:-----------                  |:---------------------  |:-------|
@@ -26,10 +26,10 @@ KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbe
 | V5   |              | F19 --      | extraövningar, extentor      | Grupplab11 Imagefilter |        |
 | V6   |              | F20 --      | extraövningar, extentor      | --                     |        |
 | V7   |              | F21 --      | uppsamling                   | Inlämningsuppgift      |        |
-| V8   |              | --          | --                           | --                     | Tenta  |
+|      | Ons 13/1     | --          | --                           | --                     | Tenta  |
 
 Tenta = Skriftlig tentamen utan hjälpmedel, förutom [snabbreferens].
 
 [TimeEdit]: http://cs.lth.se/eda016/schema   
 [F1]: http://fileadmin.cs.lth.se/cs/Education/EDA016/lectures/f1.pdf
-[snabbreferens]: http://fileadmin.cs.lth.se/cs/Education/EDA016/general/quickref-booklet.pdf
+[snabbreferens]: http://cs.lth.se/eda016/javaref
