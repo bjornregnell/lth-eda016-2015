@@ -18,7 +18,7 @@
 * *Övningar*. I kursen ingår 11 övningar som du arbetar med självständigt. Du kan få hjälp
 med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig inför laborationerna och den skriftliga tentamen. Se anvisningar i kompendiet.
 
-* *Laborationer*. I Kursen ingår 11 obligatoriska laborationer, varav 9 görs individuellt och 2 görs i samarbetsgrupper (se nedan). Se anvisningar i kompendiet.
+* *Laborationer*. I Kursen ingår 11 obligatoriska laborationer, varav 9 görs individuellt och 2 görs i samarbetsgrupper. Se anvisningar i kompendiet.
 
 * *Inlämningsuppgift*. Du ska självständigt arbeta med ett större program och redovisa detta för en handledare. Se anvisningar i kompendiet.
 
