@@ -15,7 +15,7 @@
 
 * *Resurstider*. I kursens schema finns särskilda s.k. resurstider där du kan få hjälp med övningar, laborationer och inlämningsuppgifter. Utnyttja dessa tillfällen!
 
-* *Övningar*. I kursen ingår 11 övningar som du arbetar med självständigt. Du kan få hjälp
+* *Övningar*. I kursen ingår 11 övningar som du arbetar med självständigt eller tillsammans med en kamrat. Du kan få hjälp
 med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig inför laborationerna och den skriftliga tentamen. Se anvisningar i kompendiet.
 
 * *Laborationer*. I Kursen ingår 11 obligatoriska laborationer, varav 9 görs individuellt och 2 görs i samarbetsgrupper. Se anvisningar i kompendiet.
