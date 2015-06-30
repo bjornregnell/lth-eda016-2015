@@ -1,2 +1,2 @@
-pandoc --read markdown_github body.md -o body-generated.tex
+pandoc --read markdown_github body.md -o generated-body.tex
 pdflatex courseplan.tex

@@ -17,16 +17,16 @@ KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbe
 
 ### Läsperiod 2
 
-| Vecka| Datum        | Föreläsning | Resurstid                    | Laboration             |Kontroll|
-|:-----|:-------------|:------------|:-----------                  |:---------------------  |:-------|
-| V1   | 2/11-8/11    | F13 --      | Ö8 matriser, StringBuilder   | Lab7 Maze              |        |
-| V2   |              | F14 --      | Ö9 ArrayList                 | Lab8 Quiz              |        |
-| V3   |              | F15 F16     | Ö10 sortering, objekt        | Grupplab9 TurtleRace   |        |
-| V4   |              | F17 F18     | Ö11 arv                      | Lab10 Life             |        |
-| V5   |              | F19 --      | extraövningar, extentor      | Grupplab11 Imagefilter |        |
-| V6   |              | F20 --      | extraövningar, extentor      | --                     |        |
-| V7   |              | F21 --      | uppsamling                   | Inlämningsuppgift      |        |
-|      | Ons 13/1     | --          | --                           | --                     | Tenta  |
+| Vecka| Datum        | Föreläsning | Resurstid                    | Laboration                |Kontroll|
+|:-----|:-------------|:------------|:-----------                  |:---------------------     |:-------|
+| V1   | 2/11-8/11    | F13 --      | Ö8 matriser, StringBuilder   | Lab7 Maze                 |        |
+| V2   |              | F14 --      | Ö9 ArrayList                 | Lab8 Vektor               |        |
+| V3   |              | F15 F16     | Ö10 sortering, objekt        | Lab9 grupplab TurtleRace  |        |
+| V4   |              | F17 F18     | Ö11 arv                      | Lab10 Life                |        |
+| V5   |              | F19 --      | extraövningar, extentor      | Lab11 grupplab Imagefilter|        | 
+| V6   |              | F20 --      | extraövningar, extentor      | --                        |        |
+| V7   |              | F21 --      | uppsamling                   | Inlämningsuppgift         |        |
+|      | Ons 13/1     | --          | --                           | --                        | Tenta  |
 
 Tenta = Skriftlig tentamen utan hjälpmedel, förutom [snabbreferens].
 

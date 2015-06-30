@@ -8,4 +8,4 @@ Run this in a Linux terminal:
 source build.sh
 ```
 
-This will create a [pdf](https://github.com/bjornregnell/lth-eda016-2015/blob/master/courseplan/courseplan.pdf) with the course plan.
+This will create a [pdf](https://github.com/bjornregnell/lth-eda016-2015/blob/master/courseplan/courseplan.pdf) with the course plan from `courseplan.tex` that includes `generated-body.tex' which is generated from `body.md`.

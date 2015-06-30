@@ -13,7 +13,7 @@
 
 * *Föreläsningar*. Föreläsningarna ger en översikt av kursinnehållet och åskådliggör teorin med praktiska programmeringsexempel. Föreläsningarna ger även utrymme för diskussion och frågor.
 
-* *Resurstider*. I kursens schema finns särskilda s.k. resurstider där du kan du få hjälp med övningar, laborationer och inlämningsuppgifter. Utnyttja dessa tillfällen!
+* *Resurstider*. I kursens schema finns särskilda s.k. resurstider där du kan få hjälp med övningar, laborationer och inlämningsuppgifter. Utnyttja dessa tillfällen!
 
 * *Övningar*. I kursen ingår 11 övningar som du arbetar med självständigt. Du kan få hjälp
 med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig inför laborationerna och den skriftliga tentamen. Se anvisningar i kompendiet.
@@ -24,7 +24,7 @@ med övningarna under resurstiderna. Övningarna hjälper dig att förbereda dig
 
 ## Samarbetsgrupper ##
 
-Kursdeltagarna gruppindelas av kursansvarig baserat på förkunskapsenkät i *samarbetsgrupper*, där 4-5 studenter med olika förkunskapsnivåer sammanförs. Målet med samarbetsgrupperna är att deltagarna gemensamt ska dela med sig av och träna på förklaringar av teori, begrepp och programmeringspraktik. Kontrollskrivningen kan ge samarbetsbonus (se nedan) och 2 av laborationerna görs i grupp. Ni ska hjälpa varandra att förstå, men *inte* lösa uppgifterna åt varandra.
+Kursdeltagarna indelas i *samarbetsgrupper* av kursansvarig baserat på förkunskapsenkät, där 4-5 studenter med olika förkunskapsnivåer sammanförs. Målet med samarbetsgrupperna är att deltagarna gemensamt ska dela med sig av och träna på förklaringar av teori, begrepp och programmeringspraktik. Kontrollskrivningen kan ge samarbetsbonus (se nedan) och 2 av laborationerna görs i grupp. Ni ska hjälpa varandra att förstå, men *inte* lösa uppgifterna åt varandra.
 
 ## Examination ##
 
@@ -36,7 +36,7 @@ Kursdeltagarna gruppindelas av kursansvarig baserat på förkunskapsenkät i *sa
 
 	* Inlämningsuppgift görs individuellt och godkänns av handledare på schemalagd tid. Se instruktioner i kompendium.
 
-* *Tentamen (3 hp)*. Tentamen är skriftlig. Tillåtet hjälpmedel: Java [snabbreferens]. För att få delta i tentamen krävs att laborationerna och inlämningsuppgifterna är godkända.
+* *Tentamen (3 hp)*. Tentamen är skriftlig. Tillåtet hjälpmedel: Java [snabbreferens]. För att få tentera krävs att laborationerna och inlämningsuppgifterna är godkända.
 
 	* Ordinarie tentamen: Onsdagen den 13 Januari, 2016, sal: MA10 i Matteannexet.
 
