@@ -1,0 +1,187 @@
+\newpage
+\exercise{life}{Laboration \arabic{section} -- matris, spelet life}
+
+\emph{Mål:} Du ska skriva program som använder matriser. Du ska också få mer träning
+på att använda färdiga klasser och att implementera egna klasser.
+
+\subsection*{Förberedelseuppgifter}
+\begin{itemize} \tightlist
+\item Studera avsnitt 8.4 i läroboken.
+\end{itemize}
+
+\subsection*{Bakgrund}
+''Game of Life'', konstruerat av matematikern John Conway, är ett simuleringsspel som uppvisar likheter med de förändringar som äger rum i samhällen med levande individer.
+
+Som spelplan används ett rutnät. En ruta kan antingen vara tom eller innehålla en individ. Från en given spelplan, en generation, ska samhället ändra sin struktur enligt vissa regler för födelse och död.
+
+Nedanstående regler gäller när en ny generation bildas. Alla förändringar vid en generationsväxling
+sker samtidigt över hela rutnätet.
+\begin{enumerate} \tightlist
+\item \textit{Fortlevnad}. En individ lever vidare till nästa generation om den har 2 eller 3 grannar.
+\item \textit{Dödsfall}. En individ med 4 eller fler grannar dör av trängsel. En individ med 0 eller 1 granne dör av isolering.
+\item \textit{Födelse}. I en tom ruta gränsande till exakt 3 individer föds en individ.
+\end{enumerate}
+
+Varje ruta i rutnätet har 8 grannrutor. Även de diagonalt intilliggande rutorna betraktas alltså som grannrutor.
+
+Exempel på fyra på varandra följande generationer i Life-spelet (individerna markeras
+med fyllda rutor):
+
+\begin{center}
+\includegraphics[scale=0.4]{../datorovningar/lab-life/instruktioner/life-ex1.pdf}
+\end{center}
+
+Du ska skriva ett program för Life-spelet. Användargränssnittet, det fönster där spelplanen ritas upp, beskrivs av en färdigskriven klass med namnet \code{LifeView}. Användaren kan när som helst ändra spelplanens utseende genom att klicka på en ruta i spelplanen. Om man klickar på en tom ruta skapas en individ i rutan, om man klickar på en fylld ruta töms rutan. Detta utnyttjas normalt för att skapa generation 1.
+
+Förutom spelplanen ritas en Next-knapp, som användaren klickar på när nästa generation ska skapas och ritas upp, samt en Quit-knapp som användaren klickar på när spelet ska avslutas.
+
+Följande klasser ska finnas i lösningen:
+
+\code{LifeBoard}, som beskriver spelplanen och generationsräknaren. Innehåller operationer för att ta reda på och ändra spelplanens utseende, t ex vilka rutor som ska vara tomma och vilka som ska innehålla individer.
+
+\code{LifeView}, som beskriver hur spelplanen presenteras på skärmen. Innehåller operationer för att rita upp spelplanen och för att vänta på att användaren klickar i rutorna eller på Next- eller Quit-knappen. Klassen är färdigskriven (specifikationen finns nedan).
+
+\code{Life}, som beskriver Life-spelet. Innehåller operationer för att skapa en ny generation enligt reglerna och för att skapa en individ i en ruta eller tömma en ruta.
+
+\code{LifeController}, en klass med en main-metod, som genomför Life-spelet från generation 1 till ''Quit''.
+
+Specifikation för \code{LifeBoard} och \code{LifeView}:
+
+\begin{Spec}
+/** Skapar en spelplan med rows rader och cols kolonner. Spelplanen är från
+    början tom, dvs. alla rutorna är tomma och generationsnumret är 1. */
+LifeBoard(int rows, int cols);
+
+/** Undersöker om det finns en individ i rutan med index row,col. Om
+    index row,col hamnar utanför spelplanen returneras false. */
+boolean get(int row, int col);
+
+/** Lagrar värdet val i rutan med index row, col. */
+void put(int row, int col, boolean val);
+
+/** Tar reda på antalet rader. */
+int getRows();
+
+/** Tar reda på antalet kolonner. */
+int getCols();
+
+/** Tar reda på aktuellt generationsnummer. */
+int getGeneration();
+
+/** Ökar generationsnumret med ett. */
+void increaseGeneration();
+\end{Spec}
+
+\begin{Spec}
+/** Skapar vy till spelplanen board. */
+LifeView(LifeBoard board);
+
+/** Ritar upp de fixa delarna av spelplanen (rutnätet,
+    generationsräknaren och knapparna. */
+void drawBoard();
+
+/** Ritar om de delar av fönstret som ändrats sedan föregående
+    uppritning. */
+void update();
+
+/** Väntar tills användaren klickar med musen. Ger:
+    1: klick i ruta på spelplanen. Index för rutan kan hämtas med
+       getRow och getCol.
+    2: klick i Next-rutan.
+    3: klick i Quit-rutan. */
+int getCommand();
+
+/** Tar reda på radnummer för den klickade rutan efter kommando nr 1. */
+int getRow();
+
+/** Tar reda på kolonnummer för den klickade rutan efter kommando nr 1. */
+int getCol();
+\end{Spec}
+
+\n Rutorna i rutnätet numreras 0..rows--1, 0..cols--1. I klassen \code{LifeBoard} finns det dock en tänkt ''ram'' kring rutnätet. I ramrutorna finns inga individer. Genom att ramen finns behöver du inte specialbehandla rutorna i kanten av rutnätet. Du kan alltså göra \code{get(row,col)} med row/col = --1 eller rows/cols. I de fallen ger metoden \code{get} alltid resultatet \code{false}.
+
+Klassen \code{Life} har följande specifikation:
+\begin{Spec}
+/** Skapar ett Life-spel med spelplanen board. */
+Life(LifeBoard board);
+
+/** Skapar en ny generation. */
+void newGeneration();
+
+/** Ändrar innehållet i rutan med index row, col från individ till tom
+    eller tvärtom. */
+void flip(int row, int col);
+\end{Spec}
+
+\subsection*{Datorarbete}
+Det är lämpligt att lösa ett stort problem stegvis. Först skriver man lite kod, sedan
+testar man att det fungerar innan man går vidare. Därför är laborationsuppgiften uppdelad
+i mindre deluppgifter.
+
+\begin{Datorarbete}
+\item Öppna projektet \file{Lab\arabic{section}}. I filen \file{LifeBoard.java} finns ett skelett (en klass utan attribut
+och med tomma metoder) till klassen \code{LifeBoard}.
+
+Implementera klassen \code{LifeBoard}.
+
+\item Ett testprogram (\file{TestLifeBoard.java}) för klassen \code{LifeBoard} finns i projektet.
+Testprogrammet testar inte klassen fullständigt, men skapar ett \code{LifeBoard}-objekt, låter ett \code{LifeView}-objekt rita upp brädet samt anropar de olika metoderna i \code{LifeBoard}.
+
+Kör programmet och kontrollera att det fungerar som det ska. Avsluta exekveringen genom att klicka i Quit-rutan på spelplanen.
+
+\item Det är dags att börja arbeta med den riktiga \code{main}-metoden. Inspiration kan hämtas från testprogrammet (\file{TestLifeBoard.java}). Skapa en fil med namnet \file{LifeController.java} som ska innehålla \code{main}-metoden. Du ska till att börja med se till att Quit-knappen fungerar (Vänta med rutnätet och Next-knappen).
+
+Ledning: Med metoden \code{getCommand} i \code{LifeView} kan man vänta tills användaren klickar på en ruta eller en knapp. Då returneras ett tal med vars hjälp man kan avgöra vad användaren gjorde. Låt alltså användaren klicka i fönstret tills användaren klickar i Quit-rutan. Avsluta då programmet med hjälp av \code{System.exit(0)}.
+
+Kör programmet och kontrollera att du kan avsluta programmet genom att trycka på Quit-knappen.
+
+\item Skapa en fil \file{Life.java} som ska innehålla klassen \code{Life}. Implementera konstruktorn och metoden \code{flip} i klassen \code{Life}. Implementera metoden \code{newGeneration}, men bara delvis -- lägg in ökning av generationsnumret.
+
+Spara klassen \code{Life} och rätta eventuella kompileringsfel.
+
+\item Fortsätt med klassen med \code{main}-metoden. Implementera satser i \code{main}-metoden så att rätt saker utförs när man klickar med musen; om man klickar i en ruta ska en individ skapas eller tas bort (med metoden \code{flip}). Om man klickar på Next-knappen ska generationsnumret ändras. Om man trycker på Quit-knappen ska programmet avslutas.
+
+Kör programmet och kontrollera att det fungerar som det ska.
+
+\item Nu återstår att implementera färdigt metoden \code{newGeneration} i klassen \code{Life}.
+Lägg gärna till en intern (privat) metod som beräknar antal grannar till en ruta. Metoden \code{newGeneration} blir kortare och mer lättläst då.
+
+Tänk på att i metoden \code{newGeneration} ska alla förändringar vid en generationsväxling utföras samtidigt över hela spelplanen. Enklast åstadkommer du detta genom att deklarera en hjälpmatris där du lagrar den nya spelplanen. I slutet av metoden kopierar du hjälpmatrisen till den riktiga spelplanen. Alternativt kan du använda ett hjälpbräde (ett annat \code{LifeBoard}-objekt) där du lagrar den nya spelplanen. Även i detta fall måste du avsluta med att kopiera hjälpbrädet till den riktiga spelplanen.
+
+Testa programmet på åtminstone följande fyra exempel:\\
+\\
+\n Exempel 1 (två konfigurationer erhålls omväxlande)
+\begin{center}
+\includegraphics[scale=0.3]{../datorovningar/lab-life/instruktioner/life-ex2.pdf}
+\end{center}
+
+\n Exempel 2 (i generation 7 är alla döda)
+\begin{center}
+\includegraphics[scale=0.3]{../datorovningar/lab-life/instruktioner/life-ex3.pdf}
+\end{center}
+
+\n Exempel 3 (antalet individer växer, i generation 15 erhålls en stabil
+konfiguration). Observera att spelplanen behöver vara större än vad som visas här -- minst 13x13 rutor.
+\begin{center}
+\includegraphics[scale=0.3]{../datorovningar/lab-life/instruktioner/life-ex4.pdf}
+\end{center}
+
+\n Prova också följande. Varför kallar Life-entusiasterna denna figur för \enquote{glider}?
+\begin{center}
+\includegraphics[scale=0.3]{../datorovningar/lab-life/instruktioner/life-ex5.pdf}
+\end{center}
+Mer att läsa om ''Conway's Game of Life'' och fler exempel att prova finns på nätet. Använd t. ex. sökorden "Conway game of life".
+
+	\subsection*{Checklista}
+	I den här laborationen har du övat på att
+	\begin{itemize}
+		\item använda matriser,
+		
+		\item spara och ändra tillståndet hos en spelplan,
+		
+		\item använda logiska värden och skriva logiska uttryck, och
+		
+		\item strukturerat dela upp funktionalitet mellan klasser.
+	\end{itemize}
+	
+\end{Datorarbete}
