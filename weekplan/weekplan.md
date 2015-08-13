@@ -4,12 +4,12 @@ För tider, salar och grupper se schema i [TimeEdit].
 
 | Vecka| Datum        | Föreläsning | Resurstid                    | Laboration          |Kontroll|
 |:-----|:-------------|:------------|:-----------                  |:--------------------|:-------|
-| V1   | 31/8-6/9     | [F1] F2     | Ö1 hello                     | Lab1 Quiz           |        |
-| V2   |              | F3  --      | Ö2 paket, kodfiler           | --                  |        |
-| V3   |              | F4  --      | Ö3 beräkn., klasser, objekt  | Lab2 Eclipse        |        |
-| V4   |              | F5 F6       | Ö4 aritmetik, logik          | Lab3 Anv. Square    |        |
-| V5   |              | F7 F8       | Ö5 klasser, slumptal         | Lab4 Impl. Square   |        |
-| V6   |              | F9 F10      | Ö6 vektor, registrering      | Lab5 Gissa Tal      |        |
+| V1   | 31/8-6/9     | [F01] F02   | Ö1 hello                     | Lab1 Quiz           |        |
+| V2   |              | F03  --     | Ö2 paket, kodfiler           | --                  |        |
+| V3   |              | F04  --     | Ö3 beräkn., klasser, objekt  | Lab2 Eclipse        |        |
+| V4   |              | F05 F06     | Ö4 aritmetik, logik          | Lab3 Anv. Square    |        |
+| V5   |              | F07 F08     | Ö5 klasser, slumptal         | Lab4 Impl. Square   |        |
+| V6   |              | F09 F10     | Ö6 vektor, registrering      | Lab5 Gissa Tal      |        |
 | V7   |              | F11 F12     | Ö7 registrering              | Lab6 Turtle         |        |
 | V8   |              | --          | --                           | --                  | KS     |
 
@@ -31,5 +31,5 @@ KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbe
 Tenta = Skriftlig tentamen utan hjälpmedel, förutom [snabbreferens].
 
 [TimeEdit]: http://cs.lth.se/eda016/schema   
-[F1]: http://fileadmin.cs.lth.se/cs/Education/EDA016/lectures/f1.pdf
+[F01]: http://fileadmin.cs.lth.se/cs/Education/EDA016/lectures/f01.pdf
 [snabbreferens]: http://cs.lth.se/eda016/javaref
