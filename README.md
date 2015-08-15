@@ -9,7 +9,9 @@ This repo contains:
 
 # How to contribute
 Pull requests are welcome! 
+
 Contact bjorn.regnell@cs.lth.se
+
 If you find any bugs or have ideas on new features please let me know!
 
 # License
