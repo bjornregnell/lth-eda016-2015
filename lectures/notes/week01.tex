@@ -165,9 +165,11 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 
 \frame{\frametitle{Att skapa koden som styr världen}}
 
+\frame{\frametitle{Vad är Java?}}
+
 \frame{\frametitle{Vad är en kompilator och ett programspråk?}}
 
-\frame{\frametitle{Vad är Java?}}
+\frame{\frametitle{Utvecklingsverktyg}}
 
 \frame{\frametitle{Vad är objektorientering?}
 \begin{itemize}
@@ -194,10 +196,21 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 \subsection{Vi programmerar}
   
 %%%
-\frame{\frametitle{Hello World!}
-Vårt första java-program:
+\begin{frame}[fragile]
+\frametitle{Hello World!}
+\scriptsize Vårt första java-program i filen \lstinline{HelloWorld.java}
 \lstinputlisting[language=Java]{../examples/terminal/hello/HelloWorld.java}
-}
+
+Kompilera och kör:
+
+\begin{lstlisting}[language=bash, backgroundcolor=\color{black!90}, basicstyle=\ttfamily\scriptsize\selectfont\color{white}]
+> javac HelloWorld.java
+> java HelloWorld
+Hej och välkomna!
+>
+\end{lstlisting}
+Ovan ingår i övning 1.
+\end{frame}
 
 %%%
 \frame{\frametitle{Hello World! -- Vad betyder egentligen allt detta?}
@@ -220,9 +233,14 @@ Vårt första java-program:
 
 %%%
 \frame{\frametitle{Översikt av några grundläggande programkonstruktioner i Java}
+\scriptsize
 \begin{itemize}
-\item värden (values): data som programmet kan använda \lstinline[columns=fixed]{42    "hej"    42.0     true} 
-\item uttryck (expressions) \\ \lstinline[columns=fixed]{41+1      "hej"+1        43.5-1.5      !true} 
+\item värde (value): data som programmet kan använda \\ \lstinline[columns=fixed]{42    "hej"    42.0     true} 
+\item uttryck (expression): data kombineras med operatorer och ger nya värden \\ \lstinline[columns=fixed]{41+1      "hej"+1        43.5-1.5      !true} 
+\item deklaration av variabel (variable declaration): skapa plats i minnet för data \\ \lstinline{int x = 42;}
+\item tilldelningssats (assignment): ändra värdet på variabler \\ \lstinline{x = 43;}
+\item alternativ (choice): välj väg beroende på variabler värde \\ \lstinline{if  switch}
+\item repetition (loop): upprepa om och om igen \\ \lstinline{while  for}
 \end{itemize}
 }
 
