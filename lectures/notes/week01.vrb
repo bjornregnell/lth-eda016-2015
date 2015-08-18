@@ -1,5 +1,5 @@
 \frametitle{Hello World!}
-\scriptsize Vårt första java-program i filen \lstinline{HelloWorld.java}
+\scriptsize Vårt första Java-program i filen \lstinline{HelloWorld.java}
 \lstinputlisting[language=Java]{../examples/terminal/hello/HelloWorld.java}
 
 Kompilera och kör:

@@ -19,9 +19,22 @@
 \usepackage{listings}
 \usepackage{hyperref}
 %http://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
-\hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=violet, urlcolor=violet, pdfborderstyle={/S/U/W 1}}
+\hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=green!70!black, urlcolor=green!70!black, pdfborderstyle={/S/U/W 1}}
 
-\newcommand{\ulhref}[2]{\href{#1}{#2}}
+\newenvironment{Slide}[2][]
+  {\begin{frame}[fragile,environment=Slide,#1]{#2}}
+  {\end{frame}}
+  
+\newcommand{\Subsection}[1]{\subsection{#1}\frame{\centering\huge\bfseries\textcolor{blue}{#1}}}
+
+\newlength\slidefontsize
+\newcommand{\Size}[1]{\setlength\slidefontsize{#1}\fontsize{\slidefontsize}{1.25\slidefontsize}\selectfont}  
+
+\newcommand{\SlideImg}[2]{\frame[plain]{\frametitle{#1}
+\centering\includegraphics[width=1.0\textwidth]{#2}
+}}
+ 
+
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{eclipsepurple}{rgb}{0.5,0,0.25}
 

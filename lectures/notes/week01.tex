@@ -10,11 +10,10 @@
  
 \frame{\titlepage}
 \section[Vecka 1: Introduktion]{Introduktion}
+\frame{\tableofcontents}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Om denna kurs}
-
-\frame{\tableofcontents}
+\Subsection{Om denna kurs}
 
 %%%
 \frame{\frametitle{Vad och hur?}\begin{itemize}
@@ -52,13 +51,15 @@
 }
 
 %%%
-\frame{\frametitle{Personal}\footnotesize
+\frame{\frametitle{Personal}
+%\footnotesize
+\Size{9pt}
 \begin{description}
 \item [\bfseries Kursansvarig:] ~\\Björn Regnell, bjorn.regnell@cs.lth.se
-\item [\bfseries Kurssekreterare:]  ~\\Lena Ohlsson \\Exp.tid 09.30 - 11.30 samt 12.45 - 13.30
+\item [\bfseries Kurssekreterare:]  ~\\Lena Ohlsson \\Exp.tid 09.30 -- 11.30 samt 12.45 -- 13.30
 \item [\bfseries Handledare:] ~\\
+Maj	Stenmark,	Tekn. Lic., Doktorand\\
 Gustav	Cedersjö,	Doktorand\\
-Maj	Stenmark,	Doktorand\\
 Anton	Klarén,	D09\\
 Maria	Priisalu	, D11\\
 Anders	Buhl,	D13\\
@@ -92,8 +93,10 @@ Emma	Asklund,	D14\\
 \item Nya övningar 
 \item Nya laborationer
 \item Nya föreläsningar
-\item Höjda ambitioner: Fler ska klara tentan med högre betyg och fler ska lära sig mycket mer än vad som ''råkar'' komma på tentan...
 \end{itemize}
+\vskip1em
+{\fontsize{8pt}{9pt}\selectfont  Ändringarna är framtagna i samråd med studierådet. Mer om bakgrunden här: \\ 
+\url{http://fileadmin.cs.lth.se/cs/Education/EDA016/2015/update.pdf}}
 }
 
 %%%
@@ -117,13 +120,15 @@ Exempel på efterföljande kurser som bygger vidare på denna:
 }
 
 %%%
-\frame{\frametitle{Förkunskapsenkät}}
+\frame{\frametitle{Förkunskapsenkät}
+\url{http://goo.gl/forms/agwUg2uHqM}
+}
 
 %%%
 \frame{\frametitle{Samarbetsgrupper}}
 
 %%%
-\frame{\frametitle{En typisk kursvecka i första läsperioden}
+\frame{\frametitle{En typisk kursvecka}
 \begin{itemize}
 \item Gå på föreläsningar måndag--tisdag
 \item Jobba själv med boken, övningar, labbförberedelser
@@ -138,36 +143,76 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 \frame{\frametitle{Resurstider}}
 
 %%%
-\frame{\frametitle{Laborationer}}
+\begin{Slide}{Laborationer}
+hej
+\end{Slide}
 
 %%%
-\frame{\frametitle{Att göra Vecka 1}
+\begin{Slide}{Att skapa koden som styr världen}
+\begin{multicols}{2}
+I stort sett alla delar av samhället styrs av mjukvara:
+
+{\scriptsize
 \begin{itemize}
-\item Läs kursboken kapitel 1-3.2
+\item kommunikation
+\item transport
+\item byggsektorn
+\item statsförvaltning
+\item finanssektorn
+\item media
+\item sjukvård
+\item övervakning
+\item integritet
+\item upphovsrätt
+\item miljö \& energi
+\item sociala relationer
+\item utbildning 
+\end{itemize}}
+\columnbreak
+Hur blir ditt framtida yrkesliv som systemutvecklare?
+{\Size{8pt}
+\begin{itemize}
+\item  Redan nu är det en skriande brist på utvecklare och bristen blir bara värre och värre... \\
+  \href{http://computersweden.idg.se/2.2683/1.634770/rekrytera-utvecklare}{CS 2015-08-17}
+\item Global kompetensmarknad \\ 
+  \href{http://computersweden.idg.se/2.2683/1.630901/det-finns-programmerare-och-sa-finns-det-programmerare}{CS 2015-06-14}\\
+   \href{http://computersweden.idg.se/2.2683/1.634700/7-satt-att-bli-en-battre-programmerare}{CS 2015-08-15}
+\item Fokus på innovation, tid-till-marknad
+\item Autonoma utvecklingsteam i decentraliserade organisationer
+\item Öppen källkod
+\end{itemize}}
+\end{multicols}
+\end{Slide}
+
+%%%
+\frame{\frametitle{Att göra i Vecka 1: Rivstarta}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken: \\ 1, 3.1-3.3, 5.1-5.3, 6.1-6.2, 7.1-7.3, 7.5-7.6, 7.8-7.9
 \item Gör övning 1: Hello World, Hello Args, javac, editera--kompilera--exekvera--felsök, värden, uttryck variabler och tilldelning
-\item Gör förberedelserna till laboration 1
-\item Genomför laboration 1: Quiz --- träna på att editera, läsa, ändra och felsöka i färdig programkod
-\item Funktionsprogrammering
-\end{itemize}
+\item Gör förberedelserna till laboration 1: skapa textfil, etc.
+\item Träffas i samarbetsgrupper och hjälp varandra att förstå
+\item Kom till \textbf{resurstiderna} och få hjälp och tips
+\item Genomför laboration 1: Quiz --- träna på att editera, läsa, ändra och felsöka i färdig programkod\\ \lstinline{while}, \lstinline{for}, \lstinline{Scanner}
+\end{enumerate}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Vad är programmering?}
+%\subsection{Vad är programmering?}
 
 %%%
-\frame[plain]{
-\centering\huge\bfseries\textcolor{blue}{Vad är programmering?}}
+\Subsection{Vad är programmering?}
 
 %%%
-\frame[plain]{\frametitle{Programming unplugged}
-\centering\includegraphics[width=1.0\textwidth]{img/unplugged.jpg}
-}
-
-\frame{\frametitle{Att skapa koden som styr världen}}
-
-\frame{\frametitle{Vad är Java?}}
+%\frame[plain]{\frametitle{Programming unplugged}
+%\centering\includegraphics[width=1.0\textwidth]{img/unplugged.jpg}
+%}
+\SlideImg{Programming unplugged}{img/unplugged}
+\SlideImg{Editera och exekvera ett program i Kojo}{img/kojo}
+\SlideImg{Vad är en dator?}{img/eniac}
 
 \frame{\frametitle{Vad är en kompilator och ett programspråk?}}
+
+\frame{\frametitle{Vad är Java?}}
 
 \frame{\frametitle{Utvecklingsverktyg}}
 
@@ -176,7 +221,7 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 \item Det finns många olika \href{https://en.wikipedia.org/wiki/Programming_paradigm}{programmeringsparadigm} (sätt att programmera på), till exempel:
 \begin{itemize}
 \item \textcolor{blue}{\bfseries imperativ programmering:} programmet är uppbyggt av sekvenser av olika satser som påverkar systemets tillstånd
-\item \textcolor{blue}{\bfseries objektorienterad programmering:} en sorts imperativ programmering där programmet består av objekt som samlar data och operationer på data
+\item \textcolor{blue}{\bfseries objektorienterad programmering:} en sorts imperativ programmering där programmet består av objekt som sammanför data och operationer på dessa data
 \item \textcolor{blue}{\bfseries funktionsprogrammering:} programmet är uppbyggt av samverkande (matematiska) funktioner som undviker föränderlig data och tillståndsändringar  
 \item \textcolor{blue}{\bfseries logikprogrammering:} programmet är uppbyggt av logiska uttryck som beskriver olika fakta eller villkor och exekveringen utgörs av en bevisprocedur som söker efter värden som uppfyller fakta och villkor
 \end{itemize}
@@ -193,12 +238,12 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Vi programmerar}
+\subsection{Vårt första Java-program}
   
 %%%
 \begin{frame}[fragile]
 \frametitle{Hello World!}
-\scriptsize Vårt första java-program i filen \lstinline{HelloWorld.java}
+\scriptsize Vårt första Java-program i filen \lstinline{HelloWorld.java}
 \lstinputlisting[language=Java]{../examples/terminal/hello/HelloWorld.java}
 
 Kompilera och kör:
@@ -235,11 +280,13 @@ Ovan ingår i övning 1.
 \frame{\frametitle{Översikt av några grundläggande programkonstruktioner i Java}
 \scriptsize
 \begin{itemize}
-\item värde (value): data som programmet kan använda \\ \lstinline[columns=fixed]{42    "hej"    42.0     true} 
-\item uttryck (expression): data kombineras med operatorer och ger nya värden \\ \lstinline[columns=fixed]{41+1      "hej"+1        43.5-1.5      !true} 
+\item värde (value): data som programmet kan använda \\ 
+\lstinline{42}  \hspace{5mm}  \lstinline{"hej"} \hspace{7mm} \lstinline{42.0} \hspace{9mm} \lstinline{true} 
+\item uttryck (expression): data kombineras med operatorer och ger nya värden \\ 
+\lstinline{41+1}  \hspace{2mm}  \lstinline{"h"+"ej"} \hspace{2mm} \lstinline{43.5-1.5} \hspace{2mm} \lstinline{!false} 
 \item deklaration av variabel (variable declaration): skapa plats i minnet för data \\ \lstinline{int x = 42;}
 \item tilldelningssats (assignment): ändra värdet på variabler \\ \lstinline{x = 43;}
-\item alternativ (choice): välj väg beroende på variabler värde \\ \lstinline{if  switch}
+\item alternativ (choice): välj väg beroende på variablers värde \\ \lstinline{if  switch}
 \item repetition (loop): upprepa om och om igen \\ \lstinline{while  for}
 \end{itemize}
 }
@@ -251,7 +298,6 @@ Ovan ingår i övning 1.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Sammanfattning}
 %%%
-\frame{\frametitle{Code @ LTH}}
- 
+\Subsection{Meddelande från \href{http://lth.se/code}{Code@LTH}} 
 \end{document}
 
