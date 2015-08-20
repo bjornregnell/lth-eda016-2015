@@ -6,4 +6,5 @@
 **/*.vrb
 **/*.synctex.gz
 **/*.toc
+**/*.class
 **/old
