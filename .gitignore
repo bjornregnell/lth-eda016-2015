@@ -3,6 +3,7 @@
 **/*.nav
 **/*.out
 **/*.snm
+**/*.vrb
 **/*.synctex.gz
 **/*.toc
 **/old
