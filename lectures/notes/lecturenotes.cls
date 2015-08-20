@@ -20,10 +20,22 @@
 \usepackage{hyperref}
 %http://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
 \hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=green!70!black, urlcolor=green!70!black, pdfborderstyle={/S/U/W 1}}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=1cm, minimum height=1cm, text=white, text centered, draw=black, fill=blue!50!violet]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text=white, text centered, draw=black, fill=red!50!black]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 
 \newenvironment{Slide}[2][]
   {\begin{frame}[fragile,environment=Slide,#1]{#2}}
   {\end{frame}}
+
+\newenvironment{SlideSimple}[2][]
+  {\begin{frame}[fragile,plain, environment=SlideSimple,#1]{#2}}
+  {\end{frame}}  
   
 \newcommand{\Subsection}[1]{\subsection{#1}\frame{\centering\huge\bfseries\textcolor{blue}{#1}}}
 
@@ -33,7 +45,8 @@
 \newcommand{\SlideImg}[2]{\frame[plain]{\frametitle{#1}
 \centering\includegraphics[width=1.0\textwidth]{#2}
 }}
- 
+
+\newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{eclipsepurple}{rgb}{0.5,0,0.25}
