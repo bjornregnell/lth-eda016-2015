@@ -1,7 +1,7 @@
 \documentclass[a4paper,11pt,oneside]{memoir}
-\usepackage[a4paper, total={16cm, 25.5cm}]{geometry}
+\usepackage[a4paper, total={16cm, 26cm}]{geometry}
 \usepackage[utf8]{inputenc}
-
+\usepackage{graphicx} 
 % Swedish.
 \usepackage[T1]{fontenc}
 \usepackage[swedish]{babel}
@@ -35,6 +35,8 @@
 \input{generated-body.tex}
 
 \subsection*{Veckoplan}
+{\fontsize{10pt}{12pt}\selectfont 
 \input{../weekplan/weekplan.tex}
+}
 
 \end{document}

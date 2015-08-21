@@ -32,7 +32,7 @@ Kursdeltagarna indelas i *samarbetsgrupper* av kursansvarig baserat på förkuns
 
 	* Laborationer godkänns av handledare på schemalagd tid. Se instruktioner i kompendium.
 		
-	* Kontrollskrivningen är diagnostisk och visar ditt kunskapsläge efter halva kursen. Kontrollskrivningen görs individuellt och rättas därefter av studiekamrater vid skrivningstillfället. Kontrollskrivningen kan ge *samarbetsbonus* som adderas till det skriftliga tentamensresultatet med medelvärdet av gruppmedlemmarnas individuella kontrollskrivningspoäng, max 3 bonuspoäng. 
+	* Kontrollskrivningen är diagnostisk och visar ditt kunskapsläge efter halva kursen. Kontrollskrivningen görs individuellt och rättas därefter av studiekamrater vid skrivningstillfället. Kontrollskrivningen kan ge *samarbetsbonus* som adderas till det skriftliga tentamensresultatet med medelvärdet av gruppmedlemmarnas individuella kontrollskrivningspoäng. 
 
 	* Inlämningsuppgift görs individuellt och godkänns av handledare på schemalagd tid. Se instruktioner i kompendium.
 
