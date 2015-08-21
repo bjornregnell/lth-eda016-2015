@@ -8,7 +8,7 @@ För översikt av kursmoment se [veckoplanering]. För tider och salar se schema
 | Lp1V4   | F5 F6       | Aritmetik, Logik, Datastrukturer  | exempel: Point | Kapitel 6.3-6.9 |
 | Lp1V5   | F7 F8       | Klasser, Strängar, Slumptal | exempel: Person, Die, switch, char, String, do-while | Kapitel 11.1-11.3, 6.10-6.11, 7.4, 7.7  |
 | Lp1V6   | F9 F10      | Vektorer, Registrering |  | Kapitel 8 |
-| Lp1V7   | F11 F12     | StringBuilder, Likhet, Synlighet |  | Kapitel ?-? |
+| Lp1V7   | F11 F12     | Likhet, Synlighet, StringBuilder |  | Kapitel ?-? |
 | Lp2V1   | F13         | Matriser |  | Kapitel 8.6-8.7 |
 | Lp2V2   | F14         | Listor | ArrayList, typklasser, autoboxning | Kapitel 12 |
 | Lp2V3   | F15 F16     | Arv |  | Kapitel 9 |

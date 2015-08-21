@@ -10,7 +10,7 @@ För tider, salar och grupper se schema i [TimeEdit]. Denna veckoplan på [GitHu
 | Lp1V4   |              | Aritmetik        | F5 F6       | Ö4 aritmetik, logik          | Lab3 Anv. Square    |
 | Lp1V5   |              | Klasser          | F7 F8       | Ö5 klasser, slumptal         | Lab4 Impl. Square   |
 | Lp1V6   |              | Vektorer         | F9 F10      | Ö6 vektor, registrering      | Lab5 Gissa Tal      |
-| Lp1V7   |              | StringBuilder    | F11 F12     | Ö7 registrering              | Lab6 Turtle         |
+| Lp1V7   |              | Likhet, synlighet| F11 F12     | Ö7 registrering              | Lab6 Turtle         |
 |         | Tis 27/10    | KS               | --          | --                           | --                  |
 
 KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbetsbonus.
