@@ -1,4 +1,4 @@
-För tider, salar och grupper se schema i [TimeEdit].
+För tider, salar och grupper se schema i [TimeEdit]. Denna veckoplan på [GitHub].
 
 ### Läsperiod 1 ###
 
@@ -32,3 +32,4 @@ Tenta = Skriftlig tentamen utan hjälpmedel, förutom [snabbreferens].
 
 [TimeEdit]: http://cs.lth.se/eda016/schema   
 [snabbreferens]: http://cs.lth.se/eda016/javaref
+[GitHub]: https://github.com/bjornregnell/lth-eda016-2015/blob/master/weekplan/weekplan.md
