@@ -17,6 +17,7 @@
 \usepackage{booktabs}
 \usepackage{multicol} \setlength{\columnsep}{5mm}
 \usepackage{listings}
+\usepackage{xspace} %http://www.math.tamu.edu/~harold.boas/courses/math696/why-macros.html
 \usepackage{hyperref}
 %http://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
 \hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=green!70!black, urlcolor=green!70!black, pdfborderstyle={/S/U/W 1}}
@@ -46,7 +47,17 @@
 \centering\includegraphics[width=1.0\textwidth]{#2}
 }}
 
+\newcommand{\vecka}{1}
+
+%http://tex.stackexchange.com/questions/104220/beamer-tableofcontents-does-not-display-the-correct-section-number-after-setco
+\makeatletter 
+\newcommand{\setnextsection}[1]{%
+  \setcounter{section}{\numexpr#1-1\relax}%
+  \beamer@tocsectionnumber=\numexpr#1-1\relax\space}
+\makeatother
+
 \newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\Eng}[1]{(eng. {\textit{#1}})}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{eclipsepurple}{rgb}{0.5,0,0.25}
