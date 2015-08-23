@@ -1,15 +1,18 @@
 \documentclass{lecturenotes}
+\renewcommand{\vecka}{1}
+
 
 \title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
-\subtitle{Läsvecka 1: Introduktion}
+\subtitle{Läsvecka \vecka: Introduktion}
 \author{Björn Regnell}
 \institute{Datavetenskap, LTH}
 \date{Lp1-2, HT 2015}
  
 \begin{document}
- 
+
 \frame{\titlepage}
-\section[Vecka 1: Introduktion]{Introduktion}
+\setnextsection{\vecka}
+\section[Vecka \vecka: Introduktion]{Introduktion}
 \frame{\tableofcontents}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -427,7 +430,7 @@ Ovan ingår i övning 1.
 \subsection{Grundläggande programkonstruktioner i Java}
 
 %%%
-\frame{\frametitle{Översikt av några grundläggande programkonstruktioner i Java}
+\frame{\frametitle{Några grundläggande delar i ett Javaprogram}
 \scriptsize
 \begin{itemize}
 \item värde (value): data som programmet kan använda \\ 
@@ -464,26 +467,79 @@ Det blir ännu roligare om vi har en variabel som kan anta olika värden beroend
 \lstinputlisting[language=Java]{../examples/terminal/alternative/AlternativeWithVariableThatCanChange.java}
 \end{Slide}
 
-\begin{Slide}{Vad är egentligen en variabel?}
+
+%%%
+\begin{Slide}{Vad är egentligen en variabel?}\scriptsize
+\begin{itemize}
+\item En variabel har ett \Emph{namn} och kan lagra ett \Emph{värde} av en viss \Emph{typ}
+\item Variabler måste  \Emph{deklareras} och då får kompilatorn reda på vilket namnet är och vilken typ av värden som variabeln kan lagra: \\ \lstinline{int x; }
+\item När variabler deklareras är det oftast bäst att direkt ge dem ett initialvärde:  \\ \lstinline{int x = 42; }
+\item En variabeldeklaration medför att plats i datorns minne reserveras. \\Vi ritar detta såhär: \\ 
+\begin{tikzpicture}[]
+\matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}]
+{
+x   & 42 \\
+};
+\end{tikzpicture}
+\end{itemize}
+
+\begin{columns}
+\begin{column}{0.3\textwidth}
+Dessa deklarationer...
+\begin{lstlisting}
+int x = 42;    
+int y = x + 1;   
+\end{lstlisting}
+\end{column}
+\begin{column}{0.5\textwidth}
+... ger detta innehåll någonstans i minnet:
+
 %http://tex.stackexchange.com/questions/18521/tikz-matrix-as-a-replacement-for-tabular
 \begin{tikzpicture}[]
 \matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}]
 {
 x   & 42 \\
-y   & 0 \\
+y   & 43 \\
 };
 \end{tikzpicture}
-
-% http://tex.stackexchange.com/questions/45404/asymmetric-cloud-shape-in-tikz
-% http://tex.stackexchange.com/questions/44940/cloud-with-lines-as-filling-in-tikz
-\begin{tikzpicture}[font=\large\sffamily]
-\node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
- align=center, draw] (cloud) at (0cm, 0cm) {Cloud};
-\end{tikzpicture}
+\end{column}
+\end{columns}
 \end{Slide}
 
-\begin{Slide}{Vår första lilla algoritm: SWAP}
-~
+\begin{Slide}{Regler för namn i Java}\footnotesize
+När kompilatorn ''läser''  \footnote{man säger ofta ''parsa'' i stället för ''läsa'' när kompilatorn tolkar koden} koden och och försöker hitta variabelnamn, antar den att du följer de entydiga syntaktiska reglerna för språket.  \\ \vskip1em För namn i Java gäller följande regler: %https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html
+\begin{itemize}
+\item Namn får inte vara \href{https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html}{reserverade ord}
+\item Stora och små bokstäver spelar roll \Eng{case sensistive} \\ \lstinline{int highScore;} och \lstinline{int highscore;} ger alltså två \textit{olika} variabler
+\item Namnet måste börja med en bokstav, ett understreck \_ eller ett dollartecken \$
+\item Namn får \textit{inte} innehålla blanktecken
+\item Namn får innehålla bokstäver, siffror, understreck \_ och dollartecken \$, men \textit{inte} andra specialtecken (alltså inte \lstinline~%&@!{(})/+-*~ etc.) 
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Vad händer vid en tilldelning?}\footnotesize
+\begin{itemize}
+\item Med en \Emph{tilldelningssats} kan vi ge en tidigare deklarerad variabel ett nytt värde: 
+\begin{lstlisting} 
+x = 1;
+\end{lstlisting}
+\item Det gamla värdet försvinner för alltid och det nya värdet lagras istället:
+\begin{tikzpicture}[]
+\matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}]
+{
+x   & 1 \\
+};
+\end{tikzpicture}
+\item Likhetstecknet används alltså för att \textit{ändra} variablers värden och det är ju \textit{inte} samma sak som matematisk likhet. Vi kan till exempel skriva denna tilldelningssats:
+\begin{lstlisting} 
+x = x + 1;   //Vad händer här?
+\end{lstlisting}
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Vår första algoritmkluring: SWAP}
+\lstinputlisting[language=Java]{../examples/terminal/swap/SwapQuest.java}
+Varför kan det vara bra att kunna byta plats på olika värden?
 \end{Slide}
 
 		
