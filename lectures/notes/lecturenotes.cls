@@ -21,7 +21,7 @@
 %http://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
 \hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=green!70!black, urlcolor=green!70!black, pdfborderstyle={/S/U/W 1}}
 \usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes.geometric, shapes.symbols, arrows, matrix, shapes, positioning}
 %https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
 \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=1cm, minimum height=1cm, text=white, text centered, draw=black, fill=blue!50!violet]
