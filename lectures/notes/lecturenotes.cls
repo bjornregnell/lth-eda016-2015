@@ -57,6 +57,7 @@
 \makeatother
 
 \newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\Alert}[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\Eng}[1]{(eng. {\textit{#1}})}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
