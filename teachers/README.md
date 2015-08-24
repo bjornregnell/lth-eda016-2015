@@ -1,3 +1,3 @@
 # For Teachers
 
-    * Guidlines [supervisors](http://xx.xx) (in Swedish)
+    * Guidlines for [supervisors](https://github.com/bjornregnell/lth-eda016-2015/blob/master/teachers/handledare.md) (in Swedish)
