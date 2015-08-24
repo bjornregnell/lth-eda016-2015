@@ -84,7 +84,8 @@ Emma	Asklund,	D14\\
 \item \textbf{Kontrollskrivning}: obligatorisk, diagnostisk, kamraträttad; kan ge samarbetsbonuspoäng till tentan
 \item \textbf{Inlämningsupgift}: du visar att du kan skapa ett större program självständigt; redovisas för handledare
 \item \textbf{Tenta}: Skriftlig tentamen utan hjälpmedel, förutom  \href{http://fileadmin.cs.lth.se/cs/Education/EDA016/general/quickref-booklet.pdf}{snabbreferens}.
-\end{itemize}}
+\end{itemize}
+}
 
 %%%
 \frame{\frametitle{Nytt för i år }
@@ -127,7 +128,7 @@ Exempel på efterföljande kurser som bygger vidare på denna:
 \item \Emph{Inte bara kodning:} kravbeslut, releaseplanering, design, test, versionshantering, kontinuerlig integration, driftsättning, återkoppling från dagens användare, ekonomi \& investering, gissa om morgondagens användare, ... 
 \item \Emph{Teamwork:} Inte ensamma hjältar utan autonoma team i decentraliserade organisationer med innovationsuppdrag
 \item \Emph{Snabbhet:} Att koda innebär att hela tiden uppfinna nya ''byggstenar'' som ökar organisationens förmåga att snabbt skapa värde med hjälp av mjukvara. Öppen källkod. Skapa kraftfulla API. 
-\item \Emph{Livslångt lärande:} Lär nytt och dela med dig hela tiden. Exempel på pedagogisk utmaning: hjälp andra förstå och använda ditt API $\implies$ \textit{Sammarbetskultur}
+\item \Emph{Livslångt lärande:} Lär nytt och dela med dig hela tiden. Exempel på pedagogisk utmaning: hjälp andra förstå och använda ditt API $\implies$ \textit{Samarbetskultur}
 \end{itemize}
 \end{Slide}
 
@@ -166,6 +167,16 @@ Hur blir ditt framtida yrkesliv som systemutvecklare?
 \end{itemize}}
 \end{multicols}
 \end{Slide}
+%%%
+
+\frame{\frametitle {Registrering}
+\begin{itemize}
+\item Fyll i listan som jag skickar runt.
+\item Kryssa om du ska gå kursen\footnote{Redan gått motsvarande högskolekurs? Ansök då om tillgodoräknande}
+\item Kryssa om du har programmerat innan
+\item Kryssa om du kan tänka dig att vara kursombud
+\end{itemize}
+}
 
 %%%
 \begin{Slide}{Förkunskaper}
@@ -181,7 +192,7 @@ Hur blir ditt framtida yrkesliv som systemutvecklare?
 
 %%%
 \frame{\frametitle{Förkunskapsenkät}
-Fyll i denna enkät idag: \\
+Fyll i denna enkät på rasten (eller senast ikväll kl 20:00) \\
 \url{http://cs.lth.se/eda016/survey} 
 \vskip1em
 Ligger till grund för randomiserad gruppindelning,\\ så att det blir en spridning av förkunskaper inom gruppen.
@@ -356,26 +367,40 @@ Programmet skulle köra på en kugghjulsdator som hennes kompis Charles Babbage 
 \end{enumerate}
 
 \columnbreak %---------
-
-\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{TIOBE Programming Community Index \\ Augusti 2015}
-\vskip1em
 De 10 ''vanligaste''?
-
+\begin{itemize}
+\item \href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{TIOBE Programming Community Index \\ Augusti 2015}
+\item \href{https://github.com/blog/2047-language-trends-on-github}{Språktrender på GitHub 2008-2015}
+\end{itemize}
 \end{multicols}
 \end{SlideSimple}
 
 \frame{\frametitle{Vad är Java?}}
 
-\frame{\frametitle{Utvecklingsverktyg}}
+\frame{\frametitle{Utvecklingsverktyg}
+Systemutvecklare använder många olika verktyg: \footnotesize
+\begin{itemize}
+\item kompilator, t.ex. javac
+\item editor, t.ex. gedit, Sublime Text 3
+\item terminal och kommandoskal, t.ex. bash, powershell
+\item integrerad utvecklingsmiljö (eng. Integrated Dev. Environment, IDE), t.ex. \Emph{Eclipse}, IntelliJ
+\item versionshanteringssystem, t.ex. git, Mercurial
+\item kodlagringsplats, t.ex. GitHub, Bitbucket
+\item hypervisor för virtuella maskiner, t.ex. VirtualBox, VMWare
+\item bughanteringssystem, t.ex. Bugzilla, Jira
+\item byggverktyg, t.ex. Jenkins, Hudson
+\item ...
+\end{itemize}
+}
 
 \frame{\frametitle{Vad är objektorientering?}
 \begin{itemize}
 \item Det finns många olika \href{https://en.wikipedia.org/wiki/Programming_paradigm}{programmeringsparadigm} (sätt att programmera på), till exempel:
-\begin{itemize}
+\begin{itemize}\footnotesize
 \item \Emph{imperativ programmering:} programmet är uppbyggt av sekvenser av olika satser som påverkar systemets tillstånd
 \item \Emph{objektorienterad programmering:} en sorts imperativ programmering där programmet består av objekt som sammanför data och operationer på dessa data
 \item \Emph{funktionsprogrammering:} programmet är uppbyggt av samverkande (matematiska) funktioner som undviker föränderlig data och tillståndsändringar  
-\item \Emph{logikprogrammering:} programmet är uppbyggt av logiska uttryck som beskriver olika fakta eller villkor och exekveringen utgörs av en bevisprocedur som söker efter värden som uppfyller fakta och villkor
+\item \Emph{deklarativ programmering, logikprogrammering:} programmet är uppbyggt av logiska uttryck som beskriver olika fakta eller villkor och exekveringen utgörs av en bevisprocedur som söker efter värden som uppfyller fakta och villkor
 \end{itemize}
 \end{itemize}
 }
@@ -530,12 +555,47 @@ x = 1;
 x   & 1 \\
 };
 \end{tikzpicture}
-\item Likhetstecknet används alltså för att \textit{ändra} variablers värden och det är ju \textit{inte} samma sak som matematisk likhet. Vi kan till exempel skriva denna tilldelningssats:
+\item Likhetstecknet används alltså för att \textit{ändra} variablers värden och det är ju \textit{inte} samma sak som matematisk likhet \footnote{\scriptsize Arv från C, Fortran mfl. I \href{https://en.wikipedia.org/wiki/Assignment_\%28computer_science\%29}{andra språk} används  t.ex. \lstinline{x := 42} eller \lstinline{x <- 42}}. Vi kan till exempel skriva denna tilldelningssats:
 \begin{lstlisting} 
 x = x + 1;   //Vad händer här?
 \end{lstlisting}
 \end{itemize}
 \end{Slide}
+
+\begin{Slide}{Övning: Tilldelningar i sekvens}\footnotesize
+\begin{columns}
+\begin{column}{0.33\textwidth}
+Rita hur minnet ser ut efter varje rad nedan:
+\vskip1em
+\begin{lstlisting}[ numbers=left,]
+int u, x, y, z;
+x = 10;
+y = 2 * x + 1;
+z = (y + x) + (y - x);
+x = x + 1;
+\end{lstlisting}
+\end{column}
+\begin{column}{0.6\textwidth}
+
+En variabel som inte (ännu) inte initierats har ett odefinierat värde.
+\begin{table}[] 
+\centering\scriptsize
+%http://tex.stackexchange.com/questions/83930/what-are-the-different-kinds-of-boxes-in-latex
+\newcommand{\mybox}[1]{\raisebox{-0.5mm}{\framebox(21,14){#1}}\vspace{0.5mm}}
+\begin{tabular}{cccccc}
+ & rad 1 & rad 2 & rad 3 & rad 4  & rad 5\\ 
+u& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
+x& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
+y& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
+z& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
+\end{tabular}
+\end{table}
+
+\end{column}
+\end{columns}
+\end{Slide}
+%vad är en algoritm
+%exempel på algoritm
 
 \begin{Slide}{Vår första algoritmkluring: SWAP}
 \lstinputlisting[language=Java]{../examples/terminal/swap/SwapQuest.java}
