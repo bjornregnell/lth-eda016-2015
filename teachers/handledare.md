@@ -167,16 +167,7 @@ Det går bra att studenterna redovisar laborationer och inlämningsuppgifter fö
 
 ## Kommentarer till laborationerna
 
-Här följer kommentarer till de enskilda laborationerna. Dessa kommentarer är inte uttömmande på något sätt -- du får gärna kontakta oss med synpunkter om du tycker att något speciellt saknas.
+[Här](https://github.com/bjornregnell/lth-eda016-2015/tree/master/teachers) finns kommentarer till de enskilda laborationerna i filerna comments-labxx-yyy.md. Dessa kommentarer är inte uttömmande på något sätt -- du får gärna kursansvarig med synpunkter om du tycker att något speciellt saknas. Kom gärna med pull requests!
 
-Till några av laborationerna ger vi förslag på ämnen att diskutera med studenterna. Listan är alldeles för kort för att vara komplett: du kommer att behöva ställa fler frågor till studenterna. Dessa ämnen är vidare bara förslag, och du kan säkert komma på andra intressanta ämnen.
-
-# Laboration 1
-
-På denna laboration är det extra viktigt att studenterna känner att det är okej att fråga dig om hjälp. Risken är annars att blyga studenter bara sitter och funderar på egen hand utan att komma vidare, och vi vill inte att någon hamnar efter redan nu. Ibland missförstås laborationen som ett prov där man inte får fråga särskilt mycket. Gå därför gärna runt och se till att få kontakt med alla och att ingen sitter med problem utan att säga till.
-
-Vissa studenter har aldrig använt ett terminalfönster. Tveka inte att ge dessa lite extra stöd gällande datoranvändningen.
-
-<TODO: kommentarer till resten av labbarna> 
-
+Till några av laborationerna finns förslag på ämnen att diskutera med studenterna. Listan är alldeles för kort för att vara komplett: du kommer att behöva ställa fler frågor till studenterna. De föreslagna ämnen är just bara förslag, och du kan säkert komma på andra intressanta ämnen.
 
