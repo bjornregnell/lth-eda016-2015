@@ -247,7 +247,7 @@ Diskutera hur ni ska uppfylla dessa innan alla skriver på. \\ Ta med samarbetsk
 
 \vskip1em
 
-\textcolor{red}{Om arbetet i samarbetsgruppen inte fungerar ska ni mejla kursansvarig och boka mötestid!}
+\Alert{Om arbetet i samarbetsgruppen inte fungerar ska ni mejla kursansvarig och boka mötestid!}
 \end{Slide}
 
 \begin{Slide}{Bestraffa inte frågor!}
@@ -295,7 +295,7 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 %%%
 \begin{Slide}{Laborationer}\footnotesize
 \begin{itemize}
-\item \textcolor{red}{Programmering lär man sig bäst genom att programmera ... }
+\item \Alert{Programmering lär man sig bäst genom att programmera...}
 \item Labbarna är \Emph{individuella} (utom 2) och \Emph{obligatoriska}
 \item Gör förberedelserna noga \textit{innan} själva labben -- detta är ofta helt nödvändigt för att du ska hinna klart
 \item Är du sjuk? Anmäl det \textit{före} labben till \url{bjorn.regnell@cs.lth.se}, få hjälp på resurstillfällena och redovisa på resurstid eller uppsamlingstid (helst inte på ordinarie tillfälle, men det är OK om handledaren har tid)
@@ -348,22 +348,22 @@ Programmet skulle köra på en kugghjulsdator som hennes kompis Charles Babbage 
 
 \begin{SlideSimple}{Vad är en kompilator?}
 \begin{multicols}{2}
-\includegraphics[width=\columnwidth]{img/grace}
+\includegraphics[width=0.8\columnwidth]{img/grace}
 
 \columnbreak %---------
 
 \href{https://en.wikipedia.org/wiki/Grace_Hopper}{Grace Hopper} uppfann första kompilatorn 1952.
-\vskip2em
+\vskip1em
 %https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
 \begin{tikzpicture}[node distance=2cm]
 \node (input) [startstop] {Källkod};
-\node(inptext) [right of=input, text width=2cm, scale=0.8,xshift=1.0cm]{Lättare för människor};
+\node(inptext) [right of=input, text width=2cm, scale=0.8,xshift=1.0cm]{Programspråk lättare för människor};
 \node (compile) [process, below of=input] {Kompilator};
 \node (output) [startstop, below of=compile] {Maskinkod};
 \draw [arrow] (input) -- (compile);
 \draw [arrow] (compile) -- (output);
 \end{tikzpicture}
-
+\footnotesize\vskip2em Vad finns det för programspråk?
 \end{multicols}
 \end{SlideSimple}
 
@@ -391,7 +391,20 @@ De 10 ''vanligaste''?
 \end{multicols}
 \end{SlideSimple}
 
-\frame{\frametitle{Vad är Java?}}
+\SlideImg{Var finns Java?}{img/java-everywhere}
+
+\begin{Slide}{Vad är Java?}
+\begin{itemize}
+\item Java är ett av planeten jordens mest \href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{framgångsrika} programspråk under de senaste \href{http://computersweden.idg.se/2.2683/1.627748/grattis-java-kungen-bland-sprak-fyller-20-ar-i-dag}{decenniet}
+\item Många \href{https://docs.oracle.com/javase/8/embedded/develop-apps-platforms/overview.htm}{inbyggda system} använder Java (bilar, tvättmaskiner, kassa-apparater, nätverksutrustning, ...) 
+\item Android som bygger på Java har ca 80\% av 
+%http://www.idc.com/prodserv/smartphone-os-market-share.jsp
+\href{http://www.businessinsider.com/iphone-v-android-market-share-2014-5?IR=T}{smartphonemarknaden}
+\item Java används som nybörjarspråk på en stor del av planetens tekniska högskolor
+\item Java utvecklas ständigt: \href{http://computersweden.idg.se/2.2683/1.546580/magisk-syntax-lyfter-java}{Java 8} kombinerar nu objektorientering med funktionsprogrammering
+\end{itemize}
+Olika språk är bra på olika saker och en systemutvecklare \Emph{behöver kunna många olika språk}
+\end{Slide}
 
 \frame{\frametitle{Utvecklingsverktyg}
 Systemutvecklare använder många olika verktyg: \footnotesize
@@ -486,7 +499,7 @@ Ovan ingår i övning 1.
 }
 
 \frame{\frametitle{Värden och uttryck}
-%\lstinputlisting[language=Java]{../examples/terminal/expressions/Expressions.java}
+\lstinputlisting[language=Java]{../examples/terminal/expressions/Expressions.java}
 }
 
 \begin{Slide}{Alternativ}
