@@ -167,7 +167,7 @@ Det går bra att studenterna redovisar laborationer och inlämningsuppgifter fö
 
 ## Kommentarer till laborationerna
 
-[Här](https://github.com/bjornregnell/lth-eda016-2015/tree/master/teachers) finns kommentarer till de enskilda laborationerna i filerna comments-labxx-yyy.md. Dessa kommentarer är inte uttömmande på något sätt -- du får gärna kursansvarig med synpunkter om du tycker att något speciellt saknas. Kom gärna med pull requests!
+[Här](https://github.com/bjornregnell/lth-eda016-2015/tree/master/teachers) finns kommentarer till de enskilda laborationerna i filerna hints-labxx-yyy.md. Dessa kommentarer är inte uttömmande på något sätt -- du får gärna kursansvarig med synpunkter om du tycker att något speciellt saknas. Kom gärna med pull requests!
 
 Till några av laborationerna finns förslag på ämnen att diskutera med studenterna. Listan är alldeles för kort för att vara komplett: du kommer att behöva ställa fler frågor till studenterna. De föreslagna ämnen är just bara förslag, och du kan säkert komma på andra intressanta ämnen.
 
