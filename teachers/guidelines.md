@@ -1,4 +1,6 @@
-# Inledning
+# Tips till handledare i EDA016 2015
+
+## Inledning
 
 Att arbeta som handledare är givande, omväxlande och väldigt roligt. Du blir själv duktigare på programmering genom att se hur andra människor resonerar kring ämnet. Och du kommer att få uppleva nöjet när "polletten trillar ner" hos studenterna när du förklarar för dem.
 
@@ -10,7 +12,7 @@ I detta dokument finns sådant som kan vara till nytta i ditt arbete och viktiga
 
 Om du har förslag på förbättringar kontakta gärna kursansvarig med förslag eller, ännu hellre, kom med en pull request.
 
-## Kursens undervisningsformer
+### Kursens undervisningsformer
 
 *  Vi har både "vanliga" laborationer och resurstider. På resurstiden bör studenterna göra veckans övning och/eller få extra hjälp med laborationer, inlämningar eller annat. Ni som arbetar på resurstiderna måste således vara beredda att svara på det mesta, men resurstiderna brukar vara väldigt uppskattade arbetspass med lite mer dynamik än de vanliga laborationerna. Resurstiden är frivillig för studenterna och det råder "drop-in".
 
@@ -22,7 +24,7 @@ Om du har förslag på förbättringar kontakta gärna kursansvarig med förslag
 
 *  Studenterna ska vara förberedda. Det står på varje laboration vad som ska göras före laborationen.  Detta är anpassat så att man bör hinna med resten under laborationen.  Meningen är att de ska visa upp alla sina lösningar för er under laborationen och att ni ska kommentera och så småningom godkänna dem. Inga lösningar delas ut till laborationer. Lösningarna till övningarna kommer emellertid att finnas tillgängliga för studenterna på nätet.
 
-## Arbetet i salen
+### Arbetet i salen
 
 *  Under ditt undervisningspass är det du som leder undervisningen. Det är inte speciellt dramatiskt. Det är upp till dig och studenterna att organisera arbetet så att det blir lärorikt, effektivt, trevligt och rättvist. 
 
@@ -41,7 +43,7 @@ Följande är **mycket viktigt**:
 *  Om studenten inte finns med i listan i SAM, skicka då *snarast* ett e-mail till kursansvarig där du anger studentens namn och vilka uppgifter det gäller. (Detta kan inträffa då äldre studenter kompletterar inför tentamen.)
 
 
-## SAM: Registrering av godkända moment}
+### SAM: Registrering av godkända moment}
 
 Vi använder ett särskilt system, SAM, för att hålla reda på studenternas prestationer under kurser.  Om du inte redan har konto i SAM får du ett av kursledaren.
 
@@ -92,14 +94,14 @@ Om du vill skriva ut krysslista inför en laboration så kan du göra så här}:
 *  Klicka på knappen Skapa och skriv ut.
 
 
-# Lön
+## Lön
 
-## Arvoden (HT 2014)
+### Arvoden (HT 2014)
 
 Arvodet för salstid är f.n. två upphöjt till åtta kr/timme.
 I beloppet ingår förberedelser och semesterersättning.
 
-## Löneutbetalning
+### Löneutbetalning
 
 Du kommer att få hemskickat en lönespecifikation i samband med löneutbetalningen, som normalt sker månaden efter arbetad tid. Om något inte stämmer, kontakta kursansvarig eller ekonomiadministratör Linda Nilsson (046-222 16 65).
 
@@ -112,7 +114,7 @@ Om du vill ha in lönen på ditt konto i en annan bank så är det enklast att e
 
 
 
-# Övningar 
+## Övningar 
 
 
 Övningarna genomförs företrädesvis på papper. Det finns åtminstone tre skäl till att göra övningarna på papper:
@@ -125,10 +127,10 @@ Om du vill ha in lönen på ditt konto i en annan bank så är det enklast att e
 *  Detta är deras chans, förutom extentor, att öva på programmering på papper. Eftersom tentamen genomförs på papper är övningarna mycket nyttig träning inför denna.
 
 
-# Laborationer och inlämningsuppgifter
+## Laborationer och inlämningsuppgifter
 
 
-## Din uppgift är att ge studenterna feedback
+### Din uppgift är att ge studenterna feedback
 
 De laborationsanvisningar som studenterna har fått är det som definierar vad som krävs för att bli godkänd. *Läs dessa noggrant!*
 
@@ -138,8 +140,7 @@ Med tiden blir du bättre och bättre på att ställa bra frågor till studenter
 
 Vissa enklare misstag hanteras med fördel med en diskussion. Om studenten exempelvis missat att hantera ett specialfall kan det vara mer meningsfullt att diskutera den möjliga lösningen än att ge retur. Detta är naturligtvis en bedömningsfråga från fall till fall. 
 
-## Om feedback
-
+### Om feedback
 
 *  Var specifik. Peka på vad som specifikt är bra i studentens lösning eller, om nödvändigt, vad som inte är så bra, men gör det då på ett konstruktivt sätt: att göra misstag är bara bra och en chans att lära sig ännu mer.
 
@@ -153,7 +154,7 @@ När du bedömer studenternas laborationer kan det vara en bra idé att fundera 
 
 Du kan naturligtvis ändå kommentera, eller ge retur för, sådant som ingår i fokus från tidigare labbar. Om en student inte förstår hur en for-loop fungerar i en av de senare laborationerna måste hen ju uppenbarligen träna mer på detta. Men grundidén är att du fokuserar diskussionerna och din feedback på de primära och eventuellt de sekundära aspekterna av laborationen.
 
-## Om samarbete
+### Om samarbete
 
 Laborationerna är individuella (utom grupplaborationerna, men även de innehåller en individuell uppdelning). Vi uppmuntrar studenterna att diskutera uppgifterna med varandra -- de ska emellertid prestera individuella lösningar. På grupplaborationerna får studenterna jobba och redovisa i grupper eller delgrupper; försök ställa frågorna på ett sätt så alla får chans att svara och speciellt redovisa sina egna delar.
 
@@ -161,13 +162,13 @@ Du kommer kanske att hamna i situationer där du betvivlar hur mycket av uppgift
 
 Det finns emellertid en gråzon mellan plagiat och konstruktivt samarbete. De som inte klarar tentan förklarar ofta själva det med att de tagit alltför mycket hjälp med uppgifterna. Ibland kan det vara en bra idé att förklara denna fara för studenterna -- det är ju faktiskt i deras intresse.
 
-## Om din framförhållning
+### Om din framförhållning
 
 Det går bra att studenterna redovisar laborationer och inlämningsuppgifter före utsatt tid -- *om* du själv känner att du har koll på uppgiften i fråga. Om någon vill redovisa långt i förväg är det helt OK att säga att du inte hunnit titta på uppgiften än, och t.ex. avtala med studenten att komma tillbaks veckan därpå.
 
-## Kommentarer till laborationerna
+### Kommentarer till laborationerna
 
-[Här](https://github.com/bjornregnell/lth-eda016-2015/tree/master/teachers) finns kommentarer till de enskilda laborationerna i filerna hints-labxx-yyy.md. Dessa kommentarer är inte uttömmande på något sätt -- du får gärna kursansvarig med synpunkter om du tycker att något speciellt saknas. Kom gärna med pull requests!
+[Här](https://github.com/bjornregnell/lth-eda016-2015/tree/master/teachers) finns kommentarer till de enskilda laborationerna i filerna hints-labxx-yyy.md. Dessa kommentarer är inte alls uttömmande -- du får gärna kursansvarig med synpunkter om du tycker att något speciellt saknas. Kom gärna med pull requests!
 
 Till några av laborationerna finns förslag på ämnen att diskutera med studenterna. Listan är alldeles för kort för att vara komplett: du kommer att behöva ställa fler frågor till studenterna. De föreslagna ämnen är just bara förslag, och du kan säkert komma på andra intressanta ämnen.
 
