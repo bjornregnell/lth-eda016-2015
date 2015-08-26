@@ -284,25 +284,41 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 }
 
 %%%
+\begin{Slide}{Laborationer}\footnotesize
+\begin{itemize}
+\item \Alert{Programmering lär man sig bäst genom att programmera...}
+\item Labbarna är \Emph{individuella} (utom 2) och \Emph{obligatoriska}
+\item Gör övningarna och labbförberedelserna noga \textit{innan} själva labben -- detta är ofta helt nödvändigt för att du ska hinna klart. Dina labbförberedelserna kontrolleras av handledare under labben.
+\item Är du sjuk? Anmäl det \textit{före} labben till \url{bjorn.regnell@cs.lth.se}, få hjälp på resurstillfällena och redovisa på resurstid eller uppsamlingstid (helst inte på ordinarie tillfälle, men det är OK om handledaren har tid)
+\item Hinner du inte med hela? Se till att handledaren noterar din närvaro, och fortsätt på resurstid och uppsamlingstid.
+\item Läs noga anvisningarna i kompendiet
+\item Laborationstiderna är gruppindelade enligt \href{http://cs.lth.se/eda016/schema/}{schemat}. Du ska gå till den tid och den sal som motsvarar din grupp.
+\end{itemize}
+\end{Slide}
+
+%%%
 \begin{Slide}{Resurstider}
 \begin{itemize}
 \item På resurstiderna får du hjälp med övningar och laborationsförberedelser
 \item Kom till minst en resurstid per vecka (se \href{http://cs.lth.se/eda016/schema/}{schema})
 \item Handledare gör ibland genomgångar för alla under resurstiderna
+\item Resurstiderna är inte gruppindelade i schemat. Du får i mån av plats gå på flera resurstider per vecka. Om det blir fullt i ett rum prioriteras dessa grupper för att minimera schemakrockar: 
 \end{itemize}
+\begin{table}[]
+\centering\scriptsize
+\begin{tabular}{lllll}
+Tid Lp1 & Sal & Grupper med prio \\
+\hline
+Ons 10-12 v1-7 & Hacke  &   09 \& 10 \\
+Ons 13-15 v1-7 & Hacke  &   07 \& 08  \\
+Ons 15-17 v1-7 & Panter  & 05 \& 06   \\
+Ons 15-17 v1-7 & Val       &  03 \& 04   \\
+Tor 13-15 v1-7 & Mars     & 01 \& 02  \\
+Tor 15-17 v1-7 & Mars     & 11 \& 12 \\ 
+\end{tabular}
+\end{table}
 \end{Slide}
 
-%%%
-\begin{Slide}{Laborationer}\footnotesize
-\begin{itemize}
-\item \Alert{Programmering lär man sig bäst genom att programmera...}
-\item Labbarna är \Emph{individuella} (utom 2) och \Emph{obligatoriska}
-\item Gör förberedelserna noga \textit{innan} själva labben -- detta är ofta helt nödvändigt för att du ska hinna klart
-\item Är du sjuk? Anmäl det \textit{före} labben till \url{bjorn.regnell@cs.lth.se}, få hjälp på resurstillfällena och redovisa på resurstid eller uppsamlingstid (helst inte på ordinarie tillfälle, men det är OK om handledaren har tid)
-\item Hinner du inte med hela? Se till att handledaren noterar din närvaro, och fortsätt på resurstid och uppsamlingstid.
-\item Läs noga anvisningarna i kompendiet
-\end{itemize}
-\end{Slide}
 
 
 
@@ -315,7 +331,7 @@ Se detaljerna och undantagen i \href{http://cs.lth.se/eda016/schema}{schemat i T
 \item Gör förberedelserna till laboration 1: skapa textfil, etc.
 \item Träffas i samarbetsgrupper och hjälp varandra att förstå
 \item Kom till \Emph{resurstiderna} och få hjälp och tips
-\item Genomför laboration 1: Quiz --- träna på att editera, läsa, ändra och felsöka i färdig programkod\\ \lstinline{while}, \lstinline{for}, \lstinline{Scanner}
+\item Genomför laboration 1: Quiz --- träna på att editera, läsa, ändra och felsöka i färdig programkod
 \end{enumerate}
 }
 
@@ -392,9 +408,18 @@ De 10 ''vanligaste''?
 \end{multicols}
 \end{SlideSimple}
 
+\begin{Slide}{Vad är Java?}
+Java är egentligen flera saker:
+\begin{itemize}
+\item Ett populärt programspråk med en snabb kompilator
+\item Java Virtual Machine (JVM) som ger plattformsoberoende
+\item Java Development Kit (JDK) -- massor med färdig kod 
+\end{itemize}
+\end{Slide}
+
 \SlideImg{Var finns Java?}{img/java-everywhere}
 
-\begin{Slide}{Vad är Java?}
+\begin{Slide}{Varför Java?}
 \begin{itemize}
 \item Java är ett av planeten jordens mest \href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{framgångsrika} programspråk under de senaste \href{http://computersweden.idg.se/2.2683/1.627748/grattis-java-kungen-bland-sprak-fyller-20-ar-i-dag}{decenniet}
 \item Många \href{https://docs.oracle.com/javase/8/embedded/develop-apps-platforms/overview.htm}{inbyggda system} använder Java (bilar, tvättmaskiner, kassa-apparater, nätverksutrustning, ...) 
@@ -485,6 +510,7 @@ Ovan ingår i övning 1.
 \subsection{Grundläggande programkonstruktioner i Java}
 
 %%%
+
 \frame{\frametitle{Några grundläggande delar i ett Javaprogram}
 \scriptsize
 \begin{itemize}
@@ -624,18 +650,44 @@ z& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
 \end{column}
 \end{columns}
 \end{Slide}
-%vad är en algoritm
-%exempel på algoritm
 
-\begin{Slide}{Vår första algoritmkluring: SWAP}
-\lstinputlisting[language=Java]{../examples/terminal/swap/SwapQuest.java}
-Varför kan det vara bra att kunna byta plats på olika värden?
+\begin{Slide}{Vad är en algoritm?}
+En \href{https://sv.wikipedia.org/wiki/Algoritm}{algoritm} är en sekvens av instruktioner\\ som beskriver hur man löser ett problem \\
+\vspace{2em}
+Exempel: matrecept
 \end{Slide}
 
-		
+\begin{Slide}{Vår första algoritmkluring: SWAP}
+\Emph{Problem}: läs in och byt plats på två tal i minnet \\ \vspace{1em}
+\Emph{Algoritm:}
+\begin{enumerate}
+\item skapa en Scanner
+\item  läs in x
+\item  läs in y
+\item  Skriv ut x och y
+\item  byt plats på värdena mellan x och y
+\item  Skriv ut x och y
+\end{enumerate}
+\vspace{2em}
+\footnotesize Varför kan det vara bra att kunna byta plats på olika värden? \\
+Steg 5 är egentligen inte så lätt som det verkar och behöver göras i flera steg
+\end{Slide}
+
+
+\begin{Slide}{Vår första algoritmkluring: SWAP}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/swap/SwapQuest.java}
+\end{Slide}
+
+\begin{Slide}{Vår första algoritmkluring: SWAP}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/swap/SwapSolution.java}
+\footnotesize Övning: Rita hur minnet ser ut efter respektive raderna 7, 8, 12, 13, 14
+\end{Slide}
+
+	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Sammanfattning}
 %%%
 \Subsection{Meddelande från \href{http://lth.se/code}{Code@LTH}} 
+
 \end{document}
 
