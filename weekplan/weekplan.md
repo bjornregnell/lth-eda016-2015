@@ -1,4 +1,4 @@
-För tider, salar och grupper se schema i [TimeEdit]. Denna veckoplan på [GitHub].
+För tider, salar och grupper se schema i [TimeEdit]. Nedan veckoplan på [GitHub].
 
 ### Läsperiod 1 ###
 
