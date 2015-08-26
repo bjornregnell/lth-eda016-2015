@@ -98,7 +98,7 @@ Om du vill skriva ut krysslista inför en laboration så kan du göra så här:
 
 ### Arvoden (HT 2015)
 
-Arvodet för undervisning är två upphöjt till åtta kronor per timme i sal. Arvodet för tentarättning är två upphöjt till sju kr/timme. I beloppet ingår förberedelser och semesterersättning.
+Arvodet för undervisning är två upphöjt till åtta kronor per timme i sal. Arvodet för tentarättning är två upphöjt till sju kr/timme. I beloppen ingår förberedelser och semesterersättning.
 
 ### Löneutbetalning
 
