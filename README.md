@@ -7,7 +7,7 @@ Public files of EDA016 "Programming, First Course" given at Lund University, LTH
 
 This repo contains:
   * Lecture notes in tex and pdf
-  * Courseplans and weekplans generated from markdown to html and tex using pandoc
+  * Courseplans and weekplans generated from markdown to html and tex using (pandoc)[http://pandoc.org/]
   * Guidelines for teachers
 
 # How to contribute
