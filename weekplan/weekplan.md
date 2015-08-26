@@ -1,4 +1,4 @@
-För tider, salar och grupper se schema i [TimeEdit]. Nedan veckoplan på [GitHub].
+För tider, salar och grupper se   http://cs.lth.se/eda016/schema 
 
 ### Läsperiod 1 ###
 
@@ -30,6 +30,4 @@ KS = Kontrollskrivning; obligatorisk, diagnostisk, kamraträttad, kan ge samarbe
 
 Tenta = Skriftlig tentamen utan hjälpmedel, förutom [snabbreferens].
 
-[TimeEdit]: http://cs.lth.se/eda016/schema   
 [snabbreferens]: http://cs.lth.se/eda016/javaref
-[GitHub]: https://github.com/bjornregnell/lth-eda016-2015/blob/master/weekplan/weekplan.md
