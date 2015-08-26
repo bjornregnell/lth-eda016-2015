@@ -43,7 +43,7 @@ Följande är **mycket viktigt**:
 *  Om studenten inte finns med i listan i SAM, skicka då *snarast* ett e-mail till kursansvarig där du anger studentens namn och vilka uppgifter det gäller. (Detta kan inträffa då äldre studenter kompletterar inför tentamen.)
 
 
-### SAM: Registrering av godkända moment}
+### SAM: Registrering av godkända moment
 
 Vi använder ett särskilt system, SAM, för att hålla reda på studenternas prestationer under kurser.  Om du inte redan har konto i SAM får du ett av kursledaren.
 
@@ -68,18 +68,18 @@ För att rapportera in resultat i SAM gör man så här:
 
 *  Du har nu en lista på din grupp.  Ändra status för studenterna enligt:
 
-  *  Godkänd. Används för dem som  blev klara med allt.
+    *  Godkänd. Används för dem som  blev klara med allt.
 
-  *  Korrigeras. Används för dem som var närvarande men inte hann bli klara med allt.
+    *  Korrigeras. Används för dem som var närvarande men inte hann bli klara med allt.
 
-  *  Uppskov. Används när någon anmält giltigt frånvaroskäl till kursansvarig. Fyll inte i detta alternativ själv. 
+    *  Uppskov. Används när någon anmält giltigt frånvaroskäl till kursansvarig. Fyll inte i detta alternativ själv. 
 
 *  *GLÖM INTE* att till sist klicka på knappen "Uppdatera alla" (längst ned).
 
 *  Logga tills sist ut från SAM.
 
 
-Om du vill skriva ut krysslista inför en laboration så kan du göra så här}:
+Om du vill skriva ut krysslista inför en laboration så kan du göra så här:
 
 *  Gå in i SAM enligt ovan
 
