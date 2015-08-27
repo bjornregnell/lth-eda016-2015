@@ -31,6 +31,7 @@ Many have contributed with input to lectures etc. Here is a list of some contrib
 * Anna Axelsson
 * Roy Andersson
 * Torgny Roxå
+* Markus Borg
 * ...
 
 
