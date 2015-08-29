@@ -13,6 +13,7 @@
 %\usepackage{bera}
 \usepackage[scaled=0.95]{beramono} % inconsolata or beramono ???
 \usepackage{tgheros}
+
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{multicol} \setlength{\columnsep}{5mm}
@@ -21,6 +22,7 @@
 \usepackage{hyperref}
 %http://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
 \hypersetup{colorlinks=true,linkcolor=, linkbordercolor=, urlbordercolor=green!70!black, urlcolor=green!70!black, pdfborderstyle={/S/U/W 1}}
+
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, shapes.symbols, arrows, matrix, shapes, positioning}
 %https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
@@ -59,6 +61,7 @@
 \newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
 \newcommand{\Alert}[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\Eng}[1]{(eng. {\textit{#1}})}
+\newcommand{\Key}[1]{\textbf{\texttt{#1}}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{eclipsepurple}{rgb}{0.5,0,0.25}

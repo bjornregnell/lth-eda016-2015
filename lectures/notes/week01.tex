@@ -436,14 +436,14 @@ Olika språk är bra på olika saker och en systemutvecklare \Emph{behöver kunn
 Systemutvecklare använder många olika verktyg: \footnotesize
 \begin{itemize}
 \item kompilator, t.ex. javac
-\item editor, t.ex. gedit, Sublime Text 3
+\item editor, t.ex. gedit, Sublime Text 3, ...
 \item terminal och kommandoskal, t.ex. bash, powershell
-\item integrerad utvecklingsmiljö (eng. Integrated Dev. Environment, IDE), t.ex. \Emph{Eclipse}, IntelliJ
-\item versionshanteringssystem, t.ex. git, Mercurial
-\item kodlagringsplats, t.ex. GitHub, Bitbucket
-\item hypervisor för virtuella maskiner, t.ex. VirtualBox, VMWare
-\item bughanteringssystem, t.ex. Bugzilla, Jira
-\item byggverktyg, t.ex. Jenkins, Hudson
+\item integrerad utvecklingsmiljö (eng. Integrated Dev. Environment, IDE), t.ex. \Emph{Eclipse}, IntelliJ, ...
+\item versionshanteringssystem, t.ex. git, Mercurial, ...
+\item kodlagringsplats, t.ex. GitHub, Bitbucket, ...
+\item hypervisor för virtuella maskiner, t.ex. VirtualBox, VMWare, ...
+\item bughanteringssystem, t.ex. Bugzilla, Jira, ...
+\item byggverktyg, t.ex. Jenkins, Hudson, ...
 \item ...
 \end{itemize}
 }
@@ -520,11 +520,12 @@ Ovan ingår i övning 1.
 \lstinline{41+1}  \hspace{2mm}  \lstinline{"h"+"ej"} \hspace{2mm} \lstinline{43.5-1.5} \hspace{2mm} \lstinline{!false} 
 \item deklaration av variabel (variable declaration): skapa plats i minnet för data \\ \lstinline{int x = 42;}
 \item tilldelningssats (assignment): ändra värdet på variabler \\ \lstinline{x = 43;}
-\item alternativ (choice): välj väg beroende på variablers värde \\ \lstinline{if  switch}
-\item repetition (loop): upprepa om och om igen \\ \lstinline{while  for}
+\item alternativ (choice): välj väg beroende på variablers värde \\ \lstinline{if},  \lstinline{switch}
+\item repetition (loop): upprepa om och om igen \\ \lstinline{while},  \lstinline{for}
 \end{itemize}
 }
 
+\subsubsection{Sekvens, alternativ, variabler, uttryck och värden}
 \frame{\frametitle{Värden och uttryck}
 \lstinputlisting[language=Java]{../examples/terminal/expressions/Expressions.java}
 }
@@ -587,7 +588,7 @@ y   & 43 \\
 \end{columns}
 \end{Slide}
 
-\begin{Slide}{Regler för namn i Java}\footnotesize
+\begin{Slide}{Syntaxregler för namn i Java}\footnotesize
 När kompilatorn ''läser''  \footnote{man säger ofta ''parsa'' i stället för ''läsa'' när kompilatorn tolkar koden} koden och och försöker hitta variabelnamn, antar den att du följer de entydiga syntaktiska reglerna för språket.  \\ \vskip1em För namn i Java gäller följande regler: %https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html
 \begin{itemize}
 \item Namn får inte vara \href{https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html}{reserverade ord}
@@ -598,7 +599,7 @@ När kompilatorn ''läser''  \footnote{man säger ofta ''parsa'' i stället för
 \end{itemize}
 \end{Slide}
 
-\begin{Slide}{Vad händer vid en tilldelning?}\footnotesize
+\begin{Slide}{Vad händer egentligen vid en tilldelning?}\footnotesize
 \begin{itemize}
 \item Med en \Emph{tilldelningssats} kan vi ge en tidigare deklarerad variabel ett nytt värde: 
 \begin{lstlisting} 
@@ -651,10 +652,51 @@ z& \mybox{? } &  \mybox{}   &   \mybox{}   & \mybox{} & \mybox{} \\
 \end{columns}
 \end{Slide}
 
+\subsubsection{Algoritmer, SWAP, repetition (loopar), MIN/MAX}
+
 \begin{Slide}{Vad är en algoritm?}
 En \href{https://sv.wikipedia.org/wiki/Algoritm}{algoritm} är en sekvens av instruktioner\\ som beskriver hur man löser ett problem \\
 \vspace{2em}
-Exempel: matrecept
+Exempel: \\ ~matrecept, \\ ~uppdatera highscore i ett spel, \\ ~...
+\end{Slide}
+
+\begin{Slide}{Algoritm-exempel: Highscore}
+\Emph{Problem}: Uppdatera high-score i ett spel \\ \vspace{1em}
+\Emph{Varför?} Så att de som spelar uppmuntras att spela mer :) \\ \vspace{1em}
+\Emph{Algoritm:}
+\begin{enumerate}
+\item $points$ $\leftarrow$ poängen efter senaste spelet
+\item $highscore$ $\leftarrow$ bästa resultatet innan senaste spelet
+\item \Key{om} points är större än highscore 
+\begin{enumerate}[ ~~]
+\item  Skriv ''Försök igen!''
+\end{enumerate}
+\Key{annars}
+\begin{enumerate}[ ~~]
+\item  Skriv ''Grattis!''
+\end{enumerate}
+\end{enumerate}
+\end{Slide}
+
+\begin{Slide}{Algoritm-exempel: Highscore}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/highscore/HighScore.java}
+Det finns en bugg i denna implementation. Vilken? \\ Fanns buggen redan i algoritmdesignen?
+% Buggen är att man inte får GRATTIS om poäng == highscore vilket är tråkigt :)
+\end{Slide}
+
+\begin{Slide}{Abstraktion -- varför?}
+\begin{enumerate}
+\item Dela upp problem i delproblem
+\item Skapa ''byggblock'' av kod som kan återanvändas
+\item Dölja komplexiteten i lösningar
+\item Abstraktion är själva \Emph{essensen i all programmering}
+\end{enumerate}
+\begin{lstlisting}
+    public static void main(String[] args){
+    	askUser();
+    	updateHighscore();
+    }
+\end{lstlisting}
 \end{Slide}
 
 \begin{Slide}{Vår första algoritmkluring: SWAP}
@@ -681,6 +723,14 @@ Steg 5 är egentligen inte så lätt som det verkar och behöver göras i flera 
 \begin{Slide}{Vår första algoritmkluring: SWAP}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/swap/SwapSolution.java}
 \footnotesize Övning: Rita hur minnet ser ut efter respektive raderna 7, 8, 12, 13, 14
+\end{Slide}
+
+\begin{Slide}{Repetition med \Key{while}-sats}
+\begin{itemize}
+\item En av de saker en dator är \textit{extra} bra på är att göra samma sak om och om igen utan att tröttna! \footnote{Vilket ju människor är \textit{extra} dåliga på :)}
+\item Med klockfrekvens i storleksordningen $10^9$ Hz är det ganska många instruktioner som kan göras per sekund...
+\end{itemize}
+
 \end{Slide}
 
 	
