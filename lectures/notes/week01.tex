@@ -23,8 +23,8 @@
 \begin{itemize}
 \item \emph{Vad} ska du lära dig?
 \begin{itemize}
-\item Grundläggande principer för programmering\\ $\implies$Inga förkunskaper i programmering krävs
-\item Konstruktion av enkla algoritmer
+\item Grundläggande principer för programmering\\ $\implies$Inga förkunskaper i programmering krävs!
+\item Konstruktion av (enkla) algoritmer
 \item Tänka i abstraktioner
 \item Imperativ och objektorienterad programmering
 \item Programspråket Java
@@ -198,7 +198,7 @@ Hur blir ditt framtida yrkesliv som systemutvecklare?
 
 %%%
 \frame{\frametitle{Förkunskapsenkät}
-Fyll i denna enkät på rasten (eller senast ikväll kl 20:00) \\
+Om du inte redan gjort det: fyll i denna enkät på rasten\\
 \url{http://cs.lth.se/eda016/survey} 
 \vskip1em
 Ligger till grund för randomiserad gruppindelning,\\ så att det blir en spridning av förkunskaper inom gruppen.
@@ -663,11 +663,11 @@ Exempel: \\ ~matrecept, \\ ~uppdatera highscore i ett spel, \\ ~...
 \begin{Slide}{Algoritm-exempel: Highscore}
 \Emph{Problem}: Uppdatera high-score i ett spel \\ \vspace{1em}
 \Emph{Varför?} Så att de som spelar uppmuntras att spela mer :) \\ \vspace{1em}
-\Emph{Algoritm:}
+\Emph{Algoritm:}\footnote{Hittar du buggen?}
 \begin{enumerate}
 \item $points$ $\leftarrow$ poängen efter senaste spelet
 \item $highscore$ $\leftarrow$ bästa resultatet innan senaste spelet
-\item \Key{om} points är större än highscore 
+\item \Key{om} $points$ är större än $highscore$ 
 \begin{enumerate}[ ~~]
 \item  Skriv ''Försök igen!''
 \end{enumerate}
@@ -697,6 +697,8 @@ Det finns en bugg i denna implementation. Vilken? \\ Fanns buggen redan i algori
     	updateHighscore();
     }
 \end{lstlisting}
+Kolla hela programmet här:\\ \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/highscore/HighScoreAbstraction.java}{https://github.com/bjornregnell/lth-eda016-2015} \\
+i filen: \scriptsize\texttt{lectures/examples/terminal/highscore/HighScoreAbstraction.java}
 \end{Slide}
 
 \begin{Slide}{Vår första algoritmkluring: SWAP}
@@ -711,8 +713,8 @@ Det finns en bugg i denna implementation. Vilken? \\ Fanns buggen redan i algori
 \item  Skriv ut x och y
 \end{enumerate}
 \vspace{2em}
-\footnotesize Varför kan det vara bra att kunna byta plats på olika värden? \\
-Steg 5 är egentligen inte så lätt som det verkar och behöver göras i flera steg
+\footnotesize Varför kan det vara bra att kunna byta plats på olika värden? \\ \vspace{1em}\scriptsize
+Steg 5 är egentligen en \Emph{abstraktion} av själva problemet SWAP, som inte är så lätt som det verkar och behöver delas upp i flera steg för att det ska vara rakt fram att översätta till exekverbar kod i t.ex. Java.
 \end{Slide}
 
 
@@ -725,14 +727,93 @@ Steg 5 är egentligen inte så lätt som det verkar och behöver göras i flera 
 \footnotesize Övning: Rita hur minnet ser ut efter respektive raderna 7, 8, 12, 13, 14
 \end{Slide}
 
+\begin{Slide}{Mitt första program: en oändlig loop}
+\begin{columns}
+\begin{column}{0.8\textwidth}
+\begin{verbatim}
+10 print "hej"
+20 goto 10
+\end{verbatim}
+\includegraphics[width=0.8\textwidth]{img/abc80.jpg}
+\end{column}
+\begin{column}{0.3\textwidth}
+
+\begin{verbatim}
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+hej
+\end{verbatim}
+
+\end{column}
+\end{columns}
+\end{Slide}
+
 \begin{Slide}{Repetition med \Key{while}-sats}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/InfiniteLoop.java}
 \begin{itemize}
 \item En av de saker en dator är \textit{extra} bra på är att göra samma sak om och om igen utan att tröttna! \footnote{Vilket ju människor är \textit{extra} dåliga på :)}
 \item Med klockfrekvens i storleksordningen $10^9$ Hz är det ganska många instruktioner som kan göras per sekund...
 \end{itemize}
-
 \end{Slide}
 
+\begin{Slide}{Oändlig \Key{while}-loop med räknare}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/InfiniteLoopWithCounter.java}
+\end{Slide}
+
+\begin{Slide}{Ändlig \Key{while}-loop med räknare}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/FiniteWhileLoopWithCounter.java}
+\end{Slide}
+
+
+\begin{Slide}{\Key{for}-loop med räknare}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/ForLoopWithCounter.java}
+Denna sats är ekvivalent med \Key{while}-satsen på föregående bild.\footnote{\scriptsize Förutom att variabeln \texttt{i} finns efter \Key{while}-satsen men \textit{inte} efter \Key{for}-satsen }
+\end{Slide}
+
+\begin{Slide}{Ändlig \Key{while}-loop med timer}
+\lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/LoopWithTimer.java}
+\scriptsize 
+Övning: Skriv om till \Key{for}-loop och kolla om den är lika snabb som \Key{while}
+\end{Slide}
+
+\begin{Slide}{Algoritm: MIN/MAX}
+\Emph{Problem}: hitta största talet \\ \vspace{1em}
+\Emph{Algoritm:} 
+\begin{enumerate}
+\item $scan$ $\leftarrow$ en Scanner som läser det användaren skriver
+\item $maxSoFar$ $\leftarrow$ ett heltal som är \textit{mindre} än alla andra heltal
+\item  \Key{sålänge} det finns fler heltal att läsa: \\
+~~ $x$ $\leftarrow$ läs in ett heltal med hjälp av $scan$ \\
+~~ \Key{om} $x$ är större än $maxSoFar$ \\
+~~~~~~ $maxSoFar$ $\leftarrow$ $x$
+\item skriv ut $maxSoFar$ 
+\end{enumerate}
+\vspace{1em} \scriptsize 
+Övning 1: Kör algoritmen med papper och penna med indata: 41, 1, 45, 2, 3, 4 \\ 
+Övning 2: skriv om så att algoritmen istället hittar \textit{minsta} talet.
+\end{Slide}
+
+\begin{Slide}{Övning: Implementera algoritmen MIN/MAX i Java}
+\footnotesize
+Några ledtrådar:
+\begin{enumerate}
+\item Man kan få det minsta heltalet med \href{https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html}{\lstinline{Integer.MIN_VALUE}} (negativt värde)
+\item Man kan få det största heltalet med \href{https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html}{\lstinline{Integer.MAX_VALUE}}
+\item Dokumentation av klassen \href{https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html}{Scanner} finns här: \url{https://docs.oracle.com/javase/8/docs/api/}
+\item Man kan kolla om det finns mer att läsa med \href{https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html#hasNextInt--}{\lstinline{scan.hasNextInt()}}
+\item Man läser nästa heltal med  \href{http://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html#nextInt%28%29}{\lstinline{scan.nextInt()}}
+\end{enumerate}
+\end{Slide}
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Sammanfattning}

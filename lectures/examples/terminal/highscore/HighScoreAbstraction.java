@@ -9,7 +9,7 @@ public class HighScoreAbstraction {
     public static void askUser(){
         System.out.println("Hur många poäng fick du?");
         points =  scan.nextInt();
-        System.out.println("Vad var higscore före senaste spelet?");
+        System.out.println("Vad var highscore före senaste spelet?");
         highscore = scan.nextInt();
     }
 
