@@ -1,7 +1,7 @@
 \documentclass{lecturenotes}
 \renewcommand{\vecka}{1}
 
-
+\setbeamertemplate{footline}[frame number]
 \title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
 \subtitle{Läsvecka \vecka: Introduktion}
 \author{Björn Regnell}
@@ -325,7 +325,6 @@ Tor 15-17 v1-7 & Mars     & 11 \& 12 \\
 %%%
 \frame{\frametitle{Att göra i Vecka 1: Rivstarta}
 \begin{enumerate}
-\item Senast måndag 31/8 kl 20:00, fyll i \url{http://cs.lth.se/eda016/survey}
 \item Läs följande kapitel i kursboken: \\ 1, 3.1-3.3, 5.1-5.3, 6.1-6.2, 7.1-7.3, 7.5-7.6, 7.8-7.9
 \item Gör övning 1: Hello World, Hello Args, javac, editera--kompilera--exekvera--felsök, värden, uttryck variabler och tilldelning
 \item Gör förberedelserna till laboration 1: skapa textfil, etc.
@@ -380,11 +379,12 @@ Programmet skulle köra på en kugghjulsdator som hennes kompis Charles Babbage 
 \draw [arrow] (input) -- (compile);
 \draw [arrow] (compile) -- (output);
 \end{tikzpicture}
+\pause
 \footnotesize\vskip2em Vad finns det för programspråk?
 \end{multicols}
 \end{SlideSimple}
 
-\begin{SlideSimple}{Exempel på vanliga programspråk}
+\begin{Slide}{Exempel på vanliga programspråk}
 \begin{multicols}{2}
 \begin{enumerate}
 \item  Java
@@ -406,7 +406,7 @@ De 10 ''vanligaste''?
 \item \href{https://github.com/blog/2047-language-trends-on-github}{Språktrender på GitHub 2008-2015}
 \end{itemize}
 \end{multicols}
-\end{SlideSimple}
+\end{Slide}
 
 \begin{Slide}{Vad är Java?}
 Java är egentligen flera saker:
@@ -419,7 +419,7 @@ Java är egentligen flera saker:
 
 \SlideImg{Var finns Java?}{img/java-everywhere}
 
-\begin{Slide}{Varför Java?}
+\begin{Slide}{Varför lära Java?}
 \begin{itemize}
 \item Java är ett av planeten jordens mest \href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{framgångsrika} programspråk under de senaste \href{http://computersweden.idg.se/2.2683/1.627748/grattis-java-kungen-bland-sprak-fyller-20-ar-i-dag}{decenniet}
 \item Många \href{https://docs.oracle.com/javase/8/embedded/develop-apps-platforms/overview.htm}{inbyggda system} använder Java (bilar, tvättmaskiner, kassa-apparater, nätverksutrustning, ...) 
@@ -487,7 +487,8 @@ Kompilera och kör:
 Hej och välkomna!
 >
 \end{lstlisting}
-Ovan ingår i övning 1.
+Ovan ingår i övning 1. \\
+Extrauppgift: Kolla vad som finns i filen \texttt{HelloWorld.class} med linux-kommandona: \texttt{more} (inte särskilt bra på binärfiler), \texttt{less} och \texttt{xxd} med och utan optionen \texttt{-d}
 \end{frame}
 
 %%%
@@ -529,6 +530,20 @@ Ovan ingår i övning 1.
 \frame{\frametitle{Värden och uttryck}
 \lstinputlisting[language=Java]{../examples/terminal/expressions/Expressions.java}
 }
+
+\begin{Slide}{Exempel på några olika inbyggda \href{https://sv.wikipedia.org/wiki/Datatyp}{\textbf{datatyper}} i Java}
+\begin{itemize}
+\item Alla värden, uttryck och variabler har en typ, till exempel 
+\begin{itemize}\footnotesize
+\item \lstinline{int} för heltal 
+\item \lstinline{long} för \textit{extra} stora heltal (tar mer minne)
+\item \lstinline{double} för decimaltal
+\item \lstinline{String} för strängar
+\end{itemize}
+\item Kompilatorn håller reda på att uttryck kombineras på ett \Emph{typsäkert} sätt. Annars blir det kompileringsfel.
+\item Java är ett s.k. \href{https://sv.wikipedia.org/wiki/Typsystem}{statiskt typat} språk, vilket innebär att all typinformation måste finnas redan vid kompileringsdags \Eng{compile time}\footnote{Andra språk, t.ex. Python och Javascript är dynamiskt typade och där skjuts typkontrollen upp till körningsdags \Eng{run time} \\ Vilka är för- och nackdelarna med statisk vs. dynamisk typning?}. 
+\end{itemize}
+\end{Slide}
 
 \begin{Slide}{Alternativ}
 \footnotesize
@@ -634,7 +649,7 @@ x = x + 1;
 \end{column}
 \begin{column}{0.6\textwidth}
 
-En variabel som inte (ännu) inte initierats har ett odefinierat värde.
+\scriptsize En variabel som ännu inte initierats har ett odefinierat värde, anges nedan med frågetecken.
 \begin{table}[] 
 \centering\scriptsize
 %http://tex.stackexchange.com/questions/83930/what-are-the-different-kinds-of-boxes-in-latex
@@ -662,8 +677,10 @@ Exempel: \\ ~matrecept, \\ ~uppdatera highscore i ett spel, \\ ~...
 
 \begin{Slide}{Algoritm-exempel: Highscore}
 \Emph{Problem}: Uppdatera high-score i ett spel \\ \vspace{1em}
-\Emph{Varför?} Så att de som spelar uppmuntras att spela mer :) \\ \vspace{1em}
-\Emph{Algoritm:}\footnote{Hittar du buggen?}
+
+\Emph{Varför?} \pause Så att de som spelar uppmuntras att spela mer :) \\ \vspace{1em}
+
+\Emph{Algoritm:}\pause
 \begin{enumerate}
 \item $points$ $\leftarrow$ poängen efter senaste spelet
 \item $highscore$ $\leftarrow$ bästa resultatet innan senaste spelet
@@ -676,6 +693,8 @@ Exempel: \\ ~matrecept, \\ ~uppdatera highscore i ett spel, \\ ~...
 \item  Skriv ''Grattis!''
 \end{enumerate}
 \end{enumerate}
+\pause
+\scriptsize \Alert{Hittar du buggen?}
 \end{Slide}
 
 \begin{Slide}{Algoritm-exempel: Highscore}
@@ -703,6 +722,7 @@ i filen: \scriptsize\texttt{lectures/examples/terminal/highscore/HighScoreAbstra
 
 \begin{Slide}{Vår första algoritmkluring: SWAP}
 \Emph{Problem}: läs in och byt plats på två tal i minnet \\ \vspace{1em}
+\pause
 \Emph{Algoritm:}
 \begin{enumerate}
 \item skapa en Scanner
@@ -737,7 +757,7 @@ Steg 5 är egentligen en \Emph{abstraktion} av själva problemet SWAP, som inte 
 \includegraphics[width=0.8\textwidth]{img/abc80.jpg}
 \end{column}
 \begin{column}{0.3\textwidth}
-
+\pause
 \begin{verbatim}
 hej
 hej
@@ -751,7 +771,7 @@ hej
 hej
 hej
 hej
-hej
+<Ctrl+C>
 \end{verbatim}
 
 \end{column}
@@ -760,8 +780,10 @@ hej
 
 \begin{Slide}{Repetition med \Key{while}-sats}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/InfiniteLoop.java}
+\pause
 \begin{itemize}
-\item En av de saker en dator är \textit{extra} bra på är att göra samma sak om och om igen utan att tröttna! \footnote{Vilket ju människor är \textit{extra} dåliga på :)}
+\item En av de saker en dator är \textit{extra} bra på är att göra samma sak om och om igen utan att tröttna! \\
+Och det är ju människor är \textit{extra} dåliga på :)
 \item Med klockfrekvens i storleksordningen $10^9$ Hz är det ganska många instruktioner som kan göras per sekund...
 \end{itemize}
 \end{Slide}
@@ -788,6 +810,7 @@ Denna sats är ekvivalent med \Key{while}-satsen på föregående bild.\footnote
 
 \begin{Slide}{Algoritm: MIN/MAX}
 \Emph{Problem}: hitta största talet \\ \vspace{1em}
+\pause
 \Emph{Algoritm:} 
 \begin{enumerate}
 \item $scan$ $\leftarrow$ en Scanner som läser det användaren skriver
@@ -799,7 +822,7 @@ Denna sats är ekvivalent med \Key{while}-satsen på föregående bild.\footnote
 \item skriv ut $maxSoFar$ 
 \end{enumerate}
 \vspace{1em} \scriptsize 
-Övning 1: Kör algoritmen med papper och penna med indata: 41, 1, 45, 2, 3, 4 \\ 
+Övning 1: Kör algoritmen med papper och penna med indata: \texttt{0~~41~~1~~45~~2~~3~~4}\\ 
 Övning 2: skriv om så att algoritmen istället hittar \textit{minsta} talet.
 \end{Slide}
 
@@ -813,6 +836,9 @@ Några ledtrådar:
 \item Man kan kolla om det finns mer att läsa med \href{https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html#hasNextInt--}{\lstinline{scan.hasNextInt()}}
 \item Man läser nästa heltal med  \href{http://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html#nextInt%28%29}{\lstinline{scan.nextInt()}}
 \end{enumerate}
+\vspace{2em}
+\scriptsize Googlingstävling 1: Vem hittar först \underline{största} Double-värdet i Java? \\ Googlingstävling 2: Vem hittar först \underline{minsta} Double-värdet i Java?
+% http://www.avajava.com/tutorials/lessons/how-do-i-find-the-max-and-min-values-of-primitive-types.html
 \end{Slide}
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

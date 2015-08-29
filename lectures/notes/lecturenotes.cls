@@ -2,10 +2,12 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{lecturenotes}[2015/08/14 Lecture notes based on beamer]
+%\LoadClass[handout]{beamer}
 \LoadClass{beamer}
 
 \beamertemplatenavigationsymbolsempty
 \usetheme{Antibes} \usecolortheme{default}
+
 \usepackage{xcolor}
 
 \usepackage[utf8]{inputenc}
