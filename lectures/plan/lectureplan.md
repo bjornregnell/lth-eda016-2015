@@ -1,4 +1,4 @@
-För översikt av kursmoment se [veckoplanering]. För tider och salar se schema i [TimeEdit].
+[Föreläsningsbilder på GitHub]. [Veckoplanering]. [TimeEdit].
 
 | Vecka   | Föreläsning | Tema  | Innehåll   | Ankboken |
 |:--------|:------------|:------|:-----------|:---------|
@@ -17,5 +17,6 @@ För översikt av kursmoment se [veckoplanering]. För tider och salar se schema
 | Lp2V6   | F20         | Extentor, Repetition |  |  |
 | Lp2V7   | F21         | Utblick, Om tentan | framtidens systemutveckling, kommande kurser, ämnen på begäran |  |
 
+[Föreläsningsbilder på GitHub]: https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/notes
 [TimeEdit]: http://cs.lth.se/eda016/schema   
-[veckoplanering]: http://cs.lth.se/eda016/veckoplanering
+[Veckoplanering]: http://cs.lth.se/eda016/veckoplanering
