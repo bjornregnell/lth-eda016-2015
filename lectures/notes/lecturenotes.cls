@@ -60,13 +60,16 @@
   \beamer@tocsectionnumber=\numexpr#1-1\relax\space}
 \makeatother
 
-\newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
-\newcommand{\Alert}[1]{\textcolor{red}{\textbf{#1}}}
-\newcommand{\Eng}[1]{(eng. {\textit{#1}})}
-\newcommand{\Key}[1]{\textbf{\texttt{#1}}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{eclipsepurple}{rgb}{0.5,0,0.25}
+
+\newcommand{\Emph}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\Alert}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\Eng}[1]{(eng. {\textit{#1}})}
+\newcommand{\Key}[1]{\textcolor{eclipsepurple}{\textbf{\texttt{#1}}}}
+
+
 
 \lstset{
     language=Java, 

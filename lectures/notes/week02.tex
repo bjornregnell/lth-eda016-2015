@@ -133,7 +133,7 @@ hej
 \end{columns}
 \end{Slide}
 
-\begin{Slide}{Repetition med \Key{while}-sats}
+\begin{Slide}{Repetition med while-sats}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/InfiniteLoop.java}
 \pause
 \begin{itemize}
@@ -143,21 +143,21 @@ Och det är ju människor \textit{extra} dåliga på :)
 \end{itemize}
 \end{Slide}
 
-\begin{Slide}{Oändlig \Key{while}-loop med räknare}
+\begin{Slide}{Oändlig while-loop med räknare}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/InfiniteLoopWithCounter.java}
 \end{Slide}
 
-\begin{Slide}{Ändlig \Key{while}-loop med räknare}
+\begin{Slide}{Ändlig while-loop med räknare}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/FiniteWhileLoopWithCounter.java}
 \end{Slide}
 
 
-\begin{Slide}{\Key{for}-loop med räknare}
+\begin{Slide}{Ändlig for-loop med räknare}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/ForLoopWithCounter.java}
-Denna sats är ekvivalent med \Key{while}-satsen på föregående bild.\footnote{\scriptsize Förutom att variabeln \texttt{i} finns efter \Key{while}-satsen men \textit{inte} efter \Key{for}-satsen }
+Denna sats är ekvivalent med föregående \Key{while}-sats.\footnote{\scriptsize Förutom att variabeln \texttt{i} finns efter \Key{while}-satsen men \textit{inte} efter \Key{for}-satsen }
 \end{Slide}
 
-\begin{Slide}{Ändlig \Key{while}-loop med timer}
+\begin{Slide}{Ändlig while-loop med timer}
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/loops/LoopWithTimer.java}
 \scriptsize 
 Övning: Skriv om till \Key{for}-loop och kolla om den är lika snabb som \Key{while}
@@ -197,26 +197,28 @@ Några ledtrådar:
 \end{Slide}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Varför behövs kodstruktur?}
-\begin{Slide}{Varför kodstruktur?}
+\subsection{Abstraktionsmekanismer}
+\begin{Slide}{Varför kodstruktur med abstraktion?}
 \begin{itemize}
 \item Stora programdelar behöver delas upp annars blir det mycket svårt att förstå programmet.
 \item Vi behöver kunna välja namn på saker i koden \textit{lokalt}, utan att det krockar med samma namn i andra delar av koden.
 \item Abstraktioner hjälper till att hantera och kapsla in komplexa delar så att de blir enklare att använda om och om igen. \\Exempel på \Emph{abstraktionsmekanismer} i Java:
-\begin{itemize}
-\item \href{https://en.wikipedia.org/wiki/Java_package}{Paket} används för att organisera koddelar som samverkar i en hierarkisk katalogstruktur
-\item \href{https://sv.wikipedia.org/wiki/Klass_\%28programmering\%29}{Klasser} används för att skapa ''byggblock'' med kod, s.k. \href{https://sv.wikipedia.org/wiki/Objektorienterad_programmering\#Objekt}{objekt}, som innehåller delar som hör ihop
-\item \href{https://en.wikipedia.org/wiki/Method_\%28computer_programming\%29}{Metoder} är programdelar finns i klasser och används för att lösa specifika uppgifter. Exempel: \lstinline{updateHighScore()} 
+\begin{itemize}\footnotesize
+\item \href{https://en.wikipedia.org/wiki/Java_package}{Paket} används för att organisera koddelar som samverkar i en hierarkisk katalogstruktur. Nyckelord: \Key{package}
+\item \href{https://sv.wikipedia.org/wiki/Klass_\%28programmering\%29}{Klasser} är ''byggblock'' med kod som används för att skapa \href{https://sv.wikipedia.org/wiki/Objektorienterad_programmering\#Objekt}{objekt}, innehållande delar som hör ihop. Nyckelord: \Key{class}
+\item \href{https://en.wikipedia.org/wiki/Method_\%28computer_programming\%29}{Metoder} är programdelar som finns i klasser och används för att lösa specifika uppgifter. Exempel: \texttt{updateHighScore()} 
 \end{itemize}
 \end{itemize}
 \end{Slide}
 
 \begin{Slide}{Exempel på olika sorters metoder:}
 \begin{itemize}\footnotesize
-\item \Emph{Procedurer} är metoder som \textit{gör} något men som inte returnerar något värde. Avsaknad av värde anges i Java med nyckelordet \lstinline{void}
+\item \Emph{Procedurer} är metoder som \textit{gör} något men som inte returnerar något värde. Avsaknad av värde anges i Java med nyckelordet \Key{void}
 \item \Emph{Funktioner} är metoder som beräknar och \textit{returnerar} ett specifikt värde av en viss typ (gärna ngt som övriga programdelar har nytta av...)
-\item En funktion \textit{utan} \Emph{sidoeffekter} ger alltid samma resultat varje gång den anropas med samma parametrar och den \textit{ändrar inte} något som märks ''utanför'' funktionen.
-\item En funktion \textit{med} sidoeffekter returnerar ett värde men kan också göra något som påverkar \Emph{tillståndet} hos programdelar utanför funktionen  och ger \textit{inte} garanterat samma resultat varje gång den anropas med samma parametrar.
+\begin{itemize}\footnotesize
+\item En \Emph{funktion \textit{utan} sidoeffekter} ger alltid samma resultat varje gång den anropas med samma parametrar och den \textit{ändrar inte} något som märks ''utanför'' funktionen.
+\item En \Emph{funktion \textit{med} sidoeffekter} returnerar ett värde men kan också göra något som påverkar \Emph{tillståndet} hos programdelar utanför funktionen  och ger \textit{inte} garanterat samma resultat varje gång den anropas med samma parametrar.
+\end{itemize}
 \end{itemize}
 \end{Slide}
 
@@ -227,7 +229,6 @@ Några ledtrådar:
 \node (input) [startstop] {\texttt{Hello.java}};
 \node(inptext) [right of=input, text width=4cm, scale=1.2,xshift=3.5cm]{Källkodsfil};
 \node (compile) [process, below of=input] {\texttt{javac}};
-\node(comptext) [right of=compile, text width=4cm, scale=1.2,xshift=3.5cm]{Kompilator};
 \node (output) [startstop, below of=compile] {\texttt{Hello.class}};
 \node(outtext) [right of=output, text width=4cm, scale=1.2,xshift=3.5cm]{Fil med byte-kod};
 \node (jvm) [process, below of=output] {JVM};
@@ -239,39 +240,82 @@ Några ledtrådar:
 \end{Slide}
 
 \begin{Slide}{Paket}\footnotesize
-Katalogstrukturen för källkoden måste i Java motsvara paketstrukturen. \\Byte-koden placeras av kompilatorn i katalogstruktur enligt paketstrukturen.\\ \vspace{1em}
+Katalogstrukturen för källkoden måste i Java \href{https://docs.oracle.com/javase/tutorial/java/package/managingfiles.html}{motsvara paketstrukturen}. \\Byte-koden placeras av kompilatorn i katalogstruktur enligt paketstrukturen.\\ \vspace{1em}
 
 \begin{tikzpicture}[node distance=1.5cm,scale=0.8, every node/.style={transform shape}]
 \node (input) [startstop] {\texttt{src/greeting/Hello.java}};
-\node(inptext) [right of=input, text width=4cm, scale=1.2,xshift=3.5cm]{\lstinline{package greeting;}\\\lstinline{public class Hello { ... }};
-\node (compile) [process, below of=input] {\texttt{javac -d bin}};
+\node(inptext) [right of=input, text width=4cm, scale=1.2,xshift=4.5cm]{\lstinline{package greeting;}\\\lstinline{public class Hello { ... }};
+\node (compile) [process, below of=input] {\texttt{javac -d bin src/greeting/Hello.java}};
 \node (output) [startstop, below of=compile] {\texttt{bin/greeting/Hello.class}};
-\node(outtext) [right of=output, text width=4cm, scale=1.2,xshift=3.5cm]{Paketens bytekod hamnar i katalog med samma namn som paketnamnet};
-\node (jvm) [process, below of=output] {JVM};
+\node(outtext) [right of=output, text width=4cm, scale=1.2,xshift=4.5cm]{Paketens bytekod hamnar i katalog med samma namn som paketnamnet};
+\node (jvm) [process, below of=output] {\texttt{java -classpath bin greeting.Hello}};
 \draw [arrow] (input) -- (compile);
 \draw [arrow] (compile) -- (output);
 \draw [arrow] (output) -- (jvm);
 \end{tikzpicture}
 \end{Slide}
 
-\begin{Slide}{Dokumentation}
+\begin{Slide}{Dokumentation}\footnotesize
+För att kod ska bli begriplig för människor är det bra att dokumentera vad den gör. Det finns tre sorters kommentarer man kan skriva direkt i Java-koden, som kompilatorn struntar fullständigt i när den gör byte-kod:
+\begin{lstlisting}
+// Enradskommentarer börjar med dubbla snedstreck
+//       men de gäller bara till radslut
+
+
+/* Flerradskommentarer börjar med snedstreck-asterisk
+   och slutar med asterisk-snedstreck.
+*/ 
+
+
+/** Dokumentationskommentarer placeras före en klass
+*   eller en metod och berättar vad som görs
+*   och vad eventuella parametrar används till.
+*   Börjar med snedstreck-asterisk-asterisk.
+*   Varje ny kommentarsrad börjar med asterisk.
+*   Avslutas med asterisk-stjärna.
+*/
+\end{lstlisting}
 \end{Slide}
 
+\begin{Slide}{Generera dokumentation för webbläsare}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (input) [startstop] {\texttt{Greet.java}};
+\node(inptext) [right of=input, text width=6cm, scale=0.8,xshift=4.5cm]{Källkodsfil med\\ dokumentationskommentarer};
+\node (compile) [process, below of=input] {\texttt{javadoc}};
+\node (output) [startstop, below of=compile] {\texttt{index.html}};
+\node(outtext) [right of=output, text width=6cm, scale=0.8,xshift=4.5cm]{...och en massa andra filer...};
+\node (web) [process, below of=output] {Webbläsare};
+\draw [arrow] (input) -- (compile);
+\draw [arrow] (compile) -- (output);
+\draw [arrow] (output) -- (web);
+\end{tikzpicture}
+\end{Slide}
 
 \Subsection{Objekt}
 
 \begin{Slide}{Objekt och referensvariabler}
 % http://tex.stackexchange.com/questions/45404/asymmetric-cloud-shape-in-tikz
 % http://tex.stackexchange.com/questions/44940/cloud-with-lines-as-filling-in-tikz
-Ni har redan på övning 1 och labb 1 skapat ett objekt och deklarerat en referensvariabel som refererar till objektet:
+Ni har redan på övning 1 och lab 1 skapat ett objekt av typen \texttt{Scanner} och deklarerat en \Emph{referensvariabel} \texttt{scan} som refererar till objektet.
 \begin{lstlisting}
 Scanner scan = new Scanner(System.in);
 \end{lstlisting}
-
+ Nyckelordet \Key{new} skapar plats någonstans i minnet för objektet:\\
+ \vspace{1em}
 \begin{tikzpicture}[font=\large\sffamily]
+\matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}] (mat)
+{
+scan   &  \makebox(16,12){ }\\
+};
 \node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
- align=center, draw] (cloud) at (0cm, 0cm) {\Emph{objekt}};
+ align=center, draw] (cloud) at (4cm, 1cm) {Scanner-\\objekt};
+\filldraw[black] (0.5cm,0) circle (3pt) node[] (ref) {};
+ \draw [arrow] (ref) -- (cloud);
 \end{tikzpicture}
+\end{Slide}
+
+\begin{Slide}{Objekt och referensvariabler}
+\lstinputlisting[language=Java]{../examples/terminal/refvars/ReferenceVariables.java}
 \end{Slide}
 
 \end{document}
