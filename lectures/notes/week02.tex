@@ -17,8 +17,7 @@
 \frame{\tableofcontents}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Algoritmer och loopar}
-\subsubsection{Algoritmer, SWAP, repetition (loopar), MIN/MAX}
+\subsection{Algoritmer}
 
 \begin{Slide}{Vad är en algoritm?}
 En \href{https://sv.wikipedia.org/wiki/Algoritm}{algoritm} är en sekvens av instruktioner\\ som beskriver hur man löser ett problem \\
@@ -100,6 +99,8 @@ Steg 5 är egentligen en \Emph{abstraktion} av själva problemet SWAP, som inte 
 \lstinputlisting[language=Java, numbers=left]{../examples/terminal/swap/SwapSolution.java}
 \footnotesize Övning: Rita hur minnet ser ut efter respektive raderna 7, 8, 12, 13, 14
 \end{Slide}
+
+\Subsection{Loop-strukturer}
 
 \begin{Slide}{Mitt första program: en oändlig loop}
 \begin{columns}
@@ -199,18 +200,77 @@ Några ledtrådar:
 \subsection{Varför behövs kodstruktur?}
 \begin{Slide}{Varför kodstruktur?}
 \begin{itemize}
-\item Nu blev denna programdel för stor och behöver delas upp...
+\item Stora programdelar behöver delas upp annars blir det mycket svårt att förstå programmet.
+\item Vi behöver kunna välja namn på saker i koden \textit{lokalt}, utan att det krockar med samma namn i andra delar av koden.
+\item Abstraktioner hjälper till att hantera och kapsla in komplexa delar så att de blir enklare att använda om och om igen. \\Exempel på \Emph{abstraktionsmekanismer} i Java:
+\begin{itemize}
+\item \href{https://en.wikipedia.org/wiki/Java_package}{Paket} används för att organisera koddelar som samverkar i en hierarkisk katalogstruktur
+\item \href{https://sv.wikipedia.org/wiki/Klass_\%28programmering\%29}{Klasser} används för att skapa ''byggblock'' med kod, s.k. \href{https://sv.wikipedia.org/wiki/Objektorienterad_programmering\#Objekt}{objekt}, som innehåller delar som hör ihop
+\item \href{https://en.wikipedia.org/wiki/Method_\%28computer_programming\%29}{Metoder} är programdelar finns i klasser och används för att lösa specifika uppgifter. Exempel: \lstinline{updateHighScore()} 
+\end{itemize}
 \end{itemize}
 \end{Slide}
+
+\begin{Slide}{Exempel på olika sorters metoder:}
+\begin{itemize}\footnotesize
+\item \Emph{Procedurer} är metoder som \textit{gör} något men som inte returnerar något värde. Avsaknad av värde anges i Java med nyckelordet \lstinline{void}
+\item \Emph{Funktioner} är metoder som beräknar och \textit{returnerar} ett specifikt värde av en viss typ (gärna ngt som övriga programdelar har nytta av...)
+\item En funktion \textit{utan} \Emph{sidoeffekter} ger alltid samma resultat varje gång den anropas med samma parametrar och den \textit{ändrar inte} något som märks ''utanför'' funktionen.
+\item En funktion \textit{med} sidoeffekter returnerar ett värde men kan också göra något som påverkar \Emph{tillståndet} hos programdelar utanför funktionen  och ger \textit{inte} garanterat samma resultat varje gång den anropas med samma parametrar.
+\end{itemize}
+\end{Slide}
+
+\Subsection{Filstruktur}
+
+\begin{Slide}{Källkodsfiler och klassfiler}
+\begin{tikzpicture}[node distance=1.5cm]
+\node (input) [startstop] {\texttt{Hello.java}};
+\node(inptext) [right of=input, text width=4cm, scale=1.2,xshift=3.5cm]{Källkodsfil};
+\node (compile) [process, below of=input] {\texttt{javac}};
+\node(comptext) [right of=compile, text width=4cm, scale=1.2,xshift=3.5cm]{Kompilator};
+\node (output) [startstop, below of=compile] {\texttt{Hello.class}};
+\node(outtext) [right of=output, text width=4cm, scale=1.2,xshift=3.5cm]{Fil med byte-kod};
+\node (jvm) [process, below of=output] {JVM};
+\node(jvmtext) [right of=jvm, text width=5.5cm, scale=0.8,xshift=5.0cm]{\textit{Java Virtual Machine}\\Översätter till maskinkod\\ som passar din specifika CPU\\medan programmet kör};
+\draw [arrow] (input) -- (compile);
+\draw [arrow] (compile) -- (output);
+\draw [arrow] (output) -- (jvm);
+\end{tikzpicture}
+\end{Slide}
+
+\begin{Slide}{Paket}\footnotesize
+Katalogstrukturen för källkoden måste i Java motsvara paketstrukturen. \\Byte-koden placeras av kompilatorn i katalogstruktur enligt paketstrukturen.\\ \vspace{1em}
+
+\begin{tikzpicture}[node distance=1.5cm,scale=0.8, every node/.style={transform shape}]
+\node (input) [startstop] {\texttt{src/greeting/Hello.java}};
+\node(inptext) [right of=input, text width=4cm, scale=1.2,xshift=3.5cm]{\lstinline{package greeting;}\\\lstinline{public class Hello { ... }};
+\node (compile) [process, below of=input] {\texttt{javac -d bin}};
+\node (output) [startstop, below of=compile] {\texttt{bin/greeting/Hello.class}};
+\node(outtext) [right of=output, text width=4cm, scale=1.2,xshift=3.5cm]{Paketens bytekod hamnar i katalog med samma namn som paketnamnet};
+\node (jvm) [process, below of=output] {JVM};
+\draw [arrow] (input) -- (compile);
+\draw [arrow] (compile) -- (output);
+\draw [arrow] (output) -- (jvm);
+\end{tikzpicture}
+\end{Slide}
+
+\begin{Slide}{Dokumentation}
+\end{Slide}
+
 
 \Subsection{Objekt}
 
 \begin{Slide}{Objekt och referensvariabler}
 % http://tex.stackexchange.com/questions/45404/asymmetric-cloud-shape-in-tikz
 % http://tex.stackexchange.com/questions/44940/cloud-with-lines-as-filling-in-tikz
+Ni har redan på övning 1 och labb 1 skapat ett objekt och deklarerat en referensvariabel som refererar till objektet:
+\begin{lstlisting}
+Scanner scan = new Scanner(System.in);
+\end{lstlisting}
+
 \begin{tikzpicture}[font=\large\sffamily]
 \node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
- align=center, draw] (cloud) at (0cm, 0cm) {objekt};
+ align=center, draw] (cloud) at (0cm, 0cm) {\Emph{objekt}};
 \end{tikzpicture}
 \end{Slide}
 
