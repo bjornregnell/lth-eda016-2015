@@ -16,6 +16,7 @@
 \usepackage[scaled=0.95]{beramono} % inconsolata or beramono ???
 \usepackage{tgheros}
 
+\usepackage{amsmath,scalerel} %http://tex.stackexchange.com/questions/125523/is-there-a-bigcdot-symbol-in-latex
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{multicol} \setlength{\columnsep}{5mm}

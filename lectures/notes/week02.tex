@@ -17,6 +17,21 @@
 \frame{\tableofcontents}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Att göra denna vecka}
+%%%
+\frame{\frametitle{Att göra i Vecka \vecka: Fatta kodstruktur}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken: \\ 2.1-2.6, 4, 5.4, 7.2, 7.5-7.6, 7.8-7.9; 
+ Begrepp: \\algoritm, pseudokod, abstraktion, oändlig loop,while-sats, for-sats, paket, import, referensvariabel, objekt, referenstilldelning, referenslikhet 
+\item Gör övning 2: Paket, kodfiler, och dokumentation
+\item OBS! Ingen lab denna vecka
+\item Träffas i samarbetsgrupper och hjälp varandra att förstå
+\item Gör klart \href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/assignments}{samarbetskontrakt} och visa för handledare på resurstid
+\item \Alert{Koda på resurstiderna} och få hjälp och tips! \\ Varför var de så få kom kom till resurstiderna vecka 1?
+\end{enumerate}
+}
+
 \subsection{Algoritmer}
 
 \begin{Slide}{Vad är en algoritm?}
@@ -57,12 +72,12 @@ Det finns en bugg i denna implementation. Vilken? \\ Fanns buggen redan i algori
 \end{Slide}
 
 \begin{Slide}{Abstraktion -- varför?}
-\begin{enumerate}
+\begin{itemize}
 \item Dela upp problem i delproblem
 \item Skapa ''byggblock'' av kod som kan återanvändas
 \item Dölja komplexiteten i lösningar
 \item Abstraktion är själva \Emph{essensen i all programmering}
-\end{enumerate}
+\end{itemize}
 \begin{lstlisting}
     public static void main(String[] args){
     	askUser();
@@ -102,7 +117,7 @@ Steg 5 är egentligen en \Emph{abstraktion} av själva problemet SWAP, som inte 
 
 \Subsection{Loop-strukturer}
 
-\begin{Slide}{Mitt första program: en oändlig loop}
+\begin{Slide}{Mitt första program: en oändlig loop på ABC80}
 \begin{columns}
 \begin{column}{0.8\textwidth}
 \begin{verbatim}
@@ -255,6 +270,24 @@ Katalogstrukturen för källkoden måste i Java \href{https://docs.oracle.com/ja
 \end{tikzpicture}
 \end{Slide}
 
+\begin{Slide}{Import}\footnotesize
+Med hjälp av punktnotation kommer man åt klasser i ett paket.\\
+\texttt{SimpleWindow} ligger i paketet \texttt{window} som ligger i paktetet \texttt{pt} ... 
+\begin{lstlisting}
+SimpleWindow w = new se.lth.cs.pt.window.SimpleWindow(200, 200, "");
+\end{lstlisting}
+En \Key{import}-sats i början av kodfilen: 
+\begin{lstlisting}
+import se.lth.cs.pt.window.SimpleWindow;
+\end{lstlisting}
+
+...gör så att kompilatorn ''ser'' klassnamnet, och man slipper skriva paketsökvägen före klassnamnet:
+\begin{lstlisting}
+SimpleWindow w = new SimpleWindow(200, 200, "");
+\end{lstlisting}
+Man säger att namnet \texttt{SimpleWindow} hamnar \Emph{\textit{in scope}}.
+\end{Slide}
+
 \begin{Slide}{Dokumentation}\footnotesize
 För att kod ska bli begriplig för människor är det bra att dokumentera vad den gör. Det finns tre sorters kommentarer man kan skriva direkt i Java-koden, som kompilatorn struntar fullständigt i när den gör byte-kod:
 \begin{lstlisting}
@@ -275,6 +308,12 @@ För att kod ska bli begriplig för människor är det bra att dokumentera vad d
 *   Avslutas med asterisk-stjärna.
 */
 \end{lstlisting}
+\end{Slide}
+
+\begin{Slide}{Exempel på dokumentationskommentarer}
+Exempel på dokumnetationskommentar som ges i \Emph{övning 2} i kompendiet finns här:\\ 
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/greet/Greet.java}{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/greet} \\
+i filen \href{https://raw.githubusercontent.com/bjornregnell/lth-eda016-2015/master/lectures/examples/terminal/greet/Greet.java}{Greet.java}
 \end{Slide}
 
 \begin{Slide}{Generera dokumentation för webbläsare}
@@ -315,22 +354,114 @@ scan   &  \makebox(16,12){ }\\
 \end{Slide}
 
 \begin{Slide}{Objekt och referensvariabler}
-\lstinputlisting[language=Java]{../examples/terminal/refvars/ReferenceVariables.java}
+\lstinputlisting[language=Java,numbers=left]{../examples/terminal/refvars/ReferenceVariables.java}
 \end{Slide}
 
 \begin{Slide}{Objekt och referensvariabler}
+\begin{lstlisting}[numbers=left, firstnumber=7]
+        Gurka g1 = new Gurka();
+        Gurka g2 = new Gurka();
+\end{lstlisting}
+Efter rad 8 ser det ut såhär i minnet:
+\\ \vspace{1em}
 \begin{tikzpicture}[font=\large\sffamily]
 \matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}] (mat)
 {
-g1   &  \makebox(16,12){ }\\
-g2   &  \makebox(16,12){ }\\
+\texttt{g1}   &  \makebox(16,12){ }\\
+\texttt{g2}   &  \makebox(16,12){ }\\
 };
 \node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
  align=center, draw] (g1) at (4cm, 1cm) {Gurka-\\objekt};
-\filldraw[black] (0.5cm,0) circle (3pt) node[] (g1ref) {};
+\filldraw[black] (0.4cm,0.4cm) circle (3pt) node[] (g1ref) {};
  \draw [arrow] (g1ref) -- (g1);
+ \node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
+ align=center, draw] (g2) at (5cm, -2cm) {Gurka-\\objekt};
+ \filldraw[black] (0.4cm,-0.4cm) circle (3pt) node[] (g2ref) {};
+ \draw [arrow] (g2ref) -- (g2);
 \end{tikzpicture}
 \end{Slide}
 
 
+\begin{Slide}{Objekt och referensvariabler}
+\begin{lstlisting}[numbers=left, firstnumber=7]
+        Gurka g1 = new Gurka();
+        Gurka g2 = new Gurka();
+\end{lstlisting}
+En mer detaljerad bild av minnet efter rad 8:
+\\ \vspace{1em}
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\begin{tikzpicture}[
+	font=\large\sffamily, 
+	varname/.style={node distance=0.2cm},
+	varbox/.style={draw, node distance=0.2cm},
+	objcloud/.style={cloud, cloud puffs=15.7, cloud ignores aspect, align=center, draw},
+]
+
+\node [varname] (g1var) {\texttt{g1}};
+\node [varbox, right = of g1var] (g1ref) {\phantom{abc}};
+\filldraw[black] (g1ref) circle (3pt) node[] (g1dot) {};
+\node [objcloud, right = of g1ref, yshift=1.0cm, scale =0.8] (g1obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g1dot) -- (g1obj);
+
+\node [varname, below = of g1var] (g2var) {\texttt{g2}};
+\node [varbox, right = of g2var] (g2ref) {\phantom{abc}};
+\filldraw[black] (g2ref) circle (3pt) node[] (g2dot) {};
+\node [objcloud, right = of g2ref, yshift=-1.0cm, scale =0.8] (g2obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g2dot) -- (g2obj);
+
+\end{tikzpicture}
+\end{Slide}
+
+
+\begin{Slide}{Punktnotation för att komma åt klassmedlemmar}
+\begin{lstlisting}[numbers=left, firstnumber=9]
+        g2.vikt = 200;
+\end{lstlisting}
+Efter rad 9 ser det ut såhär i minnet:
+\\ \vspace{1em}
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\begin{tikzpicture}[
+	font=\large\sffamily, 
+	varname/.style={node distance=0.2cm},
+	varbox/.style={draw, node distance=0.2cm},
+	objcloud/.style={cloud, cloud puffs=15.7, cloud ignores aspect, align=center, draw},
+]
+
+\node [varname] (g1var) {\texttt{g1}};
+\node [varbox, right = of g1var] (g1ref) {\phantom{abc}};
+\filldraw[black] (g1ref) circle (3pt) node[] (g1dot) {};
+\node [objcloud, right = of g1ref, yshift=1.0cm, scale =0.8] (g1obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g1dot) -- (g1obj);
+
+\node [varname, below = of g1var] (g2var) {\texttt{g2}};
+\node [varbox, right = of g2var] (g2ref) {\phantom{abc}};
+\filldraw[black] (g2ref) circle (3pt) node[] (g2dot) {};
+\node [objcloud, right = of g2ref, yshift=-1.0cm, scale =0.8] (g2obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{200}
+};
+\draw [arrow] (g2dot) -- (g2obj);
+
+\end{tikzpicture}
+\end{Slide}
+
+\begin{Slide}{Skapa och anropa metoder}
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/refvars/MethodExamples.java}
+\end{Slide}
+
+
 \end{document}
+
+
+
+
+
+
+
