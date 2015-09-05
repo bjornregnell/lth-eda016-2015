@@ -291,7 +291,7 @@ För att kod ska bli begriplig för människor är det bra att dokumentera vad d
 \end{tikzpicture}
 \end{Slide}
 
-\Subsection{Objekt}
+\Subsection{Klasser och objekt}
 
 \begin{Slide}{Objekt och referensvariabler}
 % http://tex.stackexchange.com/questions/45404/asymmetric-cloud-shape-in-tikz
@@ -317,5 +317,20 @@ scan   &  \makebox(16,12){ }\\
 \begin{Slide}{Objekt och referensvariabler}
 \lstinputlisting[language=Java]{../examples/terminal/refvars/ReferenceVariables.java}
 \end{Slide}
+
+\begin{Slide}{Objekt och referensvariabler}
+\begin{tikzpicture}[font=\large\sffamily]
+\matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}] (mat)
+{
+g1   &  \makebox(16,12){ }\\
+g2   &  \makebox(16,12){ }\\
+};
+\node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
+ align=center, draw] (g1) at (4cm, 1cm) {Gurka-\\objekt};
+\filldraw[black] (0.5cm,0) circle (3pt) node[] (g1ref) {};
+ \draw [arrow] (g1ref) -- (g1);
+\end{tikzpicture}
+\end{Slide}
+
 
 \end{document}
