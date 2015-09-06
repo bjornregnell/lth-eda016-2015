@@ -7,16 +7,21 @@ IF NOT DEFINED JAVA_HOME (FOR /F "tokens=2*" %%i IN ('REG QUERY "HKEY_LOCAL_MACH
 	SET "_javaProbe=%%j"
 ))
 IF DEFINED _javaProbe (
-	ECHO Newest jdk found to be %_javaProbe%
+	ECHO Newest jdk found to be %_javaProbe%, setting up JAVA_HOME
 	SET "JAVA_HOME=%_javaProbe%"
-	SETX JAVA_HOME "%_javaProbe%"
+	SETX JAVA_HOME "%_javaProbe%" >NUL
 	SET "_javaPath=%_javaProbe%\bin"
 ) ELSE (
-	SET "_javaPath=%JAVA_HOME%\bin"
+	IF NOT DEFINED JAVA_HOME (
+		SET "_javaPath=%JAVA_HOME%\bin"
+	) ELSE (
+		ECHO No installed JDK found
+		GOTO cleanup
+	)
 )
 
 REM Save old path
-FOR /F "tokens=2*" %%i IN ('REG QUERY "HKCU\Environment" /v "Path" ^| FIND /I "Path"') DO (SET "_oldPath=%%j")
+FOR /F "tokens=2*" %%i IN ('REG QUERY "HKCU\Environment" /v "Path" 2^>NUL ^| FIND /I "Path"') DO (SET "_oldPath=%%j")
 
 REM Add to path if not already there
 ECHO."%PATH%" | FIND /I "%_javaPath%">NUL && ( 
@@ -28,16 +33,20 @@ ECHO."%PATH%" | FIND /I "%_javaPath%">NUL && (
 	REM Persist to registry, unable to use SETX since max length is 1024 and PATH might be longer
 	IF DEFINED _oldPath (
 		ECHO Saving old path %_oldPath%
-		REG ADD "HKCU\Environment" /f /v Path /t REG_EXPAND_SZ /d "%_oldPath%;%_javaPath%"
+		REG ADD "HKCU\Environment" /f /v Path /t REG_EXPAND_SZ /d "%_oldPath%;%_javaPath%" >NUL
 	) ELSE (
 		ECHO Registering new Path
-		REG ADD "HKCU\Environment" /f /v Path /t REG_EXPAND_SZ /d "%_javaPath%"
+		REG ADD "HKCU\Environment" /f /v Path /t REG_EXPAND_SZ /d "%_javaPath%" >NUL
 	)
 	
 	REM SETX will broadcast WM_SETTINGCHANGE message to the dispatcher so user environment will be updated accordingly
-	SETX DUMMY ""
-	REG DELETE "HKCU\Environment" /v DUMMY /f
+	SETX DUMMY "" >NUL
+	REG DELETE "HKCU\Environment" /v DUMMY /f >NUL
 )
+
+
+:cleanup
+PAUSE
 
 REM Cleanup
 SET _javaProbe=
