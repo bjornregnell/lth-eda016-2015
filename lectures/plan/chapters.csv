@@ -1,0 +1,160 @@
+Kapitel	Vecka
+1. Program och Programmering	
+    1.1  Datorer och datorprogram	1
+    1.2  Programmering	1
+    1.3  Java	1
+    1.4  Kompilering och exekvering av Javaprogram	1
+	
+2. Objekt och operationer	
+    2.1  Översikt	2
+    2.2  Objekt och egenskaper	2
+    2.3  Objekt i datorns minne	2
+    2.4  Klasser och metoder	2
+    2.5  Att skapa och referera till objekt	2
+    2.6  Referenstilldelning	2
+    2.7  Specifikation av klasser	3
+    2.8  Funktioner	2
+    2.9  Ny klass — bankkonto	3
+    2.10 Parametrar till konstruktorer och metoder	3
+	
+	
+3. Klasser och metoder	
+    3.1  Inledning	1
+    3.2  Variabler, uttryck och satser	1
+    3.3  Implementering av klasser	2
+    3.4  Konstruktorer	3
+    3.5  Programexempel: Ränteberäkning	
+    3.6  Representation av tillstånd	3
+    3.7  Användning av objekt	3
+    3.8  Vad kännetecknar en kvadrat	
+    3.9  Algoritmexempel: Summering	
+    3.10 Statiska attribut och metoder	
+    3.11 Överlagring av metoder och konstruktorer	
+    3.12 Minneshantering — lokala variabler och parametrar	
+	
+4. Formen hos ett program	
+    4.1  Programuppbyggnad	1
+    4.2  Programlayout	1
+    4.3  Namn	1
+    4.4  Kommentarer	2
+	
+5. Data och datatyper	
+    5.1  Datatyper	1
+    5.2  Heltal och reella tal	1
+    5.3  Deklaration av variabler	1
+    5.4  Deklaration av konstanter	2
+	
+6. Uttryck	
+    6.1  Inledning	1
+    6.2  Tilldelningssatser	1
+    6.3  Aritmetiska uttryck	4
+    6.4  Logiska uttryck	4
+    6.5  Bithantering	
+    6.6  Teckenuttryck	4
+    6.7  Stränguttryck	1
+    6.8  Objektuttryck	4
+    6.9  Villkorsuttryck	4
+    6.10 Slumptal	
+    6.11  Programexempel: Tärningsspel	
+	
+7. Satser	
+    7.1  Programstrukturering	1
+    7.2  Förkortade tilldelningssatser	2
+    7.3  If-satser och block	1
+    7.4  Switch-satser	
+    7.5  While-satser	2
+    7.6  For-satser	2
+    7.7  Do while-satser	
+    7.8  Inläsning	1
+    7.9  Utskrift	1
+    7.10 Tomma satser	
+    7.11 Return-satser	2
+    7.12 Break- och continue-satser	
+    7.13 Algoritmexempel: Beräkning av minimum	2
+	
+8. Vektorer	
+    8.1  Listor, träd och grafer	
+    8.2  Vektorer	
+    8.3  Programexempel: Polygon	
+    8.4  Att sätta in och ta ut element	
+    8.5  Att utöka en vektors storlek	
+    8.6  Matriser	
+    8.7  Vektorer och matriser som parametrar	
+    8.8  Algoritmexempel: Sökning	
+    8.9  Algoritmexempel: Sortering	
+    8.10 Algoritmexempel: Registrering	
+	
+9. Arv	
+    9.1  Inledande exempel	
+    9.2  Skydd i samband med arv	
+    9.3  Konstruktorer i subklasser	
+    9.4  När ska man använda arv	
+    9.5  Typregler för arv	
+    9.6  Abstrakta metoder	
+    9.7  Programexempel: Grupper av figurer	
+    9.8  Objektuttrycken this och super	
+    9.9  Relationsoperatorn instanceof	
+    9.10 Definitiva metoder och klasser	
+	
+10. Objektorienterad programutveckling	
+    10.1  Analys, design och implementering	
+    10.2  Objektorienterad programutveckling	
+    10.3  Analys- och designmetodik	
+    10.4  Designexempel: Myntvändning	
+    10.5  Designexempel: Nim-spel	
+	
+11. String och StringBuilder	
+    11.1  Teckensträngar	
+    11.2  Klassen String	
+    11.3  Användning av String	
+    11.4  Klassen StringBuilder	
+    11.5  Användning av StringBuilder	
+    11.6  Formatering	
+    11.7  Programexempel: Datakomprimering	
+	
+12. ArrayList	
+    12.1  Inledning	
+    12.2  Generiska klasser och klassen Object	
+    12.3  Enkla värden i listor	
+    12.4  Algoritmer där ArrayList används	
+    12.5  Programexempel: Mängder	
+    12.6  Fler ArrayList-operationer	
+    12.7  Designexempel: Hanois torn	
+    12.8  Autoboxing	
+    12.9  Länkade listor	
+    12.10 Iteratorer	
+	
+13. Klasspaket	
+    13.1  Användning av klasspaket	
+    13.2  Definition av klasspaket	
+    13.3  Skydd inom klasspaket	
+	
+14. Felhantering	
+    14.1  Undantagshändelser	
+    14.2  Mera om att fånga undantag	
+    14.3  Om att ignorera undantag	
+    14.4  Att kasta undantagsobjekt	
+	
+15. Gränssnitt	
+    15.1  Definition och användning av gränssnitt	
+    15.2  Fler exempel på gränssnitt	
+	
+16. Grafiska användargränssnitt	
+    16.1  Inledning	
+    16.2  Grafiska komponenter	
+    16.3  Händelsehantering	
+    16.4  Layout	
+    16.5  Mera om händelsehantering	
+    16.6  Designexempel: Swingprogram	
+	
+A. Tabeller	
+    A1 Reserverade ord i Java	
+    A2 Unicode	
+    A3 Standardundantag	
+    A4 Prioritet för operatorer	
+	
+B. Javadoc	
+    B1 Specifikationer	
+    B2 Javadoc-kommentarer	
+	
+C. SimpleWindow	
