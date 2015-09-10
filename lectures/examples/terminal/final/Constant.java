@@ -17,5 +17,5 @@ public class Constant {
     }
 }
 
-// *1: final brukar även deklareras static; det behövs ju bara en enda
+// *1: final deklareras gärna även static om det bara behövs en enda
 // *2: .toString behövs ej

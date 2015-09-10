@@ -1,0 +1,158 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{3}
+\newcommand{\tema}{Systemutveckling}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+ 
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{2}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Att göra denna vecka}
+\frame{\frametitle{Att göra i Vecka \vecka: Fatta hur systemutveckling går till i en integrerad utvecklingsmiljö}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken:\\ 2, 6.3, 7.1, 7.2, 7.3, 5.1, 5.2, 5.3\\ 
+ Begrepp: klass, objekt, specifikation, referensvariabel, instans, IDE, arbetsområde, brytpunkt, avlusare,   
+\item Gör övning 3: beräkningar, klasser och objekt
+\item Träffas i samarbetsgrupper och hjälp varandra förstå 
+\item Gör Lab 2: Eclipse
+\end{enumerate}
+}
+
+\Subsection{Klasser och objekt}
+
+\begin{Slide}{Objekt och referensvariabler}
+\lstinputlisting[language=Java,numbers=left]{../examples/terminal/refvars/ReferenceVariables.java}
+\end{Slide}
+
+\begin{Slide}{Objekt och referensvariabler}
+\begin{lstlisting}[numbers=left, firstnumber=7]
+        Gurka g1 = new Gurka();
+        Gurka g2 = new Gurka();
+\end{lstlisting}
+Efter rad 8 ser det ut såhär i minnet:
+\\ \vspace{1em}
+\begin{tikzpicture}[font=\large\sffamily]
+\matrix [matrix of nodes, row sep=0, column 2/.style={nodes={rectangle,draw,minimum width=3em}}] (mat)
+{
+\texttt{g1}   &  \makebox(16,12){ }\\
+\texttt{g2}   &  \makebox(16,12){ }\\
+};
+\node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
+ align=center, draw] (g1) at (4cm, 1cm) {Gurka-\\objekt};
+\filldraw[black] (0.4cm,0.4cm) circle (3pt) node[] (g1ref) {};
+ \draw [arrow] (g1ref) -- (g1);
+ \node[cloud, cloud puffs=15.7, cloud ignores aspect, %minimum width=5cm, minimum height=2cm,
+ align=center, draw] (g2) at (5cm, -2cm) {Gurka-\\objekt};
+ \filldraw[black] (0.4cm,-0.4cm) circle (3pt) node[] (g2ref) {};
+ \draw [arrow] (g2ref) -- (g2);
+\end{tikzpicture}
+\end{Slide}
+
+
+\begin{Slide}{Objekt och referensvariabler}
+\begin{lstlisting}[numbers=left, firstnumber=7]
+        Gurka g1 = new Gurka();
+        Gurka g2 = new Gurka();
+\end{lstlisting}
+\scriptsize En mer detaljerad bild av minnet efter rad 8:
+\\ \vspace{1em}
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\begin{tikzpicture}[
+      scale = 0.8, every node/.style={transform shape},
+	font=\large\sffamily, 
+	varname/.style={node distance=0.2cm},
+	varbox/.style={draw, node distance=0.2cm},
+	objcloud/.style={cloud, cloud puffs=15.7, cloud ignores aspect, align=center, draw},
+]
+
+\node [varname] (g1var) {\texttt{g1}};
+\node [varbox, right = of g1var] (g1ref) {\phantom{abc}};
+\filldraw[black] (g1ref) circle (3pt) node[] (g1dot) {};
+\node [objcloud, right = of g1ref, yshift=1.0cm, scale =0.8] (g1obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g1dot) -- (g1obj);
+
+\node [varname, below = of g1var] (g2var) {\texttt{g2}};
+\node [varbox, right = of g2var] (g2ref) {\phantom{abc}};
+\filldraw[black] (g2ref) circle (3pt) node[] (g2dot) {};
+\node [objcloud, right = of g2ref, yshift=-1.0cm, scale =0.8] (g2obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g2dot) -- (g2obj);
+
+\end{tikzpicture}
+
+\pause\scriptsize Referensvariablerna \texttt{g1} och \texttt{g2} pekar på \textit{olika} objekt, sålunda är uttrycket \texttt{g1 == g2} \Key{false}, även om objektens \textit{innehåll} är lika och \texttt{g1.vikt == g2.vikt}  är \Key{true}.
+\end{Slide}
+
+
+\begin{Slide}{Punktnotation för att komma åt klassmedlemmar}
+\begin{lstlisting}[numbers=left, firstnumber=9]
+        g2.vikt = 200;
+\end{lstlisting}
+Efter rad 9 ser det ut såhär i minnet:
+\\ \vspace{1em}
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\begin{tikzpicture}[
+      scale = 0.8, every node/.style={transform shape},
+	font=\large\sffamily, 
+	varname/.style={node distance=0.2cm},
+	varbox/.style={draw, node distance=0.2cm},
+	objcloud/.style={cloud, cloud puffs=15.7, cloud ignores aspect, align=center, draw},
+]
+
+\node [varname] (g1var) {\texttt{g1}};
+\node [varbox, right = of g1var] (g1ref) {\phantom{abc}};
+\filldraw[black] (g1ref) circle (3pt) node[] (g1dot) {};
+\node [objcloud, right = of g1ref, yshift=1.0cm, scale =0.8] (g1obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+\draw [arrow] (g1dot) -- (g1obj);
+
+\node [varname, below = of g1var] (g2var) {\texttt{g2}};
+\node [varbox, right = of g2var] (g2ref) {\phantom{abc}};
+\filldraw[black] (g2ref) circle (3pt) node[] (g2dot) {};
+\node [objcloud, right = of g2ref, yshift=-1.0cm, scale =0.8] (g2obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{200}
+};
+\draw [arrow] (g2dot) -- (g2obj);
+
+\end{tikzpicture}
+\end{Slide}
+
+\Subsection{Metoder och parametrar}
+
+\begin{Slide}{Deklarera och anropa metoder}
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/refvars/MethodExamples.java}
+\end{Slide}
+
+\Subsection{Synlighet}
+
+\Subsection{Konstruktorer}
+
+\Subsection{Oföränderlighet (immutability)}
+\begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
+Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
+\end{Slide}
+
+\Subsection{Specifikation versus implementation}
+
+\Subsection{Integrerad utvecklingsmiljö}
+
+\end{document}
