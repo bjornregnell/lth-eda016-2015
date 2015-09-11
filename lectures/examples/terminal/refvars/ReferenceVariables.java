@@ -12,9 +12,9 @@ public class ReferenceVariables {
         g1.vikt = 200;
         System.out.println("Gurka 1 väger nu: " + g1.vikt + "g");
         if (g1 == g2) {
-          System.out.println("samma");
+            System.out.println("samma");
         } else { // g1 och g2 refererar till OLIKA objekt!
-          System.out.println("olika");  
+            System.out.println("olika");  
         }
     }
 }
