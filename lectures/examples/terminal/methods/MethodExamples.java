@@ -1,5 +1,5 @@
 class Gurka {
-    public int vikt = 100; //en variabel "överst" i en klass kallas attribut (eller fält)
+    public int vikt = 100; //en variabel i en klass kallas attribut (eller fält/field)
     
     public void halvera(){ //denna metod är en procedur
         vikt = vikt / 2;
