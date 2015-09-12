@@ -20,10 +20,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Att göra denna vecka}
-\frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till i en integrerad utvecklingsmiljö}
+\frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till med klasser och objekt i en integrerad utvecklingsmiljö}
 \begin{enumerate}
 \item Läs följande kapitel i kursboken:\\ 2, 6.3, 7.1, 7.2, 7.3, 5.1, 5.2, 5.3\\ 
- Begrepp: klass, objekt, specifikation, referensvariabel, instans, IDE, arbetsområde, brytpunkt, avlusare,   
+ Begrepp: klass, objekt, specifikation, referensvariabel, instans, IDE, arbetsområde, avlusare, brytpunkt,   
 \item Gör övning 3: beräkningar, klasser och objekt
 \item Träffas i samarbetsgrupper och hjälp varandra förstå 
 \item Gör Lab 2: Eclipse
@@ -31,6 +31,20 @@
 }
 
 \Subsection{Klasser och objekt}
+
+\begin{Slide}{Klasser och objekt}
+Några viktiga begrepp:
+\begin{itemize}
+\item En \Emph{klass} samlar variabler och kod som hör ihop. \\ 
+  \lstinline+class Klassnamn {/* klassmedlemmar*/ } +
+ \item En klass är en mall som kan användas för att skapa \Emph{objekt}. \\  
+   \lstinline+Klassnamn referensvariabelnamn = new Klassnamn(); +
+\item Varje gång man gör \Key{new} skapas en nytt objekt.\\ 
+Objektet kallas även en \Emph{instans} av klassen.
+\item Objektens variabler kallas \Emph{instansvariabler} och finns i en ny upplaga för varje instans och kan ha olika värden.
+\item Om man deklarerar en variabel \Key{static} kallas den för \Emph{klassvariabel} och den finns i en enda upplaga som är gemensam för alla objekt.
+\end{itemize}
+\end{Slide}
 
 \begin{Slide}{Objekt och referensvariabler}
 \lstinputlisting[language=Java,numbers=left]{../examples/terminal/refvars/ReferenceVariables.java}
@@ -145,17 +159,102 @@ Efter rad 9 ser det ut såhär i minnet:
 \lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/methods/MethodWithParameter.java}
 \end{Slide}
 
-\begin{Slide}{Lokala namn och överskuggning}
-\scriptsize Vad händer här? OBS! Tre \textit{olika} variabler, men med samma namn...
-\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/localvars/LocalVar.java}
+\Subsection{Synlighet}
+\begin{Slide}{Varför styra synlighet?}
+I storskalig systemutveckling utvecklas en stor kodbas som många människor ska läsa och bidra till...
+\begin{itemize}
+\item Då är det praktiskt med \href{https://en.wikipedia.org/wiki/Local_variable}{lokala} namn som inte ''krockar''; \\det vore \textit{mycket opraktiskt} om man hela tiden måste hitta på globalt unika namn
+\item Om man kan \href{https://en.wikipedia.org/wiki/Encapsulation_\%28computer_programming\%29}{kapsla in} variabler så att de inte går att komma åt från andra delar av koden, förhindrar man att  någon ''utifrån'' av misstag ändrar på en variabel och därmed sänks risken för räliga buggar
+\end{itemize}
 \end{Slide}
 
-\Subsection{Synlighet}
-\begin{Slide}{Public och Private}
+\begin{Slide}{Public, private och protected}
+Nyckelord för att styra \href{http://stackoverflow.com/questions/215497/in-java-whats-the-difference-between-public-default-protected-and-private}{synlighet} i Java:
+\begin{itemize}
+\item Med \Key{private} förhindrar man att namn syns ''utanför'' klassen
+\item Med \Key{public} gör namn tillgängliga ''utåt'', för alla andra klasser och paket i kodbasen
+\item Med \Key{protected} begränsas synligheten till egna paketet och egna subklasser
+\item Om man inget skriver, syns namnen i det egna paketet men inte i egna subklasser
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Gör attribut privata och slipp oönskade förändringar!}
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/visibility/PrivateAttribute.java}
 \end{Slide}
 
 \Subsection{Konstruktorer}
-\begin{Slide}{This}
+\begin{Slide}{Använd konstruktor för att ge attribut startvärden}
+\begin{itemize}
+\item När ett objekt skapas anropas en \href{https://docs.oracle.com/javase/tutorial/java/javaOO/constructors.html}{konstruktor}
+\item En deklaration av en konstruktor liknar en metoddeklaration, men namnet ska vara samma som klassen och ingen  returtyp får anges \\ \lstinline+  public Klassnamn(parametrar) { ... } +
+\end{itemize}
+\begin{lstlisting}[]
+public class Gurka {
+    private int vikt;  
+
+    public Gurka(){  // en konstruktor utan parameter
+       vikt = 100;
+    } 
+    
+    public Gurka(int startVikt){  // en konstruktor med parameter
+       vikt = startVikt;
+    } 
+}
+\end{lstlisting}
+\end{Slide}
+
+\begin{Slide}{Exempel: implementation av klass}
+\scriptsize I filen \texttt{Cucumber.java}
+\lstinputlisting[language=Java,basicstyle=\ttfamily\fontsize{5.7}{6.5}\selectfont, numberstyle=, numbers=left,]{../examples/terminal/constructor/Cucumber.java}
+\end{Slide}
+
+\begin{Slide}{Exempel: test av klass-implementation}
+\scriptsize Kör \texttt{main}-metoden klassen \texttt{CucumberTest} 
+\lstinputlisting[language=Java,basicstyle=\ttfamily\scriptsize\selectfont, numberstyle=, numbers=left,]{../examples/terminal/constructor/CucumberTest.java}
+\begin{itemize}
+\item Vad skriver programmet ut?
+\item Kommer detta testprogram hitta buggen i klassen \texttt{Cucumber}?
+\item Lägg till kod som testar den felaktiga koden i konstruktorn i Cucumber
+\item Hur vet vi vad som är ''rätt'' beteende? \pause Kolla specifikationen (om sådan finns)
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Exempel: En specifikation av klassen Cucumber}
+Så här vill författaren av denna specifikation att vår gurk-klass ska fungera:
+\begin{lstlisting}[backgroundcolor=,rulecolor=\color{black}, title={\texttt{Cucumber}}, frameround=tttt,language=]
+/** Skapar en gurka som väger startWeight gram. 
+    Om startWeight är negativt blir gurkans vikt 0.  */
+Cucumber(int startWeight);
+
+/** Returnerar gurkans vikt i gram */
+int getWeight();
+
+/** Minskar gurkans vikt med bite gram */
+void eat(int bite);
+
+/** Skriver ut gurkans vikt */
+void show();
+\end{lstlisting}
+Observera att implementationsdetaljer inte visas, t.ex. namnet på det privata attributet.
+\end{Slide}
+
+\begin{Slide}{Komma runt överskuggning med \texttt{\textbf{this}}}
+\begin{lstlisting}[]
+public class Gurka {
+    private int vikt;  
+
+    public Gurka(int vikt){//parameterns namn krockar med attributet
+       this.vikt = vikt;
+    } 
+}
+\end{lstlisting}
+Nyckelordet \Key{this} ger oss en referens till instansen. \\
+Med punktnotation kan vi komma åt attributet vars namn överskuggas av parameternamnet.
+\end{Slide}
+
+\begin{Slide}{Lokala namn, överskuggning och \texttt{\textbf{this}}}
+\scriptsize Vad händer här? OBS! Tre \textit{olika} variabler, men med samma namn...
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/localvars/LocalVar.java}
 \end{Slide}
 
 \begin{Slide}{Aktiveringspost}
@@ -165,6 +264,10 @@ Efter rad 9 ser det ut såhär i minnet:
 \begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
 Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
+\end{Slide}
+
+\begin{Slide}{Oföränderligt objekt}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}
 \end{Slide}
 
 \Subsection{Specifikation versus implementation}

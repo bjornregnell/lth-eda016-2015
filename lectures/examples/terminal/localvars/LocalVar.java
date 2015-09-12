@@ -1,5 +1,5 @@
 class Gurka {
-    int vikt = 100;
+    public int vikt = 100;
     
     public void visaLokalVariabel(){
         int vikt = 0;  //ny lokal variabel med ett namn som överskuggar attributets namn

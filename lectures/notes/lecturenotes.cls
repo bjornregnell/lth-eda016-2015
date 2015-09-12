@@ -42,6 +42,7 @@
 \newenvironment{SlideSimple}[2][]
   {\begin{frame}[fragile,plain, environment=SlideSimple,#1]{#2}}
   {\end{frame}}  
+
   
 \newcommand{\Subsection}[1]{\subsection{#1}\frame{\centering\huge\bfseries\textcolor{blue}{#1}}}
 

@@ -1,27 +1,26 @@
-class Gurka {
-    private int vikt;           // attribut 
+class Gurka {  // exempel på oföränderligt objekt (eng. immutable objekt)
+    private int vikt;           
     
-    void Gurka(int initVikt) {  // konstruktor med parameter
-        vikt = initVikt;        // ge attributet ett värde vid new
+    void Gurka(int vikt) { 
+        this.vikt = vikt;  //endast här tilldelas attributet ett värde        
     }
 
-    public final static String latinsktNamn = "Cucumis sativus";  
-    
-    public Gurka halvera(){    // förändrar inte denna, skapar ny istället
+    public Gurka halva(){    // förändrar inte denna instans, skapa ny istället
         return new Gurka(vikt/2);
     }
     
-    public String toString() {
-        return "Denna gurka (" + latinsktNamn + ") väger " + vikt + "g";
+    public void visa() {
+        System.out.println("Denna gurk-instans väger för alltid " + vikt + " gram");
     }
 }
 
 public class ImmutableObject {
     public static void main(String[] args){
-        Gurka g = new Gurka(200);  // skapa Gurka med argumentet 200
-        g.vikt = 200;              // ERROR: ger kompileringsfel! vilket?  
-        g.latinsktNamn = "Tomat";  // ERROR: ger kompileringsfel! Vilket?
-        System.out.println(g);   
+        Gurka g1 = new Gurka(42);  
+        Gurka g2 = g1;              // g1 och g2 refererar till samma objekt
+        g1 = g1.halva();            // förändringen av g1 påverkar inte g2
+        g1.visa();  
+        g2.visa();   
     }
 }
 
