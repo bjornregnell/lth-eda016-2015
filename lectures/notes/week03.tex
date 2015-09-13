@@ -150,9 +150,9 @@ Efter rad 9 ser det ut såhär i minnet:
 \end{Slide}
 
 \begin{Slide}{Automatisk skräpsamling i minnet}
-Antag att vi hade efter skapandet av våra gurkor gjort:
+Antag att vi efter skapandet av våra gurkor hade gjort:
 \begin{lstlisting}
-g1 = g2;
+g2 = g1;  // g2 och g1 pekar efter denna sats på samma objekt
 \end{lstlisting}
 Då hade det sett ut så här i minnet: \\ \vspace{1em}
 
@@ -182,7 +182,7 @@ Då hade det sett ut så här i minnet: \\ \vspace{1em}
 };
 \draw [arrow] (g2dot) -- (g1obj);
 
-\node [right = of g2obj] {Ingen kan någonsin komma åt detta objekt.};
+\node [right = of g2obj] {Ingen kan komma åt detta objekt $\rightarrow$ skräp};
 \end{tikzpicture}
  \scriptsize\href{https://sv.wikipedia.org/wiki/Skr\%C3\%A4psamling}{Skräpsamlaren} frigör så småningom minne som ockuperas av objekt utan referenser.
 \end{Slide}
@@ -197,7 +197,8 @@ Då hade det sett ut så här i minnet: \\ \vspace{1em}
 \lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/methods/MethodWithParameter.java}
 \end{Slide}
 
-\begin{Slide}{Aktiveringspost}
+\begin{Slide}{Aktiveringspost med argument läggs på \href{https://sv.wikipedia.org/wiki/Stack_\%28mikroprocessor\%29}{stacken}}
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/methods/ActivationRecord.java}
 \end{Slide}
 
 \Subsection{Synlighet}
@@ -214,7 +215,7 @@ Nyckelord för att styra \href{http://stackoverflow.com/questions/215497/in-java
 \begin{itemize}
 \item Med \Key{private} förhindrar man att namn syns ''utanför'' klassen
 \item Med \Key{public} gör namn tillgängliga ''utåt'', för alla andra klasser och paket i kodbasen
-\item Med \Key{protected} begränsas synligheten till egna paketet och egna subklasser
+\item Med \Key{protected} begränsas synligheten till egna paketet och egna subklasser\footnote{Mer om subklasser när vi kommer till arv (inheritance)}
 \item Om man inget skriver, syns namnen i det egna paketet men inte i egna subklasser
 \end{itemize}
 \end{Slide}
@@ -242,6 +243,25 @@ public class Gurka {
     } 
 }
 \end{lstlisting}
+\end{Slide}
+
+\begin{Slide}{Lokala namn, överskuggning och \texttt{\textbf{this}}}
+\scriptsize Vad händer här? OBS! Tre \textit{olika} variabler, men samma namn...
+\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/localvars/LocalVar.java}
+\end{Slide}
+
+\begin{Slide}{Komma runt överskuggning i konstruktor med \texttt{\textbf{this}}}
+\begin{lstlisting}[]
+public class Gurka {
+    private int vikt;  
+
+    public Gurka(int vikt){//parameterns namn krockar med attributet
+       this.vikt = vikt;
+    } 
+}
+\end{lstlisting}
+Nyckelordet \Key{this} ger oss en referens till instansen. \\
+Med punktnotation kan vi komma åt attributet vars namn överskuggas av parameternamnet.
 \end{Slide}
 
 \begin{Slide}{Exempel: implementation av klass}
@@ -318,39 +338,37 @@ Se olika versioner av implementationen av Cucumber:
 \end{Slide}
 
 \Subsection{Integrerad utvecklingsmiljö}
-\begin{Slide}{Eclipse}
+
+\begin{Slide}{Integrated Development Environment (IDE)} \footnotesize
+En integrerad utvecklingsmiljö gör det lätt att 
+\begin{itemize}
+\item editera, (med en massa avancerad hjälp medan du skriver)
+\item kompilera, 
+\item exekvera och 
+\item avlusa  
+\end{itemize} 
+din kod i en och samma app. \\ \vspace{1em}
+Exempel på två populära IDE:s som är öppen källkod:
+\begin{itemize}
+\item \href{https://eclipse.org/}{Eclipse} används i många av våra kurser.
+\item \href{https://www.jetbrains.com/idea/}{Jetbrains IntelliJ IDEA} används t.ex. vid Android-utveckling
+\end{itemize}
+Ladda ner Eclipse Java SE version Mars till din egen dator \href{http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/marsr}{här}. \\ 
+Ladda ner kursens workspace: \url{http://cs.lth.se/ws} \\
+Inför lab 2: Läs i kompendiet ''Eclipse -- en handledning'' 
 \end{Slide}
 
-\begin{Slide}{Lokala namn, överskuggning och \texttt{\textbf{this}}}
-\scriptsize Vad händer här? OBS! Tre \textit{olika} variabler, men samma namn...
-\lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/localvars/LocalVar.java}
-\end{Slide}
-
-\begin{Slide}{Komma runt överskuggning i konstruktor med \texttt{\textbf{this}}}
-\begin{lstlisting}[]
-public class Gurka {
-    private int vikt;  
-
-    public Gurka(int vikt){//parameterns namn krockar med attributet
-       this.vikt = vikt;
-    } 
-}
-\end{lstlisting}
-Nyckelordet \Key{this} ger oss en referens till instansen. \\
-Med punktnotation kan vi komma åt attributet vars namn överskuggas av parameternamnet.
-\end{Slide}
-
-\subsection{Code@LTH event torsdagen den 17 september, 18:00 – 20:00}
-\begin{Slide}{Versionshantera din kod och koda öppet med git, GitHub och Bitbucket}\footnotesize
+\subsection{Code@LTH-event tors. 17 september, 18:00 – 20:00}
+\begin{Slide}{Code@LTH-event om git, GitHub och Bitbucket}\footnotesize
 Koda tillsammans och dela med dig:
 \begin{itemize}
 \item \href{https://git-scm.com/}{git} är en populär versionshanterare som sparar alla ändringar  och gör det möjligt att synka dina kod med andra som du samarbetar med
 \item \href{https://github.com/}{GitHub} är en lagringsplats på nätet där du kan lagra din kod i ett \href{https://en.wikipedia.org/wiki/Repository_\%28version_control\%29}{repositorium}. Affärsmodell: gratis om öppet repo, betala om stängt repo
 \item \href{https://bitbucket.org/}{Bitbucket} är ett alternativ till GitHub. Affärsmodell: gratis med både öppna och stängda repo, men det kostar om ni är fler än 5 per repo.
-\item Registrera er på båda och paxa ditt användarnamn! Använd GitHub för öppna och Bitbucket för stängda repo. 
+\item Registrera er på båda och paxa ditt användarnamn! \\ Använd t.ex. GitHub för öppna repo och Bitbucket för stängda repo. 
 \item Alla måste genast stjärnmarkera \href{https://github.com/bjornregnell/lth-eda016-2015}{kursens repo} :) 
 \end{itemize}
-Kom till Code@LTH-eventet om git, GitHub och Bitbucket torsdagen den 17 september, 18:00 – 20:00
+Anmäl dig till \href{http://www.codeatlth.org/}{Code@LTH-eventet} om git, GitHub och Bitbucket\\torsdagen den 17 september klockan 18:00 – 20:00
 \end{Slide}
 
 \end{document}
