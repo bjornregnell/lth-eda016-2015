@@ -15,14 +15,14 @@ public class Cucumber {
         }
     }
     
-    /** Returnerar gurkans vikt i gram */    
+    /** Returnerar gurkans vikt i gram. */    
     public int getWeight() {
         return weight;
     }
 
     /** Minskar gurkans vikt med bite gram. 
     *   Om bite är större än vikten blir gurkans vikt 0. 
-    *   Om bit är negativt ändras vikten inte 
+    *   Om bite är negativt ändras vikten inte. 
     */
     public void eat(int bite){
         if (bite < 0) {
@@ -37,8 +37,8 @@ public class Cucumber {
         }
     }
 
-    /** Skriver ut gurkans vikt */
+    /** Skriver ut gurkans vikt. */
     public void show(){
-        System.out.println("Cucumber(" + weight + ")");
+        System.out.println("Cucumber(" + weight + "g)");
     }
 }
