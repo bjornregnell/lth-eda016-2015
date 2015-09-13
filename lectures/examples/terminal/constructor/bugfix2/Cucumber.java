@@ -31,4 +31,6 @@ public class Cucumber {
     }
 }
 
-// Can you see the nasty bug? Will the compiler help?
+// Can you see the nasty bug? Will the compiler help? 
+// Try to explain exactly what happens because of the misspelled parameter.
+// What value will the attribute be initialized to? Why?
