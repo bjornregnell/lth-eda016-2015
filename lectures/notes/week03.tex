@@ -197,6 +197,9 @@ Då hade det sett ut så här i minnet: \\ \vspace{1em}
 \lstinputlisting[language=Java,basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/methods/MethodWithParameter.java}
 \end{Slide}
 
+\begin{Slide}{Aktiveringspost}
+\end{Slide}
+
 \Subsection{Synlighet}
 \begin{Slide}{Varför styra synlighet?}
 I storskalig systemutveckling utvecklas en stor kodbas som många människor ska läsa och bidra till...
@@ -257,7 +260,18 @@ public class Gurka {
 \end{itemize}
 \end{Slide}
 
-\begin{Slide}{Exempel: En specifikation av klassen Cucumber}
+\Subsection{Oföränderlighet (immutability)}
+\begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
+Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
+\end{Slide}
+
+\begin{Slide}{Oföränderligt objekt}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}
+\end{Slide}
+
+\subsection{Specifikation versus implementation}
+\begin{Slide}{En möjlig specifikation av klassen Cucumber}
 \footnotesize Så här vill författaren av denna specifikation att vår gurk-klass ska fungera:
 \begin{lstlisting}[backgroundcolor=,rulecolor=\color{black}, title={\texttt{Cucumber}}, frameround=tttt,language=]
 /** Skapar en gurka som väger startWeight gram. 
@@ -281,16 +295,26 @@ Observera att implementationsdetaljer \textit{inte} visas, t.ex. är namnet på 
 Ofta upptäcker man oklarheter med specifikationen när man försöker implementera den.
 \begin{itemize}
 \item Vad händer om man tar en ''negativ tugga'' av gurkan? \\
-Är det ett verkligt problem eller kan vi strunta i detta specialfall...
+Är det ett problem i praktiken eller kan vi strunta i detta specialfall?
 \end{itemize}
-Kolla på dessa versioner av implementationen av Cucumber:
+Se olika versioner av implementationen av Cucumber:
 \begin{itemize}
 \item Versionen med en bugg i konstruktorn: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/Cucumber.java}{\texttt{Cucumber.java}}
+\item Versionen med fungerande konstruktor men som tillåter negativa bett: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix1/Cucumber.java}{\texttt{bugfix1/Cucumber.java}}
+\item Versionen som ej tillåter negativa bett men med en ny rälig bugg i konstruktorn: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix2/Cucumber.java}{\texttt{bugfix2/Cucumber.java}}
+\item Versionen med buggar fixade och dokumentationskommentarer enligt specifikationen (som bör uppdateras för specialfallet med negativa bett): \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix3/Cucumber.java}{\texttt{bugfix3/Cucumber.java}}
 \end{itemize}
 \end{Slide}
 
-\Subsection{Specifikation versus implementation}
-\begin{Slide}{Krav -- Design -- Implementation -- Test}
+
+\begin{Slide}{Krav -- Design -- Implementation -- Test}\footnotesize
+\begin{itemize}
+\item \Emph{Krav} \\ Varför skriver vi koden? Vad är viktigast att utveckla först? \\ Hur vill vi att systemet ska fungera ur användarens perspektiv? \\  \href{http://cs.lth.se/ets170}{ETS170} Kravhantering
+\item \Emph{Design} \\ Hur ska vi organisera koden i olika delar? \\ Varför ska vi ha just dessa delar?  \\  \href{http://cs.lth.se/eda061}{EDA061} Objektorienterad modellering och design
+\item \Emph{Implementation} \\ Hur ska vi skriva koden? \\ Vilka specifika algoritmer? \\ 
+\href{http://cs.lth.se/eda016}{EDA016}, \href{http://cs.lth.se/edaa01vt}{EDAA01} Programmeringsteknik -- fördjupningskurs, m.fl.
+\item \Emph{Test} \\ Hur ska vi säkerställa att det funkar? \\ Vilka testfall ska vi köra och hur ofta? \\  \href{http://cs.lth.se/ets200}{ETS200} Programvarutestning
+\end{itemize}
 \end{Slide}
 
 \Subsection{Integrerad utvecklingsmiljö}
@@ -316,19 +340,17 @@ Nyckelordet \Key{this} ger oss en referens till instansen. \\
 Med punktnotation kan vi komma åt attributet vars namn överskuggas av parameternamnet.
 \end{Slide}
 
-\begin{Slide}{Aktiveringspost}
+\subsection{Code@LTH event torsdagen den 17 september, 18:00 – 20:00}
+\begin{Slide}{Versionshantera din kod och koda öppet med git, GitHub och Bitbucket}\footnotesize
+Koda tillsammans och dela med dig:
+\begin{itemize}
+\item \href{https://git-scm.com/}{git} är en populär versionshanterare som sparar alla ändringar  och gör det möjligt att synka dina kod med andra som du samarbetar med
+\item \href{https://github.com/}{GitHub} är en lagringsplats på nätet där du kan lagra din kod i ett \href{https://en.wikipedia.org/wiki/Repository_\%28version_control\%29}{repositorium}. Affärsmodell: gratis om öppet repo, betala om stängt repo
+\item \href{https://bitbucket.org/}{Bitbucket} är ett alternativ till GitHub. Affärsmodell: gratis med både öppna och stängda repo, men det kostar om ni är fler än 5 per repo.
+\item Registrera er på båda och paxa ditt användarnamn! Använd GitHub för öppna och Bitbucket för stängda repo. 
+\item Alla måste genast stjärnmarkera \href{https://github.com/bjornregnell/lth-eda016-2015}{kursens repo} :) 
+\end{itemize}
+Kom till Code@LTH-eventet om git, GitHub och Bitbucket torsdagen den 17 september, 18:00 – 20:00
 \end{Slide}
-
-\Subsection{Oföränderlighet (immutability)}
-\begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
-Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
-\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
-\end{Slide}
-
-\begin{Slide}{Oföränderligt objekt}
-\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}
-\end{Slide}
-
-
 
 \end{document}
