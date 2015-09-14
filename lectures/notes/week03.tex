@@ -22,8 +22,8 @@
 \subsection{Att göra denna vecka}
 \frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till med klasser och objekt i en integrerad utvecklingsmiljö}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken:\\ 2, 6.3, 7.1, 7.2, 7.3, 5.1, 5.2, 5.3\\ 
- Begrepp: klass, objekt, specifikation, referensvariabel, instans, IDE, arbetsområde, avlusare, brytpunkt,   
+\item Läs följande kapitel i kursboken:\\ 2.7--2.10, 3.3--3.12\\ 
+ Begrepp: klass, objekt, referensvariabel, instans, konstruktor, parameter, argument, aktiveringspost, stack, null, attribut, skräpsamlare,  synlighet, public, private, överskuggning, specifikation, this, final, oföränderlighet,  IDE, arbetsområde, avlusare, brytpunkt,   
 \item Gör övning 3: beräkningar, klasser och objekt
 \item Träffas i samarbetsgrupper och hjälp varandra förstå 
 \item Gör Lab 2: Eclipse
@@ -186,6 +186,41 @@ Då hade det sett ut så här i minnet: \\ \vspace{1em}
 \end{tikzpicture}
  \scriptsize\href{https://sv.wikipedia.org/wiki/Skr\%C3\%A4psamling}{Skräpsamlaren} frigör så småningom minne som ockuperas av objekt utan referenser.
 \end{Slide}
+
+\begin{Slide}{Referens som inte refererar till något: \texttt{\textbf{null}}}
+Nyckelordet \Key{null} används för att beteckna \href{http://www.programcreek.com/2013/12/what-exactly-is-null-in-java/}{saknad referens}.
+\begin{lstlisting}
+g1 = null;  // g1 pekar efter denna sats inte på något objekt
+\end{lstlisting}
+\tikzstyle{mybox} = [draw=red, fill=blue!20, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=20pt]
+\begin{tikzpicture}[
+      scale = 0.75, every node/.style={transform shape},
+	font=\large\sffamily, 
+	varname/.style={node distance=0.2cm},
+	varbox/.style={draw, node distance=0.2cm},
+	objcloud/.style={cloud, cloud puffs=15.7, cloud ignores aspect, align=center, draw},
+]
+
+\node [varname] (g1var) {\texttt{g1}};
+\node [varbox, right = of g1var] (g1ref) {\scriptsize\Key{null}};
+
+\node [objcloud, right = of g1ref, yshift=1.0cm, scale =0.8] (g1obj) {
+	\texttt{\textbf{Gurka}} \\~\\ \texttt{vikt} \framebox{100}
+};
+
+\node [varname, below = of g1var] (g2var) {\texttt{g2}};
+\node [varbox, right = of g2var] (g2ref) {\phantom{abc}};
+\filldraw[black] (g2ref) circle (3pt) node[] (g2dot) {};
+
+\draw [arrow] (g2dot) -- (g1obj);
+
+
+\end{tikzpicture} \\ \vspace{1em}
+
+\scriptsize Om det finns risk för att en referensvariabel är \Key{null} måste man kolla detta i en if-sats innan man försöker komma åt medlemmarna i objektet med punktnotation, annars får man ett felmeddelande. \\ \vspace{1em} Vilket felmeddelande skrivs ut? Smäller det vid compile-time eller run-time?\\ Hur kan if-satsen som kollar om inte null ut?
+\end{Slide}
+
 
 \Subsection{Metoder och parametrar}
 
