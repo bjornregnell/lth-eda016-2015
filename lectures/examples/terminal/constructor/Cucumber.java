@@ -5,7 +5,7 @@ public class Cucumber {
         if (startWeight > 0) { 
             weight = startWeight;
         } else {
-            startWeight = 0; // This is a bug! Why? Will the compiler help us? 
+            startWeight = 0; // A bug? Why does it work anyway? Does the compiler find it? 
         }
     }
     
