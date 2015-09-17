@@ -13,7 +13,7 @@
 \begin{document}
 
 \frame{\titlepage}
-\setnextsection{2}
+\setnextsection{\vecka}
 \section[Vecka \vecka: \tema]{\tema}
 \frame{\tableofcontents}
 
@@ -23,7 +23,7 @@
 \frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till med klasser och objekt i en integrerad utvecklingsmiljö}
 \begin{enumerate}
 \item Läs följande kapitel i kursboken:\\ 2.7--2.10, 3.3--3.12\\ 
- Begrepp: klass, objekt, referensvariabel, instans, konstruktor, parameter, argument, aktiveringspost, stack, null, attribut, skräpsamlare,  synlighet, public, private, överskuggning, specifikation, this, final, oföränderlighet, IDE, arbetsområde, avlusare, brytpunkt,   
+ Begrepp: klass, objekt, referensvariabel, instans, konstruktor, parameter, argument, aktiveringspost, stack, null, attribut, skräpsamlare,  synlighet, public, private, överskuggning, specifikation, this, final, oföränderlighet, IDE, arbetsområde, avlusare, brytpunkt
 \item Gör övning 3: beräkningar, klasser och objekt
 \item Träffas i samarbetsgrupper och hjälp varandra förstå 
 \item Gör Lab 2: Eclipse
@@ -309,20 +309,9 @@ Med punktnotation kan vi komma åt attributet vars namn överskuggas av paramete
 \lstinputlisting[language=Java,basicstyle=\ttfamily\scriptsize\selectfont, numberstyle=, numbers=left,]{../examples/terminal/constructor/CucumberTest.java}
 \begin{itemize}
 \item Vad skriver programmet ut?
-\item Kommer detta testprogram hitta buggen i klassen \texttt{Cucumber}?
-\item Lägg till kod som testar den felaktiga koden i konstruktorn i Cucumber
+\item Lägg till kod i \texttt{CucumberTest} som testar vad som händer om man äter en negativ tugga. Förklara resultatet.
 \item Hur vet vi vad som är ''rätt'' beteende? \pause Kolla specifikationen (om sådan finns)
 \end{itemize}
-\end{Slide}
-
-\Subsection{Oföränderlighet (immutability)}
-\begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
-Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
-\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
-\end{Slide}
-
-\begin{Slide}{Oföränderligt objekt}
-\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}
 \end{Slide}
 
 \subsection{Specifikation versus implementation}
@@ -355,12 +344,11 @@ Ofta upptäcker man oklarheter med specifikationen när man försöker implement
 Se olika versioner av implementationen av Cucumber:
 \begin{itemize}
 \item Versionen med en bugg i konstruktorn: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/Cucumber.java}{\texttt{Cucumber.java}}
-\item Versionen med fungerande konstruktor men som tillåter negativa bett: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix1/Cucumber.java}{\texttt{bugfix1/Cucumber.java}}
+\item Versionen med buggfixad konstruktor: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix1/Cucumber.java}{\texttt{bugfix1/Cucumber.java}}
 \item Versionen som ej tillåter negativa bett men med en ny rälig bugg i konstruktorn: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix2/Cucumber.java}{\texttt{bugfix2/Cucumber.java}}
 \item Versionen med buggar fixade och dokumentationskommentarer enligt specifikationen (som bör uppdateras för specialfallet med negativa bett): \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/terminal/constructor/bugfix3/Cucumber.java}{\texttt{bugfix3/Cucumber.java}}
 \end{itemize}
 \end{Slide}
-
 
 \begin{Slide}{Krav -- Design -- Implementation -- Test}\footnotesize
 \begin{itemize}
@@ -400,7 +388,7 @@ Koda tillsammans och dela med dig:
 \item \href{https://git-scm.com/}{git} är en populär versionshanterare som sparar alla ändringar  och gör det möjligt att synka dina kod med andra som du samarbetar med
 \item \href{https://github.com/}{GitHub} är en lagringsplats på nätet där du kan lagra din kod i ett \href{https://en.wikipedia.org/wiki/Repository_\%28version_control\%29}{repositorium}. Affärsmodell: gratis om öppet repo, betala om stängt repo
 \item \href{https://bitbucket.org/}{Bitbucket} är ett alternativ till GitHub. Affärsmodell: gratis med både öppna och stängda repo, men det kostar om ni är fler än 5 per repo.
-\item Registrera er på båda och paxa ditt användarnamn! \\ Använd t.ex. GitHub för öppna repo och Bitbucket för stängda repo. 
+\item Registrera er dig båda nu och paxa ditt användarnamn! \\ Använd t.ex. GitHub för öppna repo och Bitbucket för stängda repo. 
 \item Alla måste genast stjärnmarkera \href{https://github.com/bjornregnell/lth-eda016-2015}{kursens repo} :) 
 \end{itemize}
 Anmäl dig till \href{http://www.codeatlth.org/}{Code@LTH-eventet} om git, GitHub och Bitbucket\\torsdagen den 17 september klockan 18:00 – 20:00

@@ -1,0 +1,46 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{4}
+\newcommand{\tema}{Systemutveckling}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+ 
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Att göra denna vecka}
+\frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till med klasser och objekt i en integrerad utvecklingsmiljö}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken:\\ 2.7--2.10, 3.3--3.12\\ 
+ Begrepp: oföränderlighet
+\item Gör övning 4: ???
+\item Träffas i samarbetsgrupper och hjälp varandra förstå 
+\item Gör Lab 3: ???
+\end{enumerate}
+}
+
+\begin{Slide}{Standardvärden för attribut}
+\end{Slide}
+
+\Subsection{Oföränderlighet (immutability)}
+\begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
+Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
+\end{Slide}
+
+\begin{Slide}{Oföränderligt objekt}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}
+\end{Slide}
+
+\end{document}
