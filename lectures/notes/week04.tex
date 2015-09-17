@@ -1,7 +1,7 @@
 \documentclass{lecturenotes}
 
 \renewcommand{\vecka}{4}
-\newcommand{\tema}{Systemutveckling}
+\newcommand{\tema}{Aritmetik, Logik \& Datastrukturer}
 
 \setbeamertemplate{footline}[frame number]
 \title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
@@ -20,15 +20,58 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Att göra denna vecka}
-\frame{\frametitle{Att göra i Vecka \vecka: Förstå hur systemutveckling går till med klasser och objekt i en integrerad utvecklingsmiljö}
+\frame{\frametitle{Att göra i Vecka \vecka: Förstå aritmetiska och logiska uttryck, använda klasser mha klass-specifikationer}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken:\\ 2.7--2.10, 3.3--3.12\\ 
- Begrepp: oföränderlighet
-\item Gör övning 4: ???
+\item Läs följande kapitel i kursboken:\\ 6.1--6.4, 6.8--6.9,  7.1--7.7, 7.10--7.11, 7.13\\ 
+Begrepp:heltalsdivition med rest,  typkonvertering, De Morgans lagar, oföränderlighet
+\item Gör övning 4: Aritmetik, Logik
 \item Träffas i samarbetsgrupper och hjälp varandra förstå 
-\item Gör Lab 3: ???
+\item Gör Lab 3: använda färdigskrivna klasser, kvadrat
 \end{enumerate}
 }
+
+\begin{Slide}{Implicit och explicit konvertering mellan numeriska värden}
+\end{Slide}
+
+
+\begin{Slide}{Minsta och största värden}
+\end{Slide}
+
+\begin{Slide}{Några aritmetriska uttryck}
+\end{Slide}
+
+\begin{Slide}{Var n-te gång, jämt delbart med n}
+\end{Slide}
+
+\begin{Slide}{Negering av logiska uttryck med De Morgans lagar}
+\end{Slide}
+
+
+\begin{Slide}{Specifikation av \texttt{SimpleWindow}}
+\end{Slide}
+
+\begin{Slide}{Specifikation av klassen \texttt{Square}}
+\begin{lstlisting}[basicstyle=\ttfamily\tiny\selectfont,
+backgroundcolor=,rulecolor=\color{black}, title={\texttt{Square}}, frameround=tttt,language=]
+/** Skapar en kvadrat med övre vänstra hörnet i x,y och med sidlängden side  */
+Square(int x, int y, int side);
+
+/** Ritar kvadraten i fönstret w */
+void draw(SimpleWindow w);
+
+/** Flyttar kvadraten avståndet dx i x-led, dy i y-led */
+void move(int dx, int dy);
+
+/** Tar reda på x-koordinaten för kvadratens läge */
+int getX();
+
+/** Tar reda på y-koordinaten för kvadratens läge */
+int getY();
+
+/** Tar reda på kvadratens area */
+int getArea();
+\end{lstlisting}
+\end{Slide}
 
 \begin{Slide}{Standardvärden för attribut}
 \end{Slide}
