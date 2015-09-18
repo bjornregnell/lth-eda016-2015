@@ -1,6 +1,6 @@
 # How to import this folder in Eclipse
 
-* Clone/copy this repo to your local computer
+* Clone/copy this repo to your local computer, e.g. using this link:  https://github.com/bjornregnell/lth-eda016-2015/archive/master.zip
 
 * Start eclipse and browse to this folder and select as workspace
 
