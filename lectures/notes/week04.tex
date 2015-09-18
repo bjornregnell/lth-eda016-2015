@@ -30,12 +30,43 @@ Begrepp:heltalsdivition med rest,  typkonvertering, De Morgans lagar, oförände
 \end{enumerate}
 }
 
+
+\subsection{Numeriska typer}
+\begin{Slide}{Primitiva datatyper i Java}
+\begin{center}
+\begin{tabular}{lp{6cm}}
+Typ & Betydelse \\ \midrule
+\Key{byte}, \Key{short}, \Key{int}, \Key{long} & heltal \\
+\Key{float}, \Key{double} & reellt tal (tal med decimaldel) \\
+\Key{boolean} & logiskt värde (sant eller falskt) \\
+\Key{char} & tecken, till exempel bokstav, siffra, specialtecken \\
+\end{tabular} 
+\end{center}
+\end{Slide}
+
+\begin{Slide}{Numeriska typernas storlek samt min- och max-värden}  
+\begin{center}
+\begin{tabular}{cccc}
+Typ&	Bitar&	Min&	Max\\
+\hline
+\Key{byte}	&$8$	&$-128$&	$+127$\\
+\Key{short}	&$16$	&$-32~768$	&$+32~767$\\
+\Key{char}	&$16$	&$0$&	$65~535$\\
+\Key{int}	&$32$	&$-2~147~483~648$&	$+2~147~483~647$\\
+\Key{long}	&$64$	&$\approx -9\cdot 10^{18}$	&$\approx +9\cdot 10^{18}$\\
+\Key{float}	&$32$	&$\approx -3.4\cdot 10^{38}$	&$\approx +3.4\cdot 10^{38}$\\
+\Key{double}	&$64$	&$\approx -1.8\cdot 10^{308}$	&$\approx +-1.8\cdot 10^{308}$\\
+\end{tabular}
+\end{center}
+För detaljer se \href{https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.2.3}{Javas språkspecifikation} och\\ \href{https://en.wikipedia.org/wiki/Double-precision_floating-point_format}{IEEE-standarden 754}
+\end{Slide}
+
+\begin{Slide}{Implicita  \href{http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html}{startvärden} för attribut}
+\end{Slide}
+
 \begin{Slide}{Implicit och explicit konvertering mellan numeriska värden}
 \end{Slide}
 
-
-\begin{Slide}{Minsta och största värden}
-\end{Slide}
 
 \begin{Slide}{Några aritmetriska uttryck}
 \end{Slide}
@@ -48,11 +79,23 @@ Begrepp:heltalsdivition med rest,  typkonvertering, De Morgans lagar, oförände
 
 
 \begin{Slide}{Specifikation av \texttt{SimpleWindow}}
+Så här ser delar av specifikationen för \texttt{SimpleWindow} ut i ankboken Appendix C, sidan 309-312.
+\begin{ClassSpec}{SimpleWindow}
+/** Creates a window and makes it visible. */
+SimpleWindow(int width, int height, java.lang.String title);
+
+/** Moves the pen to a new position. */
+void moveTo(int x, int y)
+
+/** Moves the pen to a new position while drawing a line. */
+void lineTo(int x, int y)
+\end{ClassSpec}
+Specifikationerna i ankboken liknar (en enklare variant av) javadoc som genereras ur dokumentationskommentarer. Jämför med \href{http://fileadmin.cs.lth.se/cs/Education/EDA016/2015/doc/se/lth/cs/pt/window/SimpleWindow.html}{javadoc för \texttt{SimpleWindow}}
 \end{Slide}
 
+
 \begin{Slide}{Specifikation av klassen \texttt{Square}}
-\begin{lstlisting}[basicstyle=\ttfamily\tiny\selectfont,
-backgroundcolor=,rulecolor=\color{black}, title={\texttt{Square}}, frameround=tttt,language=]
+\begin{ClassSpec}{Square}
 /** Skapar en kvadrat med övre vänstra hörnet i x,y och med sidlängden side  */
 Square(int x, int y, int side);
 
@@ -70,11 +113,14 @@ int getY();
 
 /** Tar reda på kvadratens area */
 int getArea();
-\end{lstlisting}
+\end{ClassSpec}
 \end{Slide}
 
-\begin{Slide}{Standardvärden för attribut}
+\begin{Slide}{Implementation av delar av Square-klassen}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week04/Square.java}
 \end{Slide}
+
+
 
 \Subsection{Oföränderlighet (immutability)}
 \begin{Slide}{Förhindra att variabler \href{https://docs.oracle.com/javase/tutorial/essential/concurrency/immutable.html}{ändras} med \texttt{\textbf{final}}}
