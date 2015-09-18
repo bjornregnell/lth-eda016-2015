@@ -38,10 +38,16 @@
 \newenvironment{Slide}[2][]
   {\begin{frame}[fragile,environment=Slide,#1]{#2}}
   {\end{frame}}
-
+  
 \newenvironment{SlideSimple}[2][]
   {\begin{frame}[fragile,plain, environment=SlideSimple,#1]{#2}}
   {\end{frame}}  
+
+%  http://tex.stackexchange.com/questions/16654/newenvironment-newcommand-for-existing-environment-in-latex-beamer
+\lstnewenvironment{ClassSpec}[2][]{%
+    \lstset{basicstyle=\ttfamily\fontsize{6}{7}\selectfont,%
+            backgroundcolor=,rulecolor=\color{black}, title={\texttt{\textcolor{blue}{\textbf{#2}}}}, frameround=tttt,language=,#1}%
+}{}
 
   
 \newcommand{\Subsection}[1]{\subsection{#1}\frame{\centering\huge\bfseries\textcolor{blue}{#1}}}
