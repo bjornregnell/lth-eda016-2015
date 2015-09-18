@@ -1,10 +1,12 @@
-# How to import this folder in Eclipse
+# How to import this folder into Eclipse
 
-* Clone/copy this repo to your local computer, e.g. using this link:  https://github.com/bjornregnell/lth-eda016-2015/archive/master.zip
+* Clon this repo to your local computer, or just download it using this link: 
+  
+    https://github.com/bjornregnell/lth-eda016-2015/archive/master.zip
 
-* Start eclipse and browse to this folder and select as workspace
+* Start eclipse and browse to this folder called eclipse-ws and select it as workspace
 
-* Select File -> New -> Java Project
+* In Eclipse select the menu item: File -> New -> Java Project
 
 * Write as Project Name "lecture-examples" and click the "Finish"-button
 
