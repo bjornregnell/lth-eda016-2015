@@ -18,7 +18,7 @@
 
 * Click on the tab "Libraries" and press the button "Add class folder" and select the cs_pt -> bin library by checking the box and click Ok.  
 
-* Now you should have a src folder with all the examples and a build path that finds the cs_pt binaries. You can check if it works by running SquareTest.java in the week04 package of lecture-examples. 
+* Now you should have a src folder with all the examples and a build path that finds the cs_pt binaries. You can check if it works by running SquareTest.java in the week04 package of the lecture-examples project. 
 
-* If you do git pull from the repo outside of Eclipse, you need to do File -> Refresh (or press F5) to make changes take effect.
+* If you do git pull from the repo outside of Eclipse, you need to do File -> Refresh (or press F5) to make changes visible inside Eclipse.
 
