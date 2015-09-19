@@ -1,6 +1,6 @@
 # How to import this folder into Eclipse
 
-1. Clon this repo to your local computer, or just download it using this link: 
+1. Clone this repo to your local computer, or just download it using this link: 
   
     https://github.com/bjornregnell/lth-eda016-2015/archive/master.zip
 
