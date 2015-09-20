@@ -18,22 +18,32 @@ public class BankAccountWithInterest {
                                  // ränteberäkning
 
     /** Skapar ett bankkonto med numret accntNbr och saldot noll */
-    public BankAccountWithInterest(int accntNbr) {
+    public BankAccountWithInterest(int accntNbr, double interestRate) {
         this.accntNbr = accntNbr;
         this.balance = 0;
+        this.interest = 0;
+        this.interestRate = interestRate;
     }
 
     /** Tar reda på kontonumret */
     public int getAccntNbr() {
         return accntNbr;
     }
-    
-    /** Tar reda på saldot */
+
+	/** Tar reda på saldot */
     public int getBalance() {
         return balance;
     }
     
-    public void deposit(int amount) {
+    public double getInterestRate() {
+		return interestRate;
+	}
+
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+	
+	public void deposit(int amount) {
         computeInterest();
         balance = balance + amount;
     }

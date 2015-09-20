@@ -24,4 +24,4 @@ public class Square {
 		x = x + dx;
 		y = y + dy;
 	}
-} // Hur implementera getX() getY() getArea()
+} // Övning: implementera getX(), getY() och getArea()

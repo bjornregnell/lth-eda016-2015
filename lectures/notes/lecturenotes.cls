@@ -50,8 +50,7 @@
 }{}
 
 \lstnewenvironment{Code}[1][]{%
-    \lstset{basicstyle=\ttfamily\fontsize{6}{7}\selectfont,%
-            backgroundcolor=,rulecolor=\color{black}, frameround=tttt,language=,#1}%
+    \lstset{basicstyle=\ttfamily\fontsize{7}{9}\selectfont,#1}%
 }{}
 
   

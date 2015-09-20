@@ -414,32 +414,31 @@ public class BankAccount {
 \begin{Slide}{Bankkonto med ränta}\footnotesize
 \Emph{Krav} på bankkonto med ränta:
 \begin{enumerate}
-\item Ränta för varje dag som pengar finns på kontot ska ackumuleras.
-\item Vid årsskiftet ska räntan sättas in på kontot.
+\item Ränta för varje dag som pengar finns på kontot skall ackumuleras.
+\item Vid årsskiftet skall räntan sättas in på kontot.
 \end{enumerate}
-\Emph{Design} av bankkonto med ränta:
-\begin{enumerate}
+\Emph{Design} av bankkonto-klass med ränta:
+\begin{itemize}
   \item Attributet \texttt{interestRate} anger räntesatsen i procent för kontot.
   \item Den ackumulerade räntan (attributet \texttt{interest}) ökas genom anrop av metoden \texttt{computeInterest()} varje gång som saldot förändras genom insättning eller uttag.
   \item Attributet \texttt{lastInterestDay} anger numret på den dag (med början på nummer 1 för den 1 januari) då räntan senast beräknades.
   \item Metoden \texttt{Date.today()} ger numret på aktuell dag.
   \item I slutet av ett år läggs den ackumulerade räntan till saldot när någon ''utifrån'' utför operationen \texttt{newYearActions()}.
-\end{enumerate}
-Se lösning \href{}{här}.
+\end{itemize}
+Se hela lösningen \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week04/BankAccountWithInterest.java}{här}. (Designen är inte särskilt realistisk... Varför?)
 \end{Slide} 
 
 \begin{Slide}{Implementation \texttt{BankAccountWithInterest}, 1}
+\Emph{Abstraktion}: \\Vi löser delproblemet att räkna ränta i en egen metod
 \begin{Code}
 public class BankAccountWithInterest {
     private int accntNbr;        // kontonummer
     private int balance;         // saldo
     private double interestRate; // räntesats i procent
-    private double interest;     // ackumulerad ränta 
-                                 // under året
-    private int lastInterestDay; // dagnummer för senaste 
-                                 // ränteberäkning
+    private double interest;     // ackumulerad ränta under året
+    private int lastInterestDay; // dagnummer för senaste ränteberäkning
 
-    //... konstruktor (visas ej)
+    //... konstruktor, getters/setters (visas ej)
     
     public void deposit(int amount) {
         computeInterest();
@@ -449,6 +448,7 @@ public class BankAccountWithInterest {
 \end{Slide} 
 
 \begin{Slide}{Implementation \texttt{BankAccountWithInterest}, 2}
+\Emph{Abstraktion}: \\Vi återanvänder lösningen på delproblemet att räkna ränta
 \begin{Code}
     /** Adderar årets ränta till saldot. Ska utföras vid årsskifte */
     public void newYearActions() {
@@ -489,6 +489,7 @@ int getY();
 /** Tar reda på kvadratens area */
 int getArea();
 \end{ClassSpec}
+Den interna representationen av kvadratens läge är \textit{inte} stipulerad av specifikationen -- det är upp till implementatören.
 \end{Slide}
 
 \begin{Slide}{Specifikation av \texttt{SimpleWindow}}
@@ -510,14 +511,45 @@ Specifikationerna i ankboken liknar (en enklare variant av) javadoc som generera
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week04/Square.java}
 \end{Slide}
 
+\begin{Slide}{Varför privata attribut?}
+Två viktiga anledningar till att göra attribut \Key{private} och bara tillåta åtkomst av data via metoder:
+\begin{enumerate}
+\item I metoder kan vi \Emph{validera indata} och säkerställa så att manipuleringen blir rätt, till exempel att vi inte tillåter negativ ränta (eller ska vi tillåta det? -- ta reda på kraven...)
+\item Vi kan \Emph{ändra den interna representationen} av data och alltså byta datastruktur utan att behöva ändra alla metodanrop i koden som använder vår klass.
+\end{enumerate}
+\footnotesize Nackdelen i Java är boilerplate (getters, setters)... Men en bra IDE kan hjälpa till att generera mallar för dessa med ett enkelt menykommando.\\ \scriptsize Vissa språk har explicit stöd för \href{https://en.wikipedia.org/wiki/Property_\%28programming\%29}{properties} med getter/setter-par (t.ex. JavaScript, C\#, Scala)  och vissa uppfyller \href {https://en.wikipedia.org/wiki/Uniform_access_principle}{uniform access principle} (t.ex. Ruby, Python, Scala) där man kan använda samma syntax oavsett om det är en metod eller ett attribut.
+\end{Slide}
+
+\begin{Slide}{Ändra den interna representationen av kvadratens läge}
+Läget hos en kvadrat kan representeras av ett \texttt{Point}-objekt i stället för av koordinaterna \texttt{x} och \texttt{y}:
+\begin{Code}
+private Point location; // övre vänstra hörnet
+private int side;       // sidlängd
+\end{Code}
+
+\begin{ClassSpec}{Point}
+/** Skapar en punkt med koordinaterna x, y */
+Point(int x, int y); 
+
+/** Tar reda på x-koordinaten */
+int getX();
+
+/** Tar reda på y-koordinaten */
+int getY();
+
+/** Flyttar punkten avståndet dx i x-led, 
+    dy i y-led */
+void move(int dx, int dy);
+\end{ClassSpec}
+\end{Slide}
 
 
 \Subsection{Oföränderlighet (immutability)}
 \begin{Slide}{Om man kan undvika förändring blir det mycket lättare}
 \begin{itemize}
-\item Varje förändring av variablers värden (ändring av tillstånd) är svåra att resonera om och ger lätt upphov till buggar
-\item Vi tränar mycket på att mutera värden i denna kurs, men i praktiken försöker man minimera föränderliga värden
-\item Om man ska utnyttja flera trådar och parallell exekvering kräver föränderliga variabler \Emph{synkronisering} så att olika trådar inte förstör för varandra och svårhittade buggar uppkommer. Mer om detta i \href{http://cs.lth.se/eda040}{realtidsprogrammering}
+\item Varje förändring av variablers värden (ändring av tillstånd) är svåra att resonera om och ger lätt upphov till buggar.
+\item Vi tränar mycket på att \Alert{mutera} värden i denna kurs, men i praktiken är det ofta bra att \Alert{undvika} mutering.
+\item Om man ska utnyttja flera trådar och parallell exekvering kräver föränderliga variabler \Emph{synkronisering} så att olika trådar inte förstör för varandra och svårhittade buggar uppkommer. Mer om detta i \href{http://cs.lth.se/eda040}{realtidsprogrammering}.
 \end{itemize}
 \end{Slide}
 
