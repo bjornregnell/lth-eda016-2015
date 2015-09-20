@@ -616,7 +616,7 @@ double dist = p1.getDistanceTo(p2);
 System.out.println("Avståndet mellan punkterna är " + dist);
 \end{Code}
 \begin{center}
-\includegraphics[scale=1.0]{img/distobjects.pdf}
+\includegraphics[scale=0.8]{img/distobjects.pdf}
 \end{center}
 \end{Slide} 
 
@@ -624,18 +624,18 @@ System.out.println("Avståndet mellan punkterna är " + dist);
 1. Använd bara metoderna i \texttt{Point}:
 \begin{Code}
 public double getDistanceTo(Point p) {
-	int xDist = getX() - p.getX();
-	int yDist = getY() - p.getY();
-	return Math.sqrt(xDist * xDist + yDist * yDist);
+    int xDist = getX() - p.getX();
+    int yDist = getY() - p.getY();
+    return Math.sqrt(xDist * xDist + yDist * yDist);
 }
 \end{Code}
 
 2. Utnyttja kunskapen om att \texttt{Point} har attributen \texttt{x} och \texttt{y}:
 \begin{Code}
 public double getDistanceTo(Point p) {
-	int xDist = x - p.x;
-	int yDist = y - p.y;
-	return Math.sqrt(xDist * xDist + yDist * yDist);
+    int xDist = x - p.x;
+    int yDist = y - p.y;
+    return Math.sqrt(xDist * xDist + yDist * yDist);
 }
 \end{Code}
 Fördelar/nackdelar med 1 vs 2?\\
