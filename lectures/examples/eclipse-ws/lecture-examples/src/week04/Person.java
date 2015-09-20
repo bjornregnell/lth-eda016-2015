@@ -28,4 +28,4 @@ public class Person {
 	public void setSocialSecurityNumber(String socialSecurityNumber) {
 		this.socialSecurityNumber = socialSecurityNumber;
 	}
-}
+} 

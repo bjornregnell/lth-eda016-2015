@@ -49,6 +49,11 @@
             backgroundcolor=,rulecolor=\color{black}, title={\texttt{\textcolor{blue}{\textbf{#2}}}}, frameround=tttt,language=,#1}%
 }{}
 
+\lstnewenvironment{Code}[1][]{%
+    \lstset{basicstyle=\ttfamily\fontsize{6}{7}\selectfont,%
+            backgroundcolor=,rulecolor=\color{black}, frameround=tttt,language=,#1}%
+}{}
+
   
 \newcommand{\Subsection}[1]{\subsection{#1}\frame{\centering\huge\bfseries\textcolor{blue}{#1}}}
 

@@ -411,61 +411,63 @@ public class BankAccount {
 \end{lstlisting}
 \end{Slide}
 
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Bankkonto med ränta}
-%\begin{itemize}
-%  \item Attributet \code{interestRate} anger räntesatsen i procent för kontot.
-%  \item Den ackumulerade räntan (attributet \code{interest}) ökas genom anrop av metoden \code{computeInterest} varje gång som saldot förändras genom insättning eller uttag.
-%  \item Attributet \code{lastInterestDay} anger numret på den dag (med början på nummer 1 för den 1 januari) då räntan senast beräknades.
-%  \item Vi förutsätter att vi har tillgång till en variabel \code{Date.today} som ger numret på aktuell dag.
-%  \item I slutet av ett år läggs den ackumulerade räntan till saldot när någon ''utifrån'' utför operationen \code{newYearActions}.
-%\end{itemize}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Implementering av \code{BankAccountWithInterest}, 1}
-%\begin{Code}
-%public class BankAccountWithInterest {
-%	private int accntNbr;        // kontonummer
-%	private int balance;         // saldo
-%	private double interestRate; // räntesats i procent
-%	private double interest;     // ackumulerad ränta 
-%                                 // under året
-%	private int lastInterestDay; // dagnummer för senaste 
-%                                 // ränteberäkning
-%
-%	...
-%	
-%	public void deposit(int amount) {
-%		computeInterest();
-%		balance = balance + amount;
-%	}
-%	\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Implementering av \code{BankAccountWithInterest}, 2}
-%\begin{Code}
-%	/** Adderar årets ränta till saldot. Ska utföras 
-%	    vid årsskifte */
-%	public void newYearActions() {
-%		computeInterest();
-%		balance = balance + (int) Math.round(interest);
-%		interest = 0;
-%		lastInterestDay = 1;
-%	}
-%	
-%	/** Adderar räntan sedan föregående insättning
-%	    eller uttag */
-%	private void computeInterest() {
-%		interest = interest + interestRate / 100.0 *
-%		           (Date.today - lastInterestDay) / 
-%		           360 * balance;
-%		lastInterestDay = Date.today;
-%	}
-%}
-%\end{Code}
-%\end{frame} 
+\begin{Slide}{Bankkonto med ränta}\footnotesize
+\Emph{Krav} på bankkonto med ränta:
+\begin{enumerate}
+\item Ränta för varje dag som pengar finns på kontot ska ackumuleras.
+\item Vid årsskiftet ska räntan sättas in på kontot.
+\end{enumerate}
+\Emph{Design} av bankkonto med ränta:
+\begin{enumerate}
+  \item Attributet \texttt{interestRate} anger räntesatsen i procent för kontot.
+  \item Den ackumulerade räntan (attributet \texttt{interest}) ökas genom anrop av metoden \texttt{computeInterest()} varje gång som saldot förändras genom insättning eller uttag.
+  \item Attributet \texttt{lastInterestDay} anger numret på den dag (med början på nummer 1 för den 1 januari) då räntan senast beräknades.
+  \item Metoden \texttt{Date.today()} ger numret på aktuell dag.
+  \item I slutet av ett år läggs den ackumulerade räntan till saldot när någon ''utifrån'' utför operationen \texttt{newYearActions()}.
+\end{enumerate}
+Se lösning \href{}{här}.
+\end{Slide} 
+
+\begin{Slide}{Implementation \texttt{BankAccountWithInterest}, 1}
+\begin{Code}
+public class BankAccountWithInterest {
+    private int accntNbr;        // kontonummer
+    private int balance;         // saldo
+    private double interestRate; // räntesats i procent
+    private double interest;     // ackumulerad ränta 
+                                 // under året
+    private int lastInterestDay; // dagnummer för senaste 
+                                 // ränteberäkning
+
+    //... konstruktor (visas ej)
+    
+    public void deposit(int amount) {
+        computeInterest();
+        balance = balance + amount;
+    }
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Implementation \texttt{BankAccountWithInterest}, 2}
+\begin{Code}
+    /** Adderar årets ränta till saldot. Ska utföras vid årsskifte */
+    public void newYearActions() {
+        computeInterest();
+        balance = balance + (int) Math.round(interest);
+        interest = 0;
+        lastInterestDay = 1;
+    }
+    
+    /** Adderar räntan sedan föregående insättning eller uttag */
+    private void computeInterest() {
+        interest = interest + interestRate / 100.0 *
+                   (Date.today() - lastInterestDay) / 
+                   360 * balance;
+        lastInterestDay = Date.today();
+    } 
+}
+\end{Code}
+\end{Slide} 
 
 \begin{Slide}{Specifikation av klassen \texttt{Square}}
 \begin{ClassSpec}{Square}
