@@ -22,7 +22,7 @@
 \subsection{Att göra denna vecka}
 \frame{\frametitle{Att göra i Vecka \vecka: Förstå aritmetiska och logiska uttryck, använda klasser mha klass-specifikationer}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken:\\ 6.1--6.4, 6.8--6.9,  7.1--7.7, 7.10--7.11, 7.13\\ 
+\item Läs följande kapitel i kursboken:\\ 3.1--3.9, 5, 6.1--6.4, 7.2, 7.5\\ 
 Begrepp: heltalsdivision med rest,  implicit och explicit typkonvertering, aritmetiska och logiska uttryck, De Morgans lagar, oföränderlighet
 \item Gör övning 4: Aritmetik, Logik
 \item Träffas i samarbetsgrupper och hjälp varandra förstå 
@@ -604,100 +604,94 @@ I \texttt{move} måste man utnyttja \texttt{move}-operationen i \texttt{Point} f
 \end{Code}
 \end{Slide} 
 
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Objekt som parameter}
-%%\FIXBEFORECODE
-%\begin{Spec}
-%/** Beräknar avståndet mellan denna punkt och 
-%    punkten p */
-%double getDistanceTo(Point p);
-%\end{Spec}
-%\FIXBEFORECODE\vspace{-2mm}
-%\begin{Code}
-%Point p1 = new Point(50, 20);
-%Point p2 = new Point(25, 35);
-%double dist = p1.getDistanceTo(p2);
-%System.out.println("Avståndet mellan punkterna är " +
-%                   dist);
-%\end{Code}
-%\FIXBEFORECODE\vspace{-2mm}
-%\begin{center}
-%\includegraphics[scale=1.0]{fkap3/distobjects.pdf}
-%\end{center}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Implementering av \texttt{getDistanceTo}}
-%Använd bara metoderna i \texttt{Point}:
-%\begin{Code}
-%public double getDistanceTo(Point p) {
-%	int xDist = getX() - p.getX();
-%	int yDist = getY() - p.getY();
-%	return Math.sqrt(xDist * xDist + yDist * yDist);
-%}
-%\end{Code}
-%
-%Utnyttja kunskapen om att \texttt{Point} har attributen \texttt{x} och \texttt{y}:
-%\begin{Code}
-%public double getDistanceTo(Point p) {
-%	int xDist = x - p.x;
-%	int yDist = y - p.y;
-%	return Math.sqrt(xDist * xDist + yDist * yDist);
-%}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Delade objekt}
-%\texttt{Point}-objektet som definierar kvadratens läge kan skapas utanför objektet och skickas med som en parameter till en ny konstruktor:
-%
-%\begin{Code}
-%public Square(Point location, int side) {
-%	this.location = location;
-%	this.side = side;
-%}
-%\end{Code}
-%
-%\n Nu kan flera kvadrater dela samma läge:
-%
-%\begin{Code}
-%Point loc = new Point(100, 100);
-%Square sq1 = new Square(loc, 200);
-%Square sq2 = new Square(loc, 300);
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Delade objekt --- var försiktig!}
-%\begin{center}
-%\includegraphics[scale=1.0]{fkap3/samelocation.pdf}
-%\end{center}
-%
-%Nu kan man flytta båda kvadraterna med \texttt{loc.move(25,30)}. Men observera att \texttt{sq1.move(25,30)} också medför att båda kvadraterna flyttas!
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Objekt som funktionsresultat}
-%Metoder för att ta reda på kvadratens läge:
-%
-%\begin{Code}
-%public int getX() {
-%	return location.getX();
-%}
-%
-%public int getY() {
-%	return location.getY();
-%}
-%\end{Code}
-%
-%\n Man kan skriva en metod som ger \texttt{Point}-objektet som resultat, men då ger man användaren tillgång till en implementeringsdetalj så det brukar man inte göra:
-%
-%\begin{Code}
-%public Point getLocation() {
-%	return location;
-%}
-%\end{Code}
-%\end{frame} 
+\begin{Slide}{Objekt som parameter}
+\begin{ClassSpec}{Point}
+/** Beräknar avståndet mellan denna punkt och punkten p */
+double getDistanceTo(Point p);
+\end{ClassSpec}
+\begin{Code}
+Point p1 = new Point(50, 20);
+Point p2 = new Point(25, 35);
+double dist = p1.getDistanceTo(p2);
+System.out.println("Avståndet mellan punkterna är " + dist);
+\end{Code}
+\begin{center}
+\includegraphics[scale=1.0]{img/distobjects.pdf}
+\end{center}
+\end{Slide} 
+
+\begin{Slide}{Två olika implementationer av \texttt{getDistanceTo}}
+1. Använd bara metoderna i \texttt{Point}:
+\begin{Code}
+public double getDistanceTo(Point p) {
+	int xDist = getX() - p.getX();
+	int yDist = getY() - p.getY();
+	return Math.sqrt(xDist * xDist + yDist * yDist);
+}
+\end{Code}
+
+2. Utnyttja kunskapen om att \texttt{Point} har attributen \texttt{x} och \texttt{y}:
+\begin{Code}
+public double getDistanceTo(Point p) {
+	int xDist = x - p.x;
+	int yDist = y - p.y;
+	return Math.sqrt(xDist * xDist + yDist * yDist);
+}
+\end{Code}
+Fördelar/nackdelar med 1 vs 2?\\
+Övning: använd \texttt{Math.hypot} istället
+\end{Slide} 
+
+\begin{Slide}{Delade objekt}
+\texttt{Point}-objektet som definierar kvadratens läge kan skapas utanför objektet och skickas med som en parameter till en ny konstruktor:
+
+\begin{Code}
+public Square(Point location, int side) {
+    this.location = location;
+    this.side = side;
+}
+\end{Code}
+
+Nu kan flera kvadrater dela samma läge:
+
+\begin{Code}
+Point loc = new Point(100, 100);
+Square sq1 = new Square(loc, 200);
+Square sq2 = new Square(loc, 300);
+\end{Code}
+\end{Slide} 
+
+\begin{frame}[fragile=singleslide]
+\frametitle{Delade objekt --- var försiktig!}
+\begin{center}
+\includegraphics[scale=1.0]{img/samelocation.pdf}
+\end{center}
+
+Nu kan man flytta båda kvadraterna med \texttt{loc.move(25,30)}. Men observera att \texttt{sq1.move(25,30)} också medför att \Alert{båda} kvadraterna flyttas!
+\end{frame} 
+
+\begin{frame}[fragile=singleslide]
+\frametitle{Objekt som funktionsresultat}
+Metoder för att ta reda på kvadratens läge:
+
+\begin{Code}
+public int getX() {
+	return location.getX();
+}
+
+public int getY() {
+	return location.getY();
+}
+\end{Code}
+
+Man kan skriva en metod som ger \texttt{Point}-objektet som resultat, men då ger man användaren \Alert{tillgång till den interna representationen}, så det brukar man inte göra om man vill kunna ändra denna i framtiden:
+
+\begin{Code}
+public Point getLocation() {
+	return location;
+}
+\end{Code}
+\end{frame} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -706,7 +700,7 @@ I \texttt{move} måste man utnyttja \texttt{move}-operationen i \texttt{Point} f
 \begin{itemize}
 \item Varje förändring av variablers värden (ändring av tillstånd) är svåra att resonera om och ger lätt upphov till buggar.
 \item Vi tränar mycket på att \Alert{mutera} värden i denna kurs, men i praktiken är det ofta bra att \Alert{undvika} mutering.
-\item Om man ska utnyttja flera trådar och parallell exekvering kräver föränderliga variabler \Emph{synkronisering} så att olika trådar inte förstör för varandra och svårhittade buggar uppkommer. Mer om detta i \href{http://cs.lth.se/eda040}{realtidsprogrammering}.
+\item Om man ska utnyttja flera trådar och parallell exekvering kräver föränderliga variabler \Emph{synkronisering} så att olika trådar inte förstör för varandra och svårhittade buggar uppkommer. Med oföränderliga värden blir jämlöpande exekvering \Eng{concurrency} enklare.\\Mer om detta i \href{http://cs.lth.se/eda040}{realtidsprogrammering}.
 \end{itemize}
 \end{Slide}
 
@@ -715,6 +709,21 @@ I \texttt{move} måste man utnyttja \texttt{move}-operationen i \texttt{Point} f
 Attributet \texttt{latinsktNamn} nedan är en \Emph{konstant}.\\ Kompilatorn hjälper oss att kolla så att vi inte råkar ändra på det vi har deklarerat som \Key{final}.
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/Constant.java}
 \end{Slide}
+
+\begin{frame}[fragile=singleslide]
+\frametitle{Lokala variabler, konstanter}
+\begin{itemize}
+\item Deklarera variabler så sent som möjligt, omedelbart innan de används första gången.
+\item Bara de storheter som behövs för att beskriva tillståndet hos objekt ska vara attribut.
+\item Deklaration av konstanter görs \Key{final static} med namn i versaler:
+\begin{Code}
+public class CardGame {
+	private final static int MAX_PLAYERS = 10;
+	...
+}
+\end{Code}
+\end{itemize}
+\end{frame} 
 
 \begin{Slide}{Oföränderligt objekt}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/terminal/final/ImmutableObject.java}

@@ -26,4 +26,10 @@ public class Point {
 		x += dx;
 		y += dy;
 	};
+	
+	public double getDistanceTo(Point p) {
+		int xDist = getX() - p.getX();
+		int yDist = getY() - p.getY();
+		return Math.sqrt(xDist * xDist + yDist * yDist);
+	}
 }

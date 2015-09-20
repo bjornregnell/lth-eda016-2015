@@ -10,6 +10,11 @@ public class Square {
         this.side = side;
     }
     
+    public Square(Point location, int side) {
+        this.location = location;
+        this.side = side;
+    }
+    
     public void draw(SimpleWindow w) {
     	int x = location.getX();
     	int y = location.getY();
