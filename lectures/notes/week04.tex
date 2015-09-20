@@ -543,7 +543,164 @@ void move(int dx, int dy);
 \end{ClassSpec}
 \end{Slide}
 
+\begin{Slide}{Implementera ny \texttt{Square}, 1}
+\begin{Code}
+public class Square {
+    Point location;
+    int side;
+	
+    /** Skapar en kvadrat med övre vänstra hörnet i x,y 
+    *   och med sidlängden side 
+    */
+    public Square(int x, int y, int side) {
+        this.location = new Point(x, y);
+        this.side = side;
+    }
 
+    public void draw(SimpleWindow w) {
+        w.moveTo(location.getX(), location.getY());
+        w.lineTo(location.getX(), location.getY() + side);
+        w.lineTo(location.getX() + side, location.getY() + side);
+        w.lineTo(location.getX() + side, location.getY());
+        w.lineTo(location.getX(), location.getY());
+    }
+\end{Code}
+\end{Slide} 
+
+
+\begin{Slide}{Implementering av ny \texttt{Square}, 2}
+\texttt{draw}-variant med lokala variabler \texttt{x} och \texttt{y}:
+
+\begin{Code}
+    public void draw(SimpleWindow w) {
+    	  int x = location.getX();
+    	  int y = location.getY();
+    	  w.moveTo(x, y);
+    	  w.lineTo(x, y + side);
+    	  w.lineTo(x + side, y + side);
+    	  w.lineTo(x + side, y);
+    	  w.lineTo(x, y);
+    }
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Implementering av ny \texttt{Square}, 3}
+Inte svåra:
+\begin{Code}
+    public int getX() {
+        return location.getX();
+    }
+
+    public int getY() {
+        return location.getY();
+    }
+\end{Code}
+
+I \texttt{move} måste man utnyttja \texttt{move}-operationen i \texttt{Point} för att flytta kvadraten:
+\begin{Code}
+    public void move(int dx, int dy) {
+        location.move(dx, dy);
+    }
+\end{Code}
+\end{Slide} 
+
+%\begin{frame}[fragile=singleslide]
+%\frametitle{Objekt som parameter}
+%%\FIXBEFORECODE
+%\begin{Spec}
+%/** Beräknar avståndet mellan denna punkt och 
+%    punkten p */
+%double getDistanceTo(Point p);
+%\end{Spec}
+%\FIXBEFORECODE\vspace{-2mm}
+%\begin{Code}
+%Point p1 = new Point(50, 20);
+%Point p2 = new Point(25, 35);
+%double dist = p1.getDistanceTo(p2);
+%System.out.println("Avståndet mellan punkterna är " +
+%                   dist);
+%\end{Code}
+%\FIXBEFORECODE\vspace{-2mm}
+%\begin{center}
+%\includegraphics[scale=1.0]{fkap3/distobjects.pdf}
+%\end{center}
+%\end{frame} 
+%
+%\begin{frame}[fragile=singleslide]
+%\frametitle{Implementering av \texttt{getDistanceTo}}
+%Använd bara metoderna i \texttt{Point}:
+%\begin{Code}
+%public double getDistanceTo(Point p) {
+%	int xDist = getX() - p.getX();
+%	int yDist = getY() - p.getY();
+%	return Math.sqrt(xDist * xDist + yDist * yDist);
+%}
+%\end{Code}
+%
+%Utnyttja kunskapen om att \texttt{Point} har attributen \texttt{x} och \texttt{y}:
+%\begin{Code}
+%public double getDistanceTo(Point p) {
+%	int xDist = x - p.x;
+%	int yDist = y - p.y;
+%	return Math.sqrt(xDist * xDist + yDist * yDist);
+%}
+%\end{Code}
+%\end{frame} 
+%
+%\begin{frame}[fragile=singleslide]
+%\frametitle{Delade objekt}
+%\texttt{Point}-objektet som definierar kvadratens läge kan skapas utanför objektet och skickas med som en parameter till en ny konstruktor:
+%
+%\begin{Code}
+%public Square(Point location, int side) {
+%	this.location = location;
+%	this.side = side;
+%}
+%\end{Code}
+%
+%\n Nu kan flera kvadrater dela samma läge:
+%
+%\begin{Code}
+%Point loc = new Point(100, 100);
+%Square sq1 = new Square(loc, 200);
+%Square sq2 = new Square(loc, 300);
+%\end{Code}
+%\end{frame} 
+%
+%\begin{frame}[fragile=singleslide]
+%\frametitle{Delade objekt --- var försiktig!}
+%\begin{center}
+%\includegraphics[scale=1.0]{fkap3/samelocation.pdf}
+%\end{center}
+%
+%Nu kan man flytta båda kvadraterna med \texttt{loc.move(25,30)}. Men observera att \texttt{sq1.move(25,30)} också medför att båda kvadraterna flyttas!
+%\end{frame} 
+%
+%\begin{frame}[fragile=singleslide]
+%\frametitle{Objekt som funktionsresultat}
+%Metoder för att ta reda på kvadratens läge:
+%
+%\begin{Code}
+%public int getX() {
+%	return location.getX();
+%}
+%
+%public int getY() {
+%	return location.getY();
+%}
+%\end{Code}
+%
+%\n Man kan skriva en metod som ger \texttt{Point}-objektet som resultat, men då ger man användaren tillgång till en implementeringsdetalj så det brukar man inte göra:
+%
+%\begin{Code}
+%public Point getLocation() {
+%	return location;
+%}
+%\end{Code}
+%\end{frame} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Subsection{Oföränderlighet (immutability)}
 \begin{Slide}{Om man kan undvika förändring blir det mycket lättare}
 \begin{itemize}
