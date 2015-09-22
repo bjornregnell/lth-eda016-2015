@@ -15,6 +15,7 @@ public class BankAccountWithInterest {
         this.balance = 0;
         this.interest = 0;
         this.interestRate = interestRate;
+        lastInterestDay = Date.today();
     }
 
     /** Tar reda på kontonumret */
