@@ -2,12 +2,6 @@ package week04;
 
 import java.util.Calendar;
 
-class Date {
-	public static int today(){
-		return Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
-	}
-}
-
 public class BankAccountWithInterest {
     private int accntNbr;        // kontonummer
     private int balance;         // saldo
