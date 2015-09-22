@@ -10,22 +10,29 @@ public class Person {
 		this.familyName = familyName;
 		this.socialSecurityNumber = socialSecurityNumber;
 	}
+
 	public String getGivenNames() {
 		return givenNames;
 	}
+
 	public void setGivenNames(String givenNames) {
 		this.givenNames = givenNames;
 	}
+
 	public String getFamilyName() {
 		return familyName;
 	}
+
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
+
 	public String getSocialSecurityNumber() {
 		return socialSecurityNumber;
 	}
+
 	public void setSocialSecurityNumber(String socialSecurityNumber) {
 		this.socialSecurityNumber = socialSecurityNumber;
 	}
+
 } 
