@@ -1,7 +1,5 @@
 package week04;
 
-import java.util.Calendar;
-
 public class BankAccountWithInterest {
     private int accntNbr;        // kontonummer
     private int balance;         // saldo
