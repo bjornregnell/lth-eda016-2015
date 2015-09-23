@@ -3,7 +3,7 @@ package week05;
 public class ShowCharacters {
 	
 	public static void showChar(char c){
-		System.out.print(c + " == " + (int) c + "   ");
+		System.out.print("\'" + c + "\'" + " == " + (int) c + "   ");
 	}
 	
 
