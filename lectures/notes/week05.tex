@@ -20,15 +20,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Att göra denna vecka}
-\frame{\frametitle{Att göra i Vecka \vecka: Förstå aritmetiska och logiska uttryck, använda klasser mha klass-specifikationer}
+\begin{Slide}{Att göra i Vecka \vecka: Förstå aritmetiska och logiska uttryck, använda klasser mha klass-specifikationer}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken: 11,7.9, 6.10, 7.7, 7.4, 7.12 \\  
-Begrepp: sträng, toString, StringBuilder, slumptalsgenerator, Random
-\item Gör övning 5: 
+\item Läs följande kapitel i kursboken: 11, 7.9, 6.10, 7.7, 7.4, 7.12 \\  
+Begrepp: sträng, toString, StringBuilder, slumptal, Random
+\item Gör övning 5: Klasser, slumptal
 \item Gör gammal kontrollskrivning \& rätta i samarbetsgrupper 
-\item Gör Lab 4: 
+\item Gör Lab 4: implementera square
 \end{enumerate}
-}
+\end{Slide}
 
 \begin{Slide}{Specialtecken}
 Some \href{https://docs.oracle.com/javase/tutorial/java/data/characters.html}{Java Escape Sequences}:
@@ -73,9 +73,624 @@ static char toLowerCase(char ch);
 \end{Slide}
 
 \subsection{Strängar}
-\subsection{Slumptal}
-\subsection{Switch}
-\subsection{do-while}
+\begin{Slide}{\code{String} och \code{StringBuilder}}
+\footnotesize
+Standardklasser (i paketet \code{java.lang}, behöver inte importeras):
+\begin{tabular}{lp{8cm}}
+\code+String+ & Beskriver en följd av tecken. Tecknen kan läsas av men inte ändras. Med operatorn \code!+! konkatenerar man (slår ihop) två strängar, eller en sträng med ett talvärde. Då bildas ett nytt strängobjekt.\\
+\code+StringBuilder+ & En följd av tecken som kan läsas av \emph{och} ändras.
+\end{tabular}
 
+\begin{Code}
+String s1 = "En text";
+String s2 = "en text till";
+String result = s1 + " och " + s2;
+
+int x = 10;
+int y = 30;
+String s1 = "Summan är " + x + y;
+String s2 = "Summan är " + (x + y);
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Viktiga operationer på \code{String}}
+
+\begin{ClassSpec}{String}
+String();                   // skapar en tom sträng
+                            // (kan också skrivas "")
+int length();               // antalet tecken 
+char charAt(int pos);       // tecknet på plats pos
+boolean equals(Object s);   // true om innehållet i 
+                            // aktuell sträng är lika 
+                            // med innehållet i s
+int compareTo(String s);    // jämför aktuell sträng med s
+int indexOf(char ch);       // index för den första
+                            // förekomsten av ch, -1
+                            // om ch inte finns
+String substring(int start, // ny sträng med tecknen 
+                 int end);  // med index [start, end)
+\end{ClassSpec}
+
+\begin{Code}
+"Java".compareTo("Java") == 0
+"java".compareTo("javac") < 0
+"java".compareTo("Java") > 0
+"java".compareTo("jazz") < 0
+\end{Code}
+
+\end{Slide} 
+
+\begin{Slide}{Användning av \code{String}, 1}
+\begin{Code}
+public class Text {
+    private String s;
+    
+    public Text(String s) {
+        this.s = s;
+    }
+
+    /** Tar reda på antalet blanktecken i strängen */
+    public int getNbrSpaces() {
+        int spaces = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                spaces++;
+            }
+        }
+        return spaces;
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Användning av \code{String}, 2}
+\begin{Code}
+/** Tar reda på index för den första förekomsten av tecknet
+    ch i texten, -1 om inget sådant tecken finns */
+public int indexOf(char ch) {
+    int i = 0;
+    while (i < s.length() && s.charAt(i) != ch) {
+        i++;
+    }
+    return (i < s.length()) ? i : -1;
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Användning av \code{String}, 3}
+\begin{Code}
+/** Tar reda på det första ordet i texten. Ett ord är en 
+    följd av tecken som inte är blanka */
+public String firstWord() {
+    int start = 0;
+    while (start < s.length() &&
+           Character.isWhitespace(s.charAt(start))) {
+        start++;
+    }
+    int end = start;
+    while (end < s.length() && 
+           ! Character.isWhitespace(s.charAt(end))) {
+        end++;
+    }
+    return s.substring(start, end);
+}
+\end{Code}
+
+\end{Slide} 
+
+\begin{Slide}{\code{StringBuilder}}
+Skapa, ta reda på längd och tecken (som \code{String}):
+\begin{ClassSpec}{StringBuilder}
+StringBuilder();         // tom strängbuffert
+StringBuilder(String s); // kopia av s
+int length();            // antalet tecken
+char charAt(int pos);    // tecknet på plats pos
+String toString(); // skapar ett String-objekt med
+                   // samma innehåll som denna 
+                   // strängbuffert
+\end{ClassSpec}
+\end{Slide} 
+
+\begin{Slide}{Ändra innehållet i \code{StringBuilder}-objekt}
+\begin{ClassSpec}{StringBuilder}
+void setCharAt(int k, char ch); // ändrar tecknet på 
+                                // plats k till ch
+StringBuilder append(String s); // lägger till s 
+                                // efter tecknen 
+StringBuilder insert(int k, String s); // lägger in s 
+                                // på plats k, flyttar
+                                // tecknen efter
+StringBuilder deleteCharAt(int k); // tar bort tecknet 
+                                // på plats k
+StringBuilder delete(int start, int end); // tar bort
+                                // tecknen [start,end)
+StringBuilder replace(int start, int end, String s); 
+                                // ersätter tecknen
+                                // [start,end) med s
+\end{ClassSpec}
+\end{Slide} 
+
+\begin{Slide}{Användning av \code{StringBuilder}, 1}
+\begin{Code}
+public class MutableText {
+    private StringBuilder sb;
+    
+    public MutableText(String s) {
+        sb = new StringBuilder(s);
+    }
+
+    /** Ändrar alla små bokstäver a-z i texten till motsvarande 
+        stora bokstäver */
+    public void changeToUpperCase() {
+        for (int i = 0; i < sb.length(); i++) {
+            char ch = sb.charAt(i);
+            if (ch >= 'a' && ch <= 'z') {
+                sb.setCharAt(i, (char) (ch - 'a' + 'A'));
+            }
+        }
+    }
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Användning av \code{StringBuilder}, 2}
+\begin{Code}
+/** Lägger in ett blanktecken efter varje punkt och kommatecken 
+    i texten, dock ej efter textens sista tecken */
+public void insertSpaces() {
+    int i = 0;
+    while (i < sb.length() - 1) {
+        if (sb.charAt(i) == '.' || sb.charAt(i) == ',') {
+            sb.insert(i + 1, ' ');
+            i++;
+        }
+        i++;
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Ta bort blanktecken från sträng}
+
+\begin{Code}
+public static String removeSpacesFrom(String s) { // "DÅLIGT"
+    String result = "";
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) != ' ') {
+            result += s.charAt(i);
+        }
+    }
+    return result;
+}
+
+public static String removeSpacesFrom(String s) { // "BRA"
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+        if (s.charAt(i) != ' ') {
+            sb.append(s.charAt(i));
+        }
+    }
+    return sb.toString();
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Exempel: Nananananana Batman!}
+\url{https://www.youtube.com/watch?v=oDc-1zfffMw}
+\end{Slide} 
+
+\begin{Slide}{\code{toString}}
+
+\begin{Code}
+public class Complex {
+    private double re; // realdel
+    private double im; // imaginärdel
+    
+    public Complex(double re, double im) {
+        this.re = re;
+        this.im = im;
+    }
+    
+    public String toString() {
+        return "(" + re + ", " + im + ")";
+    }
+}
+\end{Code}
+
+
+Exempel på användning:
+
+\begin{Code}
+Complex c = new Complex(1.5, 2.3);
+System.out.println("c = " + c.toString());
+System.out.println("c = " + c);
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Programexempel: Datakomprimering}
+Användning av s.k. följdlängdskodning\\
+\Emph{Krav}
+\begin{enumerate} \footnotesize
+ \item Man räknar hur många gånger som ett tecken förekommer i följd.
+ \item Om antalet är större än 3 lagras först ett dollartecken, sedan antalet tecken, sedan tecknet. Dollartecknet fungerar som ett ''escapetecken'' som talar om att de följande tecknen ska tolkas på ett speciellt sätt. 
+ \item Antalet ska lagras i ett tecken och måste rymmas i en \code{char}-variabel (16 bitar).
+ \item Om antalet är mindre än eller lika med 3 lagras alla tecken.
+ \item Exempel: \textsl{aabbbbbcdddeeeeeeffff} kodas som \textsl{aa\$5bcddd\$6e\$4f}. Siffrorna är inte tecknen \code{'5'}, \code{'6'} och \code{'4'} utan tecknen med Unicode-numren 5, 6 respektive 4.
+\item Förenkling: Vi förutsätter att det inte finns några dollartecken i texten som ska konverteras.
+\end{enumerate}
+\end{Slide} 
+
+\begin{Slide}{Komprimering}
+
+\begin{Code}[basicstyle=\ttfamily\fontsize{7}{8}\selectfont]
+public static String compress(String s) {
+    StringBuilder sb = new StringBuilder();
+    int i = 0;
+    while (i < s.length()) {
+        char ch = s.charAt(i);
+        int nbrEqual = 1;
+        i++;
+        while (i < s.length() && s.charAt(i) == ch) {
+            i++; 
+            nbrEqual++;
+        }
+        if (nbrEqual > 3) {
+            sb.append('$'); 
+            sb.append((char) nbrEqual); 
+            sb.append(ch);
+        } else {
+            for (int k = 0; k < nbrEqual; k++) { 
+                sb.append(ch); 
+            }
+        }
+    }
+    return sb.toString();
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Dekomprimering}
+
+\begin{Code}
+public static String decompress(String s) {
+    StringBuilder sb = new StringBuilder();
+    int i = 0;
+    while (i < s.length()) {
+        char ch = s.charAt(i);
+        if (ch != '$') {
+            sb.append(ch);
+        } else {
+            i++;
+            int nbrEqual = s.charAt(i);
+            i++;
+            ch = s.charAt(i);
+            for (int k = 0; k < nbrEqual; k++) {
+                sb.append(ch);
+            }
+        }
+        i++;
+    }
+    return sb.toString();
+}
+\end{Code}
+\end{Slide} 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Slumptal}
+\begin{Slide}
+{Slumptal}
+Slumptal får man med hjälp av standardklassen \code{java.util.Random}:
+
+\begin{ClassSpec}{Random}
+/** En slumptalsgenerator med slumptalsfröet seed */
+Random(long seed);
+
+/** En slumptalsgenerator med ett slumpmässigt 
+    slumptalsfrö */
+Random();
+
+/** Slumpmässigt heltal i intervallet [0,n) */
+int nextInt(int n);
+
+/** Slumpmässigt reellt tal i intervallet [0,1.0) */
+double nextDouble();
+\end{ClassSpec}
+\end{Slide} 
+
+\begin{Slide}
+{Användning av \code{Random}}
+10 slumpmässiga heltal i intervallet \code{[1, 6]}, 10 reella tal i intervallet \code{[5.0,~15.0)}:
+
+\begin{Code}
+import java.util.Random;
+
+public class RandomExample {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        for (int i = 0; i < 10; i++) {
+            int iRand = 1 + rand.nextInt(6);
+            System.out.println(iRand);
+        }
+        for (int i = 0; i < 10; i++) {
+            double dRand = 5 + 10 * rand.nextDouble();
+            System.out.println(dRand);
+        }
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}
+{Programexempel: Tärningsspel, 1}
+Ett tärningsspel med två spelare ska simuleras i ett program. Spelet går till på följande sätt: den förste spelaren kastar tärningen och räknar antalet kast tills det i två kast i följd blir samma antal prickar på tärningen. Därefter kastar den andre spelaren tärningen på samma sätt. Den av spelarna som gjort minst antal kast vinner spelet. Om båda spelarna gjort samma antal kast kastar de båda igen tills någon av dem vunnit. När spelet är klart ska namnet på vinnaren skrivas ut.\\
+
+Klasser: \code{Die} (tärning), \code{Player} (spelare), \code{DiceGame} (genomför ett spel).
+\end{Slide} 
+
+\begin{Slide}
+{\code{main}-metod som genomför spelet}
+\begin{Code}
+public class PlayGame {
+    public static void main(String[] args) {
+        Player p1 = new Player("Kim");
+        Player p2 = new Player("Robin");
+        DiceGame game = new DiceGame(p1, p2);
+        Player winner = game.play();
+        System.out.println(winner.getName() +  " vann");
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}
+{Klassen \code{Die}, en tärning}
+\begin{Code}
+import java.util.Random;
+public class Die {
+    private static Random rand = new Random();
+    private int pips;
+
+    /** Skapar en tärning */
+    public Die() {
+        roll(); // så att pips får ett värde 1..6
+    }
+    
+    /** Kastar tärningen */
+    public void roll() {
+        pips = 1 + rand.nextInt(6);
+    }
+    
+    /** Tar reda på resultatet av det senaste kastet */
+    public int getResult() {
+        return pips;
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}
+{Specifikation av \code{Player}, en spelare}
+Båda spelarna ska spela med samma tärning, så de måste få reda på ''utifrån'' vilken tärning de ska använda:
+
+\begin{ClassSpec}{Player}
+/** Skapar en spelare med namnet name */
+Player(String name);
+
+/** Spelaren kastar tärningen die tills det blir 
+    två lika i följd, returnerar antalet kast */
+int play(Die die);
+
+/** Tar reda på spelarens namn */
+String getName();
+\end{ClassSpec}
+\end{Slide} 
+
+\begin{Slide}
+{Klassen \code{DiceGame}, en spelomgång, 1}
+\begin{Code}
+public class DiceGame {
+    private Player player1;
+    private Player player2;
+    private Die die;
+    
+    /** Skapar ett spel som spelas mellan spelarna
+        player1 och player2 */
+    public DiceGame(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        die = new Die();
+    }
+    
+    /** Genomför en spelomgång, returnerar vinnaren */
+    public Player play() {
+        // ... nästa bild
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}
+{Klassen \code{DiceGame}, en spelomgång, 2}
+\begin{Code}
+public class DiceGame {
+    ...
+    
+    /** Genomför en spelomgång, returnerar vinnaren */
+    public Player play() {
+        int p1Rolls = player1.play(die);
+        int p2Rolls = player2.play(die);
+        while (p1Rolls == p2Rolls) {
+            p1Rolls = player1.play(die);
+            p2Rolls = player2.play(die);
+        }
+        return (p1Rolls < p2Rolls) ? player1 : player2;  //villkors-uttryck
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Villkorsuttryck, \code{? :}}
+\begin{Code}
+logiskt uttryck ? uttryck1 : uttryck2
+\end{Code}
+
+Exempel:
+\begin{Code}
+int i = 1;
+int j = 2;
+int result = (i == 1) ? i + 5 : j + 5; // result = 6
+return (i > j) ? i : j;                // 2 returneras
+\end{Code}
+
+Man kan klara sig utan villkorsuttryck:
+\begin{Code}
+int result;
+if (i == 1) {
+    result = i + 5;
+} else {
+    result = j + 5;
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Implementation av \code{Player.play}}
+\begin{Code}
+public class Player {
+    ...
+    
+    /** Spelaren kastar tärningen die tills det blir 
+        två lika i följd, returnerar antalet kast */
+    public int play(Die die) {
+        die.roll();
+        int prevResult = die.getResult();
+        die.roll();
+        int result = die.getResult();
+        int nbrRolls = 2;
+        while (result != prevResult) {
+            die.roll();
+            nbrRolls = nbrRolls + 1;
+            prevResult = result;
+            result = die.getResult();
+        }
+        return nbrRolls;
+    }
+}
+\end{Code}
+\end{Slide} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{do-while}
+\begin{Slide}
+{Klassen \code{DiceGame} med do-while}
+\begin{Code}
+public class DiceGame {
+    ...
+    
+    /** Genomför en spelomgång, returnerar vinnaren */
+    public Player play() {
+        int p1Rolls;
+        int p2Rolls;
+        do  {
+            p1Rolls = player1.play(die);
+            p2Rolls = player2.play(die);
+        } while (p1Rolls == p2Rolls)
+        return (p1Rolls < p2Rolls) ?  player1 : player2;
+    }
+}
+\end{Code}
+\end{Slide} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Formatering och utskrift}
+\begin{Slide}{Formatering}
+Automatisk formatering vid utskrift:
+\begin{Code}
+int sum = 209;
+System.out.println("Summan är " + sum);
+\end{Code}
+Formatering utan utskrift:
+\begin{Code}
+int sum = 209;
+String s1 = "" + sum;            // "209"
+String s2 = String.valueOf(sum); // "209"
+\end{Code}
+Se även \href{http://stackoverflow.com/questions/18730978/how-do-i-use-system-out-printf}{System.out.printf}
+\end{Slide} 
+
+\begin{Slide}{Utskrift}
+Metoder i \href{http://docs.oracle.com/javase/8/docs/api/java/io/PrintWriter.html}{\code{PrintWriter}} som kan användas på \code{System.out}:
+\begin{ClassSpec}{PrintWriter}
+void print(String s);   // skriv strängen s
+void println(String s); // "print line", som print men avsluta med övergång till ny rad
+void println();         // enbart ny rad
+void flush();           // skicka upplagrade utskrifter till skärmen
+\end{ClassSpec}
+
+Formatering av utskrift med \code{printf}, se ankboken 7.9, s 110:
+\begin{Code}
+for (int i = 2; i <= 5; i++) {
+    double r = Math.sqrt(i);
+    System.out.printf("%5d...%6.3f%n", i, r);
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Utskrift på fil}
+
+\begin{Code}
+import java.util.Random;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+public class RandomExample2 {
+    public static void main(String[] args) {
+        PrintWriter out = null;
+        try {
+            out = new PrintWriter
+                      (new File("random.txt"));
+        } catch (FileNotFoundException e) {
+            System.err.println("Filen random.txt " + 
+                               "kunde inte öppnas");
+            System.exit(1);
+        }
+        ... utskrifter med out.print hamnar på filen
+    }
+}
+\end{Code}
+\end{Slide} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Switch}
+\begin{Slide}{Switch-sats}
+I stället för en sekvens av if ... else if ... else if ... kan man använda en \code{switch}-sats. \Alert{Glöm inte} \code{break}!
+\begin{Code}[basicstyle=\ttfamily\fontsize{7}{8}\selectfont]
+    switch (w.getKey()) {
+    case 'a':
+        turtle.rotate(5);
+        break;
+    case 's':
+        turtle.rotate(-5);
+        break;
+    case ' ':
+        turtle.forward(10);
+        break;
+    case 'r':
+        int someRandomX = (int) (Math.random() * 100 + 1);
+        int someRandomY = (int) (Math.random() * 100 + 1);
+        turtle.moveTo(someRandomX, someRandomY);
+        break;
+    default:
+        break;
+    }
+\end{Code}
+Se hela koden här i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/cs_pt/src/se/lth/cs/pt/window/SpriteTest.java}{SpriteTest.java}
+\end{Slide} 
+            
 
 \end{document}

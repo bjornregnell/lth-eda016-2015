@@ -80,7 +80,7 @@
 \newcommand{\Alert}[1]{\textcolor{red}{\textbf{#1}}}
 \newcommand{\Eng}[1]{(eng. {\textit{#1}})}
 \newcommand{\Key}[1]{\textcolor{eclipsepurple}{\textbf{\texttt{#1}}}}
-
+\newcommand{\code}{\lstinline[basicstyle=\ttfamily]}
 
 
 \lstset{
