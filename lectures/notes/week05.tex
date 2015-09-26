@@ -30,6 +30,17 @@ Begrepp: sträng, toString, StringBuilder, slumptal, Random
 \end{enumerate}
 \end{Slide}
 
+\begin{Slide}{Hur använda föreläsningsexempel}
+\begin{itemize}
+\item Föreläsninsgexempel för användning i Eclipse finns här: \\ {\scriptsize
+  \url{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws} }
+\item Följ instruktionerna i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/README.md}{README.md} för att öppna exemplen i ett eget workspace
+\item Ändra, prova varianter, gör nya testprogram, etc. Det är genom att \Alert{aktivt koda} som du lär dig!
+\end{itemize}
+\end{Slide}
+
+
+
 \begin{Slide}{Specialtecken}
 Some \href{https://docs.oracle.com/javase/tutorial/java/data/characters.html}{Java Escape Sequences}:
 \begin{itemize}
@@ -380,9 +391,11 @@ public static String decompress(String s) {
 %%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Slumptal}
-\begin{Slide}
-{Slumptal}
-Slumptal får man med hjälp av standardklassen \code{java.util.Random}:
+\begin{Slide}{Slumptal} \footnotesize
+\begin{itemize}
+\item \href{https://sv.wikipedia.org/wiki/Slumptalsgenerator}{Slumptalsgenerering} är ett viktigt område inom mjukvaruutveckling, speciellt inom kryptering, intrångsskydd, simulering och spelutveckling.
+\item Slumptal får man i Java med hjälp av standardklassen \href{http://docs.oracle.com/javase/8/docs/api/java/util/Random.html}{\code{java.util.Random}}
+\end{itemize}
 
 \begin{ClassSpec}{Random}
 /** En slumptalsgenerator med slumptalsfröet seed */
@@ -692,5 +705,9 @@ I stället för en sekvens av if ... else if ... else if ... kan man använda en
 Se hela koden här i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/cs_pt/src/se/lth/cs/pt/window/SpriteTest.java}{SpriteTest.java}
 \end{Slide} 
             
+\begin{Slide}{Broken Switch}
+Det blir \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week05/BrokenSwitch.java}{tokigt} om man glömmer \Key{break}:
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week05/BrokenSwitch.java}
+\end{Slide}            
 
 \end{document}

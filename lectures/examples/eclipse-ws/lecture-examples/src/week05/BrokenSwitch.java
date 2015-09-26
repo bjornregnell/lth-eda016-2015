@@ -19,7 +19,7 @@ public class BrokenSwitch {
 			System.out.println("brocolli");
 		default:
 			System.out.println("annan grönsak");
-			//break
+			//break behövs inte i default om sist, men bra ändå vid framtida ändring
 		}
 	}
 }
