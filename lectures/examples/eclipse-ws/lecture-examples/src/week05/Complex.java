@@ -9,7 +9,7 @@ public class Complex {
         this.im = im;
     }
     
-    public String toString() {
-        return "Complex(" + re + ", " + im + ")";
-    }
+//    public String toString() {
+//        return "Complex(" + re + ", " + im + ")";
+//    }
 }
