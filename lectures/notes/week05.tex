@@ -40,6 +40,7 @@ Begrepp: sträng, toString, StringBuilder, slumptal, Random
 \end{Slide}
 
 
+\Subsection{Tecken}
 
 \begin{Slide}{Specialtecken}
 Some \href{https://docs.oracle.com/javase/tutorial/java/data/characters.html}{Java Escape Sequences}:
@@ -52,7 +53,6 @@ Some \href{https://docs.oracle.com/javase/tutorial/java/data/characters.html}{Ja
 \end{itemize}
 \end{Slide}
 
-\subsection{Tecken}
 \begin{Slide}{Tecken}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week05/ShowCharacters.java}
 \end{Slide}
@@ -83,7 +83,7 @@ static char toLowerCase(char ch);
 \end{ClassSpec}
 \end{Slide}
 
-\subsection{Strängar}
+\Subsection{Strängar}
 \begin{Slide}{\code{String} och \code{StringBuilder}}
 \footnotesize
 Standardklasser (i paketet \code{java.lang}, behöver inte importeras):
@@ -230,8 +230,7 @@ public class MutableText {
         sb = new StringBuilder(s);
     }
 
-    /** Ändrar alla små bokstäver a-z i texten till motsvarande 
-        stora bokstäver */
+    /** Ändrar alla små bokstäver a-z i texten till motsvarande stora */
     public void changeToUpperCase() {
         for (int i = 0; i < sb.length(); i++) {
             char ch = sb.charAt(i);
@@ -263,7 +262,7 @@ public void insertSpaces() {
 \begin{Slide}{Ta bort blanktecken från sträng}
 
 \begin{Code}
-public static String removeSpacesFrom(String s) { // "DÅLIGT"
+public static String removeSpacesSlow(String s) { // "DÅLIGT"
     String result = "";
     for (int i = 0; i < s.length(); i++) {
         if (s.charAt(i) != ' ') {
@@ -273,7 +272,7 @@ public static String removeSpacesFrom(String s) { // "DÅLIGT"
     return result;
 }
 
-public static String removeSpacesFrom(String s) { // "BRA"
+public static String removeSpaces(String s) { // "BRA"
     StringBuilder sb = new StringBuilder();
     for (int i = 0; i < s.length(); i++) {
         if (s.charAt(i) != ' ') {
@@ -286,8 +285,47 @@ public static String removeSpacesFrom(String s) { // "BRA"
 \end{Slide} 
 
 \begin{Slide}{Exempel: Nananananana Batman!}
-\url{https://www.youtube.com/watch?v=oDc-1zfffMw}
+\url{https://www.youtube.com/watch?v=oDc-1zfffMw} \\ \vspace{1em}
+
+Prova \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week05/NanananananananaNanananananananaBatman.java}{detta exempel} på din dator och se hur snabbt det går för stora \code{n} med \code{String} versus \code{StringBuilder}:
+\begin{Code}
+*** MEASURING n == 16
+  Singing Batman with String:        Timer measured: 0 ms
+  Singing Batman with StringBuilder: Timer measured: 0 ms
+\end{Code}
 \end{Slide} 
+
+\begin{Slide}{Hur snabb är din dator? Så här snabb är min i7-4790K}
+\begin{Code}[basicstyle=\ttfamily\fontsize{6}{7}\selectfont]
+*** MEASURING n == 1024
+  Singing Batman with String:        Timed: less than 7 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 2048
+  Singing Batman with String:        Timed: less than 24 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 4096
+  Singing Batman with String:        Timed: less than 74 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 8192
+  Singing Batman with String:        Timed: less than 241 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 16384
+  Singing Batman with String:        Timed: less than 873 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 32768
+  Singing Batman with String:        Timed: less than 4269 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 65536
+  Singing Batman with String:        Timed: less than 17877 ms
+  Singing Batman with StringBuilder: Timed: less than 1 ms
+*** MEASURING n == 131072
+  Singing Batman with String:        Timed: less than 78529 ms
+  Singing Batman with StringBuilder: Timed: less than 2 ms
+*** MEASURING n == 262144
+  Singing Batman with String:        Timed: less than 376264 ms
+  Singing Batman with StringBuilder: Timed: less than 4 ms  
+\end{Code}
+\end{Slide}
 
 \begin{Slide}{\code{toString}}
 
@@ -301,19 +339,19 @@ public class Complex {
         this.im = im;
     }
     
-    public String toString() {
-        return "(" + re + ", " + im + ")";
+    public String toString() { //vad händer i exemplet om du tar bort denna?
+        return "Complex(" + re + ", " + im + ")";
     }
 }
 \end{Code}
 
 
-Exempel på användning:
+Exempel på explicit och \href{https://docs.oracle.com/javase/specs/jls/se8/html/jls-4.html#jls-4.3.2}{implicit} användning av \code{toString}:
 
 \begin{Code}
-Complex c = new Complex(1.5, 2.3);
-System.out.println("c = " + c.toString());
-System.out.println("c = " + c);
+Complex z = new Complex(1.5, 2.3);
+System.out.println("z = " + z.toString());
+System.out.println("z = " + z);
 \end{Code}
 \end{Slide} 
 
@@ -323,12 +361,37 @@ Användning av s.k. följdlängdskodning\\
 \begin{enumerate} \footnotesize
  \item Man räknar hur många gånger som ett tecken förekommer i följd.
  \item Om antalet är större än 3 lagras först ett dollartecken, sedan antalet tecken, sedan tecknet. Dollartecknet fungerar som ett ''escapetecken'' som talar om att de följande tecknen ska tolkas på ett speciellt sätt. 
- \item Antalet ska lagras i ett tecken och måste rymmas i en \code{char}-variabel (16 bitar).
  \item Om antalet är mindre än eller lika med 3 lagras alla tecken.
  \item Exempel: \textsl{aabbbbbcdddeeeeeeffff} kodas som \textsl{aa\$5bcddd\$6e\$4f}. Siffrorna är inte tecknen \code{'5'}, \code{'6'} och \code{'4'} utan tecknen med Unicode-numren 5, 6 respektive 4.
-\item Förenkling: Vi förutsätter att det inte finns några dollartecken i texten som ska konverteras.
+\item Förenklingar: 
+\begin{itemize} \footnotesize
+\item Vi förutsätter att det inte finns några dollartecken i texten.
+\item Vi förutsätter att det inte finns fler tecken i rad än att antalet ryms i en \code{char}-variabel (16 bitar).
+\end{itemize}
 \end{enumerate}
 \end{Slide} 
+
+\begin{Slide}{Compressor specifikation och design}
+\begin{ClassSpec}{Compressor}
+/** komprimerar klartextsträngen s med följdlängdskodning */
+public static String compress(String s) 
+
+/** dekomprimerar följdlängdskodade strängen s till klartext  */
+public static String decompress(String s)
+\end{ClassSpec}
+
+\Emph{Design av \texttt{compress}}: \\ pseudokod:
+\begin{itemize} 
+\item så länge strängen inte är slut:
+\begin{itemize} 
+\item så länge alla tecken lika:\\ räkna antalet lika tecken i följd
+\item om fler än 3 lika: \\ 
+bygg på sträng med komprimerad följd \\
+\textit{annars:} bygg på sträng med okomprimerad följd
+
+\end{itemize}
+\end{itemize}
+\end{Slide}
 
 \begin{Slide}{Komprimering}
 
@@ -390,7 +453,7 @@ public static String decompress(String s) {
 
 %%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Slumptal}
+\Subsection{Slumptal}
 \begin{Slide}{Slumptal} \footnotesize
 \begin{itemize}
 \item \href{https://sv.wikipedia.org/wiki/Slumptalsgenerator}{Slumptalsgenerering} är ett viktigt område inom mjukvaruutveckling, speciellt inom kryptering, intrångsskydd, simulering och spelutveckling.
@@ -436,15 +499,29 @@ public class RandomExample {
 \end{Code}
 \end{Slide} 
 
-\begin{Slide}
-{Programexempel: Tärningsspel, 1}
-Ett tärningsspel med två spelare ska simuleras i ett program. Spelet går till på följande sätt: den förste spelaren kastar tärningen och räknar antalet kast tills det i två kast i följd blir samma antal prickar på tärningen. Därefter kastar den andre spelaren tärningen på samma sätt. Den av spelarna som gjort minst antal kast vinner spelet. Om båda spelarna gjort samma antal kast kastar de båda igen tills någon av dem vunnit. När spelet är klart ska namnet på vinnaren skrivas ut.\\
+\begin{Slide}{Programexempel: Tärningsspel} \footnotesize
+\Emph{Krav} 
+\begin{enumerate} 
+\item Ett tärningsspel med två spelare ska simuleras i ett program. 
+\item Den förste spelaren kastar tärningen och räknar antalet kast tills det i två kast i följd blir samma antal prickar på tärningen. 
+\item Därefter kastar den andre spelaren tärningen på samma sätt. 
+\item Den av spelarna som gjort minst antal kast vinner spelet. 
+\item Om båda spelarna gjort samma antal kast kastar de båda igen tills någon av dem vunnit. 
+\item När spelet är klart ska namnet på vinnaren skrivas ut.
 
-Klasser: \code{Die} (tärning), \code{Player} (spelare), \code{DiceGame} (genomför ett spel).
+\end{enumerate}
+
+\Emph{Design}:  Dela upp koden i dessa klasser: 
+\begin{itemize}
+\item \code{Die} har hand om data och operationer för en \Emph{tärning}
+\item \code{Player} har hand om data och operationer för en \Emph{spelare}
+\item \code{DiceGame} \Emph{genomför ett spel}
+\end{itemize}
 \end{Slide} 
 
 \begin{Slide}
 {\code{main}-metod som genomför spelet}
+\Emph{Test}: Ett huvudprogram som genomför spelet:
 \begin{Code}
 public class PlayGame {
     public static void main(String[] args) {
@@ -456,6 +533,7 @@ public class PlayGame {
     }
 }
 \end{Code}
+Testresultat: Utskrift av vinnarens namn.
 \end{Slide} 
 
 \begin{Slide}
@@ -660,18 +738,16 @@ import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class RandomExample2 {
+public class TryCatchExample {
     public static void main(String[] args) {
         PrintWriter out = null;
         try {
-            out = new PrintWriter
-                      (new File("random.txt"));
+            out = new PrintWriter(new File("random.txt"));
         } catch (FileNotFoundException e) {
-            System.err.println("Filen random.txt " + 
-                               "kunde inte öppnas");
+            System.err.println("Filen random.txt kunde inte öppnas");
             System.exit(1);
         }
-        ... utskrifter med out.print hamnar på filen
+        //... utskrifter här med System.out.print hamnar på filen
     }
 }
 \end{Code}
@@ -706,7 +782,7 @@ Se hela koden här i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/
 \end{Slide} 
             
 \begin{Slide}{Broken Switch}
-Det blir \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week05/BrokenSwitch.java}{tokigt} om man glömmer \Key{break}:
+Det blir \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week05/BrokenSwitch.java}{tokigt} om man \href{http://stackoverflow.com/questions/2710300/why-do-we-need-break-after-case-statements}{glömmer} \Key{break}:
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week05/BrokenSwitch.java}
 \end{Slide}            
 
