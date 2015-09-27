@@ -16,7 +16,7 @@ public class Timer {
 	}
 	
 	public void showMillisAndReset(){
-		System.out.println("Timer measured: " + elapsedMillis() + " ms");
+		System.out.println("Timed: less than " + (elapsedMillis() + 1) + " ms");
 		reset();
 	}
 

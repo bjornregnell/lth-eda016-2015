@@ -7,7 +7,7 @@ public class NanananananananaNanananananananaBatman {
 		String s = "";
 		StringBuilder sb = new StringBuilder("");
 		
-		System.out.println("Singing Batman with String:");
+		System.out.print("  Singing Batman with String:        ");
 		Timer t = new Timer();
 		for (int i = 0; i < n; i++){
 			s = s + "Nananananananana";
@@ -15,7 +15,7 @@ public class NanananananananaNanananananananaBatman {
 		s = s + " Batman!";
 		t.showMillisAndReset();
 
-		System.out.println("Singing Batman with StringBuilder:");
+		System.out.print("  Singing Batman with StringBuilder: ");
 		for (int i = 0; i < n; i++){
 			sb = sb.append("Nananananananana");
 		}
