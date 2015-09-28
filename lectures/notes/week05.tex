@@ -481,6 +481,7 @@ double nextDouble();
 10 slumpmässiga heltal i intervallet \code{[1, 6]}, 10 reella tal i intervallet \code{[5.0,~15.0)}:
 
 \begin{Code}
+package week05;
 import java.util.Random;
 
 public class RandomExample {
@@ -488,8 +489,9 @@ public class RandomExample {
         Random rand = new Random();
         for (int i = 0; i < 10; i++) {
             int iRand = 1 + rand.nextInt(6);
-            System.out.println(iRand);
+            System.out.print(iRand + " ");
         }
+        System.out.print("\n\n");
         for (int i = 0; i < 10; i++) {
             double dRand = 5 + 10 * rand.nextDouble();
             System.out.println(dRand);
@@ -546,7 +548,7 @@ public class Die {
 
     /** Skapar en tärning */
     public Die() {
-        roll(); // så att pips får ett värde 1..6
+        roll(); // så att pips får ett initialt värde 1..6
     }
     
     /** Kastar tärningen */
