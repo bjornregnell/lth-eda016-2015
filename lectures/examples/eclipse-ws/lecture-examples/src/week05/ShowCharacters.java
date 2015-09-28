@@ -15,9 +15,9 @@ public class ShowCharacters {
 
 		System.out.print("\n\n\n");
 		
-		for (char c = 32; c <= 1000; c ++) {
+		for (char c = 32; c <= 1000; c++) {
 			showChar(c); 
-			if ((c - ' ' + 1) % 10 == 0) {
+			if ((c - ' ' + 1) % 5 == 0) {
 				System.out.print("\n");
 			}
 		}
