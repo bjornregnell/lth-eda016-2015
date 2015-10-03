@@ -34,7 +34,7 @@ Begrepp: sträng, toString, StringBuilder, slumptal, Random
 \begin{itemize}
 \item Föreläsninsgexempel för användning i Eclipse finns här: \\ {\scriptsize
   \url{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws} }
-\item Följ instruktionerna i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/README.md}{README.md} för att öppna exemplen i ett eget workspace
+\item Följ instruktionerna i \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/README.md}{README.md} för att öppna alla exempel i ett eget workspace
 \item Ändra, prova varianter, gör nya testprogram, etc. Det är genom att \Alert{aktivt koda} som du lär dig!
 \end{itemize}
 \end{Slide}
@@ -695,7 +695,7 @@ public class DiceGame {
         do  {
             p1Rolls = player1.play(die);
             p2Rolls = player2.play(die);
-        } while (p1Rolls == p2Rolls)
+        } while (p1Rolls == p2Rolls);
         return (p1Rolls < p2Rolls) ?  player1 : player2;
     }
 }

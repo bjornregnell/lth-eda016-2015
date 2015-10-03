@@ -3,13 +3,13 @@ package se.lth.cs.pt.window;
 public class SpriteTest {
 
 	static final int WIN_SIZE = 600;
-	static final int SPRITE_SIZE = 30;
+	static final int SPRITE_SIZE = 100;
 	static final int ROTATION = 5;
 	static final int LEAP = 10;
 
 	public static void main(String[] args) {
 		SimpleWindow w = new SimpleWindow(WIN_SIZE, WIN_SIZE, "SpriteTest");
-		Sprite turtle = new Sprite("src/se/lth/cs/pt/window/turtle.png", SPRITE_SIZE, SPRITE_SIZE);
+		Sprite turtle = new Sprite("src/se/lth/cs/pt/window/bjorn.png", SPRITE_SIZE, SPRITE_SIZE);
 		w.addSprite(turtle);
 		turtle.moveMidTo(WIN_SIZE / 2, WIN_SIZE / 2);
 		while (true) {

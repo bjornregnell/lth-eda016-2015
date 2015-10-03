@@ -6,7 +6,7 @@ public class WordCollector {
 	private StringBuilder sb = new StringBuilder();
 	private Random rnd = new Random();
 
-	public void Append(String s){
+	public void append(String s){
 		sb.append(s);
 	}
 	

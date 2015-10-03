@@ -24,9 +24,9 @@ public class RandomStandup {
 				w.writeText(i + ": " + "SITT NER om ditt namn innehåller " + ch);
 				sb.deleteCharAt(index);
 			}
-			Thread.sleep(3000);
+			Thread.sleep(6000);
 		}
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		w.close();
 	}
 }

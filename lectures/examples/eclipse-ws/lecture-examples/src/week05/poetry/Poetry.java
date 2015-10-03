@@ -9,12 +9,12 @@ public class Poetry {
 	private Random rnd = new Random();
 
 	public Poetry() {
-		wc.Append("värme hetta sol mörker natt kölden månen regnet vinden");
+		wc.append("värme hetta sol mörker natt kölden månen regnet vinden");
 	}
 
 	private void ask(String q) {
 		System.out.println(q);
-		wc.Append(" " + scan.nextLine());
+		wc.append(" " + scan.nextLine());
 		System.out.println();
 	}
 
