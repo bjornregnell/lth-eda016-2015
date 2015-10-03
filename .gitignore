@@ -5,6 +5,7 @@
 **/*.snm
 **/*.vrb
 **/*.synctex.gz
+**/*.synctex.gz(busy)
 **/*.toc
 **/*.class
 **/old
