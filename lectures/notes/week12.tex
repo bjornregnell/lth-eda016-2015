@@ -1,0 +1,157 @@
+%\begin{Slide}
+%\frametitle{Algoritmexempel: Sökning}
+%Sök upp platsen för ett givet element i en följd av element. Om det finns mer än ett element som är lika med det sökta så ska resultatet vara platsen för det första av dessa element.
+%
+%\halfblankline
+%Algoritm (linjärsökning):
+%\begin{Code}
+%pos = "platsen för det första elementet";
+%while ("fler element kvar" &&
+%       "elementet på plats pos inte är det vi söker") {
+%    pos = "platsen för nästa element";
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Sökning, variant 1}
+%
+%\begin{Code}
+%public class Data {
+%    private int[] v;
+%    private int n;
+%
+%    /* här finns konstruktorer och andra metoder */
+%    
+%    public int find(int nbr) {
+%        int i = 0;
+%        while (i < n && v[i] != nbr) {
+%            i++;
+%        }
+%        return (i < n) ? i : -1;
+%    }
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Sökning, variant 2}
+%
+%\begin{Code}
+%public int find2(int nbr) {
+%    v[n] = nbr;
+%    int i = 0;
+%    while (v[i] != nbr) {
+%        i++;
+%    }
+%    return (i < n) ? i : -1;
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Sökning, variant 3}
+%
+%\begin{Code}
+%public int find3(int nbr) {
+%    for (int i = 0; i < n; i++) {
+%        if (v[i] == nbr) {
+%            return i;
+%        }
+%    }
+%    return -1;
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Binärsökning (bara i sorterad vektor)}
+%
+%\begin{Code}
+%public int binarySearch(int nbr) {
+%    int low = 0;      // undre gräns
+%    int high = n - 1; // övre gräns
+%    int mid = -1;     // mittpunkt
+%    boolean found = false;
+%    while (low <= high && ! found) {
+%        mid = (low + high) / 2;
+%        if (v[mid] == nbr) {
+%            found = true;
+%        } else if (v[mid] < nbr) {
+%            low = mid + 1;
+%        } else {
+%            high = mid - 1;
+%        }
+%    }
+%    return found ? mid : -(low + 1);
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Tidskomplexitet, sökning}
+%\begin{tabular}{ll}
+%Linjärsökning: & $O(n)$ \\
+%Binärsökning:  & $O(\log n)$
+%\end{tabular}
+%
+%\blankline
+%Vi har en vektor med 1000 element. Vi har mätt tiden för att söka upp ett element många gånger och funnit att det tar ungefär 1 $\mu$s både med linjärsökning och binärsökning. Hur lång tid tar det om vi har fler element i vektorn?
+%
+%\blankline
+%\begin{tabular}{rccccc}
+%       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
+%linjär & 1     & 10     & 100     & 1000     & 10000 \\
+%binär  & 1     & 1.33   & 1.67    & 2.00     & 2.33
+%\end{tabular}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Algoritmexempel: Sortering}
+%Sortera en följd av tal i växande ordning.
+%
+%\blankline
+%Algoritm (urvalssortering):
+%
+%\blankline Sök upp det minsta talet och låt det byta plats med det första talet, sök upp det minsta av de återstående talen och låt det byta plats med det andra talet, osv.
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Sortering}
+%\begin{Code}
+%/** Sorterar talen i vektorn med urvalssortering */
+%public void sort() {
+%    for (int i = 0; i < n - 1; i++) {
+%        int min = Integer.MAX_VALUE;
+%        int minIndex = -1;
+%        for (int k = i; k < n; k++) {
+%            if (v[k] < min) {
+%                min = v[k];
+%                minIndex = k;
+%            }
+%        }
+%        v[minIndex] = v[i]; // låt v[i] och 
+%        v[i] = min;         // v[minIndex] byta plats
+%    }
+%}
+%\end{Code}
+%\end{Slide} 
+%
+%\begin{Slide}
+%\frametitle{Tidskomplexitet, sortering}
+%\begin{tabular}{ll}
+%Urvalssortering: & $O(n^2)$ \\
+%''Bra'' metoder:  & $O(n\log n)$
+%\end{tabular}
+%
+%\blankline
+%Vi har en vektor med 1000 element. Vi har mätt tiden för att sortera elementen många gånger och funnit att det tar ungefär 1 ms både med urvalssortering (eller någon annan ''dålig'' metod) och en ''bra'' metod. Hur lång tid tar det om vi har fler element i vektorn?
+%
+%\blankline
+%\begin{tabular}{rccccc}
+%       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
+%dålig  & 1     & 100    & $10^4$  & $10^6$   & $10^8$ \\
+%bra    & 1     & 13.3   & 167     & 2000     & 23000
+%\end{tabular}
+%\end{Slide} 
+%
