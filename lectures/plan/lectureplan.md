@@ -7,12 +7,12 @@
 | W03           | F4        | Systemutveckling | Krav-design-test, specifikationer, använda vs implementera, exempel: Square, attribut, synlighetsregler, private, public, konstruktor, this, implementera metoder, funktioner vs procedurer, void, parametrar, Eclipse IDE, öppen källkod, Stack overflow, GitHub & Bitbucket | 2.7-2.10, 3.3-3.12 |
 | W04           | F5 F6       | Aritmetik, Logik, Datastrukturer  | exempel: Point | 3.1-3.9, 5, 6.1-6.4, 7.2, 7.5 |
 | W05           | F7 F8       | Klasser, Strängar, StringBuilder, Slumptal | Person, Die, switch, char, String, StringBuilder, do-while | 11, 7.9, 6.10, 7.7, 7.4, 7.12  |
-| W06           | F9 F10      | Vektorer, Registrering |  | 8 |
-| W07           | F11 F12     | Likhet, repetition |  | Delar av 1-8, 11 |
+| W06           | F9 F10      | Vektorer | Min-Max, linjärsökning, registrering | 8 |
+| W07           | F11 F12     | Likhet, repetition | equals | Delar av 1-8, 11 |
 | W09 (Lp2V1)   | F13         | Matriser |  | Kapitel 8.6-8.7 |
 | W10 (Lp2V2)   | F14         | Listor | ArrayList, typklasser, autoboxning | 12 |
 | W11 (Lp2V3)   | F15 F16     | Arv |  | 9 |
-| W12 (Lp2V4)   | F17 F18     | Algoritmer | linjärsökning, binärsökning, urvalssortering, bubbelsortering, insättningssortering, komplexitet | 7.7, 8 |
+| W12 (Lp2V4)   | F17 F18     | Algoritmer | binärsökning, urvalssortering, bubbelsortering, insättningssortering, komplexitet | 7.7, 8 |
 | W13 (Lp2V5)   | F19         | Designexempel | att skriva stora program | 9, 10, 13   |
 | W14 (Lp2V6)   | F20         | Repetition, Extentor | Vad kommer på tentan? | 1-13, A, B, C |
 | W15 (Lp2V7)   | F21         | Utblick | framtidens systemutveckling, kommande kurser PfK m.fl., ämnen på begäran | (14-16) |
