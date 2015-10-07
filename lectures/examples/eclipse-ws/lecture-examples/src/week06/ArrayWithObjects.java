@@ -15,6 +15,7 @@ public class ArrayWithObjects {
 			points[i] = new Point(x, y);
 			System.out.println("Point:" + points[i]);
 		}
+		scan.close();
 	}
 
 }

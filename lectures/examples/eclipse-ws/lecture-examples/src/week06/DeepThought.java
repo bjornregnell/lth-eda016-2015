@@ -6,7 +6,7 @@ public class DeepThought {
 		IntFinder ints = new IntFinder(n);
 		for (int i = 0; i < n; i++) {
 			ints.set(i, (int) (Math.random() * 42) + 1);
-			System.out.print("ints[i] == " + ints.get(i) + " ");
+			System.out.print("ints[" + i + "] == " + ints.get(i) + " ");
 		}
 		int found = ints.linearSearch(42);
 		if (found >= 0) {

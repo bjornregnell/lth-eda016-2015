@@ -14,5 +14,6 @@ public class DoWhileTest {
 			n++;
 		} while (i < 42);
 		System.out.println("Du använde " + n + " försök innan du lyckades.");
+		scan.close();
 	}
 }

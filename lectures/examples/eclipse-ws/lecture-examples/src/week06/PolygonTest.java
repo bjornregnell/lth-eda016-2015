@@ -32,6 +32,6 @@ public class PolygonTest {
 		w.waitForMouseClick();
 		p.move(150, 100);
 		p.insertVertex(5, 10, 10);  // funkar!! Varför?
-		p.draw(w);
+		p.draw(w); 
 	}
 }

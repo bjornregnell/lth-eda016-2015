@@ -1,7 +1,5 @@
 package week06;
 
-import java.util.Arrays;
-
 import se.lth.cs.pt.window.SimpleWindow;
 
 public class PolygonFixedSize {

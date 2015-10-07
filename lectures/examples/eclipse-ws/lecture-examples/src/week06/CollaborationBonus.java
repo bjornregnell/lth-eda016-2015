@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class CollaborationBonus {
 	private int[] bonus;
-	int nextFreePos = 0;
+	private int nextFreePos = 0;
 
 	public CollaborationBonus(int numberOfGroupMembers){
 		bonus = new int[numberOfGroupMembers];
@@ -15,11 +15,12 @@ public class CollaborationBonus {
 	}
 	
 	public int getGroupBonus(){
-		int sum =0;
+		double sum =0;
 		for (int i = 0; i < nextFreePos; i++){
 			sum += bonus[i];
 		}
-		return Math.round((float) sum / bonus.length);
+		double average = sum / nextFreePos;
+		return (int) Math.ceil(average);
 	}
 
 	public static void main(String[] args) {
@@ -32,5 +33,6 @@ public class CollaborationBonus {
 			cb.addIndividualBonus(scan.nextInt());
 		}
 		System.out.println("Gruppbonus: " + cb.getGroupBonus());
+		scan.close();
 	}
 }

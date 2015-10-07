@@ -228,13 +228,13 @@ triangle.draw(w);
 
 \begin{Slide}{Implementering av \code{PolygonFixedSize}, del 1}
 \begin{Code}
-public class Polygon {
+public class PolygonFixedSize {
     private Point[] vertices; // vektor med hörnpunkter
     private int n;            // antalet hörnpunkter
     
     /** Skapar en polygon som har plats för högst 
         size hörnpunkter */
-    public Polygon(int size) {
+    public PolygonFixedSize(int size) {
         vertices = new Point[size];
         n = 0;
     }
@@ -322,9 +322,23 @@ public void addVertex(int x, int y) {
     n++;
 }
 \end{Code}
+Se ny version \code{Polygon} som kan utökas med fler punkter \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week06/Polygon.java}{här}.
 \end{Slide} 
 
 \subsubsection{Registrering}
+\begin{Slide}{Registrering}\footnotesize
+Registrering \Eng{register} innebär att räkna antalet förekomster av ett visst värde i en sekvens av värden. 
+\\ \vspace{1em} 
+Exempel: statistik över antalet tärningskast med ett visst utfall; statistik över hur många studenter som får poäng inom olika betygsintervall på en tenta. 
+\\ \vspace{1em} 
+Steg i algoritmen:
+\begin{enumerate}
+\item Skapa en vektor för alla värden (eller intervall) som ska räknas.
+\item Gå igenom alla element och öka antalet på platsen i vektorn som motsvarar värdet (eller intervallet).
+\end{enumerate}
+Registrering ingår i övningarna 6 och 7. 
+\end{Slide}
+
 \begin{Slide}{Algoritmexempel: Registrering}
 
 

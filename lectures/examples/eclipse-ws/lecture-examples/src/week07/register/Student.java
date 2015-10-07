@@ -1,4 +1,4 @@
-package week06.register;
+package week07.register;
 
 import java.util.Random;
 

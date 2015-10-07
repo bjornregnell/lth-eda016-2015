@@ -32,4 +32,8 @@ public class Point {
 		int yDist = getY() - p.getY();
 		return Math.sqrt(xDist * xDist + yDist * yDist);
 	}
+	
+	public String toString() {
+		return "Point [x=" + x + ", y=" + y + "]";
+	}
 }

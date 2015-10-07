@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class MinMaxInArrayBug {
 	public static void main(String[] args) {
-		int n = 100;
+		int n = 1;
 		Random rnd = new Random();
 		double[] rs = new double[n];
 		for (int i = 0; i < n; i++){ // populate the array

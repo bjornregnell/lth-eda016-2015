@@ -1,4 +1,4 @@
-package week06.register;
+package week07.register;
 
 import java.util.Scanner;
 
@@ -15,5 +15,6 @@ public class RegisterTest {
 		//test.printStatistics();
 		
 		test.printStatistics2();
+		scan.close();
 	}
 }

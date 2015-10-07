@@ -21,5 +21,6 @@ public class BrokenSwitch {
 			System.out.println("annan grönsak");
 			//break behövs inte i default om sist, men bra ändå vid framtida ändring
 		}
+		scan.close();
 	}
 }
