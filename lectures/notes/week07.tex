@@ -9,23 +9,6 @@
 \author{Björn Regnell}
 \institute{Datavetenskap, LTH}
 \date{Lp1-2, HT 2015}
- 
-% Package to draw UML diagrams in file: pgf-umlcd.sty 
-% https://github.com/xuyuan/pgf-umlcd
-% http://people.irisa.fr/Martin.Quinson/blog/2010/1105/UML_class_diagrams_in_tikz/index.html
-\usepackage[simplified]{pgf-umlcd}  % simplified removes empty parts of a class
-%\usepackage{pgf-umlcd}
-% Example:
-%\begin{tikzpicture}
-%\begin{class}[]{Robot}{1,3}
-%  \attribute{name : String}
-%  \operation{walk(distance: int) : void}
-%\end{class}
-%\begin{class}[]{TalkingRobot }{1,0}
-% \inherit{Robot}
-%  \operation{speak(s: String) : void}
-%\end{class}
-%\end{tikzpicture}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -37,20 +20,21 @@
 \frame{\tableofcontents}
 
 \subsection{Att göra denna vecka}
-\begin{Slide}{Att göra i Vecka \vecka: Förstå \href{https://sv.wikipedia.org/wiki/Arv_\%28programmering\%29}{arv}. Repetera inför kontrollskrivning.}
+\begin{Slide}{Att göra i Vecka \vecka: Förstå arv. \\Repetera inför kontrollskrivning.}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken: ??? \\  
-Begrepp: registrering, equals, arv.
+\item Läs följande kapitel i kursboken:\\ 9.1, 9.3, 9.7-9.9, 11.2, 12.6 \\  
+Begrepp: arv, subklass, superklass, \code{extends},  \code{Object}, operatorn \code{isinstanceof}, \code{super},  \code{equals},
 \item Gör övning 7: registrering
 \item Träffas i samarbetsgrupper och hjälp varandra 
 \item Gör Lab 6: Implementera Turtle och ColorTurtle.
+\item Plugga inför \Alert{obligatorisk} kontrollskrivning.
 \end{enumerate}
 \end{Slide}
 
 \subsection{Grundläggande terminologi för arv}
 \begin{Slide}{Vad är arv? Motivering och terminologi}\footnotesize
 \begin{itemize}
-\item Med hjälp av \Emph{arv} mellan klasser kan man göra så att en klass \Emph{ärver} (''får med sig'') innehåll från en \textit{annan} klass.
+\item Med hjälp av \Emph{arv} mellan klasser kan man göra så att en klass \Emph{ärver} (''får med sig'') innehållet i en \textit{annan} klass.
 \item Varför vill man det? 
 \begin{enumerate}\footnotesize
 \item Dela upp ansvar mellan klasser och bryta ut gemensamma delar så att man slipper duplicerad kod.
@@ -60,8 +44,74 @@ Begrepp: registrering, equals, arv.
 \item Klassen som ärver (utökar) kallas \Emph{subklass}
 \item Klassen som blir utökad kallas \Emph{superklass} (även \textit{basklass})
 \item Läs mer om arv \Eng{inheritance} här: \scriptsize \url{https://sv.wikipedia.org/wiki/Arv\_\%28programmering\%29} 
-
 \end{itemize}
 \end{Slide}
 
+\begin{Slide}{Exempel: \href{https://www.youtube.com/watch?v=VXa9tXcMhXQ}{Robot}}
+\Emph{Krav}: \\ Det ska finnas två sorters robotar: \code{Robot} och \code{TalkingRobot}. Båda kan arbeta, men bara den senare kan prata.
+\\ \vspace{1em}
+En möjlig \Emph{design} om vi \textit{inte} använder arv:
+
+\begin{ClassSpec}{Robot}
+/** Arbeta */
+public void work();
+\end{ClassSpec}
+
+\begin{ClassSpec}{TalkingRobot}
+/** Arbeta */
+public void work();
+
+/** Prata */
+public void talk();
+\end{ClassSpec}
+\end{Slide}
+
+\begin{Slide}{Utökning med copy-paste ger duplicerad kod}\footnotesize
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotduplicate/RobotNoInheritance.java}
+\end{Slide}
+
+\begin{Slide}{Utökning med arv -- vi slipper duplicera kod}\footnotesize
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotinherit/RobotInheritance.java}
+\end{Slide}
+
+\begin{Slide}{Illustrera arvsrelationer i diagram}
+\begin{center}
+\begin{tikzpicture}
+\node (Robot) [umlclass, rectangle split parts = 2]  {
+            \textbf{\centerline{Robot}}
+            \nodepart[]{second}work(): void
+        };
+\node (TalkingRobot) [umlclass, rectangle split parts = 2, below = of Robot]  {
+            \textbf{\centerline{TalkingRobot}}
+            \nodepart[]{second}talk(): void
+        };        
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.8) -| (Robot.south);        
+\end{tikzpicture}
+\end{center}
+\vspace{2em} 
+\centerline{\scriptsize\href{https://en.wikipedia.org/wiki/Class_diagram}{Class Diagram}, Unified Modelling Language (\href{https://sv.wikipedia.org/wiki/Unified\_Modeling\_Language}{UML}), Ankboken sid 147.}
+\end{Slide}
+
+\begin{Slide}{Klassificering av robotar}
+\begin{center}
+\begin{tikzpicture}
+\node (AbstractRobot) [umlclass, rectangle split parts = 2, xshift=-2cm]  {
+            \textit{\textbf{\centerline{AbstractRobot}}}
+            \nodepart[]{second}work(): void
+        };
+        
+\node (MuteRobot) [umlclass, rectangle split parts = 2, below = of Robot, left = of TalkingRobot]  {
+            \textbf{\centerline{MuteRobot}}
+            \nodepart[]{second} \vspace{1em}
+        };  
+                
+\node (TalkingRobot) [umlclass, rectangle split parts = 2, below = of AbstractRobot, xshift=2cm, yshift=-0.3mm]  {
+            \textbf{\centerline{TalkingRobot}}
+            \nodepart[]{second}talk(): void
+        };        
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.4) -| (AbstractRobot.south);    
+\draw[umlarrow] (MuteRobot.north) -- ++(0,0.4) -| (AbstractRobot.south);            
+\end{tikzpicture}
+\end{center}
+\end{Slide}
 \end{document}
