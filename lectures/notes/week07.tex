@@ -23,7 +23,7 @@
 \begin{Slide}{Att göra i Vecka \vecka: Förstå arv. \\Repetera inför kontrollskrivning.}
 \begin{enumerate}
 \item Läs följande kapitel i kursboken:\\ 9.1, 9.3, 9.7-9.9, 11.2, 12.6 \\  
-Begrepp: arv, subklass, superklass, \code{extends},  \code{Object}, operatorn \code{isinstanceof}, \code{super},  \code{equals},
+Begrepp: arv, subklass, superklass, \code{extends},  \code{abstract}, operatorn \code{instanceof}, \code{Object},  \code{super},  \code{equals},
 \item Gör övning 7: registrering
 \item Träffas i samarbetsgrupper och hjälp varandra 
 \item Gör Lab 6: Implementera Turtle och ColorTurtle.
@@ -92,6 +92,7 @@ public void talk();
 \centerline{\scriptsize\href{https://en.wikipedia.org/wiki/Class_diagram}{Class Diagram}, Unified Modelling Language (\href{https://sv.wikipedia.org/wiki/Unified\_Modeling\_Language}{UML}), Ankboken sid 147.}
 \end{Slide}
 
+\subsection{Klassificering och abstrakta klasser}
 \begin{Slide}{Klassificering av robotar}
 \begin{center}
 \begin{tikzpicture}
@@ -100,7 +101,7 @@ public void talk();
             \nodepart[]{second}work(): void
         };
         
-\node (MuteRobot) [umlclass, rectangle split parts = 2, below = of Robot, left = of TalkingRobot]  {
+\node (MuteRobot) [umlclass, rectangle split parts = 2, below = of Robot, left = of TalkingRobot, yshift=0.05mm]  {
             \textbf{\centerline{MuteRobot}}
             \nodepart[]{second} \vspace{1em}
         };  
@@ -109,9 +110,71 @@ public void talk();
             \textbf{\centerline{TalkingRobot}}
             \nodepart[]{second}talk(): void
         };        
-\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.4) -| (AbstractRobot.south);    
-\draw[umlarrow] (MuteRobot.north) -- ++(0,0.4) -| (AbstractRobot.south);            
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.5) -| (AbstractRobot.south);    
+\draw[umlarrow] (MuteRobot.north) -- ++(0,0.5) -| (AbstractRobot.south);            
+\end{tikzpicture}
+\end{center}
+\vspace{0.25em}\pause
+\begin{itemize}
+\item \Emph{Abstrakta klasser} används som bas för klassificering
+\item Deklaration i Java: \code{abstract class ClassName}
+\item Försök att instantiera abstrakta klasser ger kompileringsfel. 
+\item \code{MuteRobot} är en \Emph{konkret klass} som kan instantieras och ärver \code{work()}-metoden från \code{AbstractRobot}
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Exempel: klassificeringsmodell  i Java}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/AbstractRobot.java}
+
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/TalkingRobot.java}
+
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/MuteRobot.java}
+\end{Slide}
+
+\begin{Slide}{Exempel: test av klassificeringsmodell}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/TestRobots.java}
+\end{Slide}
+
+\subsection{Operatorn \texttt{instanceof}}
+\begin{Slide}{Operatorn \texttt{instanceof}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/TestInstanceOf.java}
+\end{Slide}
+
+\subsection{Klassen \texttt{Object}}
+\begin{Slide}{Alla objekt är implicita instanser av klassen \code{Object}}
+\begin{center}
+\begin{tikzpicture}
+\node (Object) [umlclass, rectangle split parts = 2]  {
+            \textbf{\centerline{Object}}
+            \nodepart[]{second}toString(): String
+        };
+        
+\node (AbstractRobot) [umlclass, below = of Object, rectangle split parts = 2,]  {
+            \textit{\textbf{\centerline{AbstractRobot}}}
+            \nodepart[]{second}work(): void
+        };
+        
+\node (MuteRobot) [umlclass, rectangle split parts = 2, left = of TalkingRobot, below = of AbstractRobot, xshift=-2cm]  {
+            \textbf{\centerline{MuteRobot}}
+            \nodepart[]{second} \vspace{1em}
+        };  
+                
+\node (TalkingRobot) [umlclass, rectangle split parts = 2, below = of AbstractRobot, xshift=2cm]  {
+            \textbf{\centerline{TalkingRobot}}
+            \nodepart[]{second}talk(): void
+        };        
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.5) -| (AbstractRobot.south);    
+\draw[umlarrow] (MuteRobot.north) -- ++(0,0.5) -| (AbstractRobot.south);         
+\draw[umlarrow] (AbstractRobot.north) -- ++(0,0.5) -| (Object.south);               
 \end{tikzpicture}
 \end{center}
 \end{Slide}
+
+\subsection{Super i konstruktor och \texttt{protected}}
+\begin{Slide}{\texttt{protected}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/Robot.java}
+
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TalkingRobot.java}
+\end{Slide}
+
 \end{document}
