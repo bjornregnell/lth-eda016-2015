@@ -1,7 +1,7 @@
 package week07.superconstructor;
 
 public class Robot {
-	protected String name;
+	protected String name;  // protected: visible in subclasses
 
 	public Robot(String name) {
 		this.name = name;

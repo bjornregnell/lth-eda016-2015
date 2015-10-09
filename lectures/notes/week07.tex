@@ -170,11 +170,39 @@ public void talk();
 \end{center}
 \end{Slide}
 
-\subsection{Super i konstruktor och \texttt{protected}}
-\begin{Slide}{\texttt{protected}}
+\subsection{\texttt{protected} och \texttt{super}}
+\begin{Slide}{\texttt{protected} och \texttt{super}}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/Robot.java}
 
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TalkingRobot.java}
+\end{Slide}
+
+\begin{Slide}{Test av \texttt{protected} och \texttt{super}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TestSuperConstructor.java}
+\begin{verbatim}
+Wall-E is working.
+C3PO shall not harm humans.
+C3PO is working.
+\end{verbatim}
+\end{Slide}
+
+\begin{Slide}{Attribut i UML-diagram}
+\begin{center}
+\begin{tikzpicture}
+\node (Robot) [umlclass, rectangle split parts = 3]  {
+            \textbf{\centerline{Robot}}
+            \nodepart[]{second}name: String
+            \nodepart[]{third}work(): void
+       };
+\node (TalkingRobot) [umlclass, rectangle split parts = 3, below = of Robot]  {
+            \textbf{\centerline{TalkingRobot}}
+            \nodepart[]{second} \vspace{1em}            
+            \nodepart[]{third}talk(): void
+        };        
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.8) -| (Robot.south);        
+\end{tikzpicture}
+\end{center}
+
 \end{Slide}
 
 \end{document}
