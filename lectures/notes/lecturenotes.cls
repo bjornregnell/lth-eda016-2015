@@ -35,7 +35,7 @@
 \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 %UML definitions
-\tikzstyle{umlclass}=[rectangle, draw=black,  anchor=north, text width=3cm, rectangle split, rectangle split parts = 3]
+\tikzstyle{umlclass}=[rectangle, draw=black,  thick, anchor=north, text width=3cm, rectangle split, rectangle split parts = 3]
 \tikzstyle{umlarrow}=[->, >=open triangle 90, thick]
 
 \newenvironment{Slide}[2][]
