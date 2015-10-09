@@ -1,4 +1,4 @@
-package week07.register;
+package week06.register;
 
 import java.util.Scanner;
 

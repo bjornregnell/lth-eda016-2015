@@ -1,4 +1,4 @@
-package week07.register;
+package week06.register;
 
 public class Test {
 	private Student[] students;
