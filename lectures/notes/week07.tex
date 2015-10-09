@@ -10,14 +10,31 @@
 \institute{Datavetenskap, LTH}
 \date{Lp1-2, HT 2015}
  
+% Package to draw UML diagrams in file: pgf-umlcd.sty 
+% https://github.com/xuyuan/pgf-umlcd
+% http://people.irisa.fr/Martin.Quinson/blog/2010/1105/UML_class_diagrams_in_tikz/index.html
+\usepackage[simplified]{pgf-umlcd}  % simplified removes empty parts of a class
+%\usepackage{pgf-umlcd}
+% Example:
+%\begin{tikzpicture}
+%\begin{class}[]{Robot}{1,3}
+%  \attribute{name : String}
+%  \operation{walk(distance: int) : void}
+%\end{class}
+%\begin{class}[]{TalkingRobot }{1,0}
+% \inherit{Robot}
+%  \operation{speak(s: String) : void}
+%\end{class}
+%\end{tikzpicture}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
 \frame{\titlepage}
 \setnextsection{\vecka}
 \section[Vecka \vecka: \tema]{\tema}
 \frame{\tableofcontents}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Att göra denna vecka}
 \begin{Slide}{Att göra i Vecka \vecka: Förstå \href{https://sv.wikipedia.org/wiki/Arv_\%28programmering\%29}{arv}. Repetera inför kontrollskrivning.}
@@ -30,9 +47,21 @@ Begrepp: registrering, equals, arv.
 \end{enumerate}
 \end{Slide}
 
-\subsection{Arv}
-% Ide till övning: medelvärde (heltal i vektor) med tillämpning på bonusuträkning. 
-%% Quest: Hur ska vi göra med decimaler? (Reellt beslut i kursen krävs då detta ej är def. i kursprog)
+\subsection{Grundläggande terminologi för arv}
+\begin{Slide}{Vad är arv? Motivering och terminologi}\footnotesize
+\begin{itemize}
+\item Med hjälp av \Emph{arv} mellan klasser kan man göra så att en klass \Emph{ärver} (''får med sig'') innehåll från en \textit{annan} klass.
+\item Varför vill man det? 
+\begin{enumerate}\footnotesize
+\item Dela upp ansvar mellan klasser och bryta ut gemensamma delar så att man slipper duplicerad kod.
+\item Skapa en klassificering av objekt utifrån relationen  \Emph{X är en Y}.  \\ Exempel: En gurka är en grönsak. En cykel är ett fordon. 
+\end{enumerate}
+\item Nyckelordet \Key{extends} används för att ange arv i Java. \\ Exempel:   \code|class TalkingRobot extends Robot|
+\item Klassen som ärver (utökar) kallas \Emph{subklass}
+\item Klassen som blir utökad kallas \Emph{superklass} (även \textit{basklass})
+\item Läs mer om arv \Eng{inheritance} här: \scriptsize \url{https://sv.wikipedia.org/wiki/Arv\_\%28programmering\%29} 
 
+\end{itemize}
+\end{Slide}
 
 \end{document}
