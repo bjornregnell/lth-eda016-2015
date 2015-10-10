@@ -38,7 +38,7 @@ Begrepp: arv, subklass, superklass, \code{extends},  \code{abstract}, operatorn 
 \item Varför vill man det? 
 \begin{enumerate}\footnotesize
 \item Dela upp ansvar mellan klasser och bryta ut gemensamma delar så att man slipper duplicerad kod.
-\item Skapa en klassificering av objekt utifrån relationen  \Emph{X är en Y}.  \\ Exempel: En gurka är en grönsak. En cykel är ett fordon. 
+\item Skapa en klassificering av objekt utifrån relationen  \Emph{X är en Y}.  \\ Exempel 1: En gurka är en grönsak. En tomat är en grönsak. \\ Exempel 2: En cykel är ett fordon. En bil är ett fordon. 
 \end{enumerate}
 \item Nyckelordet \Key{extends} används för att ange arv i Java. \\ Exempel:   \code|class TalkingRobot extends Robot|
 \item Klassen som ärver (utökar) kallas \Emph{subklass}
@@ -131,12 +131,13 @@ public void talk();
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/MuteRobot.java}
 \end{Slide}
 
-\begin{Slide}{Exempel: test av klassificeringsmodell}
+\begin{Slide}{Exempel: TestRobots}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/TestRobots.java}
 \end{Slide}
 
 \subsection{Operatorn \texttt{instanceof}}
 \begin{Slide}{Operatorn \texttt{instanceof}}
+\vspace{-0.25cm}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/robotclassification/TestInstanceOf.java}
 \end{Slide}
 
@@ -170,8 +171,8 @@ public void talk();
 \end{center}
 \end{Slide}
 
-\subsection{\texttt{protected} och \texttt{super}}
-\begin{Slide}{\texttt{protected} och \texttt{super}}
+\subsection{Attributarv, \texttt{protected} och \texttt{super}}
+\begin{Slide}{Attributarv, \texttt{protected} och \texttt{super}}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/Robot.java}
 
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TalkingRobot.java}
@@ -179,16 +180,23 @@ public void talk();
 
 \begin{Slide}{Test av \texttt{protected} och \texttt{super}}
 \lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TestSuperConstructor.java}
-\begin{verbatim}
-Wall-E is working.
-C3PO shall not harm humans.
-C3PO is working.
-\end{verbatim}
+\texttt{\href{https://sv.wikipedia.org/wiki/WALL-E}{Wall*E} is working. \\
+\href{https://sv.wikipedia.org/wiki/C-3PO}{C-3PO} shall not harm humans. \\
+\href{https://sv.wikipedia.org/wiki/C-3PO}{C-3PO} is working.
+}
 \end{Slide}
 
 \begin{Slide}{Attribut i UML-diagram}
 \begin{center}
 \begin{tikzpicture}
+\node (Class) [umlclass, rectangle split parts = 3, left = of Robot, xshift = -2cm, yshift=-1.5cm, text width = 4.2cm, scale=0.8]  {
+            \textbf{\centerline{Name}}
+            \nodepart[]{second}attr1: Type \newline attr2: Type
+            \nodepart[]{third}method1(a: Type): Type \newline  method2(b: Type): Type
+       };
+\node (explain1)[above of = Class, yshift=1cm]{En klass i UML kan ha 3 delar:};
+\node (explain2)[below of = Class, yshift=-1cm]{Ibland utelämnar man typerna.};
+\node (explain3)[below of = explain2, yshift=0.5cm]{Se exempel i ankboken sid. 162.};
 \node (Robot) [umlclass, rectangle split parts = 3]  {
             \textbf{\centerline{Robot}}
             \nodepart[]{second}name: String
@@ -196,13 +204,81 @@ C3PO is working.
        };
 \node (TalkingRobot) [umlclass, rectangle split parts = 3, below = of Robot]  {
             \textbf{\centerline{TalkingRobot}}
-            \nodepart[]{second} \vspace{1em}            
+            \nodepart[]{second} phrase: String           
             \nodepart[]{third}talk(): void
         };        
 \draw[umlarrow] (TalkingRobot.north) -- ++(0,0.8) -| (Robot.south);        
 \end{tikzpicture}
 \end{center}
+\end{Slide}
 
+\begin{Slide}{Utökad klass med extra attribut}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TalkingRobot2.java}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/superconstructor/TestSuperConstructor2.java}
+\end{Slide}
+
+\subsection{Implementera \texttt{equals} och \texttt{toString}}
+
+\begin{Slide}{Implementera innehållslikhet med \texttt{equals}}
+\begin{center}
+\begin{tikzpicture}[scale=1.0, every node/.style={scale=1.0}]
+\node (Object) [umlclass, rectangle split parts = 3, text width = 5cm]  {
+            \textbf{\centerline{\href{http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html}{Object}}}
+            \nodepart[]{third}toString(): String \\ equals(obj: Object): boolean
+                    };
+        
+\node (Point) [umlclass, rectangle split parts = 3, below = of Object, text width = 5cm]  {
+            \textbf{\centerline{Point}}
+            \nodepart[]{second} x: int \\ y: Int           
+            \nodepart[]{third}toString(): String \\ equals(obj: Object): boolean
+        };    
+\draw[umlarrow] (Point.north) -- ++(0,0.8) -| (Object.south);                
+\end{tikzpicture}
+\end{center}
+\end{Slide}
+
+\begin{Slide}{Implementera innehållslikhet för \code{Point} med \texttt{equals}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/equals/Point.java}
+\end{Slide}
+
+\begin{Slide}{Test av innehållslikhet för \code{Point}}
+\vspace{-0.2cm}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/equals/TestEqualsPoint.java}
+\end{Slide}
+
+\begin{Slide}{Implementera \texttt{equals} och \texttt{toString} vid arv}
+\begin{center}
+\begin{tikzpicture}
+\node (Robot) [umlclass, rectangle split parts = 3, text width = 5cm]  {
+            \textbf{\centerline{Robot}}
+            \nodepart[]{second}name: String
+            \nodepart[]{third}work(): void \\ toString(): String \\ equals(obj: Object): boolean
+       };
+\node (TalkingRobot) [umlclass, rectangle split parts = 3, below = of Robot, text width = 5cm] {
+            \textbf{\centerline{TalkingRobot}}
+            \nodepart[]{second} phrase: String           
+            \nodepart[]{third}talk(): void \\ toString(): String \\ equals(obj: Object): boolean
+        };        
+\draw[umlarrow] (TalkingRobot.north) -- ++(0,0.8) -| (Robot.south);
+\end{tikzpicture}
+\end{center}
+\end{Slide}
+
+\begin{Slide}{Implementera \texttt{toString} och \texttt{equals} i superklass }
+\vspace{-0.2cm}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/equals/Robot.java}
+\end{Slide}
+
+\begin{Slide}{Implementera \texttt{toString} och \texttt{equals} i subklass }
+\vspace{-0.27cm}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/equals/TalkingRobot.java}
+\end{Slide}
+
+\begin{Slide}{Test av innehållslikhet för \code{Robot} och \code{TalkingRobot}}
+\vspace{-0.2cm}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week07/equals/TestEqualsRobot.java}
+\vspace{-0.8cm} \hskip0.7cm
+\tiny~~~\url{https://www.youtube.com/watch?v=YKd6ZxCEJdI}
 \end{Slide}
 
 \end{document}
