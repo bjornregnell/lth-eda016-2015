@@ -1,5 +1,4 @@
 package week07.robotclassification;
-
 public class TestInstanceOf {
 	public static void main(String[] args) {
 		MuteRobot wallE = new MuteRobot();
@@ -22,5 +21,9 @@ public class TestInstanceOf {
 		if (wallE instanceof Object && c3po instanceof Object){
 			System.out.println("Wall-E och C3PO är javaobjekt.");
 		}
+		TalkingRobot r = null;
+		if (r instanceof TalkingRobot){ // Is this true or false??
+			   System.out.println(r + " instanceof TalkingRobot == true");
+		} else System.out.println(r + " instanceof TalkingRobot == false");
    }
 }
