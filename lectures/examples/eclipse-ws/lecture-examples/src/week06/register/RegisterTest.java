@@ -12,9 +12,9 @@ public class RegisterTest {
 			test.add(new Student());
 		}
 		
-		//test.printStatistics();
-		
+		test.printStatistics();
 		test.printStatistics2();
+		test.printStatistics3();
 		scan.close();
 	}
 }
