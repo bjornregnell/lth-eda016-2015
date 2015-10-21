@@ -6,9 +6,9 @@ public class TestInstanceOf {
 		if (wallE instanceof MuteRobot) {
 			System.out.println("Wall-E kan inte prata");
 		}
-		//if (wallE instanceof TalkingRobot) { // compile error
-		//	System.out.println("Wall-E kan inte prata");
-		//}
+//		if (wallE instanceof TalkingRobot) { // compile error
+//			System.out.println("Wall-E kan inte prata");
+//		}
 		if (c3po instanceof TalkingRobot) {
 			System.out.println("C3PO kan prata");
 		}		
@@ -18,7 +18,7 @@ public class TestInstanceOf {
 		if (c3po instanceof AbstractRobot){
 			System.out.println("C3PO kan arbeta");
 		}
-		if (wallE instanceof Object && c3po instanceof Object){
+		if ((wallE instanceof Object) && (c3po instanceof Object)){
 			System.out.println("Wall-E och C3PO är javaobjekt.");
 		}
 		TalkingRobot r = null;
