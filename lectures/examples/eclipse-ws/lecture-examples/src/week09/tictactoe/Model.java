@@ -1,20 +1,22 @@
-package week09.luffarschack;
+package week09.tictactoe;
 
-public class TicTacToe {
-	private final static int n = 3;
-	private char[][] board = new char [n][n];
+public class Model {
+	private char[][] board = new char [3][3];
+	private int lastRow;
+	private int lastCol;
 	
-	public TicTacToe(){
-		reset();
+	public Model(){
+		clear();
 	}
 	
-	public void reset(){
-		for (int row = 0; row < n; row ++){
-			for (int col = 0; col < n; col ++){
+	public void clear(){
+		for (int row = 0; row < 3; row ++){
+			for (int col = 0; col < 3; col ++){
 				board[row][col] = ' ';
 			}
 		}
-		
+		lastRow = -1;
+		lastCol = -1;
 	}
 	
 	public char getMark(int row, int col){
@@ -25,74 +27,74 @@ public class TicTacToe {
 		return board[row][col] == ' ';
 	}
 
-	private boolean mark(char ch, int row, int col){
-		if (isFree(row, col)) {
-			board[row][col] = ch;
-			return true;
-		} else {
-			return false;
+	public boolean isInside(int row, int col){
+		return row >= 0 && row < 3 && col >= 0 && col < 3 ;
+	}	
+	
+	public boolean isFull(){
+		for (int row = 0; row < 3; row ++){
+			for (int col = 0; col < 3; col ++){
+				if (isFree(row, col)) return false;
+			}
 		}
+		return true;
 	}
 
-	private boolean isWinner(char lastMark, int lastRow, int lastCol){
+	private void mark(char ch, int row, int col){
+			board[row][col] = ch;
+			lastRow = row;
+			lastCol = col;
+	}
+
+	public void markNought(int row, int col){
+		mark('0', row, col);
+	}
+
+	public void markCross(int row, int col){
+		mark('X', row, col);
+	}
+	
+	public char getWinner(){
+		if (lastRow == -1 || lastCol == -1) return ' ';
+		char lastMark = board[lastRow][lastCol];
+		
 		//check row
 		int count = 0;
-		for (int col= 0; col < n; col++){
+		for (int col= 0; col < 3; col++){
 			if (board[lastRow][col] == lastMark){
 				count++;
 			}
 		}
-		if (count == n) return true;
+		if (count == 3) return lastMark;
 
 		//check col
 		count = 0;
-		for (int row= 0; row < n; row++){
+		for (int row= 0; row < 3; row++){
 			if (board[row][lastCol] == lastMark){
 				count++;
 			}
 		}
-		if (count == n) return true;
+		if (count == 3) return lastMark;
 
 		//check diagonal
 		count = 0;
-		for (int i= 0; i < n; i++){
+		for (int i= 0; i < 3; i++){
 			if (board[i][i] == lastMark){
 				count++;
 			}
 		}
-		if (count == n) return true;
+		if (count == 3) return lastMark;
 
 		//check other diagonal
 		count = 0;
-		for (int i= 0; i < n; i++){
-			if (board[n-i-1][i] == lastMark){
+		for (int i= 0; i < 3; i++){
+			if (board[2-i][i] == lastMark){
 				count++;
 			}
 		}
-		if (count == n) return true;
+		if (count == 3) return lastMark;
 
-		return false;
-	}
-	
-	public boolean markRing(int row, int col){
-		return mark('O', row, col) && isWinner('O', row, col);
+		return ' ';
 	}
 
-	public boolean markCross(int row, int col){
-		return mark('X', row, col) && isWinner('X', row, col);
-	}	
-	
-	
-	public String toString(){
-		StringBuilder result = new StringBuilder("  123\n  ===\n");
-		for (int row = 0; row < n; row ++){
-			result.append("" + (char)('A' + row) + "|");
-			for (int col = 0; col < n; col ++){
-				result.append(board[row][col]);
-			}
-			result.append('\n');
-		}		
-		return result.toString();
-	}
-	
 }
