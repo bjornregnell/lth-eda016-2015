@@ -20,7 +20,7 @@ public class CollaborationBonus {
 			sum += bonus[i];
 		}
 		double average = sum / nextFreePos;
-		return (int) Math.ceil(average);
+		return (int) Math.round(average);
 	}
 
 	public static void main(String[] args) {
