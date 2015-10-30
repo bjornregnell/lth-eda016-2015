@@ -191,4 +191,121 @@ Implementation i Java:
 Deklarera och skapa en matris som representerar ett schackbräde med 8x8 rutor. På rutorna ska man kunna placera schackpjäser som beskrivs av klassen ChessPiece.
 \end{Slide}
 
+\begin{Slide}{Designexempel: Tre-i-rad}
+\includegraphics{img/tictactoe}
+
+\href{https://en.wikipedia.org/wiki/Tic-tac-toe}{Tic Tac Toe}
+\end{Slide}
+
+\begin{Slide}{Tre-i-rad med MVC-designmönstret}
+Vi ska använda ett designmönstret som kallas \textit{Model-View-Controller} där vi har dessa tre klasser med sina respektive speciella ansvar:
+\begin{itemize}
+\item \Emph{Model}: Har hand om spelets datamodell, här spelbrädet och pjäsernas placering. Har metoder som kan avläsa och ändra data om spelet.
+\item \Emph{View}: Har hand om den för användaren synliga representationen av modellen och användarens interaktion med modellen. Visar brädet och läser användarens input.
+\item \Emph{Controller}: Styr spelet enligt dess regler och har hand om logiken för en spelomgång.
+\end{itemize}
+Idén är att man renodlar ansvaret så att man lätt kan ändra och byta delar utan att det påverkar de andra delarna. 
+\end{Slide}
+
+\begin{Slide}{Implementera \texttt{Model} enligt specifikationen}
+\vspace{-2em}
+\begin{ClassSpec}{}
+/** Skapar en modell av ett Tre-i-rad-spel med ett tomt bräde */
+Model();
+
+/** Tömmer brädet från pjäser */
+void clear();
+
+/** Returnerar pjäsen på platsen (row, col): X eller 0 eller blank om ledig  */
+char getMark(int row, int col);
+
+/** Returnerar true om platsen är ledig */
+boolean isFree(int row, int col);
+
+/** Returnerar true om platsen är innanför brädets rader och kolumner */
+boolean isInside(int row, int col);
+
+/** Returnerar true om alla platserna är upptagna */
+boolean isFull();
+
+/** Placerar en ring på platsen (row, col) */
+void markNought(int row, int col);
+
+/** Placerar en kryss på platsen (row, col) */
+void markCross(int row, int col);
+
+/** Returnerar X om kryss är vinnare, 0 om ring är vinnare och blank vinnare saknas */
+char getWinner();
+\end{ClassSpec}
+\footnotesize\vspace{-0.2em} Vilka \Emph{attribut} behöver vi? 
+\end{Slide}
+
+\begin{Slide}{Klassen \texttt{Model} med tomma metodkroppar: Gör klart!}
+
+\begin{Code}
+public class Model {
+    private char[][] board = new char [3][3];
+    
+    public Model(){    }
+    
+    public void clear(){    }
+    
+    public char getMark(int row, int col){    }
+    
+    public boolean isFree(int row, int col){    }
+
+    public boolean isInside(int row, int col){    }
+    
+    public boolean isFull(){    }
+
+    public void markNought(int row, int col){    }
+
+    public void markCross(int row, int col){    }
+    
+    public char getWinner(){    }
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Implementera View enligt specifikationen}
+\begin{ClassSpec}{View}
+/** Skapar en presentationsvy av Tre-i-rad-spel utifrån en modell */
+View(Model model);
+
+/** Skriver ut en textuell representation av brädet */
+void showBoard();
+
+/** Skriver ut eventuella vinnare och om brädet eventuellt är fullt */
+showStatus();
+
+/** Uppmanar rätt spelare (KRYSS eller RING) att göra ett drag och läser positionen.
+*   Om isCrossMove är true är det KRYSS som får göra ett drag annars RING.
+*   Returenerar en vektor med {row, col}, där row och col är i intervallet [0, 2]  */
+int[] getMove(boolean isCrossMove);
+\end{ClassSpec}
+\vspace{2em}
+\footnotesize Vilka \Emph{attribut} behöver vi? 
+\end{Slide}
+
+\begin{Slide}{Implementera View enligt specifikationen}
+\begin{ClassSpec}{Controller}
+/** Skapar en styrenhet för ett Tre-i-rad-spel. */
+Controller(); 
+
+/** Gör en spelomgång där KRYSS gör första draget om isCrossStarting är true,
+*   annars börjar RING. */
+void play(boolean isCrossStarting);
+
+/** Skapar en Controller-instans och kör en spelomgång. */
+static void main(String[] args);
+\end{ClassSpec}
+\vspace{2em}
+\footnotesize Vilka \Emph{attribut} behöver vi?  \\
+\vspace{1em}
+Spela spelet! Implementera sedan själv. Se sedan hela lösningen här:
+\href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week09/tictactoe}{lecture-examples/week09/tictactoe} \\
+\vspace{1em}
+\textit{Extrauppgift}: \\Implementera brädet med en alternativ \code{View} som använder \code{SimpleWindow}
+\end{Slide}
+
 \end{document}
