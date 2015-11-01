@@ -124,27 +124,43 @@ I Java kan matriser representeras som vektorer av vektorer: \\ \vspace{1em}
 \end{itemize}
 \end{Slide}
 
-\begin{Slide}{Skriva ut alla element}
+\begin{Slide}{Deklarera, Allokera, Tilldela, Gå igenom alla}
+  \begin{minipage}{0.7\linewidth}   
 \footnotesize\href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week09}{lecture-examples/src/week09/matrix}:
-\begin{Code}[numberstyle=,numbers=left]
-        int m[][] = new int[5][4];
-        m[1] = new int[] { 42, 43 };
 
-        for (int row = 0; row < m.length; row++) {
-            System.out.print("|");
-            for (int col = 0; col < m[row].length; col++) {
-                System.out.print(m[row][col] + "|");
-            }
-            System.out.println();
-        }
+\begin{Code}[basicstyle=\ttfamily\fontsize{7}{8}\selectfont, numberstyle=,numbers=left]
+// deklaration och allokering:
+int m[][] = new int[5][4];
+        
+// tilldelning:
+m[0][0] = 42;
+m[1] = new int[] { 42, 43, 44, 45 };
+
+// avvikande antal kolumner ok i Java:
+m[3] = new int[] { -1, -2 }; 
+        
+System.out.println("Matrisen m:");
+
+// nästlade for-loopar:        
+for (int row = 0; row < m.length; row++) {
+    for (int col = 0; col < m[row].length; col++) {
+        System.out.print(m[row][col] + " ");
+    }
+    System.out.println();
+}
 \end{Code}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{0.2\linewidth}   
 \begin{verbatim}
-|0|0|0|0|
-|42|43|
-|0|0|0|0|
-|0|0|0|0|
-|0|0|0|0|
+Matrisen m:
+42 0 0 0 
+42 43 44 45 
+0 0 0 0 
+-1 -2 
+0 0 0 0 
 \end{verbatim}
+  \end{minipage}
 \end{Slide}
 
 \begin{Slide}{Beräkna radsummorna}
@@ -152,22 +168,25 @@ I Java kan matriser representeras som vektorer av vektorer: \\ \vspace{1em}
 \begin{Code}[numberstyle=,numbers=left]
         int matrix[][] = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, {9, 10, 11, 12} };
         
+        System.out.println("\nRadsummorna i matrix:");
         for (int row = 0; row < matrix.length; row++) {
             int sum = 0;
             for (int col = 0; col < matrix[row].length; col++) {
                 sum = sum + matrix[row][col];
             }
-            System.out.println(sum);
-        }
+            System.out.println("row" + "[" + row + "]: " + sum);
+        }        
 \end{Code}
 \begin{verbatim}
-10
-26
-42
+Radsummorna i matrix:
+row[0]: 10
+row[1]: 26
+row[2]: 42
 \end{verbatim}
 \end{Slide}
 
 \begin{Slide}{Användning av nästlade for-satser och matriser}
+\Alert{Kunskapen behövs på övn8, lab7, lab10, lab11 och tenta!}\\ \vspace{1em}
 Pseudokod:
 \begin{verbatim}
 för varje rad
@@ -303,7 +322,7 @@ static void main(String[] args);
 \footnotesize Vilka \Emph{attribut} behöver vi?  \\
 \vspace{1em}
 Spela spelet! Implementera sedan själv. Se sedan hela lösningen här:
-\href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week09/tictactoe}{lecture-examples/week09/tictactoe} \\
+\href{https://github.com/bjornregne§ll/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week09/tictactoe}{lecture-examples/week09/tictactoe} \\
 \vspace{1em}
 \textit{Extrauppgift}: \\Implementera brädet med en alternativ \code{View} som använder \code{SimpleWindow}
 \end{Slide}

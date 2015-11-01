@@ -1,4 +1,4 @@
-package week09.tictactoe;
+package week09.tictactoe2;
 
 import java.util.Scanner;
 

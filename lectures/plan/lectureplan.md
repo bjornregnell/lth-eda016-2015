@@ -10,8 +10,8 @@
 | W06           | F9 F10      | Vektorer | vektorer: deklarera, indexera, initialisera, vektorer med referensvariabler, exempel: Fibonacci, Polygon, algoritmer: summering, min/max, linjärsökning, insättning utan/med utökning, borttagning, registrering av värden och intervall | 8 |
 | W07           | F11 F12     | Arv | superklass, subklass, extends, super, instanceof, klassen Object,  implementera equals, repetition baserat på önskemål | 9.1, 9.3, 9.7-9.9, 11.2, 12.6|
 | W08           | - | Kontrollskrivning | - | Delar av 1-7, 9, 11-12 enl ovan|
-| W09 (Lp2V1)   | F13         | Matriser |  | 8.6-8.7 |
-| W10 (Lp2V2)   | F14         | Listor | ArrayList, typklasser, for-each-satser, autoboxning | 12 |
+| W09 (Lp2V1)   | F13         | Matriser | repetition: vektorer, matriser, vektor av vektorer, matrisindexering, rader, kolonner/kolumner, nästlade for-satser, designexempel: Tre-i-rad | 8.6-8.7 |
+| W10 (Lp2V2)   | F14         | Listor | ArrayList, typklasser, autoboxning, for-each-satser | 12 |
 | W11 (Lp2V3)   | F15 F16     | Polymorfism | skyddsregler vid arv, protected, abstrakta metoder, typregler vid arv, instanceof, definitiva metoder och klasser, @override| 9.2, 9.4-9.6, 9.10 |
 | W12 (Lp2V4)   | F17 F18     | Algoritmer | binärsökning, urvalssortering, bubbelsortering, insättningssortering, komplexitet | 7.7, 8 |
 | W13 (Lp2V5)   | F19         | Designexempel | att skriva stora program | 9, 10, 13   |

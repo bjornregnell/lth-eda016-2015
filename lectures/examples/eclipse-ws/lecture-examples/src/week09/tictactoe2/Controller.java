@@ -1,4 +1,4 @@
-package week09.tictactoe;
+package week09.tictactoe2;
 
 public class Controller {
 	private Model model;

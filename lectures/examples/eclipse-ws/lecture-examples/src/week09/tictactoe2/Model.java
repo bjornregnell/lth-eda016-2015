@@ -1,4 +1,4 @@
-package week09.tictactoe;
+package week09.tictactoe2;
 
 public class Model {
 	private char[][] board = new char [3][3];
