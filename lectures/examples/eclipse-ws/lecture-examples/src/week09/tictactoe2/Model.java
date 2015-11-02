@@ -59,41 +59,34 @@ public class Model {
 		char lastMark = board[lastRow][lastCol];
 		
 		//check row
-		int count = 0;
-		for (int col= 0; col < 3; col++){
-			if (board[lastRow][col] == lastMark){
-				count++;
-			}
+		if (board[lastRow][0] == lastMark &&
+			board[lastRow][1] == lastMark &&
+			board[lastRow][2] == lastMark) {
+			return lastMark;
 		}
-		if (count == 3) return lastMark;
 
 		//check col
-		count = 0;
-		for (int row= 0; row < 3; row++){
-			if (board[row][lastCol] == lastMark){
-				count++;
-			}
+		if (board[0][lastCol] == lastMark &&
+			board[1][lastCol] == lastMark &&
+			board[2][lastCol] == lastMark) {
+			return lastMark;
 		}
-		if (count == 3) return lastMark;
 
 		//check diagonal
-		count = 0;
-		for (int i= 0; i < 3; i++){
-			if (board[i][i] == lastMark){
-				count++;
-			}
+		if (board[0][0] == lastMark &&
+			board[1][1] == lastMark &&
+			board[2][2] == lastMark) {
+			return lastMark;
 		}
-		if (count == 3) return lastMark;
 
 		//check other diagonal
-		count = 0;
-		for (int i= 0; i < 3; i++){
-			if (board[2-i][i] == lastMark){
-				count++;
-			}
+		if (board[0][2] == lastMark &&
+			board[1][1] == lastMark &&
+			board[2][0] == lastMark) {
+				return lastMark;
 		}
-		if (count == 3) return lastMark;
 
+		// no winner found
 		return ' ';
 	}
 
