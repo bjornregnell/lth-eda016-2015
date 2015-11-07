@@ -47,7 +47,9 @@ public class Model {
 	public char getWinner(){
         // Kolla alla rader
         for (int i = 0; i < board.length; i++) {
-                if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
+                if     (board[i][0] != ' ' && 
+                		board[i][0] == board[i][1] && 
+                		board[i][0] == board[i][2]) {
                         return board[i][0];
                 }
         }
