@@ -180,13 +180,26 @@ Läs mer om ArrayList i \href{https://docs.oracle.com/javase/8/docs/api/java/uti
 \item Typparameterns namn kan användas i implementationen av en generisk klass och kompilatorn kommer att \emph{ersätta} typparametern med den \emph{egentliga} typen vid kompilering.
 \item I fallet \code{ArrayList}: \Emph{E} ersätts med typen på de objekt som egentligen lagras i listan.  
 \end{itemize}
-Exempel:
+\href{}{Exempel}:
+\begin{Code}[numberstyle=]
+        ArrayList<String> words = new ArrayList<String>();
+        words.add("hej");
+        words.add("på");
+        words.add("dej");
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Övning ArrayList: new och add}
+Skriv kod som skapar en lista med element av typen \code{Point} och lägger in tre punkter i listan med koordinaterna (50, 50), (50,10) och (30, 40).
+\pause
 \begin{Code}[numberstyle=]
 ArrayList<Point> vertices = new ArrayList<Point>(); 
 vertices.add(new Point(50, 50));
 vertices.add(new Point(50, 10)); 
 vertices.add(new Point(30, 40)); 
 \end{Code}
+
+
 \end{Slide}
 
 \begin{Slide}{Polygon med ArrayList: metoderna blir enklare}
@@ -210,11 +223,29 @@ vertices.add(new Point(30, 40));
     }
 \end{Code}
 
-Se hela lösningen här:\\
-\url{}
+Se hela lösningen här:
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/list/Polygon.java}{src/week10/list/Polygon.java}
 \end{Slide}
 
+\begin{Slide}{Polygon med ArrayList: \\iterera över alla hörnpunkter i draw}
+\begin{Code}[numberstyle=]
+    public void draw(SimpleWindow w) {
+        if (vertices.size() == 0) {
+            return;
+        }
+        Point start = vertices.get(0);
+        w.moveTo(start.getX(), start.getY());
+        for (int i = 1; i < vertices.size(); i++) {
+            w.lineTo(vertices.get(i).getX(), 
+                     vertices.get(i).getY());
+        }
+        w.lineTo(start.getX(), start.getY());
+    }
+\end{Code}
 
+Se hela lösningen här:
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/list/Polygon.java}{src/week10/list/Polygon.java}
+\end{Slide}
 
 
 \end{document}
