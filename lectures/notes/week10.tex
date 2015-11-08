@@ -1,0 +1,220 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{10}
+\newcommand{\tema}{Listor}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+\subsection{Att göra denna vecka}
+\begin{Slide}{Att göra i Vecka \vecka: Förstå ArrayList och skillnader/likheter jämfört med primitiva vektorer.}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken:  8.3-8.5, 12 \\  
+Begrepp: ArrayList, generisk datastruktur, automatisk in- och upp-packning (auto-boxing/-unboxing), typklasser, utökad for-sats (for-each).
+\item Gör övning 9: ArrayList
+\item Träffas i samarbetsgrupper och hjälp varandra 
+\item Gör Lab 8: vektorer, simulering av patiens
+\end{enumerate}
+\end{Slide}
+
+\subsection{Repetition: Vektorer: utöka, stoppa in, ta bort, etc.}
+\begin{Slide}{Repetition: Primitiva vektorer}
+\begin{itemize}
+\item Primitiva vektorer (Array med []) i Java har \textbf{\href{http://stackoverflow.com/questions/2843928/benefits-of-arrays}{fördelar}}: 
+\begin{itemize}\footnotesize
+\item Det är den snabbaste indexerbara datastrukturen i JVM: att läsa och uppdatera ett element på en viss plats är mycket effektiv om man vet platsens index. 
+\item Fungerar lika bra med både primitiva värden och objektreferenser
+\end{itemize}
+\item ... men också \Alert{nackdelar}:
+\begin{itemize}\footnotesize
+\item Man måste bestämma sig för antalet element vid new. 
+\item Man kan ta i lite extra när man allokerar om man behöver plats för fler senare, men då måste man hålla reda på hur många platser man använder och veta var nästa lediga plats finns.
+\item Det är krångligt att stoppa in \Eng{insert} och ta bort \Eng{delete} element.
+\item Vill man ha fler platser måste man allokera en helt ny, större vektor och kopiera över alla befintliga element.
+\end{itemize}
+
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Polygon med primitiv vektorer}
+\begin{Code}[numberstyle=,numbers=left]
+package week10.vector;
+
+public class Polygon {
+    private Point[] vertices; // vektor med hörnpunkter
+    private int n;            // antalet hörnpunkter
+    
+    /** Skapar en polygon */
+    public Polygon() {
+        vertices = new Point[1];
+        n = 0;
+    }
+    
+    ...
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Polygon med primitiv vektorer: \\stoppa in sist och vid behov skapa mer plats}
+Metoden \code{addVertex} i klassen \code{Polygon}\\med attributet:  \code{private Point[] vertices}
+\begin{Code}[numberstyle=,numbers=left]
+    private void extend(){
+        Point[] oldVertices = vertices;
+        vertices = new Point[2 * vertices.length]; // skapa dubbel plats
+        for (int i = 0; i < oldVertices.length; i++) {  // kopiera
+            vertices[i] = oldVertices[i];
+        }        
+    }
+
+    /** Definierar en ny punkt med koordinaterna x,y */
+    public void addVertex(int x, int y) {
+        if (n == vertices.length) extend();
+        vertices[n] = new Point(x, y);
+        n++;
+    }
+\end{Code}
+\end{Slide}
+
+
+\begin{Slide}{Polygon med primitiv vektorer: \\stoppa in mitt i på angiven plats }
+Metoden \code{insertVertex} i klassen \code{Polygon}\\med attributet:  \code{private Point[] vertices}
+\begin{Code}[numberstyle=,numbers=left]
+    public void insertVertex(int pos, int x, int y) {
+        if (n == vertices.length) extend();   // utöka vid behov
+        for (int i = n; i > pos; i--) {       // flytta element bakifrån
+            vertices[i] = vertices[i - 1];
+        }
+        vertices[pos] = new Point(x, y);
+        n++;
+    }
+\end{Code}
+\end{Slide}
+
+\subsection{ArrayList}
+\begin{Slide}{Varför ArrayList?}\footnotesize
+En betydande nackdel med primitiva vektorer är att vi kan behöva ''uppfinna hjulet'' upprepade gånger:
+\begin{itemize}
+\item För varje ny klass med vektor-attribut (vektor av Point, Person, Turtle, ...) som vi vill ska klara insert och append, blir det en hel del att implementera och testa... 
+\end{itemize}
+Det vore smidigt med en datastruktur ...
+\begin{itemize}
+\item som inte kräver att vi känner antalet element från början,
+\item där vi enkelt kan lägga till och ta bort element,
+\item som kan hantera element av olika typ (likt vektorer).
+\end{itemize}
+Från och med version 5 av Java (2004) så introducerades \Emph{generics} vilket möjliggör skapandet av klasser som kan erbjuda generell behandling av olika typer av objekt. Generiska klasser känns igen med syntaxen \code{Klassnamn<Typ>}, till exempel  \code{ArrayList<Point>}  \\ {\footnotesize Fördjupning: se   \href{https://docs.oracle.com/javase/tutorial/extra/generics/intro.html}{javase tutorial}, mer om detta i fördjupningskursen.}
+\end{Slide}
+
+\begin{Slide}{Vad är ArrayList?}
+\code{ArrayList} är en standardklass i paketet \code{java.util} med många fördelar:
+\begin{itemize}
+\item Lagrar sina element i en snabbindexerad primitiv vektor.
+\item Fungerar för alla typer av objekt.
+\item Utökar vektorns storlek av sig själv vid behov.
+\end{itemize}
+Det finns också vissa nackdelar:
+\begin{itemize}
+\item Fungerar \Alert{inte} med primitiva typer \code{int}, \code{double}, \code{char}, ... (men det finns sätt komma runt detta)
+\item Kräver visst onödigt minnesutrymme om vi vet antalet från  början och inte behöver automatisk utökning. 
+\item Likt primitiva vektorer tar det tid att göra insert och delete.
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Polygon med ArrayList}
+Klassen \code{Polygon}, nu med ett attribut av typen \code{ArrayList<Point>} som håller reda på hörnpunkterna:
+\begin{Code}[numberstyle=]
+public class Polygon {
+    private ArrayList<Point> vertices; // lista med hörnpunkter
+    
+    /** Skapar en polygon */
+    public Polygon() {
+        vertices = new ArrayList<Point>();
+    }
+    
+    ...
+\end{Code}
+Det behövs inget attribut \code{n} eftersom vi inte själva behöver hålla reda på antalet allokerade platser: allokering, insättning, och utökning av antalet platser sköts helt automatiskt av \code{ArrayList}-klassen vid behov. 
+\end{Slide}
+
+\begin{Slide}{Viktiga operationer på ArrayList (Urval)}
+\begin{ClassSpec}{ArrayList}
+/** Skapar en ny lista */
+ArrayList<E>();
+
+/** Tar reda på elementet på plats pos */
+E get(int pos);
+
+/** Lägger in objektet obj sist */
+void add(E obj);
+
+/** Lägger in obj på plats pos; efterföljande flyttas */
+void add(int pos, E obj);
+
+/** Tar bort elementet på plats pos och returnerar det */
+E remove(int pos);
+
+/** Tar reda på antalet element i listan */
+int size();
+\end{ClassSpec}
+Lär dig vad som finns om ArrayList i  \href{http://fileadmin.cs.lth.se/cs/Education/EDA016/general/quickref.pdf}{java snabbreferens}! \\
+Läs mer om ArrayList i \href{https://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html}{javadoc}.\\
+\footnotesize Överkurs för den nyfikne: kolla implementation av ArrayList \href{http://www.docjar.com/html/api/java/util/ArrayList.java.html}{här}.
+\end{Slide}
+
+\begin{Slide}{ArrayList är en \emph{generisk} klass}\footnotesize
+\begin{itemize}
+\item \code{ArrayList} är en så kallad  \Emph{generisk} klass. Se t.ex. \href{https://en.wikipedia.org/wiki/Generics_in_Java}{wikipedia}.
+\item Namnet \Emph{E} är en \Emph{typparameter} till klassen. \\(Mer om detta i Programmeringsteknik – fördjupningskurs.)
+\item Typparameterns namn kan användas i implementationen av en generisk klass och kompilatorn kommer att \emph{ersätta} typparametern med den \emph{egentliga} typen vid kompilering.
+\item I fallet \code{ArrayList}: \Emph{E} ersätts med typen på de objekt som egentligen lagras i listan.  
+\end{itemize}
+Exempel:
+\begin{Code}[numberstyle=]
+ArrayList<Point> vertices = new ArrayList<Point>(); 
+vertices.add(new Point(50, 50));
+vertices.add(new Point(50, 10)); 
+vertices.add(new Point(30, 40)); 
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Polygon med ArrayList: metoderna blir enklare}
+\begin{Code}[numberstyle=]
+    public void addVertex(int x, int y) {  
+        vertices.add(new Point(x, y));
+    }
+    
+    public void move(int dx, int dy) {
+        for (int i = 0; i < vertices.size(); i++) {
+        	vertices.get(i).move(dx, dy);
+        }
+    }
+    
+    public void insertVertex(int pos, int x, int y) {
+    	vertices.add(pos, new Point(x, y));
+    }
+    
+    public void removeVertex(int pos) {
+    	vertices.remove(pos);
+    }
+\end{Code}
+
+Se hela lösningen här:\\
+\url{}
+\end{Slide}
+
+
+
+
+\end{document}
