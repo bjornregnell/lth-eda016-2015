@@ -19,6 +19,9 @@
 \usepackage{amsmath,scalerel} %http://tex.stackexchange.com/questions/125523/is-there-a-bigcdot-symbol-in-latex
 \usepackage{longtable}
 \usepackage{booktabs}
+
+\usepackage[normalem]{ulem}  % for strikethrough: \sout{Hello World}
+
 \usepackage{multicol} \setlength{\columnsep}{5mm}
 \usepackage{listings}
 \usepackage{xspace} %http://www.math.tamu.edu/~harold.boas/courses/math696/why-macros.html

@@ -23,7 +23,7 @@
 \begin{Slide}{Att göra i Vecka \vecka: Förstå ArrayList och skillnader/likheter jämfört med primitiva vektorer.}
 \begin{enumerate}
 \item Läs följande kapitel i kursboken:  8.3-8.5, 12 \\  
-Begrepp: ArrayList, generisk datastruktur, automatisk in- och upp-packning (auto-boxing/-unboxing), typklasser, utökad for-sats (for-each).
+Begrepp: \\ArrayList, generisk datastruktur, utökad for-sats (for-each), automatisk in- och upp-packning (auto-boxing/-unboxing), typklasser.
 \item Gör övning 9: ArrayList
 \item Träffas i samarbetsgrupper och hjälp varandra 
 \item Gör Lab 8: vektorer, simulering av patiens
@@ -132,6 +132,7 @@ Det finns också vissa nackdelar:
 \end{itemize}
 \end{Slide}
 
+\subsection{Exempel: Polygon med ArrayList}
 \begin{Slide}{Polygon med ArrayList}
 Klassen \code{Polygon}, nu med ett attribut av typen \code{ArrayList<Point>} som håller reda på hörnpunkterna:
 \begin{Code}[numberstyle=]
@@ -173,6 +174,7 @@ Läs mer om ArrayList i \href{https://docs.oracle.com/javase/8/docs/api/java/uti
 \footnotesize Överkurs för den nyfikne: kolla implementation av ArrayList \href{http://www.docjar.com/html/api/java/util/ArrayList.java.html}{här}.
 \end{Slide}
 
+\subsection{Generisk klass}
 \begin{Slide}{ArrayList är en \emph{generisk} klass}\footnotesize
 \begin{itemize}
 \item \code{ArrayList} är en så kallad  \Emph{generisk} klass. Se t.ex. \href{https://en.wikipedia.org/wiki/Generics_in_Java}{wikipedia}.
@@ -180,7 +182,7 @@ Läs mer om ArrayList i \href{https://docs.oracle.com/javase/8/docs/api/java/uti
 \item Typparameterns namn kan användas i implementationen av en generisk klass och kompilatorn kommer att \emph{ersätta} typparametern med den \emph{egentliga} typen vid kompilering.
 \item I fallet \code{ArrayList}: \Emph{E} ersätts med typen på de objekt som egentligen lagras i listan.  
 \end{itemize}
-\href{}{Exempel}:
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/generics/TestGenerics.java}{Exempel}:
 \begin{Code}[numberstyle=]
         ArrayList<String> words = new ArrayList<String>();
         words.add("hej");
@@ -192,6 +194,7 @@ Läs mer om ArrayList i \href{https://docs.oracle.com/javase/8/docs/api/java/uti
 \begin{Slide}{Övning ArrayList: new och add}
 Skriv kod som skapar en lista med element av typen \code{Point} och lägger in tre punkter i listan med koordinaterna (50, 50), (50,10) och (30, 40).
 \pause
+\\\vspace{1em} Lösning: \\\vspace{1em} 
 \begin{Code}[numberstyle=]
 ArrayList<Point> vertices = new ArrayList<Point>(); 
 vertices.add(new Point(50, 50));
@@ -247,5 +250,169 @@ Se hela lösningen här:
 \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/list/Polygon.java}{src/week10/list/Polygon.java}
 \end{Slide}
 
+\begin{Slide}{Övning ArrayList: implementera metoden hasVertex}
+Skriv kod som implementerar denna metod i klassen \code{Polygon}:
+\begin{Code}[numberstyle=]
+/** Undersöker om polygonen har någon hörnpunkt med koordinaterna x, y. */ 
+public boolean hasVertex(int x, int y) {
+    ???
+} 
+\end{Code}
+\end{Slide}
+
+\subsection{Utökad for-sats: for-each}
+\begin{Slide}{Utökad for-sats, även kallad for-each-sats: \\ Smidigt sätt att iterera över alla element i en lista}\footnotesize
+\begin{itemize}
+\item  Antag att vi vill gå igenom alla element i en lista. 
+\begin{Code}[numberstyle=]
+        ArrayList<String> words = new ArrayList<String>();
+\end{Code}
+Det finns två olika typer av for-satser som kan göra detta:
+\begin{itemize}\footnotesize
+\item  Vanlig for-sats:
+\begin{Code}[numberstyle=]
+for (int i = 0; i < words.size(); i++) {
+    System.out.println(i + ": " + words.get(i));
+}
+\end{Code}
+
+\item  Utökad for-sats, även kallad \Emph{for-each-sats}:
+\begin{Code}[numberstyle=]
+for (String s: words) {
+    System.out.println(s);
+}
+\end{Code}
+Syntax: \code+for (Elementtyp loopvariabel: samling) { ... }+
+\end{itemize}
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Utökad for-sats med vektorer}
+Utökad for-sats fungerar även med primitiva vektorer:
+\begin{Code}[numberstyle=]
+        String[] stringArray = {"hej", "på", "dej"};
+        for (String s: stringArray){
+            System.out.println(s);
+        }
+\end{Code}
+OBS! Vi får ingen indexvariabel i utökad for-sats.
+\end{Slide}
+
+\subsection{''Wrapper classes'' och ''auto-boxing''}
+\begin{Slide}{Generiska klasser (t.ex. ArrayList) med primitiva typer}
+\begin{itemize}\footnotesize
+\item Elementen i \code{ArrayList} anger elementens typ.
+\item Men vad gör man om man vil ha element av primitiva typer, \\ så som \code{int} och \code{double}? 
+Detta går alltså \Alert{INTE}: \\
+\sout{\texttt{ArrayList<int> list = new ArrayList<int>();}}
+
+\vspace{2em}
+\item Javas lösning på problemet består av två delar:
+\begin{itemize}\footnotesize
+\item Klasser som packar in primitiva typer, \Eng{wrapper classes}
+\item Speciella regler för implicita konverteringar, s.k. ''auto-boxing'' \Eng{Boxing / Unboxing conversions}
+\end{itemize}
+\end{itemize}
+\scriptsize\vspace{1em}
+Detta kan bli ganska komplicerat och det finns fallgropar, se kapitel 12.8 i ankboken.\\
+(Om du är nyfiken på alla intrikata detaljer, se
+\href{https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html}{java tutorial} och   \href{https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html#jls-5.1.7}{javaspecifikationen}.)
+\end{Slide}
+
+\begin{Slide}{Wrapper-klassen \code{Integer}}\footnotesize
+En skiss av klassen \code{Integer} \\ (ligger i paketet \href{http://docs.oracle.com/javase/8/docs/api/java/lang/package-summary.html}{\code{java.lang}} och importeras därmed implicit):
+
+\begin{minipage}{0.65\textwidth}
+\begin{Code}[numberstyle=]
+public class Integer {
+    private int value;
+    
+    public static final MIN_VALUE = -2147483648;
+    public static final MAX_VALUE = 2147483647;
+    
+    public Integer(int value) {
+        this.value = value;
+    }
+    
+    public int intValue() {
+        return value;
+    }
+    ...
+}
+\end{Code}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+\centering\includegraphics[width=0.95\textwidth]{img/box}
+\end{minipage}
+Javadoc för klasen \code{Integer} finns här: \\
+\scriptsize\url{http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html}
+\end{Slide}
+
+\begin{Slide}{Wrapper-klasser i \code{java.lang}}\footnotesize
+\begin{tabular}{l | l}
+\Emph{Primitiv typ}                  & \Emph{Inpackad typ}                 \\ \hline
+
+ boolean & Boolean\\
+ byte & Byte\\
+ short& Short\\
+ char & Character\\
+ int & Integer\\
+ long & Long\\
+ float & Float\\
+ double & Double\\
+\end{tabular}
+
+\vspace{4em}\footnotesize OBS! \\ I ankboken kallas wrapper-klasserna för ''typklasser'', men termen ''type class'' används ofta till något helt annat inom datalogin, vilket kan skapa förvirring.
+\end{Slide}
+
+
+\begin{Slide}{Övning: primitiva versus inpackade typer}
+Med papper och penna:
+\begin{itemize}
+\item Deklarera en variabel med namnet  \code{gurka} av den primitiva heltalstypen och initiera den till värdet 42.
+\item Deklarera en referensvariabel med namnet  \code{tomat} av den inpackade (''wrappade'') heltalstypen och initiera den till värdet 43.
+\item Rita hur det ser ut i minnet.
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Exempel: Lista med heltal}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week10/generics/TestIntegerList.java}
+\scriptsize Koden finns här: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/generics/TestIntegerList.java}{week10/generics/TestIntegerList.java}
+\end{Slide}
+
+\begin{Slide}{Specialregler för wrapper-klasser}\footnotesize
+\begin{itemize}
+\item Om ett \code{int}-värde förekommer där det behövs ett \code{Integer}-objekt, så lägger kompilatorn automatiskt ut kod som skapare ett \code{Integer}-objekt som packar in värdet.
+\item Om ett \code{Integer}-objekt förekommer där det behövs ett \code{int}-värde, lägger kompilatorn automatiskt ut kod som anropar metoden \code{intValue()}.
+\end{itemize}
+Samma gäller mellan alla primitiva typer och dess wrapper-klasser: 
+\begin{table}
+\center
+\begin{tabular}{r c l}
+ {\lstinline!boolean!} &$\Leftrightarrow$& {\lstinline!Boolean!} \\
+ {\lstinline!byte!} &$\Leftrightarrow$& {\lstinline!Byte!}\\
+ {\lstinline!short!}&$\Leftrightarrow$& {\lstinline!Short!}\\
+ {\lstinline!char!} &$\Leftrightarrow$& {\lstinline!Character!}\\
+ {\lstinline!int!} &$\Leftrightarrow$& {\lstinline!Integer!}\\
+ {\lstinline!long!} &$\Leftrightarrow$& {\lstinline!Long!}\\
+ {\lstinline!float!} &$\Leftrightarrow$& {\lstinline!Float!}\\
+ {\lstinline!double!} &$\Leftrightarrow$&{\lstinline!Double!}\\
+\end{tabular}
+\end{table}
+\end{Slide}
+
+\begin{Slide}{Exempel: Lista med heltal och autoboxing}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week10/generics/TestIntegerListAutoboxing.java}
+\scriptsize Koden finns här: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/generics/TestIntegerList.java}{week10/generics/TestIntegerListAutoboxing.java}
+\end{Slide}
+
+\subsection{Fallgropar vid autoboxing}
+\begin{Slide}{Fallgropar vid autoboxing}
+\begin{itemize}
+\item Jämförelser med \code{==} och \code{!=}
+\item Kompilatorn hittar inte förväxlad parameterording, t.ex. \code{add(pos, nbr)} i fel ordning: \sout{\code{add(nbr, pos)}}
+\end{itemize}
+Läs mer i kapitel 12.8 i ankboken.
+\end{Slide}
 
 \end{document}

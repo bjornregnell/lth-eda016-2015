@@ -56,4 +56,13 @@ public class Polygon {
     public int size() {
     	return vertices.size();
     }
+    
+    public boolean hasVertex(int x, int y){
+        for (int i =0; i < vertices.size(); i++){
+            if (vertices.get(i).getX() == x && vertices.get(i).getY() == y){
+                return true;
+            }
+        }
+        return false;
+    }
 }
