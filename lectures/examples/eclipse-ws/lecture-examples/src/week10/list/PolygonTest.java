@@ -18,7 +18,7 @@ public class PolygonTest {
 		p.move(150, 100);
 		p.insertVertex(5, 10, 10);  
 		p.draw(w); 
-		for (int i = 0; i <= p.size(); i++) {
+		for (int i = 0; i < p.size(); i++) {
 			System.out.println(p.getVertex(i));
 		}
 		p.removeVertex(0);

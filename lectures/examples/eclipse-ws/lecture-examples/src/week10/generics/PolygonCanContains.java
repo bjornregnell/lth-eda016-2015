@@ -1,19 +1,20 @@
-package week10.list;
+package week10.generics;
 
 import java.util.ArrayList;
 import se.lth.cs.pt.window.SimpleWindow;
+import week10.list.Point;
 
-public class Polygon {
-    protected ArrayList<Point> vertices; // lista med hörnpunkter
+public class PolygonCanContains {
+    protected ArrayList<PointCanEquals> vertices; // lista med hörnpunkter
     
     /** Skapar en polygon */
-    public Polygon() {
-        vertices = new ArrayList<Point>();
+    public PolygonCanContains() {
+        vertices = new ArrayList<PointCanEquals>();
     }
     
     /** Definierar en ny punkt med koordinaterna x,y */
     public void addVertex(int x, int y) {  
-        vertices.add(new Point(x, y));
+        vertices.add(new PointCanEquals(x, y));
     }
     
     /** Flyttar polygonen avståndet dx i x-led, dy i y-led */
@@ -28,7 +29,7 @@ public class Polygon {
         if (vertices.size() == 0) {
             return;
         }
-        Point start = vertices.get(0);
+        PointCanEquals start = vertices.get(0);
         w.moveTo(start.getX(), start.getY());
         for (int i = 1; i < vertices.size(); i++) {
             w.lineTo(vertices.get(i).getX(), 
@@ -40,7 +41,7 @@ public class Polygon {
     /** Lägger in en ny punkt med koordinaterna x,y
         på plats pos. Efterföljande element flyttas */
     public void insertVertex(int pos, int x, int y) {
-    	vertices.add(pos, new Point(x, y));
+    	vertices.add(pos, new PointCanEquals(x, y));
     }
     
     /** Tar bort punkten på plats pos. Efterföljande
@@ -49,7 +50,7 @@ public class Polygon {
     	vertices.remove(pos);
     }
     
-    public Point getVertex(int pos) {
+    public PointCanEquals getVertex(int pos) {
     	return vertices.get(pos);
     }
     
@@ -57,12 +58,11 @@ public class Polygon {
     	return vertices.size();
     }
     
-    public boolean hasVertex(int x, int y){
-        for (int i =0; i < vertices.size(); i++){
-            if (vertices.get(i).getX() == x && vertices.get(i).getY() == y){
-                return true;
-            }
-        }
-        return false;
+    public boolean hasVertex(int x, int y){  // DOES NOT WORK!!!
+        return vertices.contains(new Point(x, y)); // Point has no equals...
+    }
+    
+    public boolean contains(int x, int y){  
+        return vertices.contains(new PointCanEquals(x, y)); 
     }
 }

@@ -1,28 +1,23 @@
 package week10.list;
 
 public class Point {
-	int x;
-	int y;
+	private int x;
+	private int y;
 	
-	/** Skapar en punkt med koordinaterna x, y */
-	Point(int x, int y){
+	public Point(int x, int y){
 		this.x = x;
 		this.y = y;
 	}; 
 
-	/** Tar reda på x-koordinaten */
-	int getX(){
+	public int getX(){
 		return x;
 	};
 
-	/** Tar reda på y-koordinaten */
-	int getY(){
+	public int getY(){
 		return y;
 	};
 
-	/** Flyttar punkten avståndet dx i x-led, 
-	    dy i y-led */
-	void move(int dx, int dy){
+	public void move(int dx, int dy){
 		x += dx;
 		y += dy;
 	};
