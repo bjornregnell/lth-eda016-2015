@@ -9,11 +9,13 @@ public class TestGenerics {
         words.add("hej");
         words.add("på");
         words.add("dej");
-        System.out.println("Vanlig for-sats:");
+       System.out.println("Vanlig for-sats:");
         for (int i = 0; i < words.size(); i++) {
             System.out.println(i + ": " + words.get(i));
         }
+        
         System.out.println("\nfor-each-sats:");
+                
         for (String s: words) {
             System.out.println(s);
         }
@@ -24,7 +26,7 @@ public class TestGenerics {
         String[] stringArray = {"hej", "på", "dej"};
         for (String s: stringArray){
             System.out.println(s);
-        }
-    }
+        } 
+    } 
 
 }

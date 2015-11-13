@@ -58,8 +58,8 @@ public class PolygonCanContains {
     	return vertices.size();
     }
     
-    public boolean hasVertex(int x, int y){  // DOES NOT WORK!!!
-        return vertices.contains(new Point(x, y)); // Point has no equals...
+    public boolean hasVertex(int x, int y){  // FUNKAR INTE!!!
+        return vertices.contains(new Point(x, y)); // Point har ingen equals...
     }
     
     public boolean contains(int x, int y){  
