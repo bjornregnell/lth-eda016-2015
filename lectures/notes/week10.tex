@@ -23,7 +23,7 @@
 \begin{Slide}{Att göra i Vecka \vecka: Förstå ArrayList och skillnader/likheter jämfört med primitiva vektorer.}
 \begin{enumerate}
 \item Läs följande kapitel i kursboken:  8.3-8.5, 12 \\  
-Begrepp: \\ArrayList, generisk datastruktur, utökad for-sats (for-each), automatisk in- och upp-packning (auto-boxing/-unboxing), typklasser.
+Begrepp: \\ArrayList, generisk datastruktur, utökad for-sats (for-each), automatisk in- och upp-packning (auto-boxing/-unboxing), wrapper-klasser.
 \item Gör övning 9: ArrayList
 \item Träffas i samarbetsgrupper och hjälp varandra 
 \item Gör Lab 8: vektorer, simulering av patiens
@@ -260,7 +260,7 @@ public boolean hasVertex(int x, int y) {
 \end{Code}
 \end{Slide}
 
-\subsection{Utökad for-sats: for-each}
+\subsection{Utökad for-sats: ''for-each''}
 \begin{Slide}{Utökad for-sats, även kallad for-each-sats: \\ Smidigt sätt att iterera över alla element i en lista}\footnotesize
 \begin{itemize}
 \item  Antag att vi vill gå igenom alla element i en lista. 
@@ -413,6 +413,22 @@ Samma gäller mellan alla primitiva typer och dess wrapper-klasser:
 \item Kompilatorn hittar inte förväxlad parameterording, t.ex. \code{add(pos, nbr)} i fel ordning: \sout{\code{add(nbr, pos)}}
 \end{itemize}
 Läs mer i kapitel 12.8 i ankboken.
+\end{Slide}
+
+\subsection{Fallgrop med generiska samlingar och equals}\footnotesize
+\begin{Slide}{Fallgrop med generiska samlingar: 
+\\ metoden contains kräver implementation av equals}
+Antag att vi vill implementerar  \code{hasVertex()} i klassen \code{Polygon} genom att använda metoden \code{contains} på en lista. Hur gör vi då?
+\pause
+\begin{Code}[numberstyle=]
+public boolean hasVertex(int x, int y){  
+    return vertices.contains(new Point(x, y)); // FUNKAR INTE om ...
+    // ... inte Point har en equals som kollar innehållslikhet
+}
+\end{Code}
+Vi behöver implementera metoden \code{equals(Object obj)} i klassen \code{Point} som kollar innehållslikhet och ersätter den \code{equals} som finns i \code{Object} som kollar referenslikhet, eftersom metoden \code{contains} i klassen \code{ArrayList} anropar \code{equals} när den letar igenom listan efter lika objekt. \\
+Se exempel här: \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week10/generics/TestPitfall3.java}{week10/generics/TestPitfall3.java} \\
+\scriptsize Överkurs: vissa samlingar kräver även att man implementerar \href{http://stackoverflow.com/questions/27581/what-issues-should-be-considered-when-overriding-equals-and-hashcode-in-java}{hashcode}
 \end{Slide}
 
 \end{document}
