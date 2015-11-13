@@ -1,0 +1,153 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{11}
+\newcommand{\tema}{Polymorfism}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+\subsection{Att göra denna vecka}
+\begin{Slide}{Att göra i Vecka \vecka: Förstå arv och polymorfism.}
+\begin{enumerate}
+\item Läs följande kapitel i kursboken:   \\  
+Begrepp: polymorfism, klassificering, polymorfa variabler, statisk och dynamisk bindning, överskugga (override), virtuell metod
+\item Gör övning 10: arv
+\item Träffas i samarbetsgrupper och hjälp varandra 
+\item Gör Lab 9: grupplabb TurtleRace
+\end{enumerate}
+\end{Slide}
+
+
+\subsection{Repetition: arv}
+\begin{Slide}{Repetition: Vad är arv? Motivering och terminologi}\footnotesize
+\begin{itemize}
+\item Med hjälp av \Emph{arv} mellan klasser kan man göra så att en klass \Emph{ärver} (''får med sig'') innehållet i en \textit{annan} klass.
+\item Varför vill man det? 
+\begin{enumerate}\footnotesize
+\item Dela upp ansvar mellan klasser och bryta ut gemensamma delar så att man slipper duplicerad kod.
+\item Skapa en klassificering av objekt utifrån relationen  \Emph{X är en Y}.  \\ Exempel 1: En gurka är en grönsak. En tomat är en grönsak. \\ Exempel 2: En cykel är ett fordon. En bil är ett fordon. 
+\end{enumerate}
+\item Nyckelordet \Key{extends} används för att ange arv i Java. \\ Exempel:   \code|class TalkingRobot extends Robot|
+\item Klassen som ärver (utökar) kallas \Emph{subklass}
+\item Klassen som blir utökad kallas \Emph{superklass} (även \textit{basklass})
+\item Läs mer om arv \Eng{inheritance} här: \scriptsize \url{https://sv.wikipedia.org/wiki/Arv\_\%28programmering\%29} 
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Klassificering av mat}
+\begin{center}
+
+\tikzstyle{umlclass}=[rectangle, draw=black,  thick, anchor=north, text width=2cm, rectangle split, rectangle split parts = 3]
+\begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
+\node (Food) [umlclass, rectangle split parts = 2, text width=3cm]  {
+            \textit{\textbf{\centerline{Food}}}
+            \nodepart[]{second}getWeight(): Int \\ show(): void
+        };
+        
+\node (Vegetarian) [umlclass, rectangle split parts = 2, below = of Food,  xshift=-3cm, text width=3cm]  {
+            \textit{\textbf{\centerline{Vegetarian}}}
+            \nodepart[]{second} \vspace{1em}
+        };  
+        
+\node (Cucumber) [umlclass, rectangle split parts = 2, below = of Vegetarian, xshift=-2cm]  {
+            \textbf{\centerline{Cucumber}}
+            \nodepart[]{second}\vspace{1em}
+        }; 
+        
+\node (Tomato) [umlclass, rectangle split parts = 2, below = of Vegetarian, right = of Cucumber, xshift=-0.5cm]  {
+            \textbf{\centerline{Tomato}}
+            \nodepart[]{second}\vspace{1em}
+        };           
+                
+\node (Animal) [umlclass, rectangle split parts = 2, below = of Food, right = of Vegetarian, xshift=1.5cm, text width=2.5cm,  text width=3cm]  {
+            \textit{\textbf{\centerline{Animal}}}
+            \nodepart[]{second}\small getSound(): String
+        }; 
+        
+\node (Cow) [umlclass, rectangle split parts = 2, below = of Animal, xshift=-1.5cm]  {
+            \textbf{\centerline{Cow}}
+            \nodepart[]{second}\vspace{1em}
+        }; 
+        
+\node (Pig) [umlclass, rectangle split parts = 2, below = of Animal, right = of Cow, xshift=-0.5cm]  {
+            \textbf{\centerline{Pig}}
+            \nodepart[]{second}\vspace{1em}
+        };         
+                       
+\draw[umlarrow] (Animal.north) -- ++(0,0.5) -| (Food.south);    
+\draw[umlarrow] (Vegetarian.north) -- ++(0,0.5) -| (Food.south);       
+\draw[umlarrow] (Cow.north) -- ++(0,0.5) -| (Animal.south);            
+\draw[umlarrow] (Pig.north) -- ++(0,0.5) -| (Animal.south);        
+\draw[umlarrow] (Cucumber.north) -- ++(0,0.5) -| (Vegetarian.south);            
+\draw[umlarrow] (Tomato.north) -- ++(0,0.5) -| (Vegetarian.south);                    
+\end{tikzpicture}
+\end{center}
+\end{Slide}
+
+\subsection{Polymorfism}
+\begin{Slide}{Polymorfism: referensvariabler och listor}
+  \begin{minipage}{0.6\linewidth}   
+\footnotesize\href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week11/polymorfism}{lecture-examples/src/week11/polymorfism}:
+
+\begin{Code}[basicstyle=\ttfamily\fontsize{6}{7}\selectfont, numberstyle=,numbers=left]
+// Food f = new Food(42); // compile error
+Food f = new Tomato(42);
+ArrayList<Food> foodList = new ArrayList<Food>();
+foodList.add(f);
+foodList.add(new Pig(84));
+foodList.add(new Cow(168));
+foodList.add(new Cucumber(21));
+for (Food f: foodList){
+    f.show();
+    int weight = f.getWeight();
+    // String sound = f.getSound(); // compile error
+    System.out.println("Weight: " + weight);
+}
+Animal[] animalArray = 
+  {new Pig(100), new Cow(500), new Pig(100)};
+for (Animal a: animalArray){
+    String sound = a.getSound();
+    System.out.println(sound);
+}
+\end{Code}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[]{0.2\linewidth}   \scriptsize
+\begin{verbatim}
+I am abstract Food!
+I am abstract Vegetarian!
+I am a concrete Tomato!
+Weight: 42
+I am abstract Food!
+I am an abstract Animal!
+I am a concrete Pig!
+Weight: 84
+I am abstract Food!
+I am an abstract Animal!
+I am a concrete Cow!
+Weight: 168
+I am abstract Food!
+I am abstract Vegetarian!
+I am a concrete Cucumber!
+Weight: 21
+Nöff Nöff!
+Muuuu!
+Nöff Nöff!
+\end{verbatim}
+  \end{minipage}
+\end{Slide}
+
+\end{document}
