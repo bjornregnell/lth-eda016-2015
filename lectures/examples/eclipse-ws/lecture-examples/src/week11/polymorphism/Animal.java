@@ -15,6 +15,6 @@ public abstract class Animal extends Food {
     @Override
     public void show() {
         super.show();
-        System.out.println("I am an abstract Animal!");
+        System.out.println("I am abstract Animal!");
     }
 }

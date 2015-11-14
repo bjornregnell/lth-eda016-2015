@@ -22,8 +22,8 @@
 \subsection{Att göra denna vecka}
 \begin{Slide}{Att göra i Vecka \vecka: Förstå arv och polymorfism.}
 \begin{enumerate}
-\item Läs följande kapitel i kursboken:   \\  
-Begrepp: polymorfism, klassificering, polymorfa variabler, statisk och dynamisk bindning, överskugga (override), virtuell metod
+\item Läs följande kapitel i kursboken:  9 \\  
+Begrepp: polymorfism, klassificering, polymorfa variabler, dynamisk bindning, överskugga (override), virtuell metod, definitiva metoder och klasser
 \item Gör övning 10: arv
 \item Träffas i samarbetsgrupper och hjälp varandra 
 \item Gör Lab 9: grupplabb TurtleRace
@@ -47,7 +47,88 @@ Begrepp: polymorfism, klassificering, polymorfa variabler, statisk och dynamisk 
 \end{itemize}
 \end{Slide}
 
-\begin{Slide}{Klassificering av mat}
+\begin{Slide}{Skydd i samband med arv}
+Använd \code{protected} för synlighet bara i subklasser:
+\begin{Code}
+public class A {
+    private int x;
+    protected int y;
+    public int z;
+}
+\end{Code}
+\begin{Code}
+public class B extends A {
+    // här är de ärvda attributen y och z tillgängliga,
+    // x är inte tillgängligt
+}
+\end{Code}
+\begin{itemize}\footnotesize
+\item Läs om skyddsregler i ankboken 9.2 och \href{https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html}{officiella java tutorial}.
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Konstruktorer och arv}
+Konstruktorn i subklassen måste \Alert{först} anropa superklassens konstruktor med \code{super}:
+\begin{Code}[numberstyle=]
+public class A {
+    private int a;
+    
+    public A(int a){
+        this.a = a;
+    }
+}
+\end{Code}
+\begin{Code}
+public class B extends A {
+    private int b;
+    
+    public B(int a, int b){
+        super(a);
+        this.b = b;
+    }
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Abstrakt klass}
+En abstrakt klass får \Alert{inte} instansieras. \\ Vid försök blir det \Alert{kompileringsfel}:
+\begin{Code}[numberstyle=]
+public abstract class A {
+    private int a;
+    
+    public A(int a){
+        this.a = a;
+    }
+}
+\end{Code}
+\begin{Code}
+    A a = new A(42);  // compile error: Cannot instantiate type A
+\end{Code}
+\begin{itemize}\footnotesize
+\item Ska konstruktorer i abstrakta klasser vara \code{public} eller \code{protected}? Läs mer \href{http://stackoverflow.com/questions/260744/abstract-class-constructor-access-modifier}{på SO: abstract-class-constructor-access-modifier}
+\end{itemize}
+\end{Slide}
+
+
+\subsection{Polymorfism}
+\begin{Slide}{Polymorfism}
+Polymorfism betyder \Emph{många olika skepnader}.
+\begin{itemize}\footnotesize
+\item Det finns flera olika slags polymorfism, bland andra:
+\begin{itemize}\footnotesize
+\item \Emph{Subtypning}: Variabler av en supertyp kan innehålla värden av olika subtyp. I Java används arv för att åstadkomma detta, t.ex. genom att en referensvariabel av typen \code{Shape} kan referera till \emph{olika} slags grafiska objekt, så som \code{Polygon} och \code{Circle}
+\item \Emph{Parametrisk polymorfism}: En metod eller klass kan göra generisk och implementeras oberoende av vilken typ som hanteras. I java, t.ex.: \code{ArrayList<E>}
+\end{itemize}
+\item Läs mer här
+\begin{itemize}\footnotesize
+\item \href{https://sv.wikipedia.org/wiki/Polymorfism_\%28objektorienterad_programmering\%29}{svenska wikipedia}
+\item \href{https://en.wikipedia.org/wiki/Polymorphism_\%28computer_science\%29}{engelska wikipedia}
+\item \href{http://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html}{java tutorial}
+\end{itemize}
+\end{itemize}
+\end{Slide}
+
+\begin{Slide}{Exempel på polymorfism: Klassificering av mat} \footnotesize
 \begin{center}
 
 \tikzstyle{umlclass}=[rectangle, draw=black,  thick, anchor=north, text width=2cm, rectangle split, rectangle split parts = 3]
@@ -95,18 +176,88 @@ Begrepp: polymorfism, klassificering, polymorfa variabler, statisk och dynamisk 
 \draw[umlarrow] (Tomato.north) -- ++(0,0.5) -| (Vegetarian.south);                    
 \end{tikzpicture}
 \end{center}
+Metoden \code{show()} förekommer \Emph{i många skepnader}, beroende på vilken konkret subklass som instansieras. Vid \emph{körtid} avgörs vilken som anropas. Detta kallas \Emph{dynamisk bindning} och metoden \code{show()} kallas \Emph{virtuell}.
 \end{Slide}
 
-\subsection{Polymorfism}
-\begin{Slide}{Polymorfism: referensvariabler och listor}
+\begin{Slide}{Den abstrakta klassen \code{Food}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Food.java}
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Food.java}{lecture-examples/src/week11/polymorphism/Food.java}
+\end{Slide}
+
+\begin{Slide}{Den abstrakta klassen \code{Animal}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Animal.java}
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Food.java}{lecture-examples/src/week11/polymorphism/Animal.java}
+\end{Slide}
+
+\begin{Slide}{Den konkreta klassen \code{Cow}}
+\lstinputlisting[language=Java, basicstyle=\ttfamily\tiny\selectfont, numberstyle=, numbers=left,]{../examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Cow.java}
+\href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week11/polymorphism/Food.java}{lecture-examples/src/week11/polymorphism/Cow.java}
+\end{Slide}
+
+
+\begin{Slide}{Övning på polymorfism} \footnotesize
+\Emph{Övning}: Med papper och penna, implementera klasserna \code{Vegetarian}, \code{Cucumber} och \code{Pig}. Diskutera gärna parvis hur det kommer att bli när man skapar olika slags matobjekt och anropar metoden \code{show()}.
+\begin{center}
+\tikzstyle{umlclass}=[rectangle, draw=black,  thick, anchor=north, text width=2cm, rectangle split, rectangle split parts = 3]
+\begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
+\node (Food) [umlclass, rectangle split parts = 2, text width=3cm]  {
+            \textit{\textbf{\centerline{Food}}}
+            \nodepart[]{second}getWeight(): Int \\ show(): void
+        };
+        
+\node (Vegetarian) [umlclass, rectangle split parts = 2, below = of Food,  xshift=-3cm, text width=3cm]  {
+            \textit{\textbf{\centerline{Vegetarian}}}
+            \nodepart[]{second} \vspace{1em}
+        };  
+        
+\node (Cucumber) [umlclass, rectangle split parts = 2, below = of Vegetarian, xshift=-2cm]  {
+            \textbf{\centerline{Cucumber}}
+            \nodepart[]{second}\vspace{1em}
+        }; 
+        
+\node (Tomato) [umlclass, rectangle split parts = 2, below = of Vegetarian, right = of Cucumber, xshift=-0.5cm]  {
+            \textbf{\centerline{Tomato}}
+            \nodepart[]{second}\vspace{1em}
+        };           
+                
+\node (Animal) [umlclass, rectangle split parts = 2, below = of Food, right = of Vegetarian, xshift=1.5cm, text width=2.5cm,  text width=3cm]  {
+            \textit{\textbf{\centerline{Animal}}}
+            \nodepart[]{second}\small getSound(): String
+        }; 
+        
+\node (Cow) [umlclass, rectangle split parts = 2, below = of Animal, xshift=-1.5cm]  {
+            \textbf{\centerline{Cow}}
+            \nodepart[]{second}\vspace{1em}
+        }; 
+        
+\node (Pig) [umlclass, rectangle split parts = 2, below = of Animal, right = of Cow, xshift=-0.5cm]  {
+            \textbf{\centerline{Pig}}
+            \nodepart[]{second}\vspace{1em}
+        };         
+                       
+\draw[umlarrow] (Animal.north) -- ++(0,0.5) -| (Food.south);    
+\draw[umlarrow] (Vegetarian.north) -- ++(0,0.5) -| (Food.south);       
+\draw[umlarrow] (Cow.north) -- ++(0,0.5) -| (Animal.south);            
+\draw[umlarrow] (Pig.north) -- ++(0,0.5) -| (Animal.south);        
+\draw[umlarrow] (Cucumber.north) -- ++(0,0.5) -| (Vegetarian.south);            
+\draw[umlarrow] (Tomato.north) -- ++(0,0.5) -| (Vegetarian.south);                    
+\end{tikzpicture}
+\end{center}
+\end{Slide}
+
+\begin{Slide}{Polymorfism med referensvariabler, listor och vektorer}
   \begin{minipage}{0.6\linewidth}   
 \footnotesize\href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week11/polymorfism}{lecture-examples/src/week11/polymorfism}:
 
+
 \begin{Code}[basicstyle=\ttfamily\fontsize{6}{7}\selectfont, numberstyle=,numbers=left]
-// Food f = new Food(42); // compile error
-Food f = new Tomato(42);
+// Food f = new Food(42);   // compile error
+Food t1 = new Tomato(42);
+Tomato t2 = new Tomato(42); 
+// t2 = new Cucumber(42);   // compile error
 ArrayList<Food> foodList = new ArrayList<Food>();
-foodList.add(f);
+foodList.add(t1);
+foodList.add(t2);
 foodList.add(new Pig(84));
 foodList.add(new Cow(168));
 foodList.add(new Cucumber(21));
@@ -117,26 +268,31 @@ for (Food f: foodList){
     System.out.println("Weight: " + weight);
 }
 Animal[] animalArray = 
-  {new Pig(100), new Cow(500), new Pig(100)};
+    {new Pig(100), new Cow(500), new Pig(100)};
 for (Animal a: animalArray){
     String sound = a.getSound();
     System.out.println(sound);
 }
 \end{Code}
+\Emph{Övning}: Rita minnet efter raderna 5, 10, 17
 \end{minipage}
 \hspace{0.5cm}
-\begin{minipage}[]{0.2\linewidth}   \scriptsize
+\begin{minipage}[]{0.2\linewidth}  \fontsize{7}{8}\selectfont
 \begin{verbatim}
 I am abstract Food!
 I am abstract Vegetarian!
 I am a concrete Tomato!
 Weight: 42
 I am abstract Food!
-I am an abstract Animal!
+I am abstract Vegetarian!
+I am a concrete Tomato!
+Weight: 42
+I am abstract Food!
+I am abstract Animal!
 I am a concrete Pig!
 Weight: 84
 I am abstract Food!
-I am an abstract Animal!
+I am abstract Animal!
 I am a concrete Cow!
 Weight: 168
 I am abstract Food!
@@ -149,5 +305,19 @@ Nöff Nöff!
 \end{verbatim}
   \end{minipage}
 \end{Slide}
+
+\begin{Slide}{Definitiva metoder och klasser}
+\end{Slide}
+
+\begin{Slide}{Regler för grupplabbar}
+\end{Slide}
+
+\begin{Slide}{Inför nästa vecka: Algoritmer}
+\begin{itemize}
+\item Repetera algoritmer: min/max, linjärsökning, registrering
+\item Nästa vecka: binärsökning, sortering
+\end{itemize}
+\end{Slide}
+
 
 \end{document}

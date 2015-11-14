@@ -12,7 +12,7 @@
 | W08           | - | Kontrollskrivning | - | Delar av 1-7, 9, 11-12 enl ovan|
 | W09 (Lp2V1)   | F13         | Matriser | repetition: vektorer, matriser, vektor av vektorer, matrisindexering, rader, kolonner/kolumner, nästlade for-satser, designexempel: Tre-i-rad | 8.6-8.7 |
 | W10 (Lp2V2)   | F14         | Listor | ArrayList, typklasser, autoboxning, for-each-satser | 12 |
-| W11 (Lp2V3)   | F15 F16     | Polymorfism | skyddsregler vid arv, protected, abstrakta metoder, typregler vid arv, instanceof, definitiva metoder och klasser, @override| 9.2, 9.4-9.6, 9.10 |
+| W11 (Lp2V3)   | F15 F16     | Polymorfism | skyddsregler vid arv, protected, abstrakta metoder, typregler vid arv, definitiva metoder och klasser, @override| 9.2, 9.4-9.6, 9.10 |
 | W12 (Lp2V4)   | F17 F18     | Algoritmer | binärsökning, urvalssortering, bubbelsortering, insättningssortering, komplexitet | 7.7, 8 |
 | W13 (Lp2V5)   | F19         | Designexempel | att skriva stora program | 9, 10, 13   |
 | W14 (Lp2V6)   | F20         | Repetition, Extentor | Vad kommer på tentan? | 1-13, A, B, C |
