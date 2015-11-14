@@ -13,5 +13,8 @@ public abstract class Food {
     
     public void show() {
         System.out.println("I am abstract Food!");
-    }
+    } 
+    
+    // public abstract void show();
+    
 }
