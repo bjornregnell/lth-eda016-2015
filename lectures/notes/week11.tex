@@ -274,7 +274,7 @@ for (Animal a: animalArray){
     System.out.println(sound);
 }
 \end{Code}
-\Emph{Övning}: Rita minnet efter raderna 5, 10, 17
+\Emph{Övning}: Rita minnet efter raderna 5, 10, 18
 \end{minipage}
 \hspace{0.5cm}
 \begin{minipage}[]{0.2\linewidth}  \fontsize{7}{8}\selectfont
@@ -306,16 +306,61 @@ Nöff Nöff!
   \end{minipage}
 \end{Slide}
 
-\begin{Slide}{Definitiva metoder och klasser}
+\subsection{Definitiva metoder och klasser}
+\begin{Slide}{Definitiva metoder med \texttt{final}}
+\begin{Code}
+public class ChessAlgorithm {
+    public static final int WHITE = 1;
+    public static final int BLACK = 2;
+    //...
+    final int getFirstPlayer() {
+        return WHITE;
+    }
+    //...
+}
+\end{Code}
+På grund av \code{final} före metoden får ingen subklass överskugga \code{getFirstPlayer()}\\
+\href{https://docs.oracle.com/javase/tutorial/java/IandI/final.html}{Se java tutorial om ''Final classes and methods''}
 \end{Slide}
 
+\begin{Slide}{Definitiva klasser med \texttt{final class}}
+\begin{Code}
+public final class MyInteger {
+    private final int value;
+
+    public MyInteger(int value) {
+        this.value = value;
+    }
+    
+    public int intValue() {
+        return value;
+    }
+}
+\end{Code}
+På grund av \code{final} före \code{class} får ingen göra \code{extends} på denna klass och då kan vi vara helt säkra på att ingen subklass ändrar beteendet på \code{MyInteger}. \\
+Se exempel här: \href{}{}
+\end{Slide}
+
+
 \begin{Slide}{Regler för grupplabbar}
+\begin{itemize}
+\item Diskutera i din samarbetsgrupp hur ni vill dela upp ansvaret och arbetet för olika delar av ko
+den. Det är lämpligt att varje klass har en huvudansvarig. Flera kan hjälpas åt med samma klass, t.e
+x. genom att implementera olika metoder.
+\item När ni redovisar er lösning ska ni också kunna redogöra för hur ni delat upp ansvar och arbete
+ mellan er. Var och en redovisar sina delar.
+\item Grupplaborationer görs i huvudsak som \Alert{hemuppgift}. Salstiden används primärt för redovisning.
+\end{itemize}
+Diskutera gärna med handledare på resurstid om ni behöver hjälp med hur ni ska dela upp arbetet.
+\end{Slide}
+
+\begin{Slide}{Morgondagens föreläsning: Grumligtlådan}
 \end{Slide}
 
 \begin{Slide}{Inför nästa vecka: Algoritmer}
 \begin{itemize}
 \item Repetera algoritmer: min/max, linjärsökning, registrering
-\item Nästa vecka: binärsökning, sortering
+\item Nästa vecka: \\ binärsökning, sortering, algoritmisk komplexitet
 \end{itemize}
 \end{Slide}
 
