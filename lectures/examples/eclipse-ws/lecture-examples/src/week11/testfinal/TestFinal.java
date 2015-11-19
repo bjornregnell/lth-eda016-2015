@@ -14,8 +14,8 @@ class ManiuplatedInt extends MyInteger {
 }
 
 class ManipulatedChessAlgorithm extends ChessAlgorithm {
-    @Override
-    int getFirstPlayer() {  
+    //@Override
+    public int getFirstPlayer() {  
         return BLACK; // this is against the rules of chess
     }
 }

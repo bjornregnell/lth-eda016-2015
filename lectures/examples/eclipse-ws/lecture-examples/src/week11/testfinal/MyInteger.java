@@ -1,7 +1,7 @@
 package week11.testfinal;
 
-public class MyInteger {  // should be final
-    private final int value;
+public class MyInteger {  // class should be final
+    private int value; // attribute should be final
 
     public MyInteger(int value) {
         this.value = value;

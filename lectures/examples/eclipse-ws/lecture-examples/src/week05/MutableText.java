@@ -34,7 +34,7 @@ public class MutableText {
 	    String result = "";  // Använd StringBuilder
 	    for (int i = 0; i < sb.length(); i++) {
 	        if (sb.charAt(i) != ' ') {
-	            result += sb.charAt(i);
+	            result = result + sb.charAt(i);
 	        }
 	    }
 	    return result;
