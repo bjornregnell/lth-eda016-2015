@@ -1,111 +1,283 @@
-%\begin{Slide}
-%\frametitle{Algoritmexempel: Sökning}
-%Sök upp platsen för ett givet element i en följd av element. Om det finns mer än ett element som är lika med det sökta så ska resultatet vara platsen för det första av dessa element.
-%
-%\halfblankline
-%Algoritm (linjärsökning):
-%\begin{Code}
-%pos = "platsen för det första elementet";
-%while ("fler element kvar" &&
-%       "elementet på plats pos inte är det vi söker") {
-%    pos = "platsen för nästa element";
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Sökning, variant 1}
-%
-%\begin{Code}
-%public class Data {
-%    private int[] v;
-%    private int n;
-%
-%    /* här finns konstruktorer och andra metoder */
-%    
-%    public int find(int nbr) {
-%        int i = 0;
-%        while (i < n && v[i] != nbr) {
-%            i++;
-%        }
-%        return (i < n) ? i : -1;
-%    }
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Sökning, variant 2}
-%
-%\begin{Code}
-%public int find2(int nbr) {
-%    v[n] = nbr;
-%    int i = 0;
-%    while (v[i] != nbr) {
-%        i++;
-%    }
-%    return (i < n) ? i : -1;
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Sökning, variant 3}
-%
-%\begin{Code}
-%public int find3(int nbr) {
-%    for (int i = 0; i < n; i++) {
-%        if (v[i] == nbr) {
-%            return i;
-%        }
-%    }
-%    return -1;
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Binärsökning (bara i sorterad vektor)}
-%
-%\begin{Code}
-%public int binarySearch(int nbr) {
-%    int low = 0;      // undre gräns
-%    int high = n - 1; // övre gräns
-%    int mid = -1;     // mittpunkt
-%    boolean found = false;
-%    while (low <= high && ! found) {
-%        mid = (low + high) / 2;
-%        if (v[mid] == nbr) {
-%            found = true;
-%        } else if (v[mid] < nbr) {
-%            low = mid + 1;
-%        } else {
-%            high = mid - 1;
-%        }
-%    }
-%    return found ? mid : -(low + 1);
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Tidskomplexitet, sökning}
-%\begin{tabular}{ll}
-%Linjärsökning: & $O(n)$ \\
-%Binärsökning:  & $O(\log n)$
-%\end{tabular}
-%
-%\blankline
-%Vi har en vektor med 1000 element. Vi har mätt tiden för att söka upp ett element många gånger och funnit att det tar ungefär 1 $\mu$s både med linjärsökning och binärsökning. Hur lång tid tar det om vi har fler element i vektorn?
-%
-%\blankline
-%\begin{tabular}{rccccc}
-%       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
-%linjär & 1     & 10     & 100     & 1000     & 10000 \\
-%binär  & 1     & 1.33   & 1.67    & 2.00     & 2.33
-%\end{tabular}
-%\end{Slide} 
-%
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{12}
+\newcommand{\tema}{Algoritmer}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+\subsection{Att göra denna vecka}
+\begin{Slide}{Att göra i Vecka \vecka: Kunna gå från lösningsidé till implementation. Förstå sortering.}
+
+\begin{enumerate}
+\item Läs följande kapitel i kursboken: 7.13, 8.8, 8.9  \\  
+binärsökning, urvalssortering (selection sort), instickssortering (insertion sort)  
+\item Gör Övning 11: sortering, objekt
+\item Träffas i samarbetsgrupper och hjälp varandra 
+\item Gör Lab 10: Life
+\end{enumerate}
+\end{Slide}
+
+\subsection{Repetition: Vad är en algoritm?}
+\begin{Slide}{Repetition: Vad är en algoritm? }\footnotesize
+En \href{https://sv.wikipedia.org/wiki/Algoritm}{algoritm} är en stegvis beskrivning av hur man löser ett problem. \\ 
+Exempel: Min/Max, Linjärsökning, Registrering \\
+\vspace{1em}
+Problemlösningsprocessens olika steg (inte nödvändigtvis i denna ordning): 
+\begin{enumerate}
+\item identifiera (del)\Emph{problemet}: \\ exempel: hitta minsta talet
+\item Kom på en \Emph{lösningsidé}: (kan  vara mycket klurigt och svårt) \\ exempel: iterera över talen och håll reda på ''minst hittills''
+\item Formulera en \Emph{stegvis beskrivning} som löser problemet: \\ exempel: pseudo-kod med sekvens av instruktioner
+\item Implementera en \Emph{körbar lösning} i ''riktig'' kod: \\ exempel: en Java-metod i en klass
+\end{enumerate}
+Övning: Ge exempel per steg ovan för linjärsökning och registrering. \\
+Det krävs ofta \Emph{kreativitiet} i stegen ovan  -- även i att \Emph{känna igen} problemet: \\ Exempel: skapa highscore-lista kräver dellösningen att hitta \emph{största} talet som är en variant av problemet ''hitta minsta talet'' som jag vet hur man kan lösa.
+\end{Slide}
+
+\subsection{Repetition: Min/Max}
+\begin{Slide}{Det finns ofta flera olika sätt (ide, lösning, kod)}\footnotesize
+Alternativ 1: pseudo-kod ''hitta minsta talet''
+\begin{lstlisting}
+minSoFar = ett tal STÖRRE än alla andra tal
+while (finns fler tal) 
+    x = nästa tal
+    if (x < minSoFar) 
+        minSoFar = x
+return minSoFar
+\end{lstlisting}
+Alternativ 2: pseudo-kod ''hitta minsta talet''
+\begin{lstlisting}
+x = första talet
+minSoFar = x
+while (finns fler tal) 
+    x = nästa tal
+    if (x > minSoFar) 
+        minSoFar = x
+return minSoFar
+\end{lstlisting}
+Vad händer om det inte finns några tal alls? Kolla alla \Emph{specialfall}!
+\end{Slide}
+
+\subsection{Repetition: Linjärsökning}
+\begin{Slide}{Repetition: Linjärsökning }\footnotesize
+\Emph{Problem}: Sök upp platsen för första förekomsten av ett givet element i en sekvens av element. \\ 
+\Emph{Idé}: Gå igenom position för position från början till slut och avbryt om rätt tal hittats. \\
+\vspace{1em}
+\Emph{Pseudo-kod}:
+\begin{lstlisting}
+pos = "platsen för det första elementet";
+while ("fler element kvar" &&
+       "elementet på plats pos inte är det vi söker") {
+    pos = "platsen för nästa element";
+}
+\end{lstlisting}
+Kolla alla \Emph{specialfall}!
+\begin{itemize}
+\item Funkar det för inga element alls?
+\item Vad händer i början? Funkar det för ett enda element?
+\item Vad händer i slutet? Råkar vi indexera bortom slutet?
+\end{itemize}
+\end{Slide}
+
+
+\begin{Slide}{Implementation LinjärSökning -- variant 1}
+\begin{Code}
+public class Data {
+    private int[] v;
+    private int n;  // antalet element
+
+    /* här finns konstruktorer och andra metoder */
+    
+    public int find1(int nbr) {
+        int i = 0;
+        while (i < n && v[i] != nbr) {
+            i++;
+        }
+        return (i < n) ? i : -1;
+    }
+}
+\end{Code}
+\footnotesize Kolla alla \Emph{specialfall}!
+\begin{itemize}
+\item Funkar det för inga element alls?
+\item Vad händer i början? Funkar det för ett enda element?
+\item Vad händer i slutet? Råkar vi indexera bortom slutet?
+\end{itemize}
+\end{Slide} 
+
+\begin{Slide}{Implementation LinjärSökning -- variant 2}
+\begin{Code}
+public int find2(int nbr) {
+    v[n] = nbr;  // lägg till "vaktpost" i slutet
+    int i = 0;
+    while (v[i] != nbr) {
+        i++;
+    }
+    return (i < n) ? i : -1;
+}
+\end{Code}
+\footnotesize Kolla alla \Emph{specialfall}!
+\begin{itemize}
+\item Funkar det för inga element alls?
+\item Vad händer i början? Funkar det för ett enda element?
+\item Vad händer i slutet? Råkar vi indexera bortom slutet?
+\end{itemize}
+\end{Slide} 
+
+\begin{Slide}{Implementation LinjärSökning -- variant 3}
+\begin{Code}
+public int find3(int nbr) {
+    for (int i = 0; i < n; i++) {
+        if (v[i] == nbr) {
+            return i;
+        }
+    }
+    return -1;
+}
+\end{Code}
+\footnotesize Kolla alla \Emph{specialfall}!
+\begin{itemize}
+\item Funkar det för inga element alls?
+\item Vad händer i början? Funkar det för ett enda element?
+\item Vad händer i slutet? Råkar vi indexera bortom slutet?
+\end{itemize}
+\end{Slide} 
+
+\begin{Slide}{Implementation LinjärSökning -- variant 4}
+\begin{Code}
+public int find4(int nbr) {
+    boolean found = false;
+    int i = 0;
+    while (!found && i < n) {
+        if (nbr == v[i]) {
+            found = true;
+        }
+        else {
+            i++; 
+        }
+    }
+    return (found) ? i : -1;
+}
+\end{Code}
+\footnotesize Kolla alla \Emph{specialfall}!
+\begin{itemize}
+\item Funkar det för inga element alls?
+\item Vad händer i början? Funkar det för ett enda element?
+\item Vad händer i slutet? Råkar vi indexera bortom slutet?
+\end{itemize}
+\end{Slide} 
+
+\begin{Slide}{Binärsökning i sorterad sekvens}\footnotesize
+\Emph{Idé}: Om sekvensen är sorterad kan vi utnyttja detta för en mer effektiv sökning, genom att jämföra med mittersta värdet och se om det vi söker finns före eller efter detta, och upprepa med ''halverad'' sekvens tills funnet. \\
+\pause
+\Emph{Pseudo-kod}:
+\begin{Code}
+    found = false
+    while ("finns fler kvar" && !found) {
+        mid = "ta reda på mittpunkten i intervallet"
+        if (v[mid] == nbr) {
+            found = true
+        } else if (v[mid] < nbr) {
+            "flytta intervallets undre gräns"
+        } else {
+            "flytta intervallets övre gräns"
+        }
+    }
+    if (found) return mid
+    else return "platsen där vi borde stoppa in det saknade elementet"
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Binärsökning i sorterad sekvens}
+\Emph{Implementation}
+\begin{Code}
+public int binarySearch(int nbr) {
+    int low = 0;      // undre gräns
+    int high = n - 1; // övre gräns
+    int mid = -1;     // mittpunkt
+    boolean found = false;
+    while (low <= high && ! found) {
+        mid = (low + high) / 2;
+        if (v[mid] == nbr) {
+            found = true;
+        } else if (v[mid] < nbr) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return (found) ? mid : -(low + 1);
+}
+\end{Code}
+\scriptsize\href{https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#binarySearch-int:A-int-int-int-}{JDK: Arrays.binarySearch(int[] a, int fromIndex, int toIndex, int key)}
+\end{Slide} 
+
+\subsection{Algoritmisk tidskomplexitet}
+\begin{Slide}{Algoritmisk komplexitet}\footnotesize
+Olika algoritmer som löser samma problem kan vara olika effektiva vad gäller 
+\begin{itemize}
+\item hur lång tid de tar (tidskopmplexitet) eller 
+\item hur mycket minne de tar (minneskomplexitet). 
+\end{itemize}
+\vspace{1em}
+Genom att studera hur mycket \emph{längre} tid det tar om man \emph{ökar} antalet element, från till exempel $n$ till $10n$ kan man se hur tidsåtgången växer. 
+
+\vspace{1em}
+Man använder notationen $O(n)$ som uttalas ''ordo n'' för att säga att tidsåtgången ökar linjär i förhållande till en ökning av antalet element, medan man skriver $O(n^2)$ om tidsåtgången ökar kvadratiskt i förhållande till en ökning av antalet element.
+
+\vspace{1em} En for-sats nästlad innuti en for-sats ger typiskt tidskomplexiteten $O(n^2)$.
+\end{Slide} 
+
+
+
+\begin{Slide}{Tidskomplexitet, sökning}
+Algoritmteoretisk analys av sökalgoritmerna ger:
+\begin{itemize}
+\item Linjärsökning: $O(n)$ 
+\item Binärsökning:  $O(\log n)$
+\end{itemize}
+\vspace{1em}
+Vi har en vektor med 1000 element. Vi har mätt tiden för att söka upp ett element många gånger och funnit att det tar ungefär 1 $\mu$s både med linjärsökning och binärsökning. Hur lång tid tar det om vi har fler element i vektorn?\\
+\vspace{1em}
+\begin{tabular}{rccccc}
+       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
+linjär & 1     & 10     & 100     & 1000     & 10000 \\
+binär  & 1     & 1.33   & 1.67    & 2.00     & 2.33
+\end{tabular}
+\vspace{1em} 
+
+\scriptsize 
+
+I nya kursen ''Utvärdering av programsystem'', obl. för D1, studerar ni detta empiriskt.
+
+Algoritmisk komplexitet studerar ni analytiskt i kursen \href{http://cs.lth.se/edaf05}{EDAF05}, obl. för D2.
+\end{Slide} 
+
+
+\Subsection{Sortering}
+\begin{Slide}{Sorteringsproblemet}
+\Emph{Problem}: Vi har en osorterad sekvens med heltal. Vi vill ordna denna mängd i en sorterad sekvens från minst till störst.
+\pause
+
+\vspace{2em}
+En \emph{generalisering} av problement: \\ \vspace{1em} Vi har många element och en \Emph{ordningsrelation} som säger vad vi menar med att ett element är \emph{mindre än} eller \emph{större än} eller \emph{lika med} ett annat element. \\ \vspace{1em}
+Vi vill lösa problemet att ordna elementen i sekvens så att för varje element på plats $i$ så är efterföljande element på plats $i + 1$ större eller lika med elementet på plats $i$.
+
+\end{Slide} 
 %\begin{Slide}
 %\frametitle{Algoritmexempel: Sortering}
 %Sortera en följd av tal i växande ordning.
@@ -155,3 +327,5 @@
 %\end{tabular}
 %\end{Slide} 
 %
+
+\end{document}
