@@ -280,12 +280,76 @@ Vi vill lösa problemet att ordna elementen i sekvens så att för varje element
 \end{Slide} 
 
 \begin{Slide}{Två enkla sporteringsalgoritmer: \\ Insättningssortering \& Urvalssortering}
+Ett första försök -- Vi sorterar till en ny lista:
 \begin{itemize}
-\item Insättningssortering \Emph{lösningsidé}: Ta ett element i taget från den osorterade högen och sätt in det på rätt plats i den sorterade sekvensen och upprepa till det inte finns fler osorterade element. 
+\item Insättningssortering \Emph{lösningsidé}: Ta ett element i taget från den osorterade listan och \Alert{sätt in} det på rätt plats i den sorterade listan och upprepa till det inte finns fler osorterade element. 
 \pause
-\item Urvalsssortering \Emph{lösningsidé}: Välj ut det minsta kvarvarande element i den osorterade högen och placera det sist i den sorterade sekvensen och upprepa till det inte finns fler osorterade element. 
+\item Urvalsssortering \Emph{lösningsidé}: \Alert{Välj ut} det minsta kvarvarande element i den osorterade listan och placera det sist i den sorterade listan och upprepa till det inte finns fler osorterade element. 
 \end{itemize}
 \end{Slide} 
+
+
+\begin{Slide}{Sortera till ny vektor med insättningssortering: pseudo-kod}
+Det kan vara lättare att förstå idén med insertion sort om man först implementerar sortering till en ny vektor. \\ \vspace{1em}
+Input: en osorterad lista \code{unsorted} \\
+Output: en sorterad lista \code{sorted}
+\begin{Code}
+för alla elem i unsorted {
+   pos = "leta upp rätt position i den sorterade vektorn"
+   "stoppa in elem på plats pos" 
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Sortera till ny vektor med insättningssortering: implementation}
+\begin{Code}
+public ArrayList<Integer> insertionSortCopy(ArrayList<Integer> unsorted) {
+    ArrayList<Integer> sorted = new ArrayList<Integer>();
+    for (int elem : unsorted) {
+        // leta upp rätt position 
+        int pos = 0;  
+        while (pos < sorted.size() && sorted.get(pos) < elem) {
+            pos++;
+        }
+        // stoppa in på rätt plats
+        sorted.add(pos, elem);
+    }
+    return sorted;
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Sortera till ny vektor med urvalssortering: pseudo-kod}
+
+Input: en osorterad lista \code{unsorted} (som kommer att raderas)\\
+Output: en sorterad lista \code{sorted} dit elementen \emph{flyttas}
+\begin{Code}
+för alla elem i unsorted {
+   indexOfMin = "sök index för minsta element i unsorted"
+   "flytta elementet från unsorted på plats indexOfMin till sist i sorted" 
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Sortera till ny vektor med urvalssortering: implementation}
+\begin{Code}
+public ArrayList<Integer> selectionSortMove(ArrayList<Integer> unsorted) {
+    ArrayList<Integer> sorted = new ArrayList<Integer>();
+    while (unsorted.size() > 0) {
+        int indexOfMin = 0;
+        // sök minsta bland ännu ej sorterade:
+        for (int i = 1; i < unsorted.size(); i++) { 
+            if (unsorted.get(i) < unsorted.get(indexOfMin)) {
+                indexOfMin = i;
+            }
+        }
+        int x = unsorted.remove(indexOfMin);  // ta bort ur unsorted
+        sorted.add(x);  // lägg sist i sekvensen med sorterade
+    }
+    return sorted;
+}
+\end{Code}
+\end{Slide}
 
 \begin{Slide}{Läs mer om insättnings- och urvalssortering}
 \Emph{Insertion sort}
@@ -308,6 +372,9 @@ Vi vill lösa problemet att ordna elementen i sekvens så att för varje element
 \vspace{2em}
 \href{https://www.youtube.com/watch?v=kPRA0W1kECg}{Visualisering av 15 olika sorteringsalgoritmer på 6 min}
 \end{Slide}
+
+
+
 
 %\begin{Slide}
 %\frametitle{Algoritmexempel: Sortering}
