@@ -34,37 +34,52 @@ public class SortUtil {
         return xs;
     }
 
-    public static ArrayList<Integer> insertionSortCopy(ArrayList<Integer> xs) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        for (int x : xs) {
-            // find the right poosition for x in result
-            int pos = 0;
-            while (pos < result.size() && result.get(pos) < x) {
+    public static ArrayList<Integer> insertionSortCopy(ArrayList<Integer> unsorted) {
+        ArrayList<Integer> sorted = new ArrayList<Integer>();
+        for (int elem : unsorted) {
+            // leta upp rätt position 
+            int pos = 0;  // när är det bättre om vi istället gör letar bakifrån?
+            while (pos < sorted.size() && sorted.get(pos) < elem) {
                 pos++;
             }
-            // insert x in result
-            result.add(pos, x);
+            // stoppa in på rätt plats
+            sorted.add(pos, elem);
         }
-        return result;
+        return sorted;
     }
 
-    public static ArrayList<Integer> selectionSortMove(ArrayList<Integer> xs) {
-        ArrayList<Integer> result = new ArrayList<Integer>();
-        while (xs.size() > 0) {
-            // find index of minimum value in xs
+    public static ArrayList<Integer> selectionSortMove(ArrayList<Integer> unsorted) {
+        ArrayList<Integer> sorted = new ArrayList<Integer>();
+        while (unsorted.size() > 0) {
             int indexOfMin = 0;
-            for (int i = 1; i < xs.size(); i++) {
-                if (xs.get(i) < xs.get(indexOfMin)) {
+            for (int i = 1; i < unsorted.size(); i++) { // sök minsta bland ännu ej sorterade
+                if (unsorted.get(i) < unsorted.get(indexOfMin)) {
                     indexOfMin = i;
                 }
             }
-            // move that element at the end of result
-            int x = xs.remove(indexOfMin);
-            result.add(x);
+            // lägg sist i sekvensen med sorterade
+            int x = unsorted.remove(indexOfMin);
+            sorted.add(x);
         }
-        return result;
+        return sorted;
     }
 
+    public static void selectionSortInPlace(int[] xs) {
+        for (int i = 0; i < xs.length - 1; i++) { 
+            int min = Integer.MAX_VALUE;
+            int minIndex = -1;
+            for (int k = i; k < xs.length; k++) {  // sök minsta bland ännu ej sorterade
+                if (xs[k] < min) {
+                    min = xs[k];
+                    minIndex = k;
+                }
+            }
+            xs[minIndex] = xs[i]; // byt plats mellan xs[i] och
+            xs[i] = min;          // xs[minIndex] 
+        }
+    }
+
+    
     public static void swap(int[] xs, int a, int b) {
         int temp = xs[a];
         xs[a] = xs[b];
@@ -90,21 +105,6 @@ public class SortUtil {
                 j--;
             }
             xs[j] = current;
-        }
-    }
-
-    public static void selectionSortInPlace(int[] xs) {
-        for (int i = 0; i < xs.length - 1; i++) {
-            int min = Integer.MAX_VALUE;
-            int minIndex = -1;
-            for (int k = i; k < xs.length; k++) {
-                if (xs[k] < min) {
-                    min = xs[k];
-                    minIndex = k;
-                }
-            }
-            xs[minIndex] = xs[i]; // låt xs[i] och
-            xs[i] = min;          // xs[minIndex] byta plats
         }
     }
 

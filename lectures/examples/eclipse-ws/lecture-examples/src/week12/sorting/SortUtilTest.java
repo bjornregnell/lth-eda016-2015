@@ -1,6 +1,7 @@
 package week12.sorting;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SortUtilTest {
 
@@ -31,6 +32,26 @@ public class SortUtilTest {
         SortUtil.show(xs6);
         SortUtil.insertionSortInPlace(xs6);
         SortUtil.show(xs6);
+        
+        int n = (int) 100000;
+        System.out.println("\n\nCreating big random arrays with " + n + " elements ...");
+        int[] a = SortUtil.newRandomArray(n, 42); 
+        int[] b = Arrays.copyOf(a, a.length);
+        int[] c = Arrays.copyOf(a, a.length);
+        int[] d = Arrays.copyOf(a, a.length);
+        Timer t = new Timer();
+        
+  /*      System.out.println("\nSorting a with insertion sort...");
+        SortUtil.insertionSortInPlace(a);
+        t.showMillisAndReset("Insertion sort");
+        
+        System.out.println("\nSorting b with selection sort...");
+        SortUtil.selectionSortInPlace(b);
+        t.showMillisAndReset("Selection sort"); 
+        
+        System.out.println("\nSorting c with Dual-Pivot Quicksort...");
+        Arrays.sort(c);  // http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-
+        t.showMillisAndReset("Dual-Pivot Quicksort");  */
         
     }
 
