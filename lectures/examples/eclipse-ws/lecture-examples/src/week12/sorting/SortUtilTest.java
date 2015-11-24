@@ -21,7 +21,7 @@ public class SortUtilTest {
         SortUtil.show(xs4);
         if (xs3.size() == 0) System.out.println("xs3 is now empty");
         
-        System.out.println("\n  insertionSortInPlaceSwap  xs5");
+  /*      System.out.println("\n  insertionSortInPlaceSwap  xs5");
         int[] xs5 = SortUtil.newRandomArray(10, 42); 
         SortUtil.show(xs5);
         SortUtil.insertionSortInPlaceSwap(xs5);
@@ -40,7 +40,7 @@ public class SortUtilTest {
         int[] c = Arrays.copyOf(a, a.length);
         int[] d = Arrays.copyOf(a, a.length);
         Timer t = new Timer();
-        
+        */
   /*      System.out.println("\nSorting a with insertion sort...");
         SortUtil.insertionSortInPlace(a);
         t.showMillisAndReset("Insertion sort");

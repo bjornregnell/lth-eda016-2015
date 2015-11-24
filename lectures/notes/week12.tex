@@ -64,7 +64,7 @@ x = första talet
 minSoFar = x
 while (finns fler tal) 
     x = nästa tal
-    if (x > minSoFar) 
+    if (x < minSoFar) 
         minSoFar = x
 return minSoFar
 \end{lstlisting}
@@ -180,6 +180,8 @@ public int find4(int nbr) {
 \end{itemize}
 \end{Slide} 
 
+\subsection{Binärsökning}
+
 \begin{Slide}{Binärsökning i sorterad sekvens}\footnotesize
 \Emph{Idé}: Om sekvensen är sorterad kan vi utnyttja detta för en mer effektiv sökning, genom att jämföra med mittersta värdet och se om det vi söker finns före eller efter detta, och upprepa med ''halverad'' sekvens tills funnet. \\
 \pause
@@ -197,7 +199,7 @@ public int find4(int nbr) {
         }
     }
     if (found) return mid
-    else return "platsen där vi borde stoppa in det saknade elementet"
+    else return - "platsen där vi borde stoppa in det saknade elementet"
 }
 \end{Code}
 \end{Slide} 
@@ -270,7 +272,7 @@ Algoritmisk komplexitet studerar ni analytiskt i kursen \href{http://cs.lth.se/e
 
 \Subsection{Sortering}
 \begin{Slide}{Sorteringsproblemet}
-\Emph{Problem}: Vi har en osorterad sekvens med heltal. Vi vill ordna denna mängd i en sorterad sekvens från minst till störst.
+\Emph{Problem}: Vi har en osorterad sekvens med heltal. Vi vill ordna denna osorterade sekvens i en sorterad sekvens från minst till störst.
 \pause
 
 \vspace{2em}
