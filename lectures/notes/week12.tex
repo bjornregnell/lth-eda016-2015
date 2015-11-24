@@ -282,7 +282,6 @@ Vi vill lösa problemet att ordna elementen i sekvens så att för varje element
 \end{Slide} 
 
 \begin{Slide}{Två enkla sporteringsalgoritmer: \\ Insättningssortering \& Urvalssortering}
-Ett första försök -- Vi sorterar till en ny lista:
 \begin{itemize}
 \item Insättningssortering \Emph{lösningsidé}: Ta ett element i taget från den osorterade listan och \Alert{sätt in} det på rätt plats i den sorterade listan och upprepa till det inte finns fler osorterade element. 
 \pause
@@ -292,7 +291,8 @@ Ett första försök -- Vi sorterar till en ny lista:
 
 
 \begin{Slide}{Sortera till ny vektor med insättningssortering: pseudo-kod}
-Det kan vara lättare att förstå idén med insertion sort om man först implementerar sortering till en ny vektor. \\ \vspace{1em}
+
+{\footnotesize Det kan vara lättare att förstå idén med insertion sort om man först implementerar den genom att kopiera elementen till en ny vektor. \\ Vi ska sedan se hur man sorterar ''på plats'' \Eng{in place} i en  vektor.\\} \vspace{1em}
 Input: en osorterad lista \code{unsorted} \\
 Output: en sorterad lista \code{sorted}
 \begin{Code}
@@ -323,6 +323,7 @@ public ArrayList<Integer> insertionSortCopy(ArrayList<Integer> unsorted) {
 
 \begin{Slide}{Sortera till ny vektor med urvalssortering: pseudo-kod}
 
+{\footnotesize Det kan vara lättare att förstå idén med selection sort om man först implementerar den genom att flytta elementen till en ny vektor. \\ Vi ska sedan se hur man sorterar ''på plats'' \Eng{in place} i en vecktor.\\} \vspace{1em}
 Input: en osorterad lista \code{unsorted} (som kommer att raderas)\\
 Output: en sorterad lista \code{sorted} dit elementen \emph{flyttas}
 \begin{Code}
@@ -353,6 +354,98 @@ public ArrayList<Integer> selectionSortMove(ArrayList<Integer> unsorted) {
 \end{Code}
 \end{Slide}
 
+\begin{Slide}{Urvalssortering på plats -- pseudo-kod}
+\begin{Code}
+Indata: int[] xs
+
+for (int i : från första till NÄST sista index) { 
+     minIndex = sök index för MINSTA talet från platserna i till SISTA plats
+     byt plats mellan xs[i] och xs[minIndex]       
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Selection sort, in place}
+\begin{Code}
+public void selectionSortInPlace(int[] xs) {
+    for (int i = 0; i < xs.length - 1; i++) { 
+        int min = Integer.MAX_VALUE;
+        int minIndex = -1;
+        // sök minsta bland ännu ej sorterade
+        for (int k = i; k < xs.length; k++) {  
+            if (xs[k] < min) {
+                min = xs[k];
+                minIndex = k;
+            }
+        }
+        // byt plats mellan xs[i] och xs[minIndex] 
+        xs[minIndex] = xs[i]; 
+        xs[i] = min;          
+    }
+}
+\end{Code}
+\footnotesize
+\pause
+Övning: Kör denna implementation med \code+xs = {8,5,2,6,9,3,1,4,0,7}+
+
+\pause
+Se animering här: \href{https://sv.wikipedia.org/wiki/Urvalssortering}{Urvalssortering på Wikipedia}
+
+\pause Det finns ett specialfall som kommer krascha denna implementation. \href{https://github.com/bjornregnell/lth-eda016-2015/blob/master/lectures/examples/eclipse-ws/lecture-examples/src/week12/sorting/SortUtilTest.java#L30}{Vilket?}
+\end{Slide}
+
+\begin{Slide}{Insättningssortering på plats -- pseudo-kod}
+\begin{Code}
+Indata: int[] xs
+
+for (int i = 1; i < xs.length; i++) {  //från ANDRA till sista
+     j = i
+     while (j > 0 && xs[j - 1] > xs[j]) {
+        "byt plats på x[j] och x[j - 1]"
+         j = j - 1;  // stega bakåt
+     }
+}
+\end{Code}
+\end{Slide}
+
+\begin{Slide}{Insertion sort, in place, with swap}
+\begin{Code}
+private void swap(int[] xs, int a, int b) {
+    int temp = xs[a];
+    xs[a] = xs[b];
+    xs[b] = temp;
+}
+
+public void insertionSortInPlaceSwap(int[] xs) {
+    for (int i = 1; i < xs.length; i++) {
+        int j = i;
+        while (j > 0 && xs[j - 1] > xs[j]) {
+            swap(xs, j, j - 1);
+            j = j - 1;
+        }
+    }
+}
+\end{Code}
+Funkar denna implementation för alla specialfall?
+\end{Slide}
+
+\begin{Slide}{Insertion sort, in place}
+\begin{Code}
+    public void insertionSortInPlace(int[] xs) {
+        for (int i = 1; i < xs.length; i++) {
+            int current = xs[i];
+            int j = i;
+            while (j > 0 && xs[j - 1] > current) {
+                xs[j] = xs[j - 1];
+                j--;
+            }
+            xs[j] = current;
+        }
+    }
+\end{Code}
+Se animering här: \href{https://sv.wikipedia.org/wiki/Ins\%C3\%A4ttningssortering}{Insättningssortering på wikipedia}
+\end{Slide}
+
 \begin{Slide}{Läs mer om insättnings- och urvalssortering}
 \Emph{Insertion sort}
 \begin{itemize}
@@ -364,68 +457,101 @@ public ArrayList<Integer> selectionSortMove(ArrayList<Integer> unsorted) {
 
 \vspace{2em}
 \Emph{Selection sort}
-\begin{itemize}
 
+\begin{itemize}
 \item Wikipedia: \href{https://sv.wikipedia.org/wiki/Urvalssortering}{svenska} och 
 \href{https://en.wikipedia.org/wiki/Selection_sort}{engelska: Selection sort} 
 
 \item AlgoRythmics \href{https://www.youtube.com/watch?v=Ns4TPTC8whw}{Select-sort with Gypsy folk dance }
 \end{itemize}
-\vspace{2em}
-\href{https://www.youtube.com/watch?v=kPRA0W1kECg}{Visualisering av 15 olika sorteringsalgoritmer på 6 min}
+\end{Slide}
+
+\begin{Slide}{Det finns många olika sorteringsalgoritmer}
+\begin{itemize}
+\item \href{https://www.youtube.com/watch?v=kPRA0W1kECg}{Visualisering av 15 olika sorteringsalgoritmer på 6 min}
+\item Olika sorteringsalgoritmer har olika komplexitet: \\ i bästa fall, i värsta fall, i medeltal, för nästan sorterad. \\
+\href{https://en.wikipedia.org/wiki/Sorting_algorithm}{Olika sorteringsalgoritmers egenskaper enl. wikipedia}
+\item Olika sorteringsalgoritmer lämpar sig olika väl för parallellisering på många kärnor.
+\end{itemize}
 \end{Slide}
 
 
+\begin{Slide}{Tidskomplexitet, sortering, medeltal}
+\begin{tabular}{ll}
+Urvalssortering, insättningssortering: & $O(n^2)$ \\
+''Bra'' metoder, tex Quicksort, Timsort:  & $O(n\log n)$
+\end{tabular}
 
+\vspace{1em}\footnotesize
+Vi har en vektor med 1000 element. Vi har mätt tiden för att sortera elementen många gånger och funnit att det tar ungefär 1 ms både med urvalssortering (eller någon annan ''dålig'' metod) och en ''bra'' metod. Hur lång tid tar det om vi har fler element i vektorn?
 
-%\begin{Slide}
-%\frametitle{Algoritmexempel: Sortering}
-%Sortera en följd av tal i växande ordning.
-%
-%\blankline
-%Algoritm (urvalssortering):
-%
-%\blankline Sök upp det minsta talet och låt det byta plats med det första talet, sök upp det minsta av de återstående talen och låt det byta plats med det andra talet, osv.
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Sortering}
-%\begin{Code}
-%/** Sorterar talen i vektorn med urvalssortering */
-%public void sort() {
-%    for (int i = 0; i < n - 1; i++) {
-%        int min = Integer.MAX_VALUE;
-%        int minIndex = -1;
-%        for (int k = i; k < n; k++) {
-%            if (v[k] < min) {
-%                min = v[k];
-%                minIndex = k;
-%            }
-%        }
-%        v[minIndex] = v[i]; // låt v[i] och 
-%        v[i] = min;         // v[minIndex] byta plats
-%    }
-%}
-%\end{Code}
-%\end{Slide} 
-%
-%\begin{Slide}
-%\frametitle{Tidskomplexitet, sortering}
-%\begin{tabular}{ll}
-%Urvalssortering: & $O(n^2)$ \\
-%''Bra'' metoder:  & $O(n\log n)$
-%\end{tabular}
-%
-%\blankline
-%Vi har en vektor med 1000 element. Vi har mätt tiden för att sortera elementen många gånger och funnit att det tar ungefär 1 ms både med urvalssortering (eller någon annan ''dålig'' metod) och en ''bra'' metod. Hur lång tid tar det om vi har fler element i vektorn?
-%
-%\blankline
-%\begin{tabular}{rccccc}
-%       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
-%dålig  & 1     & 100    & $10^4$  & $10^6$   & $10^8$ \\
-%bra    & 1     & 13.3   & 167     & 2000     & 23000
-%\end{tabular}
-%\end{Slide} 
-%
+\vspace{1em}
+\begin{tabular}{rccccc}
+       & 1,000 & 10,000 & 100,000 & 1,000,000 & 10,000,000 \\ \hline
+dålig  & 1     & 100    & $10^4$  & $10^6$   & $10^8$ \\
+bra    & 1     & 13.3   & 167     & 2000     & 23000
+\end{tabular}
+\end{Slide} 
+
+\begin{Slide}{Att jämföra strängar}
+\begin{Code}
+        String s1 = "abba";
+        String s2 = "Sill i dill";
+
+        int compared = s1.compareTo(s2); // se java quickref
+
+        if (compared < 0) {
+            System.out.println(s1 + " < " + s2);
+        } else if (compared > 0) {
+            System.out.println(s1 + " > " + s2);
+        } else {
+            System.out.println(s1 + " == " + s2);
+        }
+
+\end{Code}
+\footnotesize
+
+Kör detta exempel \href{}{här}.
+
+Se JDK: \href{http://docs.oracle.com/javase/8/docs/api/java/lang/String.html#compareTo-java.lang.String-}{compareTo in java.lang.String}
+\end{Slide}
+
+\begin{Slide}{Grumligtlådan}
+\begin{tabular}{r|l}
+\#Lappar  & Ämne                         \\ \hline
+6  & \Emph{StringBuilder}\\
+3  & \Emph{Vektorer, ArrayList}\\
+2  & \Emph{Implementering och användning av klasser}\\
+2  & \Emph{Sorteringsalgoritmer}\\
+2  & Static\\
+1 & Arv\\
+1  & Generics\\
+1  & for-each-sats\\
+1  & Flera metoder med samma namn\\
+1  & Matris\\
+1  & När du säger "Java" exakt vad menar du då?\\
+1  & Iterator\\
+1 & Volatile Image\\
+\end{tabular}
+\end{Slide}
+
+\begin{Slide}{Övning: Dictionary}\footnotesize
+Implementera denna klass som har hand om en ordlista. \\Använd en vektor \code{String[] words} för att spara orden.
+\begin{ClassSpec}{Dictionary}
+/** Skapar en ny ordlista */
+Dictionary();
+
+/** Sätt in ett nytt ord på rätt plats i listan */
+void insertWord(String w);
+
+/** Returnerar listans ord som, skilda med mellanslag */
+String toString();
+
+/** Returnerar true om ordet finns i listan, annars false */
+boolean contains(String word);
+\end{ClassSpec}
+\vspace{1em}
+Extraövning: Byt attributrepresentationen till \code{ArrayList<String>}
+\end{Slide}
 
 \end{document}
