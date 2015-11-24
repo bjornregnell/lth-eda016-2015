@@ -67,15 +67,17 @@ public class SortUtil {
     public static void selectionSortInPlace(int[] xs) {
         for (int i = 0; i < xs.length - 1; i++) { 
             int min = Integer.MAX_VALUE;
-            int minIndex = -1;
-            for (int k = i; k < xs.length; k++) {  // sök minsta bland ännu ej sorterade
+            int minIndex = 0;      
+             // sök minsta bland ännu ej sorterade
+            for (int k = i; k < xs.length; k++) {  
                 if (xs[k] < min) {
                     min = xs[k];
                     minIndex = k;
                 }
             }
-            xs[minIndex] = xs[i]; // byt plats mellan xs[i] och
-            xs[i] = min;          // xs[minIndex] 
+            // byt plats mellan xs[i] och xs[minIndex] 
+            xs[minIndex] = xs[i]; 
+            xs[i] = min;           
         }
     }
 

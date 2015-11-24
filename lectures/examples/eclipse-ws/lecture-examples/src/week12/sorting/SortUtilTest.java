@@ -21,17 +21,29 @@ public class SortUtilTest {
         SortUtil.show(xs4);
         if (xs3.size() == 0) System.out.println("xs3 is now empty");
         
-  /*      System.out.println("\n  insertionSortInPlaceSwap  xs5");
+        System.out.println("\n  selectionSortInPlace  xs5");
         int[] xs5 = SortUtil.newRandomArray(10, 42); 
         SortUtil.show(xs5);
         SortUtil.insertionSortInPlaceSwap(xs5);
         SortUtil.show(xs5);
         
-        System.out.println("\n  insertionSortInPlace  xs6");
+        /*      
+        int[] xsMax = new int[]{Integer.MAX_VALUE - 1, Integer.MAX_VALUE - 2, Integer.MAX_VALUE - 3};
+        SortUtil.show(xsMax);
+        SortUtil.selectionSortInPlace(xsMax);
+        SortUtil.show(xsMax); 
+        
+        System.out.println("\n  insertionSortInPlaceSwap  xs6");
         int[] xs6 = SortUtil.newRandomArray(10, 42); 
         SortUtil.show(xs6);
-        SortUtil.insertionSortInPlace(xs6);
+        SortUtil.insertionSortInPlaceSwap(xs6);
         SortUtil.show(xs6);
+        
+        System.out.println("\n  insertionSortInPlace  xs7");
+        int[] xs7 = SortUtil.newRandomArray(10, 42); 
+        SortUtil.show(xs7);
+        SortUtil.insertionSortInPlace(xs7);
+        SortUtil.show(xs7);
         
         int n = (int) 100000;
         System.out.println("\n\nCreating big random arrays with " + n + " elements ...");
@@ -40,8 +52,8 @@ public class SortUtilTest {
         int[] c = Arrays.copyOf(a, a.length);
         int[] d = Arrays.copyOf(a, a.length);
         Timer t = new Timer();
-        */
-  /*      System.out.println("\nSorting a with insertion sort...");
+        
+        System.out.println("\nSorting a with insertion sort...");
         SortUtil.insertionSortInPlace(a);
         t.showMillisAndReset("Insertion sort");
         
@@ -51,7 +63,8 @@ public class SortUtilTest {
         
         System.out.println("\nSorting c with Dual-Pivot Quicksort...");
         Arrays.sort(c);  // http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-
-        t.showMillisAndReset("Dual-Pivot Quicksort");  */
+        t.showMillisAndReset("Dual-Pivot Quicksort");  
+        */
         
     }
 
