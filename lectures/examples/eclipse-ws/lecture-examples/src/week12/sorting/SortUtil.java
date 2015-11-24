@@ -82,7 +82,7 @@ public class SortUtil {
     }
 
     
-    public static void swap(int[] xs, int a, int b) {
+    private static void swap(int[] xs, int a, int b) {
         int temp = xs[a];
         xs[a] = xs[b];
         xs[b] = temp;

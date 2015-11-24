@@ -27,8 +27,7 @@ public class SortUtilTest {
         SortUtil.insertionSortInPlaceSwap(xs5);
         SortUtil.show(xs5);
         
-        /*      
-        int[] xsMax = new int[]{Integer.MAX_VALUE - 1, Integer.MAX_VALUE - 2, Integer.MAX_VALUE - 3};
+/*        int[] xsMax = new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
         SortUtil.show(xsMax);
         SortUtil.selectionSortInPlace(xsMax);
         SortUtil.show(xsMax); 
