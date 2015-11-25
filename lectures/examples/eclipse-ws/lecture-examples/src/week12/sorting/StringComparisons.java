@@ -3,7 +3,7 @@ package week12.sorting;
 public class StringComparisons {
 
     public static void main(String[] args) {
-        String s1 = "abba";
+        String s1 = "Abba";
         String s2 = "Sill i dill";
 
         int compared = s1.compareTo(s2); // se java quickref

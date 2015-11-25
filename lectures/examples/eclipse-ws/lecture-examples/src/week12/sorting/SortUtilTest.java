@@ -8,7 +8,7 @@ public class SortUtilTest {
     public static void main(String[] args) {
         System.out.println("SortUtilTest");
 
-        System.out.println("\n  insertionSortCopy  xs1 -> xs2");
+   /*     System.out.println("\n  insertionSortCopy  xs1 -> xs2");
         ArrayList<Integer> xs1 = SortUtil.newRandomList(10, 42); 
         SortUtil.show(xs1);
         ArrayList<Integer> xs2 = SortUtil.insertionSortCopy(xs1); 
@@ -25,13 +25,14 @@ public class SortUtilTest {
         int[] xs5 = SortUtil.newRandomArray(10, 42); 
         SortUtil.show(xs5);
         SortUtil.insertionSortInPlaceSwap(xs5);
-        SortUtil.show(xs5);
+        SortUtil.show(xs5); */
         
-/*        int[] xsMax = new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
+        int[] xsMax = new int[]{Integer.MAX_VALUE, Integer.MAX_VALUE - 1, Integer.MAX_VALUE};
         SortUtil.show(xsMax);
         SortUtil.selectionSortInPlace(xsMax);
         SortUtil.show(xsMax); 
         
+        /*       
         System.out.println("\n  insertionSortInPlaceSwap  xs6");
         int[] xs6 = SortUtil.newRandomArray(10, 42); 
         SortUtil.show(xs6);

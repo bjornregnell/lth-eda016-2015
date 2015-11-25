@@ -3,7 +3,7 @@ package week12.searching;
 public class TestSearch {
 
     public static void main(String[] args) {
-        int max = (int) 1e3;
+        int max = (int) 1e7;
         Timer t = new Timer();
         System.out.println("\nINITIALIZING... ");
         Data xs = new Data(max);
@@ -25,6 +25,7 @@ public class TestSearch {
         t.showNanosAndReset("linear search");
         xs.binarySearch(101);
         t.showNanosAndReset("binary search");
+
     }
 
 }

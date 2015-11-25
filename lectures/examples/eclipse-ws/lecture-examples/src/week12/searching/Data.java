@@ -86,7 +86,7 @@ public class Data {
         int high = n - 1; // övre gräns
         int mid = -1;     // mittpunkt
         boolean found = false;
-        while (low <= high && ! found) {
+        while (low <= high && !found) {
             mid = (low + high) / 2;
             if (v[mid] == nbr) {
                 found = true;
