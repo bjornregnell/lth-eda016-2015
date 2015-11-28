@@ -1,0 +1,116 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{13}
+\newcommand{\tema}{Designexempel}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+\subsection{Att göra denna vecka}
+\begin{Slide}{Att göra i Vecka \vecka: Studera designexempel.}
+
+\begin{enumerate}
+\item Läs följande kapitel i kursboken:  \\  
+  
+\item Gör extraövningar (inkl. kolla på lösningsförslag) \\ {\scriptsize \url{http://fileadmin.cs.lth.se/cs/Education/EDA016/exercises/extraexercises.pdf}}
+\item Träffas i samarbetsgrupper och hjälp varandra 
+\item Diskutera inlämningsuppgiftsval med handledare 
+\item Gör Grupplabb 11: Image Filters
+\end{enumerate}
+\end{Slide}
+
+\subsection{Repetition: Vad är en algoritm?}
+\begin{Slide}{Repetition: Vad är en algoritm? }\footnotesize
+En \href{https://sv.wikipedia.org/wiki/Algoritm}{algoritm} är en stegvis beskrivning av hur man löser ett problem. \\ 
+\vspace{1em}
+Problemlösningsprocessens olika steg (inte nödvändigtvis i denna ordning): 
+\begin{enumerate}
+\item identifiera (del)\Emph{problemet}
+\item Kom på en \Emph{lösningsidé}
+\item Formulera en \Emph{stegvis beskrivning} som löser problemet
+\item Implementera en \Emph{körbar lösning} i ''riktig'' kod
+\end{enumerate}
+Det krävs ofta \Emph{kreativitiet} i alla steg ovan  -- även i att \Emph{känna igen} problemet.
+\end{Slide}
+
+\subsection{Design av mjukvara}
+\begin{Slide}{Delar i designprocessen för utveckling av mjukvara}
+\begin{itemize}
+\item Krav: Varför? Vad? \\ Intressenter, önskelmål, produktstartegier, beslut
+\item Arkitektur: struktur och principiell design
+\item Design: Hur? \\ Uppdelning i delproblem, vilka klasser? vilka API?
+\item Implementation: Hur? \\ 
+Algoritmer, kod, implementera API
+\item Testning: Är det rätt kvalitet? \\ Enhetstest, Modultest, Systemtest, Acceptanstest
+\item Hantera byggprocessen och olika versioner
+\item Driftsättning \Eng{Deployment} 
+\item Drift \Eng{Operation}
+\item Support och återkoppling
+\end{itemize}
+\end{Slide}
+
+\Subsection{Inbjuden gäst: Patrik Persson lajvkodar androidapp}
+\begin{Slide}{Designexempel: Skriv en app för Andorid}
+\begin{itemize}
+\item Med de kunskaper ni tillgodogör er i denna kurs är det hyffsat lätt att komma i gång med utveckling av mobilappar i den integrerade utvecklingsmiljön \href{https://en.wikipedia.org/wiki/Android_Studio}{Android Studio}.
+\item Läs mer \href{http://techworld.idg.se/2.2524/1.602344/premiar-for-android-studio}{på techworld} och \href{http://developer.android.com/develop/index.html}{på officiella hemsidan}.
+\item Inbjuden gästföreläsare Patrik Persson lajvkodar androidapp i Android Studio...
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{img/android-studio}
+\end{center}
+\end{Slide}
+
+
+\begin{Slide}{Grumligtlådan}
+\begin{tabular}{r|l}
+\#Lappar  & Ämne                         \\ \hline
+6  & \Emph{StringBuilder}\\
+3  & \Emph{Vektorer, ArrayList}\\
+2  & \Emph{Implementering och användning av klasser}\\
+2  & \Emph{Sorteringsalgoritmer}\\
+2  & Static\\
+1 & Arv\\
+1  & Generics\\
+1  & for-each-sats\\
+1  & Flera metoder med samma namn\\
+1  & Matris\\
+1  & När du säger "Java" exakt vad menar du då?\\
+1  & Iterator\\
+1 & Volatile Image\\
+\end{tabular}
+\end{Slide}
+
+\begin{Slide}{Övning: Dictionary}\footnotesize
+Implementera denna klass som har hand om en ordlista. \\Använd en vektor \code{String[] words} för att spara orden.
+\begin{ClassSpec}{Dictionary}
+/** Skapar en ny ordlista */
+Dictionary();
+
+/** Sätt in ett nytt ord på rätt plats i listan */
+void insertWord(String w);
+
+/** Returnerar listans ord som, skilda med mellanslag */
+String toString();
+
+/** Returnerar true om ordet finns i listan, annars false */
+boolean contains(String word);
+\end{ClassSpec}
+\vspace{1em}
+Extraövning: Byt attributrepresentationen till \code{ArrayList<String>}
+\end{Slide}
+
+\end{document}
