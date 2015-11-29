@@ -113,209 +113,160 @@ Flytta bricka 1 från pinne 1 till pinne 2
 \end{Code}
 \end{Slide} 
 
+\begin{Slide}{Lösningsidé}
+Det visar sig att \href{https://sv.wikipedia.org/wiki/Tornen_i_Hanoi}{Tornen i Hanoi} kan lösas med \href{https://en.wikipedia.org/wiki/Tower\_of\_Hanoi\#Non-recursive_solution}{denna strategi}:
+\begin{itemize}
+ \item I \Emph{udda} drag; drag nr 1, 3, \ldots\  flyttar man den minsta brickan, bricka 1, till pinnen närmast till höger. \\ Pinnen längst till vänster anses finnas ''till höger om'' pinnen längst till höger.
+ \item I \Emph{jämna} drag; drag nr 2, 4, \ldots\  flyttar man en bricka mellan de två pinnar som inte innehåller bricka 1.
+\end{itemize}
+\pause
+\vspace{2em}
+Man kan bevisa att minsta antalet drag $N$ med $n$ brickor är: 
+\begin{equation*}
+N = 2^n - 1
+\end{equation*}
+\pause
+Det finns många \href{https://www.youtube.com/watch?v=w9LgLiW9YHU}{filmer} på \href{https://www.youtube.com/watch?v=UMPneeBzQHk}{nätet} som \href{https://www.youtube.com/watch?v=h8JPtWpctl4}{visar} hur \href{https://www.youtube.com/watch?v=xUiDT3CjA40}{lösningen} går till.
+\end{Slide} 
+
+\begin{Slide}{Udda drag: flytta minstingen åt höger ''cirkulärt''} \footnotesize
+Udda drag: Minstingen på pinne \code{i} flyttas till pinne \code{(i + 1) % 3}
+\begin{center}
+\includegraphics[scale=0.9]{img/hanoi-moves.pdf}
+\end{center}
+\end{Slide} 
+
 \begin{Slide}{Design: Klasser och operationer}
 \begin{center}
 \includegraphics[scale=0.9]{img/hanoi-design.pdf}
 \end{center}
 \end{Slide} 
 
-\begin{Slide}{Lösningsidé}
+\begin{Slide}{Towers of Hanoi: huvudprogrammet}
+\begin{Code}
+import java.util.Scanner;
+
+public class TowersOfHanoi {
+    public static void main(String[] args) {
+        System.out.print("Antal brickor: ");
+        Scanner scan = new Scanner(System.in);
+        int nbrDisks = scan.nextInt();
+        scan.close();
+        
+        HanoiBoard board = new HanoiBoard(nbrDisks);
+        HanoiStrategy strategy = new HanoiStrategy(board);
+        strategy.moveDisks();
+    }
+}
+\end{Code}
+\end{Slide} 
+
+\begin{Slide}{Specifikationer Disk och Peg}
+\Emph{Övning}: Implementera \code{Disk} och \code{Peg} enligt specifikationerna.
+\begin{ClassSpec}{Disk}
+/** Skapar en bricka med storleken size */
+public Disk(int size);
+
+/** Tar reda på brickans storlek */
+public int getSize();
+\end{ClassSpec}
+\begin{ClassSpec}{Peg}
+/** Skapar en tom pinne */
+public Peg();
+
+/** Tar reda på numret på den översta brickan, Integer.MAX_VALUE om pinnen är tom */
+public int getTopDiskSize();
+
+/** Lägger brickan d överst på pinnen */
+public void putDisk(Disk d);
+
+/** Hämtar och tar bort den översta brickan */
+public Disk getDisk();
+\end{ClassSpec}
+\end{Slide} 
+
+
+\begin{Slide}{Specifikation HanoiBoard }
+\begin{ClassSpec}{HanoiBoard}
+/** Skapar en spelplan med tre tomma pinnar, lägger nbrDisks brickor på den
+ *  första pinnen
+ */
+public HanoiBoard(int nbrDisks);
+
+/** Tar reda på numret på pinnen som innehåller bricka 1 */
+public int getPegWithDiskOne(); 
+
+/** Undersöker om spelet är slut dvs om alla brickorna ligger på en annan
+ *  pinne än den första
+ */
+public boolean isFinished();  
+
+/** Tar reda på storleken av den översta brickan på pinne nummer peg,
+ *  Integer.MAX_VALUE om pinnen är tom
+ */
+public int getTopDiskSize(int peg);
+
+/** Flyttar den översta brickan från pinne nummer from till pinne nummer to
+ */
+public void moveDisk(int from, int to);   
+\end{ClassSpec}
+\Emph{Övning}: Implementera \code{HanoiBoard} enligt specifikationen.
+\end{Slide} 
+
+\begin{Slide}{Specifikation HanoiStrategy }
+\begin{ClassSpec}{HanoiStrategy}
+/**
+ * Skapar en strategi för att flytta brickor på spelplanen board
+ */
+public HanoiStrategy(HanoiBoard board);
+
+/**
+ * Flyttar brickorna på pinne 1 till en annan pinne
+ */
+public void moveDisks() ;
+
+/**
+ * Flyttar en bricka enligt reglerna i drag nummer moveNbr, skriver ut
+ * flyttningen
+ */
+private void moveOneDisk(int moveNbr);
+\end{ClassSpec}
+\Emph{Övning}: Implementera \code{HanoiStrategy} enligt specifikationen. \\ Ledning: se pseudo-kod på nästa bild.
+\end{Slide} 
+
+\begin{Slide}{Lösning, pseudo-kod}
+\code{public void moveDisks()}
 \begin{itemize}
- \item I \Emph{udda} drag; drag nr 1, 3, \ldots\  flyttar man den minsta brickan, bricka 1, till pinnen närmast till höger. Pinne 1 anses därvid finnas till höger om pinne 3.
- \item I \Emph{jämna} drag; drag nr 2, 4, \ldots\  flyttar man en bricka mellan de två pinnar som inte innehåller bricka 1.
+\item \code{moveNbr = 1}
+\item så länge spelet inte är slut
+\begin{itemize}
+\item \code{moveOneDisk(moveNbr)}
+\item \code{moveNbr++}
+\end{itemize}
+\end{itemize}
+
+\code{private void moveOneDisk(int moveNbr) }
+\begin{itemize}
+\item om \code{moveNbr} är udda:
+\begin{itemize}
+	 \item tag reda på numret på pinnen där bricka 1 finns
+	 \item flytta den översta brickan från denna pinne till
+	  pinnen närmast till höger modulo 3
+\end{itemize}
+\item annars:
+\begin{itemize}
+	 \item tag reda på numret på pinnen där bricka 1 finns
+	 \item räkna ut numren på de båda andra pinnarna
+	 \item flytta den minsta brickan mellan dessa pinnar
+\end{itemize}
 \end{itemize}
 \end{Slide} 
 
 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{Scenario}
-%\begin{itemize}
-%\item Lägg brickorna på pinne 1.
-%\item Så länge spelet inte är slut:
-%\item om udda drag:
-%\begin{itemize}
-%	 \item tag reda på numret på pinnen där bricka 1 finns
-%	 \item flytta den översta brickan från denna pinne till
-%	  pinnen närmast till höger
-%\end{itemize}
-%\item annars (om jämnt drag):
-%\begin{itemize}
-%	 \item tag reda på numret på pinnen där bricka 1 finns
-%	 \item räkna ut numren på de båda andra pinnarna
-%	 \item flytta den minsta brickan mellan dessa pinnar
-%\end{itemize}
-%\end{itemize}
-%\end{frame} 
-%
-
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{Disk}, en bricka}
-%\FIXBEFORECODE
-%\begin{Code}
-%public class Disk {
-%	private int size;
-%	
-%	/** Skapar en bricka med storleken size */
-%	public Disk(int size) {
-%		this.size = size;
-%	}
-%	
-%	/** Tar reda på brickans storlek */
-%	public int getSize() {
-%		return size;
-%	}
-%}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{Peg}, en pinne}
-%\FIXBEFORECODE\FIXBEFORECODE
-%\begin{Code}
-%public class Peg {
-%	private ArrayList<Disk> disks;
-%	
-%	public Peg() { disks = new ArrayList<Disk>(); }
-%	
-%	public int getTopDiskSize() {
-%		return (! disks.isEmpty()) ?
-%		       disks.get(disks.size() - 1).getSize() :
-%		       Integer.MAX_VALUE;
-%	}
-%	
-%	public void putDisk(Disk d) { 
-%		disks.add(d); 
-%	}
-%	
-%	public Disk getDisk() {
-%		Disk d = disks.remove(disks.size() - 1);
-%		return d;
-%	}
-%}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{HanoiBoard}, spelplanen, 1}
-%\FIXBEFORECODE\FIXBEFORECODE
-%\begin{Code}
-%public class HanoiBoard {
-%	private Peg[] pegs;
-%	
-%	public HanoiBoard(int nbrDisks) {
-%		pegs = new Peg[3];
-%		for (int i = 0; i < pegs.length; i++) {
-%			pegs[i] = new Peg();
-%		}
-%		for (int i = nbrDisks; i >= 1; i--) {
-%			pegs[0].putDisk(new Disk(i));
-%		}
-%	}
-%	
-%	public int getPegWithDiskOne() {
-%		int peg1 = 0;
-%		while (getTopDiskSize(peg1) != 1) {
-%			peg1++;
-%		}
-%		return peg1;
-%	}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{HanoiBoard}, spelplanen, 2}
-%\FIXBEFORECODE
-%\begin{Code}
-%	public boolean isFinished() {
-%		return isEmpty(0) &&
-%		       (isEmpty(1) || isEmpty(2));
-%	}
-%	
-%	public int getTopDiskSize(int peg) {
-%		return pegs[peg].getTopDiskSize();
-%	}
-%	
-%	public void moveDisk(int from, int to) {
-%		Disk d = pegs[from].getDisk();
-%		pegs[to].putDisk(d);
-%	}
-%	
-%	private boolean isEmpty(int peg) {
-%		return pegs[peg].getTopDiskSize() ==
-%		       Integer.MAX_VALUE;
-%	}
-%}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{HanoiStrategy}, algoritmen, 1}
-%\FIXBEFORECODE
-%\begin{Code}
-%public class HanoiStrategy {
-%	private HanoiBoard board;
-%	
-%	public HanoiStrategy(HanoiBoard board) {
-%		this.board = board;
-%	}
-%	
-%	public void moveDisks() {
-%		int moveNbr = 1;
-%		while (! board.isFinished()) {
-%			moveOneDisk(moveNbr);
-%			moveNbr++;
-%		}
-%	}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{HanoiStrategy}, algoritmen, 2}
-%\FIXBEFORECODE \FIXBEFORECODE
-%\begin{Code}
-%	private void moveOneDisk(int moveNbr) {
-%		int peg1 = board.getPegWithDiskOne();
-%		int from; // pinne att flytta en bricka från
-%		int to;   // pinne att flytta en bricka till
-%		if (moveNbr % 2 != 0) {
-%			from = peg1;
-%			to = (from + 1) % 3;
-%		} else {
-%			from = (peg1 + 1) % 3;
-%			to = (from + 1) % 3;
-%			if (board.getTopDiskSize(from) > 
-%			    board.getTopDiskSize(to)) {
-%				int temp = from;
-%				from = to;
-%				to = temp;
-%			}
-%		}
-%		System.out.println(...);
-%		board.moveDisk(from, to);
-%	}
-%\end{Code}
-%\end{frame} 
-%
-%\begin{frame}[fragile=singleslide]
-%\frametitle{\code{TowersOfHanoi}, \code{main}-metoden}
-%\begin{Code}
-%import java.util.Scanner;
-%
-%public class TowersOfHanoi {
-%	public static void main(String[] args) {
-%		System.out.print("Antal brickor: ");
-%		Scanner scan = new Scanner(System.in);
-%		int nbrDisks = scan.nextInt();
-%		HanoiBoard board = new HanoiBoard(nbrDisks);
-%		HanoiStrategy strategy = new HanoiStrategy(board);
-%		strategy.moveDisks();
-%	}
-%}
-%\end{Code}
-%\end{frame} 
-
+\begin{Slide}{Lösning, implementation}
+Se hela lösningen här:
+\url{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src/week13/hanoi}
+\end{Slide} 
 \Subsection{Inbjuden gäst: Patrik Persson lajvkodar androidapp}
 \begin{Slide}{Designexempel: Skriv en app för Andorid}
 \begin{itemize}
@@ -328,43 +279,5 @@ Flytta bricka 1 från pinne 1 till pinne 2
 \end{center}
 \end{Slide}
 
-
-\begin{Slide}{Grumligtlådan}
-\begin{tabular}{r|l}
-\#Lappar  & Ämne                         \\ \hline
-6  & \Emph{StringBuilder}\\
-3  & \Emph{Vektorer, ArrayList}\\
-2  & \Emph{Implementering och användning av klasser}\\
-2  & \Emph{Sorteringsalgoritmer}\\
-2  & Static\\
-1 & Arv\\
-1  & Generics\\
-1  & for-each-sats\\
-1  & Flera metoder med samma namn\\
-1  & Matris\\
-1  & När du säger "Java" exakt vad menar du då?\\
-1  & Iterator\\
-1 & Volatile Image\\
-\end{tabular}
-\end{Slide}
-
-\begin{Slide}{Övning: Dictionary}\footnotesize
-Implementera denna klass som har hand om en ordlista. \\Använd en vektor \code{String[] words} för att spara orden.
-\begin{ClassSpec}{Dictionary}
-/** Skapar en ny ordlista */
-Dictionary();
-
-/** Sätt in ett nytt ord på rätt plats i listan */
-void insertWord(String w);
-
-/** Returnerar listans ord som, skilda med mellanslag */
-String toString();
-
-/** Returnerar true om ordet finns i listan, annars false */
-boolean contains(String word);
-\end{ClassSpec}
-\vspace{1em}
-Extraövning: Byt attributrepresentationen till \code{ArrayList<String>}
-\end{Slide}
 
 \end{document}
