@@ -68,7 +68,7 @@ public class SortUtil {
 	public static void selectionSortInPlace(int[] xs) {
 		for (int i = 0; i < xs.length - 1; i++) {
 			int min = Integer.MAX_VALUE;
-			int minIndex = -1; // funkar ej med 0 men med i?
+			int minIndex = i; // specialfall: xs innehåller Integer.MAX_VALUE: funkar då ej med minIndex startvärde -1 eller 0  
 			// sök minsta bland ännu ej sorterade
 			for (int k = i; k < xs.length; k++) {
 				if (xs[k] < min) {
@@ -79,7 +79,13 @@ public class SortUtil {
 			// byt plats mellan xs[i] och xs[minIndex]
 			xs[minIndex] = xs[i];
 			xs[i] = min;
-		}
+		}  
+		/* Övning: skriv om algoritmen ovan utan användning av Integer.MAX_VALUE 
+		   Börja med att kolla om det är 0 eller 1 element och gör då inget (redan sorterat).
+		   Startvärden: 
+		       Låt min börja med xs[i] (nu när det garanterat finns minst ett värde) 
+		       Låt minIndex börja med i 
+		 */
 	}
 
 	private static void swap(int[] xs, int a, int b) {
@@ -98,7 +104,8 @@ public class SortUtil {
 		}
 	}
 
-	public static void insertionSortInPlace(int[] xs) {
+	public static void insertionSortInPlace(int[] xs) {  
+	    // man behöver inte använda Swap utan man kan byta på slutet i varje runda om man sparar current
 		for (int i = 1; i < xs.length; i++) {
 			int current = xs[i];
 			int j = i;
