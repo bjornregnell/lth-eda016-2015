@@ -1,0 +1,97 @@
+\documentclass{lecturenotes}
+
+\renewcommand{\vecka}{14}
+\newcommand{\tema}{Extenta}
+
+\setbeamertemplate{footline}[frame number]
+\title[Föreläsningsanteckningar EDA016, 2015]{EDA016 Programmeringsteknik för D}
+\subtitle{Läsvecka \vecka: \tema}
+\author{Björn Regnell}
+\institute{Datavetenskap, LTH}
+\date{Lp1-2, HT 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\frame{\titlepage}
+\setnextsection{\vecka}
+\section[Vecka \vecka: \tema]{\tema}
+\frame{\tableofcontents}
+
+\subsection{Att göra denna vecka}
+\begin{Slide}{Att göra i Vecka \vecka: Inlämningsuppgift + repetition.}
+\begin{enumerate}
+\item Gör extraövningar och studera sedan lösningsförslagen \\ {\scriptsize \url{http://fileadmin.cs.lth.se/cs/Education/EDA016/exercises/extraexercises.pdf}}
+\item Träffas i samarbetsgruppen \& hjälp varandra att repetera
+\item Jobba med inlämningsuppgift: \\ utveckla koden, förbered redovisningen, redovisa
+\item Läs igenom följande extenta: \href{http://fileadmin.cs.lth.se/cs//Education/grundkurs/extentor/150318.pdf}{150318.pdf (socialt nätverk)}
+\end{enumerate}
+\end{Slide}
+
+\subsection{Tentatips}
+\begin{Slide}{Före tentan: tentapluggningstips}\footnotesize
+\begin{enumerate}
+\item Gör \emph{alla} övningar i kompendiet på papper \emph{innan} du ger dig på extentorna. 
+\item Läs igenom \href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/notes}{föreläsningsanteckningar} och \href{https://github.com/bjornregnell/lth-eda016-2015/tree/master/lectures/examples/eclipse-ws/lecture-examples/src}{exempelkod}.
+\item Läs boken enligt  \href{http://cs.lth.se/eda016/foerelaesningar-2015/}{läsanvisningarna} på kurshemsidan.
+\item Studera \Emph{java snabbref} \Alert{mycket noga} så att du vet vad som är givet och var det står, så att du kan hitta det du behöver snabbt.
+\item Gör minst en extenta som om det vore \Alert{skarpt läge}: 
+\begin{enumerate}\footnotesize
+\item Avsätt 5 ostörda timmar (stäng av telefon, dator etc).
+\item Inga hjälpmedel. Bara java snabbref.
+\item Förbered dryck och tilltugg.
+\end{enumerate}
+\item Skapa och \Emph{memorera} en personlig \Emph{checklista} med fel du brukar göra när du programmerar som även inkluderar småfel som en utvecklingsmiljö (t.ex. Eclipse) hittar.
+\item Tänk igenom hur du ska disponera dina 5 timmar på tentan.
+\item Läs igenom 3-4 extentor för att bilda dig en uppfattning om variationen.
+\end{enumerate}
+\end{Slide}
+
+\begin{Slide}{På tentan: tips och rekommendationer} \footnotesize
+\begin{enumerate}
+\item Läs igenom \Alert{hela} tentan först. \\ \Emph{Varför?} Förstå helheten. Delarna hänger ihop.
+\item Notera och begrunda domänspecifika begrepp och definitioner. \\ \Emph{Varför?} Begreppen är avgörande för förståelsen av uppgiften.
+\item Notera förenklingar, antaganden och specialfall. \\ \Emph{Varför?} Uppgiften blir väsentligt enklare om du inte behöver hantera vissa specialfall etc.
+\item \Alert{Fråga} tentamensansvarig om du inte förstår uppgiften -- speciellt om det finns misstänkta felaktigheter eller förmodat oavsiktliga oklarheter. \\ \Emph{Varför?} Det är inte lätt att konstruera en ''perfekt'' tenta. Du får fråga vad du vill men det är inte säkert du får svar :)
+\item Läs specifikationskommentarerna och metodsignaturerna i alla givna klass-specifikationer \Alert{mycket noga}. \\ \Emph{Varför?} Det är ett vanligt misstag att förbise de ledtrådar som ges där.
+\item Återskapa din memorerade personliga checklista för vanliga fel som du brukar göra och avsätt tid till att gå igenom den.
+\item Lämna in ett försök även om du vet att lösningen inte är fullständig. 
+\end{enumerate}
+\end{Slide}
+
+\subsection{Grumligtlådan}
+\begin{Slide}{Grumligtlådan}\footnotesize
+Många ämnen i senaste grumligtlådan illustreras under tentagenomgången.\\ \vspace{1em}
+\begin{tabular}{r|l}
+\#Lappar  & Ämne                         \\ \hline
+6  & StringBuilder\\
+3  & Vektorer, ArrayList\\
+2  & Implementering och användning av klasser\\
+2  & Sorteringsalgoritmer\\
+2  & Static\\
+1 & Arv\\
+1  & Generics\\
+1  & for-each-sats\\
+1  & Flera metoder med samma namn\\
+1  & Matris\\
+1  & När du säger "Java" exakt vad menar du då?\\
+1  & Iterator\\
+1 & Volatile Image\\
+\end{tabular}
+\end{Slide}
+
+\subsection{Lösning av extenta}
+\begin{Slide}{Genomgång av extenta}
+Vi går igenom en extenta på tavlan och diskuterar vanliga fel, rättningsmall etc.\\ \vspace{2em}
+Mars 2015, tema ''socialt nätverk''
+\begin{enumerate}
+\item Tenta: \href{http://fileadmin.cs.lth.se/cs//Education/grundkurs/extentor/150318.pdf}{150318.pdf}
+\item Lösning: \href{http://fileadmin.cs.lth.se/cs//Education/grundkurs/extentor/sol-150318.pdf}{sol-150318.pdf}
+\end{enumerate}
+\vspace{1em}
+''Tentan handlar om att skriva klasser som ska ingå i ett program för att bygga sociala nätverk (liknande
+Facebook, LinkedIn eller Instagram).''
+
+\end{Slide}
+\end{document}
