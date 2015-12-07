@@ -94,4 +94,14 @@ Mars 2015, tema ''socialt nätverk''
 Facebook, LinkedIn eller Instagram).''
 
 \end{Slide}
+
+\begin{Slide}{Några vanliga fel på denna tenta}\footnotesize
+\begin{enumerate}
+\item Inser inte att man kan komma åt attributet \code{f.userId} i \code{findCommonFirends}. Privat synlighet gäller alltså på klassnivå inte instansnivå.
+\item Missat att göra \code{owner.addActivity(this)} i konstruktorn till \code{Activity}
+\item Missat att använda befintlig metod. Exempel: det finns en metod \code{findFriend} men man skriver ändå kod för att söka upp objektet varje gång man behöver det.
+\item Många brukar missar på registreringsuppgifter (uppg.3 i denna tenta) för att man inte förstått lösningsidén med hur indexet i en registreringsvektor används.
+\end{enumerate}
+\end{Slide}
+
 \end{document}
