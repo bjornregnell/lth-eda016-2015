@@ -29,16 +29,29 @@
 \end{enumerate}
 \end{Slide}
 
-\subsection{Tenta}
+\subsection{Om tentamen}
 
-\begin{Slide}{Extenta: Fortsättning på Sociala-nätverkstentan}
+\begin{Slide}{Extenta: Fortsättning på genomgång av Sociala-nätverkstentan}
+\begin{itemize}
+\item Tenta: \href{http://fileadmin.cs.lth.se/cs//Education/grundkurs/extentor/150318.pdf}{150318.pdf}
+\item Lösning: \href{http://fileadmin.cs.lth.se/cs//Education/grundkurs/extentor/sol-150318.pdf}{sol-150318.pdf}
+\end{itemize}
+Frågor på uppgift 1-3? \newline \\ \pause
+\scriptsize \Emph{Uppgift 4}:  
+Antag att det sociala nätverket i föregående uppgift ska vidareutvecklas för att stödja en ny typ av användare. Man vill nu att både företag och privatpersoner ska kunna använda nätverket och man vill lägga till detta utan att ändra i någon av klasserna i tidigare uppgifter. Företag ska, förutom namn, id, aktiviteter och vänlista (som en ''vanlig'' \code{User} har) även ha organisationsnummer och slogan. Vi gör förändringen genom att införa en ny klass.
+\\
+\begin{enumerate}[a.] %Kanske var vi någon egen typ för det här...hittade inte.
+\item Beskriv hur förändringen bäst kan införas i det projekt som beskrivs i tentan. En korrekt förklaring ger 2 poäng.
+\item Skriv kod för att visa hur den nya klassen ser ut. Lösningen behöver inte innehålla några andra metoder förutom konstruktorn. Korrekt kod ger ytterligare 3 poäng.
+\end{enumerate}
+
 \end{Slide}
 
 \begin{Slide}{Tenta: anmälning och anonyma tentor}
 \begin{enumerate}
 \item Du \Alert{måste vara godkänd} på \Alert{alla} labbar + inlämningsuppg. för att få tenta.
-\item Läs instruktioner och anmäl dig här:
-\item Gruppbonus: Din grupptillhörighet och dess bonus meddelas via mejl. Kontakta mig direkt om något är felaktigt eller problematiskt. 
+\item Läs \Alert{alla} instruktioner \Alert{noga} och \Alert{anmäl dig} här: \\ \url{http://www.student.lth.se/studieinformation/anonyma-tentor/}
+\item \Emph{Gruppbonus}: Din grupptillhörighet och dess bonus meddelas via mejl. Kontakta mig direkt om något verkar felaktigt eller problematiskt. 
 \end{enumerate}
 \end{Slide}
 
@@ -54,8 +67,8 @@ Specifikationen tillåter uttag som är större än saldot på kontot, men i det
 \item När man använder ett api behöver man förstå vad api:et omfattar och hur det är tänkt att användas. 
 \begin{itemize}
 \item Vad behöver jag själv kolla? 
-\item Vad kollas av koden jag använder? 
-\item Vem har ansvar för vad?
+\item Vad kollas av koden i api:et som jag använder? 
+\item Vilken klass ansvarar för vad?
 \end{itemize}
 \item Mer om design-frågor i OMD-kursen.
 \end{itemize}
@@ -63,12 +76,12 @@ Specifikationen tillåter uttag som är större än saldot på kontot, men i det
 
 \begin{Slide}{Inlämningsuppgift Draw; diskussion + utblick}\footnotesize
 \Emph{Exempel på klurighet} \\
-Utvidgning: relativ förflyttning med tangentbordet. \\Men klassen \code{se.lth.cs.pt.shapes.Shape} har inga \code{GetX}, \code{GetY}\\ 
+Utvidgning: relativ förflyttning med tangentbordet. \\Men klassen \code{se.lth.cs.pt.shapes.Shape} har inga metoder som exponerar attributen \code{x} och \code{y}.\\ 
 \vspace {1em} Hur löser vi det? 
 \pause Två olika lösningar:
 \begin{itemize}\footnotesize
-\item Kopiera  se.lth.cs.pt.shapes.Shapes till mitt eget paket och lägg till metoderna
-\item Eftersom attributen \code{x} och \code{y} är \code{protected} i \code{Shape} så kan vi med en ny klass \code{LocatableShape extends Shape} skapa en ny basklass för våra figurer och där implementera  \code{GetX}, \code{GetY}
+\item Kopiera  \code{se.lth.cs.pt.shapes.Shapes} till mitt eget paket och lägg till metoderna \code{getX()}, \code{getY()} eller \code{deltaMove(dx, dy)}
+\item Eftersom attributen \code{x} och \code{y} är \code{protected} i \code{Shape} så kan vi med en ny klass \code{LocatableShape extends Shape} och implementera \code{getX()}, \code{getY()} eller \code{deltaMove(dx, dy)} i denna
 \end{itemize}
  \pause \vspace{1em} Viktiga generella observationer:
 \begin{itemize}\footnotesize
@@ -78,10 +91,18 @@ Utvidgning: relativ förflyttning med tangentbordet. \\Men klassen \code{se.lth.
 \end{Slide}
 
 \subsection{Kursutvärdering}
-\begin{Slide}{CEQ}
-\begin{enumerate}
-\item Om CEQ
-\end{enumerate}
+\begin{Slide}{CEQ -- Course Experience Questionnaire}\footnotesize
+\begin{itemize}
+\item Görs på hela LTH på samma sätt. Alla får länkar via mejl.
+\item Snälla fyll i CEQ! Jag är \Alert{mycket tacksam} för all konstruktiv feedback! \\ Hög svarsfrekvens är viktigt för att kunna dra slutsatser om variationen i svaren och signifikansen i sammanställningen.
+\item Del 1: Generella påståenden, alla med 5-gradig skala: \\ tar helt avstånd ... instämmer helt
+\item Del 2: \Emph{Fritextfrågor}: \\
+''Vad  tycker  du  var  det  bästa  med  den här  kursen?'' \\
+''Vad  tycker  du  främst  behöver  förbättras?''
+\item Fördel med CEQ: Samma alla kurser alla år medger jämförelse över tid.
+\item Begränsning med CEQ: Saknar frågor kopplat till specifika kursmoment.
+\item Mer om CEQ här: \url{https://www.ceq.lth.se/}
+\end{itemize}
 \end{Slide}
 
 \begin{Slide}{Kursspecifik utvärdering om specifika kursmoment}
@@ -98,13 +119,13 @@ Diskussion om några av begreppen ur grumligtlådan:
 \item \Emph{override}: ersätta metod i subklass
 \item \Emph{iterator}: ett objekt med metoder för att iterera över elementen i en samling
 \item ''När du säger \Emph{Java} exakt vad menar du då?''
-\begin{enumerate}
+\begin{enumerate}\footnotesize
 \item Ett programspråk
-\item En virtuell masking och exekveringsplatform
+\item En virtuell maskin och exekveringsplattform
 \item En stor uppsättning standardbibliotek med färdiga klasser
-\item En global gemenskap av kompatibla öppenkällkodsbibliotek
+\item En global gemenskap kring ett stort antal öppen-källkodsbibliotek
 \end{enumerate}
-\item \Emph{volatile}: speciellt nyckelord för att skydd mot samtidig access av gemensamma variabler i jämlöpande trådar. \footnotesize Java har speciella språkkonstruktioner och bibliotek för att hantera trådar som exekverar samtidigt. Detta är ett avancerat och intressant område som ni läser mer om i realtidsprogrammering.
+\item \Emph{volatile}: speciellt nyckelord för skydd mot samtidig access av gemensamma variabler i jämlöpande trådar. \\ \footnotesize Java har speciella språkkonstruktioner och bibliotek för att hantera trådar som exekverar samtidigt. Detta är ett avancerat och intressant område som ni läser mer om i realtidsprogrammering.
 \end{itemize}
 \end{Slide}
 
