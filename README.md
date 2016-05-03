@@ -1,7 +1,9 @@
 # lth-eda016-2015
 
-Public files of EDA016 "Programming, First Course" given at Lund University, LTH.
-  * Homepage: http://cs.lth.se/eda016 (In Swedish)
+This repo hosts the public files of the discontinued course EDA016 "Programming, First Course" using Java that was given at Lund University, LTH in 2015. The course is replaced by EDAA45 "Introduction to programming" using Scala and Java starting 2016 (fall semester) and developed as an open source project.
+  * Repo of the new course: https://github.com/lunduniversity/introprog
+  * Homepage of new course: http://cs.lth.se/pgk (In Swedish)
+  * Homepage of old course: http://cs.lth.se/eda016 (In Swedish)
 
 # What is in this repo?
 
@@ -9,14 +11,6 @@ This repo contains:
   * Lecture notes in tex and pdf
   * Courseplans and weekplans generated from markdown to html and tex using http://pandoc.org
   * Guidelines for teachers
-
-# How to contribute
-
-Pull requests are welcome! 
-
-Contact bjorn.regnell@cs.lth.se
-
-If you find any bugs or have ideas on new features please let me know!
 
 # Contributors
 
